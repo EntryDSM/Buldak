@@ -14,7 +14,7 @@
         "new-service": "yarn hygen service new"
     },
     "devDependencies": {
-        "@packages/eslint-config-custom": "latest",
+        "@packages/eslint-config-custom": "*",
         "prettier": "latest",
         "turbo": "latest"
     },
