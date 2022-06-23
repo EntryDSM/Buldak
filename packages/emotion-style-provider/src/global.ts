@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
-const global = css`
+export const global = css`
     @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
     * {
         margin: 0;

@@ -5,7 +5,7 @@ import theme from './theme';
 export const StyleProvider: React.FC = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
-            <Global styles={global}></Global>
+            <Global styles={global} />
             {children}
         </ThemeProvider>
     );
