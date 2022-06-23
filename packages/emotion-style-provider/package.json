@@ -1,0 +1,22 @@
+{
+    "name": "@packages/emotion-style-provider",
+    "version": "1.0.0",
+    "main": "src/index.tsx",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint *.ts*"
+    },
+    "devDependencies": {
+        "@packages/eslint-config-custom": "*",
+        "@packages/tsconfig": "*",
+        "@types/react": "^17.0.37",
+        "@types/react-dom": "^17.0.11",
+        "eslint": "^7.32.0",
+        "react": "^17.0.2",
+        "typescript": "^4.5.2"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.9.3",
+        "@emotion/styled": "^11.9.3"
+    }
+}
