@@ -1,0 +1,98 @@
+import styled from '@emotion/styled';
+import Image from 'next/image';
+import Link from 'next/link';
+
+type ManagementType = 'tag' | 'student' | 'company';
+
+interface Props {
+    managementType: ManagementType;
+}
+
+const SideBar: React.FC<Props> = ({ managementType }) => {
+    return (
+        <Wrapper>
+            <SchoolImage />
+            <AccountType>선생님 계정</AccountType>
+            <Navigation>
+                <Link href="/manageTag">
+                    <NavButton isSelected={managementType === 'tag'}>
+                        <div className="icon"></div>
+                        <p className="managementType">태그 관리</p>
+                    </NavButton>
+                </Link>
+                <Link href="/">
+                    <NavButton isSelected={managementType === 'student'}>
+                        <div className="icon"></div>
+                        <p className="managementType">학생 관리</p>
+                    </NavButton>
+                </Link>
+                <Link href="/manageCompany">
+                    <NavButton isSelected={managementType === 'company'}>
+                        <div className="icon"></div>
+                        <p className="managementType">기업 관리</p>
+                    </NavButton>
+                </Link>
+            </Navigation>
+        </Wrapper>
+    );
+};
+export default SideBar;
+
+const Wrapper = styled.aside`
+    width: 360px;
+    height: 100vh;
+    background-color: ${({ theme }) => theme.color.skyblue};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 40px;
+`;
+
+// todo styled.div -> styled(Image)로 바꿔야함
+const SchoolImage = styled.div`
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.background};
+`;
+const AccountType = styled.strong`
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    color: ${({ theme }) => theme.color.white};
+    margin-top: 15px;
+`;
+const Navigation = styled.nav`
+    margin-top: 30px;
+    width: 100%;
+`;
+
+interface NavButtonProps {
+    isSelected: boolean;
+}
+const NavButton = styled.a<NavButtonProps>`
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    cursor: pointer;
+    background-color: ${(props) => props.isSelected && '#477DE3'};
+    :last-child {
+        margin-bottom: 0;
+    }
+    > .icon {
+        width: 26px;
+        height: 26px;
+        margin-right: 19px;
+        background-color: #ffffff;
+    }
+    > .managementType {
+        color: ${({ theme }) => theme.color.white};
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 700;
+    }
+`;

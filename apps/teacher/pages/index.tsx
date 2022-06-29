@@ -1,7 +1,5 @@
+import SideBar from '../components/SideBar';
+
 export default function Home() {
-  return (
-    <div>
-      <h1>teacher</h1>
-    </div>
-  );
+    return <SideBar managementType="student" />;
 }
