@@ -1,6 +1,5 @@
-import { Global } from '@emotion/react';
-import { AppProps } from 'next/app';
-import { StyleProvider } from '../../../packages/emotion-style-provider/src/index';
+import { StyleProvider } from '@packages/emotion-style-provider';
+import type { AppProps } from 'next/app';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
