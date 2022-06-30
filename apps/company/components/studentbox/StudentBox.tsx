@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 interface Props {
     profile_img: string;
-    tags: any;
+    tags: string;
 }
 
 function StudentBox() {
