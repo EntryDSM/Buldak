@@ -3,10 +3,11 @@ import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 
 function CompanyInfo() {
-    const [modalOnOff, setModalOnOff] = useState(false);
+    const [modalOnOff, setModalOnOff] = useState<boolean>(false);
     const closeModal = () => {
         setModalOnOff(false);
     };
+    const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -20,11 +21,9 @@ function CompanyInfo() {
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        <Inputs title="기업 이름" placeholder="" />
-                        <Inputs title="기업 주소" placeholder="" />
-                        <Inputs title="담당자 이름" placeholder="" />
-                        <Inputs title="담당자 연락처" placeholder="" />
-                        <Inputs title="담당자 이메일" placeholder="" />
+                        {inputArr.map((value) => {
+                            return <Inputs title={value} placeholder="" />;
+                        })}
                         <div>
                             <button>비밀번호 초기화</button>
                             <button>정보 변경</button>
@@ -69,9 +68,8 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    padding: 0px 20px 0px 20px;
     > p {
-        font-style: normal;
         font-weight: 500;
         font-size: 22px;
         line-height: 28px;
@@ -93,7 +91,6 @@ const _InputWrapper = styled.div`
     justify-content: space-between;
     margin-bottom: 30px;
     > p {
-        font-style: normal;
         font-weight: 400;
         font-size: 22px;
         line-height: 28px;
@@ -127,7 +124,7 @@ const _SideWrapper = styled.div`
     }
     > p {
         margin-top: 20px;
-        font-style: normal;
+
         font-weight: 500;
         font-size: 20px;
         line-height: 25px;
@@ -139,17 +136,17 @@ const _InputsWrapper = styled.div`
     width: 510px;
     height: 404px;
     margin-top: 26px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    >div{
-        align-self:flex-end;
-        button{
-            width:200px;
-            height:44px;
-            border:1px solid ${({theme})=>theme.color.skyblue};
-            margin-top:10px;
-            margin-left:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > div {
+        align-self: flex-end;
+        button {
+            width: 200px;
+            height: 44px;
+            border: 1px solid ${({ theme }) => theme.color.skyblue};
+            margin-top: 10px;
+            margin-left: 20px;
         }
-    } 
+    }
 `;

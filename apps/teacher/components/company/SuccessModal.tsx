@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 
 function SuccessModal() {
-    const [modalOnoff, setModalOnoff] = useState(false);
+    const [modalOnoff, setModalOnoff] = useState<boolean>(false);
     const closeModal = () => {
         setModalOnoff(false);
     };
@@ -48,9 +48,8 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    padding: 0px 20px 0px 20px;
     > p {
-        font-style: normal;
         font-weight: 500;
         font-size: 20px;
         line-height: 25px;
@@ -84,18 +83,16 @@ const _Center = styled.div`
         margin: 20px;
     }
     > strong {
-        font-style: normal;
         font-weight: 500;
         font-size: 22px;
         line-height: 28px;
         color: ${({ theme }) => theme.color.navy};
     }
     > p {
-        font-style: normal;
         font-weight: 500;
         font-size: 24px;
         line-height: 30px;
         color: ${({ theme }) => theme.color.black};
-        margin-top:20px;
+        margin-top: 20px;
     }
 `;

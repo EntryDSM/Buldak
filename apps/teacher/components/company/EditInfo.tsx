@@ -3,10 +3,11 @@ import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 
 function EditInfo() {
-    const [modalOnOff, setModalOnOff] = useState(false);
+    const [modalOnOff, setModalOnOff] = useState<boolean>(false);
     const closeModal = () => {
         setModalOnOff(false);
     };
+    const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -16,11 +17,11 @@ function EditInfo() {
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
-                        <Inputs title="기업 이름" placeholder="기업 이름을 입력해 주세요" />
-                        <Inputs title="기업 주소" placeholder="기업 주소를 입력해 주세요" />
-                        <Inputs title="담당자 이름" placeholder="담당자 이름을 입력해 주세요" />
-                        <Inputs title="담당자 연락처" placeholder="담당자 연락처를 입력해 주세요" />
-                        <Inputs title="담당자 이메일" placeholder="담당자 이메일을 입력해 주세요" />
+                        {inputArr.map((value) => {
+                            return (
+                                <Inputs title={value} placeholder={value + '을/를 입력해 주세요'} />
+                            );
+                        })}
                     </_InputsWrapper>
                     <_CalendarWrapper>
                         <_TempCalendar />
@@ -65,9 +66,8 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    padding: 0px 20px 0px 20px;
     > p {
-        font-style: normal;
         font-weight: 500;
         font-size: 22px;
         line-height: 28px;
@@ -84,7 +84,7 @@ const _Body = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 50px 0 50px;
+    padding: 0px 50px 0px 50px;
 `;
 
 const _InputWrapper = styled.div`
@@ -96,7 +96,6 @@ const _InputWrapper = styled.div`
     justify-content: space-between;
     margin-bottom: 30px;
     > p {
-        font-style: normal;
         font-weight: 400;
         font-size: 20px;
         line-height: 28px;

@@ -72,7 +72,6 @@ const _ImgWrapper = styled.div`
         font-size: 18px;
         line-height: 23px;
         text-decoration-line: underline;
-        font-family: 'Spoqa Han Sans Neo';
         color: ${({ theme }) => theme.color.black};
     }
 `;
@@ -84,32 +83,30 @@ const _InputWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top:35px;
+    margin-top: 35px;
     > p {
-        font-style: normal;
         font-weight: 400;
         font-size: 22px;
         line-height: 28px;
     }
     > input {
-        width:380px;
-        height:40px;
-        border:1px solid black;
+        width: 380px;
+        height: 40px;
+        border: 1px solid black;
     }
 `;
 
-const _TempCalendar = styled.div` //후에 달력으로 대체
-    width:530px;
-    height:300px;
-    border:1px solid black;
-    margin-top:35px;
-
-`
+const _TempCalendar = styled.div`
+    //후에 달력으로 대체
+    width: 530px;
+    height: 300px;
+    border: 1px solid black;
+    margin-top: 35px;
+`;
 
 const _AddButton = styled.button`
-    margin-top:35px;
-    width:530px;
-    height:44px;
-    border:1px solid ${({theme})=>theme.color.skyblue};
-
-`
+    margin-top: 35px;
+    width: 530px;
+    height: 44px;
+    border: 1px solid ${({ theme }) => theme.color.skyblue};
+`;
