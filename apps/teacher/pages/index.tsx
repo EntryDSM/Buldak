@@ -6,7 +6,6 @@ import UserDetail from '../components/student/userDetail';
 export default function Home() {
     return (
         <>
-            <UserDetail />
             <Wrapper>
                 <SideBar managementType="student" />
                 <ManageStudent />
