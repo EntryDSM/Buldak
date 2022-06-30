@@ -1,5 +1,5 @@
 const withTM = require('next-transpile-modules')([
-    ' @packages/ui',
+    '@packages/ui',
     '@packages/emotion-style-provider',
 ]);
 
