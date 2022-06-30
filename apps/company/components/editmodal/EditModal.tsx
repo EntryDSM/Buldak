@@ -61,14 +61,14 @@ const Background = styled.div`
 const Box = styled.div`
     width: 750px;
     height: 600px;
-    background-color: ${({ theme }) => theme.color.white};;
+    background-color: ${({ theme }) => theme.color.white};
     border-radius: 10px;
     position: absolute;
     display: flex;
     flex-direction: row;
 `;
 const Side = styled.div`
-    border-right: 1px solid #f0f0f0;
+    border-right: 1px solid  ${({ theme }) => theme.color.gay300};
     width: 250px;
     height: 400px;
     display: flex;
