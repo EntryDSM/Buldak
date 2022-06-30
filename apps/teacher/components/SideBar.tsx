@@ -8,30 +8,20 @@ interface Props {
     managementType: ManagementType;
 }
 
-const SideBar: React.FC<Props> = ({ managementType }) => {
+const SideBar = ({ managementType }: Props) => {
     return (
         <_Wrapper>
             <_SchoolImage />
             <_AccountType>선생님 계정</_AccountType>
             <_Navigation>
-                <Link href="/manageTag">
-                    <_NavButton isSelected={managementType === 'tag'}>
-                        <div className="icon"></div>
-                        <p className="managementType">태그 관리</p>
-                    </_NavButton>
-                </Link>
-                <Link href="/">
-                    <_NavButton isSelected={managementType === 'student'}>
-                        <div className="icon"></div>
-                        <p className="managementType">학생 관리</p>
-                    </_NavButton>
-                </Link>
-                <Link href="/manageCompany">
-                    <_NavButton isSelected={managementType === 'company'}>
-                        <div className="icon"></div>
-                        <p className="managementType">기업 관리</p>
-                    </_NavButton>
-                </Link>
+                {navArray.map((item) => (
+                    <Link href={item.url} key={item.managementType}>
+                        <_NavButton isSelected={managementType === item.managementType}>
+                            <div className="icon"></div>
+                            <p className="managementType">{item.summary}</p>
+                        </_NavButton>
+                    </Link>
+                ))}
             </_Navigation>
         </_Wrapper>
     );
@@ -93,3 +83,30 @@ const _NavButton = styled.a<NavButtonProps>`
         font-weight: 700;
     }
 `;
+
+interface NavItem {
+    summary: string;
+    image: string;
+    url: string;
+    managementType: ManagementType;
+}
+const navArray: NavItem[] = [
+    {
+        summary: '태그 관리',
+        image: '',
+        url: '/managementTag',
+        managementType: 'tag',
+    },
+    {
+        summary: '학생 관리',
+        image: '',
+        url: '/',
+        managementType: 'student',
+    },
+    {
+        summary: '기업 관리',
+        image: '',
+        url: '/managementCompany',
+        managementType: 'company',
+    },
+];
