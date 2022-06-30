@@ -61,7 +61,7 @@ const Background = styled.div`
 const Box = styled.div`
     width: 750px;
     height: 600px;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.color.white};;
     border-radius: 10px;
     position: absolute;
     display: flex;
