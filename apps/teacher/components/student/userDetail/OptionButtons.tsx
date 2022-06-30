@@ -12,7 +12,6 @@ export default OptionButtons;
 
 const _Wrapper = styled.section`
     width: 250px;
-    box-sizing: border-box;
     padding-left: 35px;
 `;
 const _Button = styled.button`

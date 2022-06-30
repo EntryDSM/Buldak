@@ -32,7 +32,6 @@ const _PersonalInfo = styled.div`
     width: 335px;
     height: 350px;
     border-right: 2px solid ${({ theme }) => theme.color.gay300};
-    box-sizing: border-box;
 `;
 const _List = styled.li`
     display: flex;

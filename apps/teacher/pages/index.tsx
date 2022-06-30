@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import UserDetail from '../components/student/userDetail';
 
 export default function Home() {
-    const asd = () => {};
     return (
         <>
             <UserDetail />

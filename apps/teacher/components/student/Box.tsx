@@ -52,11 +52,11 @@ const _Wrapper = styled.li<WrapperProps>`
     ${(props) =>
         props.isSubmitted
             ? css`
-                  background-color: #ffffff;
-                  border: 1px solid #5387ec;
+                  background-color: ${props.theme.color.white};
+                  border: 1px solid ${props.theme.color.skyblue};
               `
             : css`
-                  background-color: #dddddd;
+                  background-color: ${props.theme.color.gray500};
               `}
     > .submittedFont {
         color: ${({ theme }) => theme.color.gray900};

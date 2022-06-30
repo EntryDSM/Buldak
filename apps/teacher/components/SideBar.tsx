@@ -45,7 +45,6 @@ const _Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
     padding: 40px;
 `;
 
@@ -74,7 +73,6 @@ interface NavButtonProps {
 const _NavButton = styled.a<NavButtonProps>`
     width: 100%;
     height: 50px;
-    box-sizing: border-box;
     padding: 12px 20px;
     margin-bottom: 15px;
     display: flex;

@@ -27,7 +27,6 @@ export default DocumentList;
 
 const _Wrapper = styled.div`
     width: 400px;
-    box-sizing: border-box;
     padding: 0 38px;
     display: flex;
     flex-direction: column;
@@ -63,7 +62,6 @@ const _Document = styled.section`
     }
     > .developPart {
         height: 40px;
-        box-sizing: border-box;
         padding-left: 15px;
         font-size: 20px;
         line-height: 40px;
@@ -75,7 +73,6 @@ const _Document = styled.section`
 const _UserSummary = styled.div`
     display: flex;
     height: 50px;
-    box-sizing: border-box;
     padding: 10px 15px;
     align-items: center;
     > .profileImage {

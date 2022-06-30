@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { PropsWithChildren } from 'react';
 
 interface Props {
-    setModalStatus: () => void;
+    closeModal: () => void;
 }
 
-const ModalWrapper: React.FC<Props> = ({ children, setModalStatus }) => {
+const ModalWrapper = ({ children, closeModal }: PropsWithChildren<Props>) => {
     return (
         <_Wrapper>
-            <OutsideClickHandler onOutsideClick={setModalStatus}>{children}</OutsideClickHandler>
+            <OutsideClickHandler onOutsideClick={closeModal}>{children}</OutsideClickHandler>
         </_Wrapper>
     );
 };

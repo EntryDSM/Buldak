@@ -3,11 +3,16 @@ import ModalWrapper from '../../ModalWrapper';
 import PersonalInfo from './PersonalInfo';
 import DocumentList from './DocumentList';
 import OptionButtons from './OptionButtons';
+import { useState } from 'react';
 
 const UserDetail = () => {
-    const asd = () => {};
+    // todo : modal 상태관리 context로 뺴야함
+    const [visibleModal, setVisibleModal] = useState(false);
+    const closeModal = () => {
+        setVisibleModal(false);
+    };
     return (
-        <ModalWrapper setModalStatus={asd}>
+        <ModalWrapper closeModal={closeModal}>
             <_Box>
                 <_Title>학생 정보 조회</_Title>
                 <_FlexWrapper>
@@ -26,7 +31,6 @@ const _Box = styled.div`
     height: 500px;
     background-color: ${({ theme }) => theme.color.white};
     border-radius: 10px;
-    box-sizing: border-box;
     padding: 30px 35px;
 `;
 const _Title = styled.h2`
