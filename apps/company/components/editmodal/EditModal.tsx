@@ -98,7 +98,7 @@ const Side = styled.div`
     }
 `;
 
-const BoxImg = styled.div<{ backgroundImg: any }>`
+const BoxImg = styled.div<{ backgroundImg: StaticImageData }>`
     width: 90px;
     height: 90px;
     background-image: url(${(props) => props.backgroundImg.src});
@@ -126,7 +126,7 @@ const Body = styled.div`
     }
 `;
 
-const Exit = styled.div<{ backgroundImg: any }>`
+const Exit = styled.div<{ backgroundImg: StaticImageData }>`
     width: 34px;
     height: 34px;
     position: absolute;
