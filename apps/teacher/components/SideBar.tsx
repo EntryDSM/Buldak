@@ -65,6 +65,9 @@ const _AccountType = styled.strong`
 const _Navigation = styled.nav`
     margin-top: 30px;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 0;
 `;
 
 interface NavButtonProps {
@@ -74,13 +77,9 @@ const _NavButton = styled.a<NavButtonProps>`
     width: 100%;
     height: 50px;
     padding: 12px 20px;
-    margin-bottom: 15px;
     display: flex;
     cursor: pointer;
     background-color: ${(props) => props.isSelected && '#477DE3'};
-    :last-child {
-        margin-bottom: 0;
-    }
     > .icon {
         width: 26px;
         height: 26px;
