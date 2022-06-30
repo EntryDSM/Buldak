@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 interface Props {
     profile_img: string;
-    tags: any;
+    tags: string;
 }
 
 function StudentBox() {
@@ -10,7 +10,7 @@ function StudentBox() {
         <Wrapper>
             <ImgBlock></ImgBlock>
             <Body>
-                <h1 id="major">프론트엔드</h1>
+                <strong id="major">프론트엔드</strong>
                 <TagsWrapper></TagsWrapper>
             </Body>
             <Footer>
