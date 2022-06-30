@@ -10,35 +10,35 @@ interface Props {
 
 const SideBar: React.FC<Props> = ({ managementType }) => {
     return (
-        <Wrapper>
-            <SchoolImage />
-            <AccountType>선생님 계정</AccountType>
-            <Navigation>
+        <_Wrapper>
+            <_SchoolImage />
+            <_AccountType>선생님 계정</_AccountType>
+            <_Navigation>
                 <Link href="/manageTag">
-                    <NavButton isSelected={managementType === 'tag'}>
+                    <_NavButton isSelected={managementType === 'tag'}>
                         <div className="icon"></div>
                         <p className="managementType">태그 관리</p>
-                    </NavButton>
+                    </_NavButton>
                 </Link>
                 <Link href="/">
-                    <NavButton isSelected={managementType === 'student'}>
+                    <_NavButton isSelected={managementType === 'student'}>
                         <div className="icon"></div>
                         <p className="managementType">학생 관리</p>
-                    </NavButton>
+                    </_NavButton>
                 </Link>
                 <Link href="/manageCompany">
-                    <NavButton isSelected={managementType === 'company'}>
+                    <_NavButton isSelected={managementType === 'company'}>
                         <div className="icon"></div>
                         <p className="managementType">기업 관리</p>
-                    </NavButton>
+                    </_NavButton>
                 </Link>
-            </Navigation>
-        </Wrapper>
+            </_Navigation>
+        </_Wrapper>
     );
 };
 export default SideBar;
 
-const Wrapper = styled.aside`
+const _Wrapper = styled.aside`
     width: 360px;
     height: 100vh;
     background-color: ${({ theme }) => theme.color.skyblue};
@@ -50,20 +50,20 @@ const Wrapper = styled.aside`
 `;
 
 // todo styled.div -> styled(Image)로 바꿔야함
-const SchoolImage = styled.div`
+const _SchoolImage = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.color.background};
 `;
-const AccountType = styled.strong`
+const _AccountType = styled.strong`
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;
     color: ${({ theme }) => theme.color.white};
     margin-top: 15px;
 `;
-const Navigation = styled.nav`
+const _Navigation = styled.nav`
     margin-top: 30px;
     width: 100%;
 `;
@@ -71,7 +71,7 @@ const Navigation = styled.nav`
 interface NavButtonProps {
     isSelected: boolean;
 }
-const NavButton = styled.a<NavButtonProps>`
+const _NavButton = styled.a<NavButtonProps>`
     width: 100%;
     height: 50px;
     box-sizing: border-box;
