@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import BackImg from '../assets/img/BackImg.jpg';
 import * as S from '../components/LoginPage/styled';
@@ -16,7 +16,7 @@ const LoginPage = () => {
         user_type: '',
     });
 
-    const onChangeLoginState = (e: any) => {
+    const onChangeLoginState = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginState({ ...loginState, [name]: value });
     };
