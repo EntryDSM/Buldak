@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { type } from 'os';
 
 export const MainPageContainer = styled.div`
     display: flex;
@@ -56,44 +55,33 @@ export const SeTextLayout = styled.div`
 `;
 
 export const SeOneTitleOne = styled.p`
-    font-style: normal;
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
-
-    margin: 0px;
 `;
 
 export const SeOneTitleTwo = styled.p`
-    font-style: normal;
     font-weight: 300;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
-
-    margin: 0px;
 `;
 
 export const SeOneTitleThree = styled.p`
-    font-style: normal;
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
     letter-spacing: 0.05em;
     color: ${({ theme }) => theme.color.skyblue};
-
-    margin: 0px;
 `;
 
 export const SeOneText = styled.p`
-    font-style: normal;
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
     color: ${({ theme }) => theme.color.gray900};
 
-    margin: 0px;
     margin-top: 10px;
 `;
 
@@ -102,25 +90,20 @@ type TextAlignType = {
 };
 
 export const SeAllTitle = styled.p<TextAlignType>`
-    font-style: normal;
     font-weight: 500;
     font-size: 25px;
     line-height: 31px;
     text-align: ${(props) => props.TA};
     color: ${({ theme }) => theme.color.black};
-
-    margin: 0px;
 `;
 
 export const SeAllText = styled.p<TextAlignType>`
-    font-style: normal;
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
     text-align: ${(props) => props.TA};
     color: ${({ theme }) => theme.color.gray900};
 
-    margin: 0px;
     margin-top: 15px;
 `;
 

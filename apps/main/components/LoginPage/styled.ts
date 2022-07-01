@@ -39,13 +39,11 @@ export const LoginBox = styled.div`
 `;
 
 export const LoginTitle = styled.p`
-    font-style: normal;
     font-weight: 700;
     font-size: 28px;
     line-height: 35px;
     color: ${({ theme }) => theme.color.navy};
 
-    margin: 0px;
     margin-top: 75px;
 `;
 
@@ -55,8 +53,7 @@ export const LoginPoint = styled.div`
     background: ${({ theme }) => theme.color.navy};
     border-radius: 100px;
 
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 `;
 
 export const LoginInputLayout = styled.div`
@@ -69,13 +66,10 @@ export const LoginInputLayout = styled.div`
 `;
 
 export const LoginInputText = styled.p`
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
     color: ${({ theme }) => theme.color.black};
-
-    margin: 0px;
 `;
 
 export const LoginInput = styled.input`
@@ -94,7 +88,6 @@ export const LoginButton = styled.div`
     justify-content: center;
     align-items: center;
 
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
@@ -107,7 +100,7 @@ export const LoginButton = styled.div`
     border-radius: 5px;
 
     :hover {
-        background-color: #5387ec;
+        background-color: ${({ theme }) => theme.color.skyblue};
         color: ${({ theme }) => theme.color.white};
     }
 `;

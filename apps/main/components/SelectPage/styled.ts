@@ -12,7 +12,7 @@ export const ImgContainer = styled.div`
     overflow: hidden;
 
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `;
 
 export const SelectContainer = styled.div`
@@ -39,13 +39,11 @@ export const SelectBox = styled.div`
 `;
 
 export const SelectTitle = styled.p`
-    font-style: normal;
     font-weight: 700;
     font-size: 25px;
     line-height: 31px;
     color: ${({ theme }) => theme.color.navy};
 
-    margin: 0px;
     margin-top: 40px;
 `;
 
@@ -53,11 +51,10 @@ export const SelectLine = styled.div`
     width: 50px;
     height: 2px;
     background: ${({ theme }) => theme.color.skyblue};
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 `;
 
-export const SelectAria = styled.div`
+export const SelectAria = styled.a`
     display: flex;
     flex-direction: column;
     gap: 35px;
@@ -95,7 +92,6 @@ export const ThingsPorfile = styled.div`
 `;
 
 export const ThingsName = styled.p`
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
@@ -106,14 +102,11 @@ export const ThingsName = styled.p`
 `;
 
 export const ThingsText = styled.p`
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
     text-align: center;
     color: ${({ theme }) => theme.color.gray700};
-
-    margin: 0px;
 `;
 
 export const ThingsSelectButton = styled.button`
@@ -123,7 +116,6 @@ export const ThingsSelectButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
@@ -151,13 +143,11 @@ export const SelectBackLayout = styled.button`
 export const SelectBackText = styled.p`
     transition: all 0.4s;
 
-    font-style: normal;
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;
     color: ${({ theme }) => theme.color.skyblue};
 
-    margin: 0px;
     margin-left: 10px;
     :hover {
         margin-left: 18px;
