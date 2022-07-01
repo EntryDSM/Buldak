@@ -33,18 +33,17 @@ export const SelectBox = styled.div`
 
     width: 900px;
     height: 500px;
-    background: #ffffff;
+    background: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 `;
 
 export const SelectTitle = styled.p`
-    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
     line-height: 31px;
-    color: #0a4595;
+    color: ${({ theme }) => theme.color.navy};
 
     margin: 0px;
     margin-top: 40px;
@@ -53,7 +52,7 @@ export const SelectTitle = styled.p`
 export const SelectLine = styled.div`
     width: 50px;
     height: 2px;
-    background: #5387ec;
+    background: ${({ theme }) => theme.color.skyblue};
     margin-top: 20px;
     margin-bottom: 20px;
 `;
@@ -77,8 +76,8 @@ export const SelectThingsBox = styled.div`
 
     width: 240px;
     height: 270px;
-    background: #ffffff;
-    border: 2px solid #f0f0f0;
+    background: ${({ theme }) => theme.color.white};
+    border: 2px solid ${({ theme }) => theme.color.gay300};
     border-radius: 8px;
 `;
 
@@ -89,32 +88,30 @@ export const ThingsPorfile = styled.div`
 
     width: 76px;
     height: 76px;
-    background: #f3f7ff;
-    border: 2px solid #f0f0f0;
+    background: ${({ theme }) => theme.color.background};
+    border: 2px solid ${({ theme }) => theme.color.gay300};
     border-radius: 100px;
     margin-top: 25px;
 `;
 
 export const ThingsName = styled.p`
-    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
-    color: #343434;
+    color: ${({ theme }) => theme.color.black};
 
     margin-top: 10px;
     margin-bottom: 5px;
 `;
 
 export const ThingsText = styled.p`
-    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
     text-align: center;
-    color: #b6b6b6;
+    color: ${({ theme }) => theme.color.gray700};
 
     margin: 0px;
 `;
@@ -126,16 +123,15 @@ export const ThingsSelectButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
-    color: #3068d3;
+    color: ${({ theme }) => theme.color.skyblue};
 
     width: 100px;
     height: 40px;
-    background: #f3f7ff;
+    background: ${({ theme }) => theme.color.background};
     border-radius: 100px;
     margin-top: 30px;
     border: none;
@@ -148,19 +144,18 @@ export const SelectBackLayout = styled.button`
     align-items: center;
 
     border: none;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.color.white};
     width: 150px;
 `;
 
 export const SelectBackText = styled.p`
     transition: all 0.4s;
 
-    font-family: 'Spoqa Han Sans Neo';
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;
-    color: #3068d3;
+    color: ${({ theme }) => theme.color.skyblue};
 
     margin: 0px;
     margin-left: 10px;
