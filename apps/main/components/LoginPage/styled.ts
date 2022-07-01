@@ -12,7 +12,7 @@ export const ImgContainer = styled.div`
     overflow: hidden;
 
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `;
 
 export const LoginContainer = styled.div`
@@ -23,7 +23,7 @@ export const LoginContainer = styled.div`
     align-items: center;
 
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `;
 
 export const LoginBox = styled.div`
