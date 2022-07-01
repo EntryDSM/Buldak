@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 const AddInputButton = () => {
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, setIsOpened] = useState<boolean>(false);
     const onClickOpenInput = () => {
         setIsOpened(true);
     };
