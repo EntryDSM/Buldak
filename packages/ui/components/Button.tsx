@@ -10,10 +10,11 @@ interface ButtonProps {
     content?: string;
     image?: string;
     hoverImage?: string;
+    onClick?: () => void;
 }
 
 const Button: FC<ButtonProps> = (props) => {
-    const { image, content, hoverImage } = props;
+    const { image, content, hoverImage, onClick } = props;
     const [icon, setIcon] = useState<string>(image ? image : '');
 
     return (
@@ -24,7 +25,8 @@ const Button: FC<ButtonProps> = (props) => {
             }}
             onMouseOut={() => {
                 image && setIcon(image);
-            }}>
+            }}
+            onClick={onClick}>
             {icon && image && <img src={icon} />}
             {content && <p>{content}</p>}
         </ButtonWrapper>
