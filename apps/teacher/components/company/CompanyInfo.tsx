@@ -21,9 +21,7 @@ function CompanyInfo() {
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        {inputArr.map((value) => {
-                            return <Inputs title={value} placeholder="" />;
-                        })}
+                        {inputArr.map((value) => <Inputs title={value} placeholder="" />)}
                         <div>
                             <button>비밀번호 초기화</button>
                             <button>정보 변경</button>
