@@ -1,37 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
+import { Company, Teacher, Student } from '../components/SelectPage/constatnt';
 import BackImg from '../assets/img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
 
 const SelectPage = () => {
-    const Student = (
-        <>
-            DSM 학생이시라면
-            <br />
-            학생 로그인을 이용해주세요
-        </>
-    );
-
-    const Teacher = (
-        <>
-            선생님이시라면
-            <br />
-            선생님 로그인을 이용해주세요
-        </>
-    );
-
-    const Company = (
-        <>
-            기업이시라면
-            <br />
-            기업 로그인을 이용해주세요
-        </>
-    );
-
-    const onClickLoginType = (e: any) => {
-        const { name } = e.target;
+    const onClickLoginType = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const { name } = e.currentTarget;
         if (name == '학생') {
             window.localStorage.setItem('LoginType', name);
         } else if (name == '선생님') {
@@ -39,6 +16,8 @@ const SelectPage = () => {
         } else if (name == '기업') {
             window.localStorage.setItem('LoginType', name);
         }
+
+        console.log(name);
     };
 
     return (
