@@ -1,9 +1,5 @@
----
-to: apps/<%= name %>/package.json
----
-
 {
-  "name": "@apps/<%= name %>",
+  "name": "@apps/company",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,11 +12,10 @@ to: apps/<%= name %>/package.json
     "next": "12.0.8",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "@packages/ui": "*",
+    "ui": "*",
     "react-query": "^3.39.1",
     "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@packages/emotion-style-provider":"*"
+    "@emotion/styled": "^11.9.3"
   },
   "devDependencies": {
     "eslint": "7.32.0",

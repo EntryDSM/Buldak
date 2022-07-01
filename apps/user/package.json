@@ -1,9 +1,5 @@
----
-to: apps/<%= name %>/package.json
----
-
 {
-  "name": "@apps/<%= name %>",
+  "name": "@apps/user",
   "version": "0.0.0",
   "private": true,
   "scripts": {
