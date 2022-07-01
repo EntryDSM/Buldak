@@ -7,7 +7,7 @@ const LoginPage = () => {
     interface loginType {
         email: string;
         password: string;
-        user_type: any;
+        user_type: 'teacher' | 'student' | 'company' | '';
     }
 
     const [loginState, setLoginState] = useState<loginType>({
@@ -19,7 +19,6 @@ const LoginPage = () => {
     const onChangeLoginState = (e: any) => {
         const { name, value } = e.target;
         setLoginState({ ...loginState, [name]: value });
-        console.log(loginState);
     };
 
     return (
