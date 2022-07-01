@@ -27,7 +27,13 @@ const SelectPage = () => {
         }
     };
 
-    const SelectThingsMap = selectThings.map((item: any, index: number) => {
+    interface MapType {
+        Type: string;
+        Text: object;
+        img: string;
+    }
+
+    const SelectThingsMap = selectThings.map((item: MapType) => {
         return (
             <SelectThings
                 onClickLoginType={onClickLoginType}
@@ -47,7 +53,7 @@ const SelectPage = () => {
                 <S.SelectBox>
                     <S.SelectTitle>로그인 선택</S.SelectTitle>
                     <S.SelectLine />
-                    <S.SelectAria href='./'>
+                    <S.SelectAria href="./">
                         <S.SelectLayout>{SelectThingsMap}</S.SelectLayout>
                         <S.SelectBackLayout>
                             <Image src={Left_arrow} />
