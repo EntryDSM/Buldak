@@ -1,26 +1,10 @@
-import { NextComponentType } from 'next';
-import { AppContext, AppInitialProps, AppProps } from 'next/app';
-import '../globalstyle.css';
+import { StyleProvider } from '@packages/emotion-style-provider';
+import type { AppProps } from 'next/app';
 
-const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
-    Component,
-    pageProps,
-}) => {
+export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <>
+        <StyleProvider>
             <Component {...pageProps} />
-        </>
+        </StyleProvider>
     );
-};
-
-MyApp.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-        pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-};
-
-export default MyApp;
+}
