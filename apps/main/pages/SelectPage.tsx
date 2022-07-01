@@ -1,12 +1,21 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { Company, Teacher, Student } from '../components/SelectPage/constatnt';
+import studentSVG from '../assets/svg/Student.svg';
+import teacherSVG from '../assets/svg/Teacher.svg';
+import companySVG from '../assets/svg/Company.svg';
 import BackImg from '../assets/img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
 
 const SelectPage = () => {
+    const selectThings = [
+        { Type: '학생', Text: Student, img: studentSVG },
+        { Type: '선생님', Text: Teacher, img: teacherSVG },
+        { Type: '기업', Text: Company, img: companySVG },
+    ];
+
     const onClickLoginType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const { name } = e.currentTarget;
         if (name == '학생') {
@@ -16,9 +25,18 @@ const SelectPage = () => {
         } else if (name == '기업') {
             window.localStorage.setItem('LoginType', name);
         }
-
-        console.log(name);
     };
+
+    const SelectThingsMap = selectThings.map((item: any, index: number) => {
+        return (
+            <SelectThings
+                onClickLoginType={onClickLoginType}
+                Text={item.Text}
+                Name={item.Type}
+                Img={item.img}
+            />
+        );
+    });
 
     return (
         <S.SelectPageContainer>
@@ -29,24 +47,8 @@ const SelectPage = () => {
                 <S.SelectBox>
                     <S.SelectTitle>로그인 선택</S.SelectTitle>
                     <S.SelectLine />
-                    <S.SelectAria>
-                        <S.SelectLayout>
-                            <SelectThings
-                                onClickLoginType={onClickLoginType}
-                                Text={Student}
-                                Name="학생"
-                            />
-                            <SelectThings
-                                onClickLoginType={onClickLoginType}
-                                Text={Teacher}
-                                Name="선생님"
-                            />
-                            <SelectThings
-                                onClickLoginType={onClickLoginType}
-                                Text={Company}
-                                Name="기업"
-                            />
-                        </S.SelectLayout>
+                    <S.SelectAria href='./'>
+                        <S.SelectLayout>{SelectThingsMap}</S.SelectLayout>
                         <S.SelectBackLayout>
                             <Image src={Left_arrow} />
                             <S.SelectBackText>돌아가기</S.SelectBackText>
