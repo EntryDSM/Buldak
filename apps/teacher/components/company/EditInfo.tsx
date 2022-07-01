@@ -17,11 +17,7 @@ function EditInfo() {
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
-                        {inputArr.map((value) => {
-                            return (
-                                <Inputs title={value} placeholder={value + '을/를 입력해 주세요'} />
-                            );
-                        })}
+                        {inputArr.map((value) => <Inputs title={value} placeholder={value + '을/를 입력해 주세요'} />)}
                     </_InputsWrapper>
                     <_CalendarWrapper>
                         <_TempCalendar />
