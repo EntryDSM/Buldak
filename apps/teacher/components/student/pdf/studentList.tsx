@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import StudentBox, { pdfStudentListProps } from './StudentBox';
+import StudentBox from './StudentBox';
 
 interface Props {
     isAddList: boolean;
@@ -60,7 +60,7 @@ const StudentList = ({ isAddList }: Props) => {
                         profile_image_path: item.profile_image_path,
                         public_id: item.public_id,
                         isSelected: false,
-                    } as pdfStudentListProps;
+                    };
                     return <StudentBox item={newItem} />;
                 })
             )}

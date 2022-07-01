@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
 
-export interface pdfStudentListProps {
+interface pdfStudentListProps {
     public_id: string;
     name: string;
     gcn: number;
