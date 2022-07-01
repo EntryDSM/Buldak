@@ -7,6 +7,7 @@ import {
     SeTwoText,
     SeTwoTitle,
 } from './constatnt';
+import theme from '@packages/emotion-style-provider/src/theme';
 import SessionBoxOne from './SessionBoxOne';
 import SessionBoxTwo from './SessionBoxTwo';
 import SessionOne from '../../assets/svg/SessionOne.svg';
@@ -40,21 +41,21 @@ const MainPage = () => {
             <SessionBoxTwo
                 SeIMG={SessionTwo}
                 SeTA="right"
-                SeColor="#F3F7FF"
+                SeColor={theme.color.background}
                 SeTitle={SeTwoTitle}
                 SeText={SeTwoText}
             />
             <SessionBoxOne
                 SeIMG={SessionThree}
                 SeTA="left"
-                SeColor="#FFFFFF"
+                SeColor={theme.color.white}
                 SeTitle={SeTheeTitle}
                 SeText={SeThreeText}
             />
             <SessionBoxTwo
                 SeIMG={SessionFour}
                 SeTA="right"
-                SeColor="#F3F7FF"
+                SeColor={theme.color.background}
                 SeTitle={SeFourTitle}
                 SeText={SeFourText}
             />
