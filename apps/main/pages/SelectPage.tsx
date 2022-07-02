@@ -4,34 +4,34 @@ import { Company, Teacher, Student } from '../components/SelectPage/constatnt';
 import studentSVG from '../assets/svg/Student.svg';
 import teacherSVG from '../assets/svg/Teacher.svg';
 import companySVG from '../assets/svg/Company.svg';
-import BackImg from '../assets/img/BackImg.jpg';
+import BackImg from '../assets/Img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
 
+interface MapType {
+    Type: string;
+    Text: object;
+    Img: string;
+}
+
 const SelectPage = () => {
     const selectThings = [
-        { Type: '학생', Text: Student, img: studentSVG },
-        { Type: '선생님', Text: Teacher, img: teacherSVG },
-        { Type: '기업', Text: Company, img: companySVG },
+        { Type: '학생', Text: Student, Img: studentSVG },
+        { Type: '선생님', Text: Teacher, Img: teacherSVG },
+        { Type: '기업', Text: Company, Img: companySVG },
     ];
 
     const onClickLoginType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const { name } = e.currentTarget;
         if (name == '학생') {
-            window.localStorage.setItem('LoginType', name);
+            window.localStorage.setItem('LoginType', 'STUDENT');
         } else if (name == '선생님') {
-            window.localStorage.setItem('LoginType', name);
+            window.localStorage.setItem('LoginType', 'TEACHER');
         } else if (name == '기업') {
-            window.localStorage.setItem('LoginType', name);
+            window.localStorage.setItem('LoginType', 'MOU');
         }
     };
-
-    interface MapType {
-        Type: string;
-        Text: object;
-        img: string;
-    }
 
     const SelectThingsMap = selectThings.map((item: MapType) => {
         return (
@@ -39,7 +39,7 @@ const SelectPage = () => {
                 onClickLoginType={onClickLoginType}
                 Text={item.Text}
                 Name={item.Type}
-                Img={item.img}
+                Img={item.Img}
             />
         );
     });
