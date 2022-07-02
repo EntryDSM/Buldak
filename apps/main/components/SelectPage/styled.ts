@@ -101,7 +101,7 @@ export const ThingsName = styled.p`
     margin-bottom: 5px;
 `;
 
-export const ThingsText = styled.p`
+export const ThingsText = styled.pre`
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;

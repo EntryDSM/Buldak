@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import { Company, Teacher, Student } from '../components/SelectPage/constatnt';
 import studentSVG from '../assets/svg/Student.svg';
 import teacherSVG from '../assets/svg/Teacher.svg';
@@ -11,7 +11,7 @@ import * as S from '../components/SelectPage/styled';
 
 interface MapType {
     Type: string;
-    Text: object;
+    Text: string;
     Img: string;
 }
 
@@ -29,7 +29,7 @@ const SelectPage = () => {
         window.location.href = '/LoginPage';
     };
 
-    const selectThings = [
+    const selectThings: MapType[] = [
         { Type: '학생', Text: Student, Img: studentSVG },
         { Type: '선생님', Text: Teacher, Img: teacherSVG },
         { Type: '기업', Text: Company, Img: companySVG },

@@ -4,7 +4,7 @@ import * as S from './styled';
 interface SelectThingsType {
     onClickLoginType: (e: React.MouseEvent<HTMLButtonElement>) => void;
     Name: string;
-    Text: object;
+    Text: string;
     Img: string;
 }
 
