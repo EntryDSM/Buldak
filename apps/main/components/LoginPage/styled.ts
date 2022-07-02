@@ -104,3 +104,22 @@ export const LoginButton = styled.div`
         color: ${({ theme }) => theme.color.white};
     }
 `;
+
+export const SearchPassword = styled.p`
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: ${({ theme }) => theme.color.black};
+
+    margin-top: 20px;
+`;
+
+export const SearchPasswordA = styled.a`
+    cursor: pointer;
+
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    text-decoration-line: underline;
+    color: ${({ theme }) => theme.color.navy};
+`;

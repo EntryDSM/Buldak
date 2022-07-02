@@ -7,7 +7,7 @@ const LoginPage = () => {
     interface loginType {
         email: string;
         password: string;
-        user_type: 'teacher' | 'student' | 'company' | '';
+        user_type: 'TEACHER' | 'STUDENT' | 'MOU' | '';
     }
 
     const [loginState, setLoginState] = useState<loginType>({
@@ -39,6 +39,9 @@ const LoginPage = () => {
                         <S.LoginInput onChange={onChangeLoginState} name="password" />
                     </S.LoginInputLayout>
                     <S.LoginButton>로그인</S.LoginButton>
+                    <S.SearchPassword>
+                        비밀번호를 잊으셨다면? <S.SearchPasswordA>비밀번호 찾기</S.SearchPasswordA>
+                    </S.SearchPassword>
                 </S.LoginBox>
             </S.LoginContainer>
         </S.LoginPageContainer>
