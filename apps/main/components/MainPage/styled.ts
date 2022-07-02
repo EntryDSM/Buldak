@@ -89,7 +89,7 @@ type TextAlignType = {
     TA: string;
 };
 
-export const SeAllTitle = styled.p<TextAlignType>`
+export const SeAllTitle = styled.pre<TextAlignType>`
     font-weight: 500;
     font-size: 25px;
     line-height: 31px;
@@ -97,7 +97,7 @@ export const SeAllTitle = styled.p<TextAlignType>`
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const SeAllText = styled.p<TextAlignType>`
+export const SeAllText = styled.pre<TextAlignType>`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;

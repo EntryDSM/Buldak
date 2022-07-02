@@ -5,8 +5,8 @@ interface SessionBoxType {
     SeColor: string;
     SeTA: string;
     SeIMG: string;
-    SeTitle: JSX.Element;
-    SeText: JSX.Element;
+    SeTitle: string;
+    SeText: string;
 }
 
 const SessionBoxOne: React.FC<SessionBoxType> = ({ SeColor, SeTA, SeText, SeTitle, SeIMG }) => {
