@@ -16,12 +16,6 @@ interface MapType {
 }
 
 const SelectPage = () => {
-    const selectThings = [
-        { Type: '학생', Text: Student, Img: studentSVG },
-        { Type: '선생님', Text: Teacher, Img: teacherSVG },
-        { Type: '기업', Text: Company, Img: companySVG },
-    ];
-
     const onClickLoginType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const { name } = e.currentTarget;
         if (name == '학생') {
@@ -31,7 +25,15 @@ const SelectPage = () => {
         } else if (name == '기업') {
             window.localStorage.setItem('LoginType', 'MOU');
         }
+
+        window.location.href = '/LoginPage';
     };
+
+    const selectThings = [
+        { Type: '학생', Text: Student, Img: studentSVG },
+        { Type: '선생님', Text: Teacher, Img: teacherSVG },
+        { Type: '기업', Text: Company, Img: companySVG },
+    ];
 
     const SelectThingsMap = selectThings.map((item: MapType) => {
         return (
@@ -53,9 +55,12 @@ const SelectPage = () => {
                 <S.SelectBox>
                     <S.SelectTitle>로그인 선택</S.SelectTitle>
                     <S.SelectLine />
-                    <S.SelectAria href="./">
+                    <S.SelectAria>
                         <S.SelectLayout>{SelectThingsMap}</S.SelectLayout>
-                        <S.SelectBackLayout>
+                        <S.SelectBackLayout
+                            onClick={() => {
+                                window.location.href = './';
+                            }}>
                             <Image src={Left_arrow} />
                             <S.SelectBackText>돌아가기</S.SelectBackText>
                         </S.SelectBackLayout>

@@ -54,7 +54,7 @@ export const SelectLine = styled.div`
     margin: 20px 0px;
 `;
 
-export const SelectAria = styled.a`
+export const SelectAria = styled.div`
     display: flex;
     flex-direction: column;
     gap: 35px;
