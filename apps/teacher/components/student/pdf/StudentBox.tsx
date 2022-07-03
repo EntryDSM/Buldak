@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
 
-interface pdfStudentListProps {
+interface PdfStudentListProps {
     public_id: string;
     name: string;
     gcn: number;
@@ -10,7 +10,7 @@ interface pdfStudentListProps {
 }
 
 interface Props {
-    item: pdfStudentListProps;
+    item: PdfStudentListProps;
 }
 
 const StudentBox = ({ item }: Props) => {
@@ -19,7 +19,11 @@ const StudentBox = ({ item }: Props) => {
             <Profile type="image" src={item.profile_image_path} />
             <_Name>{item.name}</_Name>
             <_StudentNumber>{item.gcn}</_StudentNumber>
-            {!item.isSelected ? <_PlusButton>+</_PlusButton> : <_MinusButton>-</_MinusButton>}
+            {!item.isSelected ? (
+                <_ChangeStatusButton>+</_ChangeStatusButton>
+            ) : (
+                <_ChangeStatusButton>-</_ChangeStatusButton>
+            )}
         </_Wrapper>
     );
 };
@@ -48,11 +52,10 @@ const _StudentNumber = styled.em`
     font-weight: 500;
     margin-left: 10px;
 `;
-const _PlusButton = styled.button`
+const _ChangeStatusButton = styled.button`
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.color.main};
     margin-left: auto;
 `;
-const _MinusButton = styled(_PlusButton)``;
