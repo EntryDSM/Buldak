@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Button } from '@packages/ui';
 
 const Filter = () => {
     return (
@@ -6,8 +7,20 @@ const Filter = () => {
             <_Dropdown1 />
             <_Dropdown1 />
             <_Dropdown2 />
-            <_Button />
-            <_Button />
+            <Button
+                width={130}
+                height={42}
+                borderColor="#5387EC"
+                fontColor="#5387EC"
+                content="Excel 출력"
+            />
+            <Button
+                width={130}
+                height={42}
+                borderColor="#5387EC"
+                fontColor="#5387EC"
+                content="pdf 출력"
+            />
         </_Wrapper>
     );
 };
@@ -16,6 +29,12 @@ export default Filter;
 const _Wrapper = styled.section`
     display: flex;
     margin-top: 25px;
+    > button {
+        margin-right: 10px;
+        :last-child {
+            margin-right: 0;
+        }
+    }
 `;
 const _Dropdown1 = styled.div`
     width: 150px;
@@ -31,13 +50,4 @@ const _Dropdown2 = styled.div`
     height: 42px;
     background-color: ${({ theme }) => theme.color.background};
     margin-right: 30px;
-`;
-const _Button = styled.div`
-    width: 130px;
-    height: 42px;
-    margin-right: 10px;
-    background-color: ${({ theme }) => theme.color.skyblue};
-    :last-child {
-        margin-right: 0;
-    }
 `;

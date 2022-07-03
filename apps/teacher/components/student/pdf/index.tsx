@@ -2,6 +2,7 @@ import ModalWrapper from '../../ModalWrapper';
 import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
+import { Button } from '@packages/ui';
 
 const PdfModal = () => {
     const onClick = () => {};
@@ -23,7 +24,13 @@ const PdfModal = () => {
                         <div className="arrow" />
                         <StudentList isAddList={true} />
                     </_StudentArea>
-                    <_Button />
+                    <Button
+                        width={130}
+                        height={40}
+                        borderColor={'#5387EC'}
+                        fontColor={'#5387EC'}
+                        content="출력하기"
+                    />
                 </_Content>
             </_Box>
         </ModalWrapper>
@@ -58,6 +65,9 @@ const _Header = styled.header`
 `;
 const _Content = styled.div`
     padding: 24px 50px 26px 50px;
+    > button {
+        margin: 10px 0 0 auto;
+    }
 `;
 const _SelectAll = styled.label`
     display: flex;
@@ -83,10 +93,4 @@ const _StudentArea = styled.div`
         height: 50px;
         background-color: ${({ theme }) => theme.color.gray500};
     }
-`;
-const _Button = styled.div`
-    width: 130px;
-    height: 40px;
-    background-color: ${({ theme }) => theme.color.gray500};
-    margin: 10px 0 0 auto;
 `;

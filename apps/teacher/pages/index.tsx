@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <>
             {/*<UserDetail />*/}
-            <PdfModal />
+            {/*<PdfModal />*/}
             <Wrapper>
                 <SideBar managementType="student" />
                 <ManageStudent />
