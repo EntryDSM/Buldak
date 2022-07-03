@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { Company, Teacher, Student } from '../components/SelectPage/constatnt';
-import studentSVG from '../assets/svg/Student.svg';
-import teacherSVG from '../assets/svg/Teacher.svg';
-import companySVG from '../assets/svg/Company.svg';
+import { Company, Teacher, Student, SelectData } from '../components/SelectPage/constatnt';
 import BackImg from '../assets/Img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
@@ -29,13 +26,7 @@ const SelectPage = () => {
         window.location.href = '/LoginPage';
     };
 
-    const selectData: MapType[] = [
-        { LoginType: '학생', Text: Student, Img: studentSVG },
-        { LoginType: '선생님', Text: Teacher, Img: teacherSVG },
-        { LoginType: '기업', Text: Company, Img: companySVG },
-    ];
-
-    const SelectThingsMap = selectData.map((item: MapType) => {
+    const SelectThingsMap = SelectData.map((item: MapType) => {
         return (
             <SelectThings
                 onClickLoginType={onClickLoginType}

@@ -3,13 +3,13 @@ import Image from 'next/image';
 import BackImg from '../assets/img/BackImg.jpg';
 import * as S from '../components/LoginPage/styled';
 
-const LoginPage = () => {
-    interface loginType {
-        email: string;
-        password: string;
-        user_type: 'TEACHER' | 'STUDENT' | 'MOU' | '';
-    }
+interface loginType {
+    email: string;
+    password: string;
+    user_type: 'TEACHER' | 'STUDENT' | 'MOU' | '';
+}
 
+const LoginPage = () => {
     const [loginState, setLoginState] = useState<loginType>({
         email: '',
         password: '',
