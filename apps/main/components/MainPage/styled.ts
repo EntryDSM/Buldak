@@ -35,11 +35,11 @@ export const LoginButton = styled.div`
     border-radius: 5px;
 `;
 
-type SessionContainerType = {
+type CardContainerType = {
     Color: string;
 };
 
-export const SessionContainer = styled.div<SessionContainerType>`
+export const CardContainer = styled.div<CardContainerType>`
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -49,26 +49,26 @@ export const SessionContainer = styled.div<SessionContainerType>`
     background: ${(props) => props.Color};
 `;
 
-export const SeTextLayout = styled.div`
+export const CardTextLayout = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-export const SeOneTitleOne = styled.p`
+export const CardOneTitleOne = styled.p`
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const SeOneTitleTwo = styled.p`
+export const CardOneTitleTwo = styled.p`
     font-weight: 300;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const SeOneTitleThree = styled.p`
+export const CardOneTitleThree = styled.p`
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
@@ -76,7 +76,7 @@ export const SeOneTitleThree = styled.p`
     color: ${({ theme }) => theme.color.skyblue};
 `;
 
-export const SeOneText = styled.p`
+export const CardOneText = styled.p`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
@@ -86,22 +86,22 @@ export const SeOneText = styled.p`
 `;
 
 type TextAlignType = {
-    TA: string;
+    TextAlignProps: string;
 };
 
-export const SeAllTitle = styled.pre<TextAlignType>`
+export const CardAllTitle = styled.pre<TextAlignType>`
     font-weight: 500;
     font-size: 25px;
     line-height: 31px;
-    text-align: ${(props) => props.TA};
+    text-align: ${(props) => props.TextAlignProps};
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const SeAllText = styled.pre<TextAlignType>`
+export const CardAllText = styled.pre<TextAlignType>`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
-    text-align: ${(props) => props.TA};
+    text-align: ${(props) => props.TextAlignProps};
     color: ${({ theme }) => theme.color.gray900};
 
     margin-top: 15px;

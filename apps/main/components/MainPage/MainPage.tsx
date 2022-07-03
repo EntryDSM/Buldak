@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import {
-    SeFourText,
-    SeFourTitle,
-    SeTheeTitle,
-    SeThreeText,
-    SeTwoText,
-    SeTwoTitle,
+    CardFourText,
+    CardFourTitle,
+    CardTheeTitle,
+    CardThreeText,
+    CardTwoText,
+    CardTwoTitle,
 } from './constatnt';
 import theme from '@packages/emotion-style-provider/src/theme';
-import SessionBoxOne from './SessionBoxOne';
-import SessionBoxTwo from './SessionBoxTwo';
-import SessionOne from '../../assets/svg/SessionOne.svg';
-import SessionTwo from '../../assets/svg/SessionTwo.svg';
-import SessionThree from '../../assets/svg/SessionThree.svg';
-import SessionFour from '../../assets/svg/SessionFour.svg';
+import CardBoxOne from './CardBoxOne';
+import CardBoxTwo from './CardBoxTwo';
+import CardOne from '../../assets/svg/CardOne.svg';
+import CardTwo from '../../assets/svg/CardTwo.svg';
+import CardThree from '../../assets/svg/CardThree.svg';
+import CardFour from '../../assets/svg/CardFour.svg';
 import Logo from '../../assets/svg/Logo.svg';
 import * as S from './styled';
 
@@ -26,38 +26,38 @@ const MainPage = () => {
                 </S.IMGBox>
                 <S.LoginButton />
             </S.Header>
-            <S.SessionContainer Color="#FFFFFF">
-                <S.SeTextLayout>
-                    <S.SeOneTitleOne>RESUME BOOK</S.SeOneTitleOne>
-                    <S.SeOneTitleTwo>온라인 작성 서비스</S.SeOneTitleTwo>
-                    <S.SeOneTitleThree>REPO</S.SeOneTitleThree>
-                    <S.SeOneText>
+            <S.CardContainer Color="#FFFFFF">
+                <S.CardTextLayout>
+                    <S.CardOneTitleOne>RESUME BOOK</S.CardOneTitleOne>
+                    <S.CardOneTitleTwo>온라인 작성 서비스</S.CardOneTitleTwo>
+                    <S.CardOneTitleThree>REPO</S.CardOneTitleThree>
+                    <S.CardOneText>
                         기본의 RESUME BOOK이 아닌 <br />
                         페이지 에디터로 자신의 포트폴리오를 작성하세요
-                    </S.SeOneText>
-                </S.SeTextLayout>
-                <Image src={SessionOne} />
-            </S.SessionContainer>
-            <SessionBoxTwo
-                SeIMG={SessionTwo}
-                SeTA="right"
-                SeColor={theme.color.background}
-                SeTitle={SeTwoTitle}
-                SeText={SeTwoText}
+                    </S.CardOneText>
+                </S.CardTextLayout>
+                <Image src={CardOne} />
+            </S.CardContainer>
+            <CardBoxTwo
+                Img={CardTwo}
+                TextAlign="right"
+                BackGroundColor={theme.color.background}
+                Title={CardTwoTitle}
+                Text={CardTwoText}
             />
-            <SessionBoxOne
-                SeIMG={SessionThree}
-                SeTA="left"
-                SeColor={theme.color.white}
-                SeTitle={SeTheeTitle}
-                SeText={SeThreeText}
+            <CardBoxOne
+                Img={CardThree}
+                TextAlign="left"
+                BackGroundColor={theme.color.white}
+                Title={CardTheeTitle}
+                Text={CardThreeText}
             />
-            <SessionBoxTwo
-                SeIMG={SessionFour}
-                SeTA="right"
-                SeColor={theme.color.background}
-                SeTitle={SeFourTitle}
-                SeText={SeFourText}
+            <CardBoxTwo
+                Img={CardFour}
+                TextAlign="right"
+                BackGroundColor={theme.color.background}
+                Title={CardFourTitle}
+                Text={CardFourText}
             />
             <S.Footter />
         </S.MainPageContainer>

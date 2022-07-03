@@ -66,7 +66,7 @@ export const SelectLayout = styled.div`
     gap: 25px;
 `;
 
-export const SelectThingsBox = styled.div`
+export const SelectThingsBox = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;

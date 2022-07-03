@@ -10,7 +10,7 @@ import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
 
 interface MapType {
-    Type: string;
+    LoginType: string;
     Text: string;
     Img: string;
 }
@@ -29,18 +29,18 @@ const SelectPage = () => {
         window.location.href = '/LoginPage';
     };
 
-    const selectThings: MapType[] = [
-        { Type: '학생', Text: Student, Img: studentSVG },
-        { Type: '선생님', Text: Teacher, Img: teacherSVG },
-        { Type: '기업', Text: Company, Img: companySVG },
+    const selectData: MapType[] = [
+        { LoginType: '학생', Text: Student, Img: studentSVG },
+        { LoginType: '선생님', Text: Teacher, Img: teacherSVG },
+        { LoginType: '기업', Text: Company, Img: companySVG },
     ];
 
-    const SelectThingsMap = selectThings.map((item: MapType) => {
+    const SelectThingsMap = selectData.map((item: MapType) => {
         return (
             <SelectThings
                 onClickLoginType={onClickLoginType}
                 Text={item.Text}
-                Name={item.Type}
+                Name={item.LoginType}
                 Img={item.Img}
             />
         );
