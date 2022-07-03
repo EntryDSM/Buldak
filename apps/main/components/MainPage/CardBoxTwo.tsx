@@ -1,27 +1,21 @@
 import Image from 'next/image';
 import * as S from './styled';
 
-interface CardBoxType {
-    BackGroundColor: string;
-    TextAlign: string;
-    Img: string;
-    Title: string;
-    Text: string;
+interface cardBoxType {
+    backGroundColor: string;
+    textAlign: string;
+    img: string;
+    title: string;
+    text: string;
 }
 
-const CardBoxTwo: React.FC<CardBoxType> = ({
-    BackGroundColor,
-    Img,
-    Text,
-    TextAlign,
-    Title,
-}) => {
+const CardBoxTwo: React.FC<cardBoxType> = ({ backGroundColor, img, text, textAlign, title }) => {
     return (
-        <S.CardContainer Color={BackGroundColor}>
-            <Image src={Img} />
+        <S.CardContainer Color={backGroundColor}>
+            <Image src={img} />
             <S.CardTextLayout>
-                <S.CardAllTitle TextAlignProps={TextAlign}>{Title}</S.CardAllTitle>
-                <S.CardAllText TextAlignProps={TextAlign}>{Text}</S.CardAllText>
+                <S.CardAllTitle TextAlignProps={textAlign}>{title}</S.CardAllTitle>
+                <S.CardAllText TextAlignProps={textAlign}>{text}</S.CardAllText>
             </S.CardTextLayout>
         </S.CardContainer>
     );

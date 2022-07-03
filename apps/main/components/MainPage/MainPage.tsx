@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import {
-    CardFourText,
-    CardFourTitle,
-    CardTheeTitle,
-    CardThreeText,
-    CardTwoText,
-    CardTwoTitle,
+    cardFourText,
+    cardFourTitle,
+    cardTheeTitle,
+    cardThreeText,
+    cardTwoText,
+    cardTwoTitle,
 } from './constatnt';
 import theme from '@packages/emotion-style-provider/src/theme';
 import CardBoxOne from './CardBoxOne';
@@ -42,22 +42,22 @@ const MainPage = () => {
                 Img={CardTwo}
                 TextAlign="right"
                 BackGroundColor={theme.color.background}
-                Title={CardTwoTitle}
-                Text={CardTwoText}
+                Title={cardTwoTitle}
+                Text={cardTwoText}
             />
             <CardBoxOne
                 Img={CardThree}
                 TextAlign="left"
                 BackGroundColor={theme.color.white}
-                Title={CardTheeTitle}
-                Text={CardThreeText}
+                Title={cardTheeTitle}
+                Text={cardThreeText}
             />
             <CardBoxTwo
                 Img={CardFour}
                 TextAlign="right"
                 BackGroundColor={theme.color.background}
-                Title={CardFourTitle}
-                Text={CardFourText}
+                Title={cardFourTitle}
+                Text={cardFourText}
             />
             <S.Footter />
         </S.MainPageContainer>

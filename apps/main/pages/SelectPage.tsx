@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
-import { Company, Teacher, Student, SelectData } from '../components/SelectPage/constatnt';
+import { selectData } from '../components/SelectPage/constatnt';
 import BackImg from '../assets/Img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
 
-interface MapType {
-    LoginType: string;
-    Text: string;
-    Img: string;
+interface mapType {
+    loginType: string;
+    text: string;
+    img: string;
 }
 
 const SelectPage = () => {
@@ -26,13 +26,13 @@ const SelectPage = () => {
         window.location.href = '/LoginPage';
     };
 
-    const SelectThingsMap = SelectData.map((item: MapType) => {
+    const SelectThingsMap = selectData.map((item: mapType) => {
         return (
             <SelectThings
                 onClickLoginType={onClickLoginType}
-                Text={item.Text}
-                Name={item.LoginType}
-                Img={item.Img}
+                Text={item.text}
+                Name={item.loginType}
+                Img={item.img}
             />
         );
     });
