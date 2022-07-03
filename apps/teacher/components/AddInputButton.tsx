@@ -8,7 +8,7 @@ const AddInputButton = () => {
     };
     return (
         <_Wrapper>
-            {isOpened && <_Input />}
+            <_Input isOpened={isOpened} />
             <_Button onClick={onClickOpenInput}> + </_Button>
         </_Wrapper>
     );
@@ -23,13 +23,19 @@ const _Wrapper = styled.section`
     height: 30px;
     max-width: 170px;
 `;
-const _Input = styled.input`
-    width: 140px;
+
+interface InputProps {
+    isOpened: boolean;
+}
+
+const _Input = styled.input<InputProps>`
+    width: ${(props) => (props.isOpened ? '140px' : '0px')};
     background-color: transparent;
-    padding: 5px 15px;
+    ${(props) => props.isOpened && 'padding: 5px 15px'};
     color: ${({ theme }) => theme.color.black};
     font-size: 16px;
     line-height: 20px;
+    transition: width 1s ease-in-out, padding 1s ease-in-out;
 `;
 const _Button = styled.button`
     width: 30px;
