@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import { FC, useState } from 'react';
 
 interface ButtonProps {
@@ -28,7 +29,7 @@ const Button: FC<ButtonProps> = (props) => {
                 image && setIcon(image);
             }}
             onClick={onClick}>
-            {icon && image && <img src={icon} />}
+            {icon && image && <Image src={icon} />}
             {content && <p>{content}</p>}
         </ButtonWrapper>
     );
