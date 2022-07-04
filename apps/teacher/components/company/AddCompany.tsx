@@ -1,7 +1,4 @@
 import styled from '@emotion/styled';
-import theme from '@packages/emotion-style-provider/src/theme';
-import { useState } from 'react';
-import ModalWrapper from '../ModalWrapper';
 
 function AddCompany() {
     return (

@@ -16,7 +16,7 @@ const _Wrapper = styled.li`
     width: 100%;
     height: 80px;
     border-radius: 5px;
-    border: 1px solid ${({ theme }) => theme.color.gay300};
+    border: 1px solid ${({ theme }) => theme.color.gray300};
     padding: 12px 30px;
     display: flex;
     align-items: center;

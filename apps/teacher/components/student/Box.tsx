@@ -104,7 +104,7 @@ const _StatusSummary = styled.p`
 const _CheckBox = styled.div`
     width: 24px;
     height: 24px;
-    background-color: ${({ theme }) => theme.color.gay300};
+    background-color: ${({ theme }) => theme.color.gray300};
     border-radius: 50%;
     margin-left: 10px;
 `;
