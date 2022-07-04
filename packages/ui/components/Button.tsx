@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import { FC, useState } from 'react';
 
 interface ButtonProps {
@@ -6,6 +7,7 @@ interface ButtonProps {
     height: number;
     backgroundColor?: string;
     borderColor?: string;
+    borderWidth?: number; // 테두리 두께
     fontColor?: string;
     content?: string;
     image?: string;
@@ -27,7 +29,7 @@ const Button: FC<ButtonProps> = (props) => {
                 image && setIcon(image);
             }}
             onClick={onClick}>
-            {icon && image && <img src={icon} />}
+            {icon && image && <Image src={icon} />}
             {content && <p>{content}</p>}
         </ButtonWrapper>
     );
@@ -38,7 +40,8 @@ const ButtonWrapper = styled.button<ButtonProps>`
     height: ${({ height }) => height}px;
     background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
     color: ${({ fontColor }) => fontColor};
-    border: ${({ borderColor }) => (borderColor ? `1px solid ${borderColor}` : 'none')};
+    border: ${({ borderColor, borderWidth }) =>
+        borderColor && borderWidth ? `${borderWidth}px solid ${borderColor}` : 'none'};
     border-radius: 3px;
     font-size: 20px;
     padding: 0px 14px;
