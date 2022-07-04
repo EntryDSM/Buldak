@@ -48,7 +48,7 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px;
     > p {
         font-weight: 500;
         font-size: 20px;
