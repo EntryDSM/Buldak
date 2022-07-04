@@ -6,10 +6,10 @@ import { searchIcon, nonEyeIcon, eyeIcon, errorIcon } from '../assets/textBox';
 interface TextBoxProps {
     width: number;
     type: 'text' | 'password' | 'search';
+    correct: boolean;
     placeholder?: string;
     name?: string;
     value?: string;
-    correct?: boolean;
     disable?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onClick?: () => void;
@@ -21,7 +21,7 @@ const TextBox: FC<TextBoxProps> = (props) => {
 
     return (
         <>
-            {correct === false && (
+            {!correct && (
                 <Error>
                     <Image src={errorIcon} width={20} height={20} />
                     <p>정보가 틀렸습니다.</p>
@@ -66,8 +66,7 @@ const TextBox: FC<TextBoxProps> = (props) => {
 const TextBoxWrapper = styled.div<TextBoxProps>`
     width: ${({ width }) => width}px;
     height: 38px;
-    border: 2px solid
-        ${({ theme, correct }) => (correct === false ? theme.color.error : theme.color.gray700)};
+    border: 2px solid ${({ theme, correct }) => (correct ? theme.color.gray700 : theme.color.error)};
     border-radius: 5px;
     padding: 0px 15px;
     display: flex;
