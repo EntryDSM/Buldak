@@ -49,8 +49,8 @@ export default EditModal;
 
 const Background = styled.div`
     width: 100%;
-    height: 100vh;
-    position: fixed;
+    height: 100%;
+    position: absolute;
     background-color: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
