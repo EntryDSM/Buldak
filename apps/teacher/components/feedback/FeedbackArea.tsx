@@ -26,10 +26,8 @@ const _Wrapper = styled.section`
     z-index: 2;
     background-color: ${({ theme }) => theme.color.white};
     padding: 30px 50px;
-    border-right: 2px solid
-        ${({ theme }) => {
-            return theme.color.gray300;
-        }};
+    border-right: 2px solid ${({ theme }) => theme.color.gray300};
+
     > button {
         margin: 15px 0 0 auto;
     }
