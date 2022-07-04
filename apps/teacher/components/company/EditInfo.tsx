@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 
+const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
+
 function EditInfo() {
     const [modalOnOff, setModalOnOff] = useState<boolean>(false);
     const closeModal = () => {
         setModalOnOff(false);
     };
-    const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
