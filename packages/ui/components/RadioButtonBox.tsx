@@ -1,39 +1,39 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-interface CheckBoxProps<T> {
+interface RadioButtonBoxProps<T> {
     items: ReadonlyArray<T>;
     value?: Readonly<T>;
     onChange: (value: T) => void;
     gap: string;
 }
 
-const CheckBox = <T extends string>(props: CheckBoxProps<T>) => {
+const RadioButtonBox = <T extends string>(props: RadioButtonBoxProps<T>) => {
     const [state, setState] = useState<T>(props.value ? props.value : props.items[0]);
     return (
-        <CheckBoxsWrapper gap={props.gap}>
+        <RadioButtonBoxesWrapper gap={props.gap}>
             {props.items.map((i) => (
-                <CheckBoxItemWrapper
+                <RadioButtonBoxItemWrapper
                     onClick={() => {
                         props.onChange(i);
                         setState(i);
                     }}>
-                    <CheckBoxCircle isCheck={state === i}>
+                    <RadioButtonBoxCircle isCheck={state === i}>
                         <div />
-                    </CheckBoxCircle>
+                    </RadioButtonBoxCircle>
                     <p>{i}</p>
-                </CheckBoxItemWrapper>
+                </RadioButtonBoxItemWrapper>
             ))}
-        </CheckBoxsWrapper>
+        </RadioButtonBoxesWrapper>
     );
 };
 
-const CheckBoxsWrapper = styled.div<{ gap: string }>`
+const RadioButtonBoxesWrapper = styled.div<{ gap: string }>`
     display: flex;
     gap: ${({ gap }) => gap};
     align-items: center;
 `;
 
-const CheckBoxItemWrapper = styled.div`
+const RadioButtonBoxItemWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
@@ -45,7 +45,7 @@ const CheckBoxItemWrapper = styled.div`
     }
 `;
 
-const CheckBoxCircle = styled.div<{ isCheck: boolean }>`
+const RadioButtonBoxCircle = styled.div<{ isCheck: boolean }>`
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -62,4 +62,4 @@ const CheckBoxCircle = styled.div<{ isCheck: boolean }>`
         border-radius: 50%;
     }
 `;
-export default CheckBox;
+export default RadioButtonBox;
