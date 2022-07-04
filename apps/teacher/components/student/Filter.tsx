@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../context/ModalContext';
 
 const Filter = () => {
+    const dispatch = useContext(ModalDispatchContext);
+    const onClickPrintPDF = () => {
+        dispatch({ type: 'SELECT', selected: 'PDF' });
+    };
     return (
         <_Wrapper>
             <_Dropdown1 />
@@ -20,6 +26,7 @@ const Filter = () => {
                 borderColor="#5387EC"
                 fontColor="#5387EC"
                 content="pdf 출력"
+                onClick={onClickPrintPDF}
             />
         </_Wrapper>
     );

@@ -3,15 +3,22 @@ import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
 import { Button } from '@packages/ui';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../../context/ModalContext';
 
 const PdfModal = () => {
-    const onClick = () => {};
+    const dispatch = useContext(ModalDispatchContext);
+    const closeModal = () => {
+        dispatch({ type: 'SELECT', selected: '' });
+    };
     return (
-        <ModalWrapper closeModal={onClick}>
+        <ModalWrapper closeModal={closeModal}>
             <_Box>
                 <_Header>
                     <h1 className="title">pdf 출력</h1>
-                    <button className="xButton">x</button>
+                    <button className="xButton" onClick={closeModal}>
+                        x
+                    </button>
                 </_Header>
                 <_Content>
                     <Filter />

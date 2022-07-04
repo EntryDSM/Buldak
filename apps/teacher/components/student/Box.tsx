@@ -1,10 +1,17 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../context/ModalContext';
 
 const StudentBox = () => {
+    const dispatch = useContext(ModalDispatchContext);
+    const onClick = () => {
+        dispatch({ type: 'SELECT', selected: 'USER_DETAIL' });
+    };
+
     return (
         <>
-            <_Wrapper isSubmitted={true}>
+            <_Wrapper isSubmitted={true} onClick={onClick}>
                 <_ProfileImage />
                 <_Name className="submittedFont">김의찬</_Name>
                 <_StudentNumber className="submittedFont">2106</_StudentNumber>
