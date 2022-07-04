@@ -1,7 +1,21 @@
+import SideBar from '../components/SideBar';
+import ManageStudent from '../components/student';
+import styled from '@emotion/styled';
+import UserDetail from '../components/student/userDetail';
+import PdfModal from '../components/student/pdf';
+
 export default function Home() {
-  return (
-    <div>
-      <h1>teacher</h1>
-    </div>
-  );
+    return (
+        <>
+            {/*<UserDetail />*/}
+            <PdfModal />
+            <Wrapper>
+                <SideBar managementType="student" />
+                <ManageStudent />
+            </Wrapper>
+        </>
+    );
 }
+const Wrapper = styled.section`
+    display: flex;
+`;
