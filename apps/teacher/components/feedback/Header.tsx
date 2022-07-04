@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
+import { theme } from '@packages/ui/types/theme';
 
 const Header = () => {
     return (
@@ -9,14 +10,14 @@ const Header = () => {
                     width={120}
                     height={40}
                     content="반환하기"
-                    fontColor="#E03131"
-                    borderColor="#E0E0E0"
+                    fontColor={theme.color.error}
+                    borderColor={theme.color.gray500}
                 />
                 <Button
                     width={120}
                     height={40}
-                    fontColor="#FFFFFF"
-                    backgroundColor="#5387EC"
+                    fontColor={theme.color.white}
+                    backgroundColor={theme.color.skyblue}
                     content="공개승인"
                 />
             </_ButtonsWrapper>

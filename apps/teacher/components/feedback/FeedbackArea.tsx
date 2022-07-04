@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
+import { theme } from '@packages/ui/types/theme';
 
 const FeedbackArea = () => {
     return (
@@ -10,8 +11,8 @@ const FeedbackArea = () => {
                 width={160}
                 height={44}
                 content="피드백 남기기"
-                fontColor="#3068D3"
-                backgroundColor="#F3F7FF"
+                fontColor={theme.color.main}
+                backgroundColor={theme.color.background}
             />
         </_Wrapper>
     );
@@ -25,7 +26,10 @@ const _Wrapper = styled.section`
     z-index: 2;
     background-color: ${({ theme }) => theme.color.white};
     padding: 30px 50px;
-    border-right: 2px solid ${({ theme }) => theme.color.gay300};
+    border-right: 2px solid
+        ${({ theme }) => {
+            return theme.color.gray300;
+        }};
     > button {
         margin: 15px 0 0 auto;
     }
