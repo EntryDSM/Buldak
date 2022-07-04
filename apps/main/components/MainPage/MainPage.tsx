@@ -39,25 +39,25 @@ const MainPage = () => {
                 <Image src={CardOne} />
             </S.CardContainer>
             <CardBoxTwo
-                Img={CardTwo}
-                TextAlign="right"
-                BackGroundColor={theme.color.background}
-                Title={cardTwoTitle}
-                Text={cardTwoText}
+                img={CardTwo}
+                textAlign="right"
+                backGroundColor={theme.color.background}
+                title={cardTwoTitle}
+                text={cardTwoText}
             />
             <CardBoxOne
-                Img={CardThree}
-                TextAlign="left"
-                BackGroundColor={theme.color.white}
-                Title={cardTheeTitle}
-                Text={cardThreeText}
+                img={CardThree}
+                textAlign="left"
+                backGroundColor={theme.color.white}
+                title={cardTheeTitle}
+                text={cardThreeText}
             />
             <CardBoxTwo
-                Img={CardFour}
-                TextAlign="right"
-                BackGroundColor={theme.color.background}
-                Title={cardFourTitle}
-                Text={cardFourText}
+                img={CardFour}
+                textAlign="right"
+                backGroundColor={theme.color.background}
+                title={cardFourTitle}
+                text={cardFourText}
             />
             <S.Footter />
         </S.MainPageContainer>
