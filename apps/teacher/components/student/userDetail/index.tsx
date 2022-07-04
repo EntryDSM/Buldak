@@ -3,13 +3,14 @@ import ModalWrapper from '../../ModalWrapper';
 import PersonalInfo from './PersonalInfo';
 import DocumentList from './DocumentList';
 import OptionButtons from './OptionButtons';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../../context/ModalContext';
 
 const UserDetail = () => {
     // todo : modal 상태관리 context로 뺴야함
-    const [visibleModal, setVisibleModal] = useState(false);
+    const dispatch = useContext(ModalDispatchContext);
     const closeModal = () => {
-        setVisibleModal(false);
+        dispatch({ type: 'SELECT', selected: '' });
     };
     return (
         <ModalWrapper closeModal={closeModal}>
