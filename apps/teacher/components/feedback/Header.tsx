@@ -37,6 +37,4 @@ const _ButtonsWrapper = styled.div`
     margin-left: auto;
     display: flex;
     gap: 25px;
-    > button {
-    }
 `;
