@@ -31,7 +31,7 @@ export default PersonalInfo;
 const _PersonalInfo = styled.div`
     width: 335px;
     height: 350px;
-    border-right: 2px solid ${({ theme }) => theme.color.gay300};
+    border-right: 2px solid ${({ theme }) => theme.color.gray300};
 `;
 const _List = styled.li`
     display: flex;

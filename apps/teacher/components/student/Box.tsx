@@ -1,11 +1,19 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../context/ModalContext';
+import { Profile } from '@packages/ui';
 
 const StudentBox = () => {
+    const dispatch = useContext(ModalDispatchContext);
+    const onClick = () => {
+        dispatch({ type: 'SELECT', selected: 'USER_DETAIL' });
+    };
+
     return (
         <>
-            <_Wrapper isSubmitted={true}>
-                <_ProfileImage />
+            <_Wrapper isSubmitted={true} onClick={onClick}>
+                <Profile type="image" src={''} />
                 <_Name className="submittedFont">김의찬</_Name>
                 <_StudentNumber className="submittedFont">2106</_StudentNumber>
                 <_States>
@@ -16,7 +24,7 @@ const StudentBox = () => {
                 </_States>
             </_Wrapper>
             <_Wrapper isSubmitted={false}>
-                <_ProfileImage />
+                <Profile type="image" src={''} />
                 <_Name className="unSubmittedFont">김의찬</_Name>
                 <_StudentNumber className="unSubmittedFont">2106</_StudentNumber>
                 <_States>
@@ -66,14 +74,6 @@ const _Wrapper = styled.li<WrapperProps>`
     }
 `;
 
-//todo div -> Next/Image로 수정
-const _ProfileImage = styled.div`
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.gray500};
-`;
-
 const _Name = styled.p`
     font-size: 22px;
     line-height: 27px;
@@ -104,7 +104,7 @@ const _StatusSummary = styled.p`
 const _CheckBox = styled.div`
     width: 24px;
     height: 24px;
-    background-color: ${({ theme }) => theme.color.gay300};
+    background-color: ${({ theme }) => theme.color.gray300};
     border-radius: 50%;
     margin-left: 10px;
 `;
