@@ -53,7 +53,7 @@ const _Header = styled.header`
         margin-left: auto;
         width: 34px;
         height: 34px;
-        background-color: ${({ theme }) => theme.color.gay300};
+        background-color: ${({ theme }) => theme.color.gray300};
     }
 `;
 const _Content = styled.div`
