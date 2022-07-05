@@ -72,6 +72,7 @@ const ModalWrapper = styled.div<ModalProps>`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
     position: absolute;
+    background-color: ${({ theme }) => theme.color.white};
     top: ${({ top }) => top}px;
     left: ${({ left }) => left}px;
     .image {
