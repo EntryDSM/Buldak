@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 interface RadioButtonBoxProps<T> {
     items: ReadonlyArray<T>;
@@ -9,10 +9,16 @@ interface RadioButtonBoxProps<T> {
 
 const RadioButtonBox = <T extends string>(props: RadioButtonBoxProps<T>) => {
     const [state, setState] = useState<T>(props.value ? props.value : props.items[0]);
+
+    useEffect(() => {
+        setState(props.value ? props.value : props.items[0]);
+    }, [props.value]);
+
     return (
         <RadioButtonBoxesWrapper gap={props.gap}>
-            {props.items.map((i) => (
+            {props.items.map((i, idx) => (
                 <RadioButtonBoxItemWrapper
+                    key={idx}
                     onClick={() => {
                         props.onChange(i);
                         setState(i);
