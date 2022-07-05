@@ -27,7 +27,7 @@ const StudentBox = () => {
                     </_StatusSummary>
                 </_States>
             </_Wrapper>
-            <_Wrapper isSubmitted={false} onClick={onClick}>
+            <_Wrapper isSubmitted={false} onClick={() => selectModal('USER_DETAIL')}>
                 {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
                 <Profile type="default" width="56px" height="56px" />
                 <_Name className="submittedFont">김의찬</_Name>
