@@ -11,34 +11,34 @@ function MyPage() {
     const [openAddTagModal, setOpenAddTagModal] = useState<boolean>(false);
     const [openRepresentativeModal, setOpenRepresentativeModal] = useState<boolean>(false);
     return (
-        <MyPageBox>
+        <_MyPageBox>
             <div>
                 <Technology
                     setOpenRepresentativeModal={setOpenRepresentativeModal}
                     setOpenAddTagModal={setOpenAddTagModal}
                 />
-                <UnderWrapper>
+                <_UnderWrapper>
                     <EditProfile />
                     <EditPhoneNumber />
-                </UnderWrapper>
+                </_UnderWrapper>
                 <MoveBtn />
             </div>
             {openAddTagModal && <RepresentativeModal setOpenAddTagModal={setOpenAddTagModal} />}
             {openRepresentativeModal && (
                 <AddTagModal setOpenRepresentativeModal={setOpenRepresentativeModal} />
             )}
-        </MyPageBox>
+        </_MyPageBox>
     );
 }
 
-const MyPageBox = styled.div`
+const _MyPageBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 `;
 
-const UnderWrapper = styled.div`
+const _UnderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 20px;

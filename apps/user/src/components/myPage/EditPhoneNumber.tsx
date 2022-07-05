@@ -74,7 +74,6 @@ const CertificationBtn = styled.button`
     color: ${({ theme }) => theme.color.skyblue};
     font-weight: bold;
     margin-left: 15px;
-    font-size: 18px;
 `;
 
 export default EditPhoneNumber;

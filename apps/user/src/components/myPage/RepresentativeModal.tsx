@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Dispatch, SetStateAction } from 'react';
 import ModalCommitBtn from './ModalCommitBtn';
-import ModalExplain from './ModalExplain';
+import ModalExplain from './ModalType';
 import ModalSearchInput from './ModalSearchInput';
 
 interface PropsType {
@@ -10,25 +10,25 @@ interface PropsType {
 
 function RepresentativeModal({ setOpenAddTagModal }: PropsType) {
     return (
-        <Background onClick={() => setOpenAddTagModal(false)}>
-            <AddTagBox onClick={(e) => e.stopPropagation()}>
+        <_Background onClick={() => setOpenAddTagModal(false)}>
+            <_AddTagBox onClick={(e) => e.stopPropagation()}>
                 <ModalExplain title="대표분야 설정" />
-                <ContentBox>
+                <_ContentBox>
                     <ModalSearchInput
                         subtitle="대표분야 검색"
                         placeholder="대표분야를 검색해주세요"
                     />
-                    <Representative>
+                    <_Representative>
                         대표분야 : <strong>프론트엔드</strong>
-                    </Representative>
-                </ContentBox>
+                    </_Representative>
+                </_ContentBox>
                 <ModalCommitBtn content="설정하기" />
-            </AddTagBox>
-        </Background>
+            </_AddTagBox>
+        </_Background>
     );
 }
 
-const Representative = styled.p`
+const _Representative = styled.p`
     font-size: 20px;
     margin-top: 15px;
     > strong {
@@ -36,12 +36,12 @@ const Representative = styled.p`
     }
 `;
 
-const ContentBox = styled.div`
+const _ContentBox = styled.div`
     padding: 0px 50px;
     height: 280px;
 `;
 
-const Background = styled.div`
+const _Background = styled.div`
     position: fixed;
     display: flex;
     justify-content: center;
@@ -52,7 +52,7 @@ const Background = styled.div`
     background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddTagBox = styled.div`
+const _AddTagBox = styled.div`
     width: 700px;
     height: 450px;
     border-radius: 15px;
