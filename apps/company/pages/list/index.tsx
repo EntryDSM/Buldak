@@ -1,22 +1,27 @@
 import styled from '@emotion/styled';
 import StudentBox from '../../components/studentbox/StudentBox';
-import EditModal from '../../components/editmodal/EditModal'
+import EditModal from '../../components/editmodal/EditModal';
+import { useState } from 'react';
 
 interface Props {}
 
 function StudentList({}: Props) {
+    const [onOff, setOnOff] = useState(true);
+    const closeModal = () => {
+        setOnOff(false);
+    };
     return (
         <>
-{/*         <EditModal /> */}
-        <Background>
-            <Wrapper>
-                <Header>
-                    <h1>전체 학생 리스트</h1>
-                    <div></div>
-                </Header>
-                <StudentBox />
-            </Wrapper>
-        </Background>
+            {onOff && <EditModal closeModal={closeModal} />}
+            <Background>
+                <Wrapper>
+                    <Header>
+                        <h1>전체 학생 리스트</h1>
+                        <div></div>
+                    </Header>
+                    <StudentBox />
+                </Wrapper>
+            </Background>
         </>
     );
 }
@@ -51,7 +56,6 @@ const Header = styled.div`
         font-size: 25px;
         font-weight: bold;
     }
-    >div{
-
+    > div {
     }
 `;
