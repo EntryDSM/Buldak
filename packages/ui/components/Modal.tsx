@@ -11,8 +11,8 @@ interface ModalProps {
     top: number;
     left: number;
     onCloseBtnClick: () => void;
-    onSubmitBtnClick: () => void;
-    onCancleBtnClick: () => void;
+    onSubmitBtnClick?: () => void;
+    onCancleBtnClick?: () => void;
 }
 
 const Modal: FC<ModalProps> = (props) => {
