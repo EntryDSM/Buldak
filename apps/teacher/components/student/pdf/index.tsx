@@ -2,15 +2,23 @@ import ModalWrapper from '../../ModalWrapper';
 import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
+import { Button } from '@packages/ui';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../../context/ModalContext';
 
 const PdfModal = () => {
-    const onClick = () => {};
+    const dispatch = useContext(ModalDispatchContext);
+    const closeModal = () => {
+        dispatch({ type: 'SELECT', selected: '' });
+    };
     return (
-        <ModalWrapper closeModal={onClick}>
+        <ModalWrapper closeModal={closeModal}>
             <_Box>
                 <_Header>
                     <h1 className="title">pdf 출력</h1>
-                    <button className="xButton">x</button>
+                    <button className="xButton" onClick={closeModal}>
+                        x
+                    </button>
                 </_Header>
                 <_Content>
                     <Filter />
@@ -23,7 +31,13 @@ const PdfModal = () => {
                         <div className="arrow" />
                         <StudentList isAddList={true} />
                     </_StudentArea>
-                    <_Button />
+                    <Button
+                        width={130}
+                        height={40}
+                        borderColor={'#5387EC'}
+                        fontColor={'#5387EC'}
+                        content="출력하기"
+                    />
                 </_Content>
             </_Box>
         </ModalWrapper>
@@ -53,11 +67,14 @@ const _Header = styled.header`
         margin-left: auto;
         width: 34px;
         height: 34px;
-        background-color: ${({ theme }) => theme.color.gay300};
+        background-color: ${({ theme }) => theme.color.gray300};
     }
 `;
 const _Content = styled.div`
     padding: 24px 50px 26px 50px;
+    > button {
+        margin: 10px 0 0 auto;
+    }
 `;
 const _SelectAll = styled.label`
     display: flex;
@@ -83,10 +100,4 @@ const _StudentArea = styled.div`
         height: 50px;
         background-color: ${({ theme }) => theme.color.gray500};
     }
-`;
-const _Button = styled.div`
-    width: 130px;
-    height: 40px;
-    background-color: ${({ theme }) => theme.color.gray500};
-    margin: 10px 0 0 auto;
 `;

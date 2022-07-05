@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Profile } from '@packages/ui';
 
 type ManagementType = 'tag' | 'student' | 'company';
 
@@ -11,7 +12,7 @@ interface Props {
 const SideBar = ({ managementType }: Props) => {
     return (
         <_Wrapper>
-            <_SchoolImage />
+            <Profile type="school" />
             <_AccountType>선생님 계정</_AccountType>
             <_Navigation>
                 {navArray.map((item) => (
@@ -38,13 +39,6 @@ const _Wrapper = styled.aside`
     padding: 40px;
 `;
 
-// todo styled.div -> styled(Image)로 바꿔야함
-const _SchoolImage = styled.div`
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.background};
-`;
 const _AccountType = styled.strong`
     font-weight: 700;
     font-size: 22px;
