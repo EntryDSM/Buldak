@@ -16,7 +16,7 @@ interface Props {
 const StudentBox = ({ item }: Props) => {
     return (
         <_Wrapper key={item.public_id}>
-            <Profile type="image" src={item.profile_image_path} />
+            <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
             <_Name>{item.name}</_Name>
             <_StudentNumber>{item.gcn}</_StudentNumber>
             {!item.isSelected ? (

@@ -11,7 +11,7 @@ export const theme = {
         gray900: '#5A5A5A',
         gray700: '#B6B6B6',
         gray500: '#E0E0E0',
-        gay300: '#F0F0F0',
+        gray300: '#F0F0F0',
     },
 } as const;
 

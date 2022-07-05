@@ -1,11 +1,19 @@
 import styled from '@emotion/styled';
 import AddInputButton from '../AddInputButton';
+import { Tag, TextBox } from '@packages/ui';
 
 const TagList = () => {
     return (
         <_Wrapper>
             <_Title>현재 있는 태그 목록</_Title>
-            <_Input />
+            <_InputWrapper>
+                <TextBox
+                    width={300}
+                    type="search"
+                    correct={true}
+                    placeholder="검색어를 입력해 주세요"
+                />
+            </_InputWrapper>
             <_FlexWrapper>
                 <_ListType>태그 목록</_ListType>
                 <AddInputButton />
@@ -21,8 +29,8 @@ const TagList = () => {
                 {/*<EmptyArea listType="대표분야" />*/}
                 {Array(20)
                     .fill(void 0)
-                    .map((item) => (
-                        <_Tag />
+                    .map((item, index) => (
+                        <Tag color="bdblue" tagName={String(index)} />
                     ))}
             </_List>
         </_Wrapper>
@@ -47,10 +55,7 @@ const _Title = styled.h1`
     font-weight: 700;
     color: ${({ theme }) => theme.color.black};
 `;
-const _Input = styled.div`
-    width: 300px;
-    height: 42px;
-    background-color: ${({ theme }) => theme.color.gray500};
+const _InputWrapper = styled.div`
     margin-top: 24px;
 `;
 const _FlexWrapper = styled.div`

@@ -2,15 +2,17 @@ import ModalWrapper from '../../ModalWrapper';
 import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
-import { Button } from '@packages/ui';
-import { useContext } from 'react';
-import { ModalDispatchContext } from '../../../context/ModalContext';
+import { Button, CheckBox } from '@packages/ui';
+import { useState } from 'react';
+import useModal from '../../../hooks/useModal';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const PdfModal = () => {
-    const dispatch = useContext(ModalDispatchContext);
-    const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '' });
+    const [clicked, setClicked] = useState(false);
+    const onClick = () => {
+        setClicked(!clicked);
     };
+    const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
@@ -24,7 +26,7 @@ const PdfModal = () => {
                     <Filter />
                     <_SelectAll>
                         <p className="summary">전체선택</p>
-                        <input className="checkBox" type="checkbox" />
+                        <CheckBox isChecked={clicked} onClick={onClick} />
                     </_SelectAll>
                     <_StudentArea>
                         <StudentList isAddList={false} />
@@ -34,9 +36,10 @@ const PdfModal = () => {
                     <Button
                         width={130}
                         height={40}
-                        borderColor={'#5387EC'}
-                        fontColor={'#5387EC'}
+                        borderColor={theme.color.skyblue}
+                        fontColor={theme.color.skyblue}
                         content="출력하기"
+                        borderWidth={2}
                     />
                 </_Content>
             </_Box>
@@ -79,15 +82,12 @@ const _Content = styled.div`
 const _SelectAll = styled.label`
     display: flex;
     margin-top: 9px;
+    align-items: center;
     > .summary {
         font-size: 15px;
         line-height: 19px;
         color: ${({ theme }) => theme.color.black};
-    }
-    > .checkBox {
-        width: 20px;
-        height: 20px;
-        margin-left: 10px;
+        margin-right: 10px;
     }
 `;
 const _StudentArea = styled.div`

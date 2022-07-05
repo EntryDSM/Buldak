@@ -12,7 +12,7 @@ interface Props {
 const SideBar = ({ managementType }: Props) => {
     return (
         <_Wrapper>
-            <Profile type="school" />
+            <Profile type="school" width="90px" height="90px" />
             <_AccountType>선생님 계정</_AccountType>
             <_Navigation>
                 {navArray.map((item) => (
