@@ -26,13 +26,13 @@ function StudentList({}: Props) {
                                 <DropDown
                                     placeholder="학과"
                                     width={220}
-                                    items={['asdf', 'asdf']}
+                                    items={['소프트웨어개발', '임베디드소프트웨어','정보보안']}
                                     onChange={() => {}}
                                 />
                                 <DropDown
                                     placeholder="분야"
                                     width={220}
-                                    items={[]}
+                                    items={['프론트엔드','백엔드','안드로이드','IOS',"기타"]}
                                     onChange={() => {}}
                                 />
                             </div>

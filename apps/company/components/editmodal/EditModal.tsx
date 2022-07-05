@@ -60,7 +60,7 @@ function Input({ title }: InputProps) {
                     type="text"
                     width={380}
                     correct={true}
-                    placeholder={title + '을/를 입력해주세요'}
+                    placeholder={title + '을(를) 입력해주세요'}
                 />
             </div>
         </InputWrapper>
