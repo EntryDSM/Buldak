@@ -3,7 +3,7 @@ import StudentBox from '../../components/studentbox/StudentBox';
 import EditModal from '../../components/editmodal/EditModal';
 import { useState } from 'react';
 import { Button, DropDown, TextBox } from '../../../../packages/ui';
-import { Gear } from '../../assets/list';
+import { Gear, HoverGear } from '../../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
 
 interface Props {}
@@ -40,7 +40,8 @@ function StudentList({}: Props) {
                                 width={42}
                                 height={42}
                                 image={Gear}
-                                borderColor={theme.color.main}
+                                hoverImage={HoverGear}
+                                borderColor={theme.color.skyblue}
                                 borderWidth={2}
                                 onClick={() => {
                                     setOnOff(true);

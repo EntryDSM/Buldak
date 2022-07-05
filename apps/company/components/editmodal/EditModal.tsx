@@ -34,10 +34,10 @@ function EditModal({ closeModal }: Props) {
                         <Button
                             width={380}
                             height={46}
-                            borderColor={theme.color.main}
+                            borderColor={theme.color.skyblue}
                             borderWidth={2}
                             content="정보 변경"
-                            fontColor={theme.color.main}
+                            fontColor={theme.color.skyblue}
                             backgroundColor={theme.color.white}
                         />
                     </Body>
