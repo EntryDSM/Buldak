@@ -4,15 +4,7 @@ import ModalWrapper from '../ModalWrapper';
 import { ModalDispatchContext } from '../../context/ModalContext';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, CompanyInputArray } from './AddCompany';
-
-const inputArr: CompanyInputArray[] = [
-    { title: '기업 이름', name: 'company_name', placeholder: '기업 이름을 입력해 주세요' },
-    { title: '기업 주소', name: 'location', placeholder: '기업 이름을 입력해 주세요' },
-    { title: '담당자 이름', name: 'name', placeholder: '기업 이름을 입력해 주세요' },
-    { title: '담당자 연락처', name: 'phone_number', placeholder: '기업 이름을 입력해 주세요' },
-    { title: '당자 이메일', name: 'email', placeholder: '기업 이름을 입력해 주세요' },
-];
+import { CompanyInfo, inputArray } from '../constant';
 
 function EditInfo() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -44,7 +36,7 @@ function EditInfo() {
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
-                        {inputArr.map((item) => (
+                        {inputArray.map((item) => (
                             <_InputWrapper>
                                 <p>{item.title}</p>
                                 <TextBox

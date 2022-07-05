@@ -4,15 +4,7 @@ import ModalWrapper from '../ModalWrapper';
 import { ModalDispatchContext } from '../../context/ModalContext';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, CompanyInputArray } from './AddCompany';
-
-const textBoxArray: CompanyInputArray[] = [
-    { title: '기업 이름', name: 'company_name' },
-    { title: '기업 주소', name: 'location' },
-    { title: '담당자 이름', name: 'name' },
-    { title: '담당자 연락처', name: 'phone_number' },
-    { title: '담당자 이메일', name: 'email' },
-];
+import { CompanyInfo, inputArray } from '../constant';
 
 function CompanyInfo() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -45,8 +37,11 @@ function CompanyInfo() {
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        {textBoxArray.map((item) => (
-                            <Inputs title={item.title} value={companyInfo[item.name]} />
+                        {inputArray.map((item) => (
+                            <_InputWrapper>
+                                <p>{item.title}</p>
+                                <div>{companyInfo[item.name]}</div>
+                            </_InputWrapper>
                         ))}
                         <_ButtonsWrapper>
                             <Button
@@ -71,20 +66,6 @@ function CompanyInfo() {
                 </_Body>
             </_Wrapper>
         </ModalWrapper>
-    );
-}
-
-interface TextBox {
-    title: string;
-    value: string;
-}
-
-function Inputs({ title, value }: TextBox) {
-    return (
-        <_InputWrapper>
-            <p>{title}</p>
-            <div>{value}</div>
-        </_InputWrapper>
     );
 }
 

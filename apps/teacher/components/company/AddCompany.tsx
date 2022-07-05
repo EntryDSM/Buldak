@@ -3,61 +3,7 @@ import { Button, TextBox } from '@packages/ui';
 import { ChangeEvent, useContext, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { ModalDispatchContext } from '../../context/ModalContext';
-
-type keyValue =
-    | 'profile_image_path'
-    | 'company_name'
-    | 'location'
-    | 'start_at'
-    | 'end_at'
-    | 'name'
-    | 'phone_number'
-    | 'email';
-
-export interface CompanyInfo {
-    profile_image_path: string;
-    company_name: string;
-    location: string;
-    start_at: string;
-    end_at: string;
-    name: string;
-    phone_number: string;
-    email: string;
-}
-
-export interface CompanyInputArray {
-    title: string;
-    name: keyValue;
-    placeholder?: string;
-}
-
-const inputArray: CompanyInputArray[] = [
-    {
-        title: '담당자 이름',
-        name: 'name',
-        placeholder: '담당자 이름을 입력해 주세요',
-    },
-    {
-        title: '담당자 이메일',
-        name: 'email',
-        placeholder: '담당자 이메일을 입력해 주세요',
-    },
-    {
-        title: '담당자 연락처',
-        name: 'phone_number',
-        placeholder: '담당자 연락처를 입력해 주세요',
-    },
-    {
-        title: '기업 이름',
-        name: 'company_name',
-        placeholder: '기업 이름을 입력해 주세요',
-    },
-    {
-        title: '기업 주소',
-        name: 'location',
-        placeholder: '기업 주소를 입력해 주세요',
-    },
-];
+import { CompanyInfo, inputArray } from '../constant';
 
 function AddCompany() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
