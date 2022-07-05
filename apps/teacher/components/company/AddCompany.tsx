@@ -14,7 +14,7 @@ type keyValue =
     | 'phone_number'
     | 'email';
 
-interface CompanyInfo {
+export interface CompanyInfo {
     profile_image_path: string;
     company_name: string;
     location: string;
@@ -25,13 +25,13 @@ interface CompanyInfo {
     email: string;
 }
 
-interface InputArray {
+export interface CompanyInputArray {
     title: string;
     name: keyValue;
-    placeholder: string;
+    placeholder?: string;
 }
 
-const inputArray: InputArray[] = [
+const inputArray: CompanyInputArray[] = [
     {
         title: '담당자 이름',
         name: 'name',

@@ -1,13 +1,39 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
+import { ModalDispatchContext } from '../../context/ModalContext';
+import { Button, TextBox } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
+import { CompanyInfo, CompanyInputArray } from './AddCompany';
 
-const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
+const inputArr: CompanyInputArray[] = [
+    { title: '기업 이름', name: 'company_name', placeholder: '기업 이름을 입력해 주세요' },
+    { title: '기업 주소', name: 'location', placeholder: '기업 이름을 입력해 주세요' },
+    { title: '담당자 이름', name: 'name', placeholder: '기업 이름을 입력해 주세요' },
+    { title: '담당자 연락처', name: 'phone_number', placeholder: '기업 이름을 입력해 주세요' },
+    { title: '당자 이메일', name: 'email', placeholder: '기업 이름을 입력해 주세요' },
+];
 
 function EditInfo() {
-    const [modalOnOff, setModalOnOff] = useState<boolean>(false);
+    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+        profile_image_path: '',
+        company_name: '',
+        location: '',
+        start_at: '',
+        end_at: '',
+        name: '',
+        phone_number: '',
+        email: '',
+    });
+    const dispatch = useContext(ModalDispatchContext);
     const closeModal = () => {
-        setModalOnOff(false);
+        dispatch({ type: 'SELECT', selected: '' });
+    };
+    const onChangeCompanyInfo = (e: ChangeEvent<HTMLInputElement>) => {
+        setCompanyInfo({
+            ...companyInfo,
+            [e.target.name]: e.target.value,
+        });
     };
     return (
         <ModalWrapper closeModal={closeModal}>
@@ -18,11 +44,31 @@ function EditInfo() {
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
-                        {inputArr.map((value) => <Inputs title={value} placeholder={value + '을/를 입력해 주세요'} />)}
+                        {inputArr.map((item) => (
+                            <_InputWrapper>
+                                <p>{item.title}</p>
+                                <TextBox
+                                    width={300}
+                                    type="text"
+                                    name={item.name}
+                                    correct={true}
+                                    placeholder={item.placeholder}
+                                    value={companyInfo[item.name]}
+                                    onChange={onChangeCompanyInfo}
+                                />
+                            </_InputWrapper>
+                        ))}
                     </_InputsWrapper>
                     <_CalendarWrapper>
                         <_TempCalendar />
-                        <button>정보 변경</button>
+                        <Button
+                            width={300}
+                            height={44}
+                            content="정보 변경"
+                            borderColor={theme.color.skyblue}
+                            fontColor={theme.color.skyblue}
+                            borderWidth={2}
+                        />
                     </_CalendarWrapper>
                 </_Body>
             </_Wrapper>
@@ -97,11 +143,6 @@ const _InputWrapper = styled.div`
         font-size: 20px;
         line-height: 28px;
     }
-    > input {
-        width: 300px;
-        height: 40px;
-        border: 1px solid black;
-    }
 `;
 
 const _InputsWrapper = styled.div`
@@ -118,9 +159,6 @@ const _CalendarWrapper = styled.div`
     width: 530px;
     > button {
         margin-top: 50px;
-        width: 300px;
-        height: 44px;
-        border: 1px solid ${({ theme }) => theme.color.skyblue};
     }
 `;
 

@@ -1,13 +1,36 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
+import { ModalDispatchContext } from '../../context/ModalContext';
+import { Button, Profile } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
+import { CompanyInfo, CompanyInputArray } from './AddCompany';
 
-const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
+const textBoxArray: CompanyInputArray[] = [
+    { title: '기업 이름', name: 'company_name' },
+    { title: '기업 주소', name: 'location' },
+    { title: '담당자 이름', name: 'name' },
+    { title: '담당자 연락처', name: 'phone_number' },
+    { title: '담당자 이메일', name: 'email' },
+];
 
 function CompanyInfo() {
-    const [modalOnOff, setModalOnOff] = useState<boolean>(false);
+    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+        profile_image_path: '',
+        company_name: '엔트리 24',
+        location: '유성구 가장동 725',
+        start_at: '',
+        end_at: '',
+        name: '김의찬',
+        phone_number: '042-8282-8282',
+        email: 'EntryDSM1234@naver.com',
+    });
+    const dispatch = useContext(ModalDispatchContext);
     const closeModal = () => {
-        setModalOnOff(false);
+        dispatch({ type: 'SELECT', selected: '' });
+    };
+    const onClickOpenModal = () => {
+        dispatch({ type: 'SELECT', selected: 'PATCH_COMPANY_DETAIL' });
     };
     return (
         <ModalWrapper closeModal={closeModal}>
@@ -18,15 +41,32 @@ function CompanyInfo() {
                 </_Header>
                 <_Body>
                     <_SideWrapper>
-                        <div id="img" />
+                        <Profile type="default" />
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        {inputArr.map((value) => <Inputs title={value} placeholder="" />)}
-                        <div>
-                            <button>비밀번호 초기화</button>
-                            <button>정보 변경</button>
-                        </div>
+                        {textBoxArray.map((item) => (
+                            <Inputs title={item.title} value={companyInfo[item.name]} />
+                        ))}
+                        <_ButtonsWrapper>
+                            <Button
+                                width={200}
+                                height={44}
+                                content="비밀번호 초기화"
+                                borderWidth={2}
+                                borderColor={theme.color.skyblue}
+                                fontColor={theme.color.skyblue}
+                            />
+                            <Button
+                                width={200}
+                                height={44}
+                                content="정보 변경"
+                                borderWidth={2}
+                                borderColor={theme.color.skyblue}
+                                fontColor={theme.color.skyblue}
+                                onClick={onClickOpenModal}
+                            />
+                        </_ButtonsWrapper>
                     </_InputsWrapper>
                 </_Body>
             </_Wrapper>
@@ -34,16 +74,16 @@ function CompanyInfo() {
     );
 }
 
-interface InputProps {
+interface TextBox {
     title: string;
-    placeholder: string;
+    value: string;
 }
 
-function Inputs({ title, placeholder }: InputProps) {
+function Inputs({ title, value }: TextBox) {
     return (
         <_InputWrapper>
             <p>{title}</p>
-            <input type="text" placeholder={placeholder} />
+            <div>{value}</div>
         </_InputWrapper>
     );
 }
@@ -86,8 +126,6 @@ const _InputWrapper = styled.div`
     height: 40px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 30px;
     > p {
         font-weight: 400;
@@ -95,9 +133,11 @@ const _InputWrapper = styled.div`
         line-height: 28px;
         color: ${({ theme }) => theme.color.gray900};
     }
-    > input {
+    > div {
+        margin-left: auto;
         width: 300px;
         height: 40px;
+        padding: 10px;
         border-bottom: 1px solid ${({ theme }) => theme.color.black};
     }
 `;
@@ -115,12 +155,7 @@ const _SideWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    #img {
-        width: 110px;
-        height: 110px;
-        border: 1px solid black;
-        margin-top: 65px;
-    }
+    margin-top: 65px;
     > p {
         margin-top: 20px;
 
@@ -137,15 +172,10 @@ const _InputsWrapper = styled.div`
     margin-top: 26px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    > div {
-        align-self: flex-end;
-        button {
-            width: 200px;
-            height: 44px;
-            border: 1px solid ${({ theme }) => theme.color.skyblue};
-            margin-top: 10px;
-            margin-left: 20px;
-        }
-    }
+`;
+const _ButtonsWrapper = styled.div`
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
 `;
