@@ -67,10 +67,7 @@ const _Wrapper = styled.section`
 const _OptionWrapper = styled.div`
     display: flex;
     gap: 10px;
-`;
-const _Dropdown2 = styled.div`
-    width: 180px;
-    height: 42px;
-    background-color: ${({ theme }) => theme.color.background};
-    margin-right: 30px;
+    > div {
+        height: 42px;
+    }
 `;
