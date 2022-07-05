@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
+import useModal from '../../hooks/useModal';
 
 const CompanyBox = () => {
+    const { selectModal } = useModal();
     return (
-        <_Wrapper>
-            <Profile type="school" />
+        <_Wrapper onClick={() => selectModal('COMPANY_DETAIL')}>
+            <Profile type="school" width="56px" height="56px" />
             <_Name>김의찬</_Name>
             <_Email>company@gmail.com</_Email>
         </_Wrapper>
@@ -16,7 +18,7 @@ const _Wrapper = styled.li`
     width: 100%;
     height: 80px;
     border-radius: 5px;
-    border: 1px solid ${({ theme }) => theme.color.gay300};
+    border: 1px solid ${({ theme }) => theme.color.gray300};
     padding: 12px 30px;
     display: flex;
     align-items: center;

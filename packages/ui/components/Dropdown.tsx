@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import Arrow from '../assets/dropdown/Arrow.svg';
 export interface DropDownProps<T> {
@@ -21,6 +21,11 @@ export const DropDown = <T extends string>({
 }: DropDownProps<T>) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [text, setText] = useState<T | string>(value ? value : placeholder);
+
+    useEffect(() => {
+        setText(value ? value : placeholder);
+    }, [value]);
+
     return (
         <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>
             <DropDownBox width={width}>
@@ -32,8 +37,9 @@ export const DropDown = <T extends string>({
                     <DropDownArrow></DropDownArrow>
                 </DropDownSelectedBox>
                 <DropDownItemsBox isOpen={!disable && isOpen}>
-                    {items.map((i) => (
+                    {items.map((i, idx) => (
                         <DropDownItem
+                            key={idx}
                             onClick={() => {
                                 setIsOpen(false);
                                 setText(i);
@@ -53,6 +59,8 @@ const DropDownBox = styled.div<{ width: number }>`
     display: flex;
     flex-direction: column;
     gap: 5px;
+    z-index: 5;
+    position: relative;
 `;
 
 const DropDownSelectedBox = styled.div<{ disable: boolean; isPlaceholder: boolean }>`
@@ -82,13 +90,23 @@ const DropDownArrow = styled.div`
 `;
 
 const DropDownItemsBox = styled.div<{ isOpen: boolean }>`
+    position: absolute;
+    top: 43px;
+
     width: 100%;
+    background-color: ${({ theme }) => theme.color.white};
     max-height: 125px;
+    z-index: 5;
     border: 2px solid ${({ theme }) => theme.color.gray700};
     border-radius: 5px;
     flex-direction: column;
     overflow: auto;
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 `;
 
 const DropDownItem = styled.div`
