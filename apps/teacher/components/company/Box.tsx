@@ -4,7 +4,7 @@ import Profile from '@packages/ui/components/Profile';
 const CompanyBox = () => {
     return (
         <_Wrapper>
-            <Profile type="school" />
+            <Profile type="school" width="56px" height="56px" />
             <_Name>김의찬</_Name>
             <_Email>company@gmail.com</_Email>
         </_Wrapper>

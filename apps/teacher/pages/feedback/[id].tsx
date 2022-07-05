@@ -15,5 +15,5 @@ export default FeedbackPage;
 const _Wrapper = styled.section`
     width: 100vw;
     height: 100vh;
-    background-color: ${({ theme }) => theme.color.gay300};
+    background-color: ${({ theme }) => theme.color.gray300};
 `;

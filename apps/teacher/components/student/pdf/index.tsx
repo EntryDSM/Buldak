@@ -37,6 +37,7 @@ const PdfModal = () => {
                         borderColor={'#5387EC'}
                         fontColor={'#5387EC'}
                         content="출력하기"
+                        borderWidth={2}
                     />
                 </_Content>
             </_Box>
