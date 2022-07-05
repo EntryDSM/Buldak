@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
 import CompanyBox from './Box';
+import { Button, TextBox } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const ManageCompany = () => {
     return (
         <_Wrapper>
             <_Title>전체 기업 리스트</_Title>
             <_FlexWrapper>
-                <div className="input" />
-                <div className="button" />
+                <TextBox
+                    width={400}
+                    type="search"
+                    correct={true}
+                    placeholder="검색어를 입력해주세요"
+                />
+                <Button width={44} height={44} backgroundColor={theme.color.skyblue} />
             </_FlexWrapper>
             <_List>
                 <CompanyBox />
@@ -31,15 +38,10 @@ const _Title = styled.h1`
 const _FlexWrapper = styled.div`
     display: flex;
     margin-top: 25px;
-    > .input {
-        width: 400px;
+    > div {
         height: 44px;
-        background-color: ${({ theme }) => theme.color.gray700};
     }
-    > .button {
-        width: 44px;
-        height: 44px;
-        background-color: ${({ theme }) => theme.color.main};
+    > button {
         margin-left: 15px;
     }
 `;
