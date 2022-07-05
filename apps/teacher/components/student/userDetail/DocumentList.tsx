@@ -30,7 +30,7 @@ const _Wrapper = styled.div`
     padding: 0 38px;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid ${({ theme }) => theme.color.gay300};
+    border-right: 2px solid ${({ theme }) => theme.color.gray300};
 `;
 const _DocumentType = styled.div`
     margin: 0 auto;
@@ -54,7 +54,7 @@ const _Document = styled.section`
     width: 100%;
     height: 280px;
     border-radius: 5px;
-    border: 2px solid ${({ theme }) => theme.color.gay300};
+    border: 2px solid ${({ theme }) => theme.color.gray300};
     margin-top: 7px;
     > .previewImage {
         height: 190px;
@@ -67,7 +67,7 @@ const _Document = styled.section`
         line-height: 40px;
         color: ${({ theme }) => theme.color.navy};
         font-weight: 500;
-        border-bottom: 1px solid ${({ theme }) => theme.color.gay300};
+        border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
     }
 `;
 const _UserSummary = styled.div`
@@ -79,7 +79,7 @@ const _UserSummary = styled.div`
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background-color: ${({ theme }) => theme.color.gay300};
+        background-color: ${({ theme }) => theme.color.gray300};
     }
     > .name {
         font-size: 16px;
