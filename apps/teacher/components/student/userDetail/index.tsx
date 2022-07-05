@@ -3,14 +3,11 @@ import ModalWrapper from '../../ModalWrapper';
 import PersonalInfo from './PersonalInfo';
 import DocumentList from './DocumentList';
 import OptionButtons from './OptionButtons';
-import { useState } from 'react';
+import useModal from '../../../hooks/useModal';
 
 const UserDetail = () => {
     // todo : modal 상태관리 context로 뺴야함
-    const [visibleModal, setVisibleModal] = useState(false);
-    const closeModal = () => {
-        setVisibleModal(false);
-    };
+    const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>

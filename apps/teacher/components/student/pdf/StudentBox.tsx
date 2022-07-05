@@ -16,7 +16,7 @@ interface Props {
 const StudentBox = ({ item }: Props) => {
     return (
         <_Wrapper key={item.public_id}>
-            <Profile type="image" src={item.profile_image_path} />
+            <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
             <_Name>{item.name}</_Name>
             <_StudentNumber>{item.gcn}</_StudentNumber>
             {!item.isSelected ? (
@@ -36,7 +36,7 @@ const _Wrapper = styled.li`
     display: flex;
     align-items: center;
     background-color: ${({ theme }) => theme.color.white};
-    border-bottom: 1px solid ${({ theme }) => theme.color.gay300};
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
 `;
 const _Name = styled.strong`
     font-size: 19px;

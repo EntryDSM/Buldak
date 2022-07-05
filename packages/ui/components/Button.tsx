@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import { FC, useState } from 'react';
 
 interface ButtonProps {
@@ -6,6 +7,7 @@ interface ButtonProps {
     height: number;
     backgroundColor?: string;
     borderColor?: string;
+    borderWidth?: number; // 테두리 두께
     fontColor?: string;
     content?: string;
     image?: string;
@@ -27,7 +29,7 @@ const Button: FC<ButtonProps> = (props) => {
                 image && setIcon(image);
             }}
             onClick={onClick}>
-            {icon && image && <img src={icon} />}
+            {icon && image && <Image src={icon} width={20} height={20} className={'image'} />}
             {content && <p>{content}</p>}
         </ButtonWrapper>
     );
@@ -38,19 +40,15 @@ const ButtonWrapper = styled.button<ButtonProps>`
     height: ${({ height }) => height}px;
     background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
     color: ${({ fontColor }) => fontColor};
-    border: ${({ borderColor }) => (borderColor ? `1px solid ${borderColor}` : 'none')};
+    border: ${({ borderColor, borderWidth }) =>
+        borderColor && borderWidth ? `${borderWidth}px solid ${borderColor}` : 'none'};
     border-radius: 3px;
     font-size: 20px;
-    padding: 0px 14px;
+    padding: ${({ content }) => content && '0px 14px'};
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
-    > img {
-        width: 20px;
-        height: 20px;
-        display: block;
-        margin: auto;
-    }
     > p {
         line-height: ${({ height }) => height}px;
     }

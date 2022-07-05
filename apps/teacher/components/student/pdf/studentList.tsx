@@ -73,7 +73,7 @@ const _Wrapper = styled.ul`
     width: 410px;
     height: 430px;
     border-radius: 5px;
-    border: 2px solid ${({ theme }) => theme.color.gay300};
+    border: 2px solid ${({ theme }) => theme.color.gray300};
     display: flex;
     flex-direction: column;
 `;

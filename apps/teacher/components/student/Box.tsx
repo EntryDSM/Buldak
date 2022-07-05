@@ -1,29 +1,50 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Profile } from '@packages/ui';
+import useModal from '../../hooks/useModal';
 
 const StudentBox = () => {
+    const { selectModal } = useModal();
     return (
         <>
-            <_Wrapper isSubmitted={true}>
-                <_ProfileImage />
+            <_Wrapper isSubmitted={true} onClick={() => selectModal('USER_DETAIL')}>
+                {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
+                <Profile type="default" width="56px" height="56px" />
                 <_Name className="submittedFont">김의찬</_Name>
                 <_StudentNumber className="submittedFont">2106</_StudentNumber>
                 <_States>
-                    <_StatusSummary className="submittedFont">피드백 상태</_StatusSummary>
-                    <_CheckBox />
-                    <_StatusSummary className="public submittedFont">공개 상태</_StatusSummary>
-                    <_CheckBox />
+                    <_StatusSummary className="submittedFont">
+                        피드백 상태
+                        <_Status isSubmitted={true} isOn={false}>
+                            OFF
+                        </_Status>
+                    </_StatusSummary>
+                    <_StatusSummary className="public submittedFont">
+                        공개 상태
+                        <_Status isSubmitted={true} isOn={true}>
+                            ON
+                        </_Status>
+                    </_StatusSummary>
                 </_States>
             </_Wrapper>
-            <_Wrapper isSubmitted={false}>
-                <_ProfileImage />
-                <_Name className="unSubmittedFont">김의찬</_Name>
-                <_StudentNumber className="unSubmittedFont">2106</_StudentNumber>
+            <_Wrapper isSubmitted={false} onClick={() => selectModal('USER_DETAIL')}>
+                {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
+                <Profile type="default" width="56px" height="56px" />
+                <_Name className="submittedFont">김의찬</_Name>
+                <_StudentNumber className="submittedFont">2106</_StudentNumber>
                 <_States>
-                    <_StatusSummary className="unSubmittedFont">피드백 상태</_StatusSummary>
-                    <_CheckBox />
-                    <_StatusSummary className="public unSubmittedFont">공개 상태</_StatusSummary>
-                    <_CheckBox />
+                    <_StatusSummary className="submittedFont">
+                        피드백 상태
+                        <_Status isSubmitted={false} isOn={false}>
+                            OFF
+                        </_Status>
+                    </_StatusSummary>
+                    <_StatusSummary className="public submittedFont">
+                        공개 상태
+                        <_Status isSubmitted={false} isOn={false}>
+                            OFF
+                        </_Status>
+                    </_StatusSummary>
                 </_States>
             </_Wrapper>
         </>
@@ -66,14 +87,6 @@ const _Wrapper = styled.li<WrapperProps>`
     }
 `;
 
-//todo div -> Next/Image로 수정
-const _ProfileImage = styled.div`
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.gray500};
-`;
-
 const _Name = styled.p`
     font-size: 22px;
     line-height: 27px;
@@ -97,14 +110,51 @@ const _States = styled.div`
         color: ${({ theme }) => theme.color.gray700};
     }
 `;
-const _StatusSummary = styled.p`
+const _StatusSummary = styled.div`
     font-size: 18px;
     line-height: 23px;
+    display: flex;
+    align-items: center;
 `;
 const _CheckBox = styled.div`
     width: 24px;
     height: 24px;
-    background-color: ${({ theme }) => theme.color.gay300};
+    background-color: ${({ theme }) => theme.color.gray300};
     border-radius: 50%;
     margin-left: 10px;
+`;
+interface StatusTag {
+    isSubmitted: boolean;
+    isOn: boolean;
+}
+const _Status = styled.div<StatusTag>`
+    width: 50px;
+    height: 26px;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    line-height: 19px;
+    margin-left: 10px;
+
+    ${({ theme, isOn, isSubmitted }) => {
+        if (isSubmitted) {
+            return isOn
+                ? css`
+                      background-color: ${theme.color.skyblue};
+                      color: ${theme.color.white};
+                  `
+                : css`
+                      background-color: ${theme.color.gray300};
+                      color: ${theme.color.gray900};
+                  `;
+        } else {
+            return css`
+                background-color: ${theme.color.gray300};
+                color: ${theme.color.gray700};
+            `;
+        }
+    }};
 `;

@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { Button } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const AddInputButton = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
@@ -8,8 +10,13 @@ const AddInputButton = () => {
     };
     return (
         <_Wrapper>
-            {isOpened && <_Input />}
-            <_Button onClick={onClickOpenInput}> + </_Button>
+            <_Input isOpened={isOpened} />
+            <Button
+                width={30}
+                height={28}
+                backgroundColor={theme.color.skyblue}
+                onClick={onClickOpenInput}
+            />
         </_Wrapper>
     );
 };
@@ -22,14 +29,23 @@ const _Wrapper = styled.section`
     margin-left: 16px;
     height: 30px;
     max-width: 170px;
+    > button {
+        border-radius: 0 2px 2px 0;
+    }
 `;
-const _Input = styled.input`
-    width: 140px;
+
+interface InputProps {
+    isOpened: boolean;
+}
+
+const _Input = styled.input<InputProps>`
+    width: ${(props) => (props.isOpened ? '140px' : '0px')};
     background-color: transparent;
-    padding: 5px 15px;
+    ${(props) => props.isOpened && 'padding: 5px 15px'};
     color: ${({ theme }) => theme.color.black};
     font-size: 16px;
     line-height: 20px;
+    transition: width 1s ease-in-out, padding 1s ease-in-out;
 `;
 const _Button = styled.button`
     width: 30px;

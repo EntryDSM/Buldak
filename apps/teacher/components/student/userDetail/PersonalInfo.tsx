@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Tag } from '@packages/ui';
 
 const PersonalInfo = () => {
     return (
@@ -21,7 +22,7 @@ const PersonalInfo = () => {
                 </_List>
             </ul>
             <_Tags>
-                <div className="tag" />
+                <Tag tagName="React" color="bdblue" />
             </_Tags>
         </_PersonalInfo>
     );
@@ -31,7 +32,7 @@ export default PersonalInfo;
 const _PersonalInfo = styled.div`
     width: 335px;
     height: 350px;
-    border-right: 2px solid ${({ theme }) => theme.color.gay300};
+    border-right: 2px solid ${({ theme }) => theme.color.gray300};
 `;
 const _List = styled.li`
     display: flex;

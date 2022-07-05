@@ -102,7 +102,7 @@ const Header = styled.div`
     height: 70px;
 `;
 const Side = styled.div`
-    border-right: 1px solid ${({ theme }) => theme.color.gay300};
+    border-right: 1px solid ${({ theme }) => theme.color.gray300};
     width: 250px;
     height: 400px;
     display: flex;
