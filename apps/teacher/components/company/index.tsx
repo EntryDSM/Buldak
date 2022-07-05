@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import CompanyBox from './Box';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
+import Link from 'next/link';
 
 const ManageCompany = () => {
     return (
@@ -14,7 +15,9 @@ const ManageCompany = () => {
                     correct={true}
                     placeholder="검색어를 입력해주세요"
                 />
-                <Button width={44} height={44} backgroundColor={theme.color.skyblue} />
+                <Link href={'/add-company'}>
+                    <Button width={44} height={44} backgroundColor={theme.color.skyblue} />
+                </Link>
             </_FlexWrapper>
             <_List>
                 <CompanyBox />
