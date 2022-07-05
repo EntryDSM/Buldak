@@ -3,7 +3,7 @@ import StudentBox from '../../components/studentbox/StudentBox';
 import EditModal from '../../components/editmodal/EditModal';
 import { useState } from 'react';
 import { Button, DropDown } from '../../../../packages/ui';
-import Gear from '../../assets/list/gear.png';
+import { Gear } from '../../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
 
 interface Props {}
@@ -93,9 +93,9 @@ const Header = styled.div`
             //input,dropdown wrapper
             display: flex;
             flex-direction: row;
-            width:780px;
-            align-items:center;
-            justify-content:space-between;
+            width: 780px;
+            align-items: center;
+            justify-content: space-between;
             #temp {
                 //temp input
                 width: 300px;

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import ImgFrame from '../../assets/editmodal/Frame.jpg';
-import ExitButton from '../../assets/editmodal/Exit.png';
+import { Frame, ExitButton } from '../../assets/editmodal';
 import { Button } from '../../../../packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
+import { onlineManager } from 'react-query';
 
 const inputArr = ['담당자 이름', '담당자 연락처', '기업 이름', '기업 주소'];
 
@@ -20,7 +20,7 @@ function EditModal({ closeModal }: Props) {
                     <Side>
                         <h1>정보 변경</h1>
                         <div id="wrapper-img">
-                            <BoxImg backgroundImg={ImgFrame} />
+                            <BoxImg backgroundImg={Frame} />
                             <p>프로필 사진 설정</p>
                         </div>
                     </Side>
