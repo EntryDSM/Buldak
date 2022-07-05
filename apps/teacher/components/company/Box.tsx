@@ -1,9 +1,15 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
+import { useContext } from 'react';
+import { ModalDispatchContext } from '../../context/ModalContext';
 
 const CompanyBox = () => {
+    const dispatch = useContext(ModalDispatchContext);
+    const onClickCompanyDetail = () => {
+        dispatch({ type: 'SELECT', selected: 'COMPANY_DETAIL' });
+    };
     return (
-        <_Wrapper>
+        <_Wrapper onClick={onClickCompanyDetail}>
             <Profile type="school" width="56px" height="56px" />
             <_Name>김의찬</_Name>
             <_Email>company@gmail.com</_Email>
