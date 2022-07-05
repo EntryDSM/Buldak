@@ -15,7 +15,7 @@ function ModalSearchInput({ subtitle, placeholder }: PropsType) {
 }
 
 const ModalSubTitle = styled.p`
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0px;
     font-size: 22px;
     color: ${({ theme }) => theme.color.gray700};
 `;

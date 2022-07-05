@@ -23,7 +23,7 @@ const ModalExplainBox = styled.div`
     font-size: 25px;
     font-weight: bold;
     color: ${({ theme }) => theme.color.gray700};
-    padding: 0px 25px 0px 25px;
+    padding: 0px 25px;
 `;
 
 export default ModalExplain;

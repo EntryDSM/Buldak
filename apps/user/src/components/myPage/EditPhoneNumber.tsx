@@ -22,7 +22,7 @@ function EditPhoneNumber() {
 const EditPhoneNumberText = styled.p`
     font-weight: bold;
     font-size: 20px;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0px;
 `;
 
 const EditBoxText = styled.span`
@@ -43,7 +43,6 @@ const EditBtn = styled.button`
     margin-left: 140px;
     border: 2px solid ${({ theme }) => theme.color.skyblue};
     border-radius: 3px;
-    cursor: pointer;
 `;
 
 const EditBox = styled.div`
@@ -72,12 +71,9 @@ const CertificationInput = styled.input`
 `;
 
 const CertificationBtn = styled.button`
-    all: unset;
     color: ${({ theme }) => theme.color.skyblue};
     font-weight: bold;
     margin-left: 15px;
-    cursor: pointer;
-    font-size: 18px;
 `;
 
 export default EditPhoneNumber;

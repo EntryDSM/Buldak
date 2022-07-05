@@ -21,7 +21,6 @@ const AddBtnBox = styled.div`
 const AddBtn = styled.button`
     color: ${({ theme }) => theme.color.main};
     border: 2px solid ${({ theme }) => theme.color.main};
-    cursor: pointer;
     width: 300px;
     height: 50px;
     font-size: 22px;

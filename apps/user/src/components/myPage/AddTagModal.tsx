@@ -6,14 +6,14 @@ import ModalExplain from './ModalExplain';
 import ModalSearchInput from './ModalSearchInput';
 
 interface PropsType {
-    SetOpenRepresentativeModal: Dispatch<SetStateAction<boolean>>;
+    setOpenRepresentativeModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const TagList = ['Java', 'JavaScript'];
 
-function AddTagModal({ SetOpenRepresentativeModal }: PropsType) {
+function AddTagModal({ setOpenRepresentativeModal }: PropsType) {
     return (
-        <Background onClick={() => SetOpenRepresentativeModal(false)}>
+        <Background onClick={() => setOpenRepresentativeModal(false)}>
             <RepresentativeBox onClick={(e) => e.stopPropagation()}>
                 <ModalExplain title="태그 추가" />
                 <ContentBox>
@@ -34,13 +34,13 @@ function AddTagModal({ SetOpenRepresentativeModal }: PropsType) {
 }
 
 const ContentBox = styled.div`
-    padding: 0px 50px 0px 50px;
+    padding: 0px 50px;
 `;
 
 const TagContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    height: 270px;
+    height: 300px;
     overflow-y: auto;
 `;
 
@@ -52,7 +52,7 @@ const TagBox = styled.div`
     border-radius: 100px;
     height: 40px;
     font-size: 18px;
-    padding: 0px 15px 0px 15px;
+    padding: 0px 15px;
     margin: 20px 20px 0px 0px;
     > span {
         margin-right: 10px;
@@ -64,11 +64,9 @@ const Background = styled.div`
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.4);
 `;
 

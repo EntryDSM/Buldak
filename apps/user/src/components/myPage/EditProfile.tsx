@@ -26,7 +26,6 @@ const EditProfileBox = styled.div`
 `;
 
 const EditProfileBtn = styled.button`
-    all: unset;
     border-bottom: 1px solid ${({ theme }) => theme.color.black};
     font-size: 18px;
     font-weight: bold;
@@ -41,8 +40,6 @@ const EditProfileImgBox = styled.div`
 const EditProfileImg = styled(Image)`
     width: 100px;
     height: 100px;
-    background-color: ${({ theme }) => theme.color.background};
-    border-radius: 70%;
 `;
 
 export default EditProfile;

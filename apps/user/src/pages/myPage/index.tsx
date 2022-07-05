@@ -8,35 +8,37 @@ import AddTagModal from '../../components/myPage/AddTagModal';
 import Technology from '../../components/myPage/Technology';
 
 function MyPage() {
-    const [OpenAddTagModal, SetOpenAddTagModal] = useState<boolean>(false);
-    const [OpenRepresentativeModal, SetOpenRepresentativeModal] = useState<boolean>(false);
+    const [openAddTagModal, setOpenAddTagModal] = useState<boolean>(false);
+    const [openRepresentativeModal, setOpenRepresentativeModal] = useState<boolean>(false);
     return (
-        <MyPageBox>
+        <_MyPageBox>
             <div>
                 <Technology
-                    SetOpenRepresentativeModal={SetOpenRepresentativeModal}
-                    SetOpenAddTagModal={SetOpenAddTagModal}
+                    setOpenRepresentativeModal={setOpenRepresentativeModal}
+                    setOpenAddTagModal={setOpenAddTagModal}
                 />
-                <UnderWrapper>
+                <_UnderWrapper>
                     <EditProfile />
                     <EditPhoneNumber />
-                </UnderWrapper>
+                </_UnderWrapper>
                 <MoveBtn />
             </div>
-            {OpenAddTagModal && <RepresentativeModal SetOpenAddTagModal={SetOpenAddTagModal} />}
-            {OpenRepresentativeModal && (
-                <AddTagModal SetOpenRepresentativeModal={SetOpenRepresentativeModal} />
+            {openAddTagModal && <RepresentativeModal setOpenAddTagModal={setOpenAddTagModal} />}
+            {openRepresentativeModal && (
+                <AddTagModal setOpenRepresentativeModal={setOpenRepresentativeModal} />
             )}
-        </MyPageBox>
+        </_MyPageBox>
     );
 }
 
-const MyPageBox = styled.div`
+const _MyPageBox = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 `;
 
-const UnderWrapper = styled.div`
+const _UnderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
