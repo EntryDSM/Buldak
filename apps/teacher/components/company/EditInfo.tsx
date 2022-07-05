@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { ChangeEvent, useContext, useState } from 'react';
+import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
-import { ModalDispatchContext } from '../../context/ModalContext';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { CompanyInfo, inputArray } from '../constant';
+import useModal from '../../hooks/useModal';
 
 function EditInfo() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -17,16 +17,7 @@ function EditInfo() {
         phone_number: '',
         email: '',
     });
-    const dispatch = useContext(ModalDispatchContext);
-    const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '' });
-    };
-    const onChangeCompanyInfo = (e: ChangeEvent<HTMLInputElement>) => {
-        setCompanyInfo({
-            ...companyInfo,
-            [e.target.name]: e.target.value,
-        });
-    };
+    const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -46,7 +37,6 @@ function EditInfo() {
                                     correct={true}
                                     placeholder={item.placeholder}
                                     value={companyInfo[item.name]}
-                                    onChange={onChangeCompanyInfo}
                                 />
                             </_InputWrapper>
                         ))}

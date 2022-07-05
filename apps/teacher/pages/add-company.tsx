@@ -1,13 +1,12 @@
 import AddCompany from '../components/company/AddCompany';
-import { useContext } from 'react';
-import { ModalStateContext } from '../context/ModalContext';
 import SuccessModal from '../components/company/SuccessModal';
+import useModal from '../hooks/useModal';
 
 const AddCompanyPage = () => {
-    const modalState = useContext(ModalStateContext);
+    const { selectedModal } = useModal();
     return (
         <>
-            {modalState.selectedModal === 'SUCCESS' && <SuccessModal />}
+            {selectedModal === 'SUCCESS' && <SuccessModal />}
             <AddCompany />
         </>
     );

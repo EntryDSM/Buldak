@@ -1,18 +1,13 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useContext } from 'react';
-import { ModalDispatchContext } from '../../context/ModalContext';
 import { Profile } from '@packages/ui';
+import useModal from '../../hooks/useModal';
 
 const StudentBox = () => {
-    const dispatch = useContext(ModalDispatchContext);
-    const onClick = () => {
-        dispatch({ type: 'SELECT', selected: 'USER_DETAIL' });
-    };
-
+    const { selectModal } = useModal();
     return (
         <>
-            <_Wrapper isSubmitted={true} onClick={onClick}>
+            <_Wrapper isSubmitted={true} onClick={() => selectModal('USER_DETAIL')}>
                 {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
                 <Profile type="default" width="56px" height="56px" />
                 <_Name className="submittedFont">김의찬</_Name>

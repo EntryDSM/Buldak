@@ -4,7 +4,7 @@ interface ModalState {
     selectedModal: selectedModalType;
 }
 
-type selectedModalType =
+export type selectedModalType =
     | 'PDF'
     | 'USER_DETAIL'
     | 'COMPANY_DETAIL'

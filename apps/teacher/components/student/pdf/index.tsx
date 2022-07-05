@@ -3,18 +3,16 @@ import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
 import { Button, CheckBox } from '@packages/ui';
-import { useContext, useState } from 'react';
-import { ModalDispatchContext } from '../../../context/ModalContext';
+import { useState } from 'react';
+import useModal from '../../../hooks/useModal';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const PdfModal = () => {
-    const dispatch = useContext(ModalDispatchContext);
-    const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '' });
-    };
     const [clicked, setClicked] = useState(false);
     const onClick = () => {
         setClicked(!clicked);
     };
+    const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
@@ -38,8 +36,8 @@ const PdfModal = () => {
                     <Button
                         width={130}
                         height={40}
-                        borderColor={'#5387EC'}
-                        fontColor={'#5387EC'}
+                        borderColor={theme.color.skyblue}
+                        fontColor={theme.color.skyblue}
                         content="출력하기"
                         borderWidth={2}
                     />

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { ModalDispatchContext } from '../../context/ModalContext';
 import { CompanyInfo, inputArray } from '../constant';
+import useModal from '../../hooks/useModal';
 
 function AddCompany() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -16,7 +16,6 @@ function AddCompany() {
         phone_number: '',
         email: '',
     });
-    const dispatch = useContext(ModalDispatchContext);
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.name);
         setCompanyInfo({
@@ -24,9 +23,7 @@ function AddCompany() {
             [e.target.name]: e.target.value,
         });
     };
-    const onClick = () => {
-        dispatch({ type: 'SELECT', selected: 'SUCCESS' });
-    };
+    const { closeModal, selectModal } = useModal();
     return (
         <_Wrapper>
             <_Center>
@@ -58,7 +55,7 @@ function AddCompany() {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="기업 추가"
-                    onClick={onClick}
+                    onClick={() => selectModal('SUCCESS')}
                 />
             </_Center>
         </_Wrapper>

@@ -1,19 +1,15 @@
 import styled from '@emotion/styled';
 import { Button, DropDown } from '@packages/ui';
-import { useContext } from 'react';
-import { ModalDispatchContext } from '../../context/ModalContext';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import {
     classRoomDropdownItems,
     documentStatusDropdownItems,
     gradeDropdownItems,
 } from '../constant';
+import useModal from '../../hooks/useModal';
 
 const Filter = () => {
-    const dispatch = useContext(ModalDispatchContext);
-    const onClickPrintPDF = () => {
-        dispatch({ type: 'SELECT', selected: 'PDF' });
-    };
+    const { selectModal } = useModal();
     const onChangeDropdown = (e: string) => {};
     const onPrintExcel = () => {};
     return (
@@ -55,7 +51,7 @@ const Filter = () => {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="pdf 출력"
-                    onClick={onClickPrintPDF}
+                    onClick={() => selectModal('PDF')}
                 />
             </_OptionWrapper>
         </_Wrapper>

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
-import { ModalDispatchContext } from '../../context/ModalContext';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { CompanyInfo, inputArray } from '../constant';
+import useModal from '../../hooks/useModal';
 
 function CompanyInfo() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -17,13 +17,7 @@ function CompanyInfo() {
         phone_number: '042-8282-8282',
         email: 'EntryDSM1234@naver.com',
     });
-    const dispatch = useContext(ModalDispatchContext);
-    const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '' });
-    };
-    const onClickOpenModal = () => {
-        dispatch({ type: 'SELECT', selected: 'PATCH_COMPANY_DETAIL' });
-    };
+    const { closeModal, selectModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -59,7 +53,7 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
-                                onClick={onClickOpenModal}
+                                onClick={() => selectModal('PATCH_COMPANY_DETAIL')}
                             />
                         </_ButtonsWrapper>
                     </_InputsWrapper>

@@ -1,17 +1,16 @@
 import SideBar from '../components/SideBar';
 import styled from '@emotion/styled';
 import ManageCompany from '../components/company';
-import { useContext } from 'react';
-import { ModalStateContext } from '../context/ModalContext';
 import EditInfo from '../components/company/EditInfo';
 import CompanyInfo from '../components/company/CompanyInfo';
+import useModal from '../hooks/useModal';
 
 const ManagementCompany = () => {
-    const modalState = useContext(ModalStateContext);
+    const { selectedModal } = useModal();
     return (
         <_Wrapper>
-            {modalState.selectedModal === 'PATCH_COMPANY_DETAIL' && <EditInfo />}
-            {modalState.selectedModal === 'COMPANY_DETAIL' && <CompanyInfo />}
+            {selectedModal === 'PATCH_COMPANY_DETAIL' && <EditInfo />}
+            {selectedModal === 'COMPANY_DETAIL' && <CompanyInfo />}
             <SideBar managementType="company" />
             <ManageCompany />
         </_Wrapper>
