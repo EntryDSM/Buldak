@@ -34,7 +34,7 @@ const _Wrapper = styled.div`
     width: 650px;
     height: 500px;
     background: ${({ theme }) => theme.color.white};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@ const _Wrapper = styled.div`
 const _Header = styled.div`
     width: 100%;
     height: 44px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.gay300};
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,7 +80,7 @@ const _Center = styled.div`
     }
     > #border {
         width: 90px;
-        border-top: 1px solid ${({ theme }) => theme.color.gay300};
+        border-top: 1px solid ${({ theme }) => theme.color.gray300};
         margin: 20px;
     }
     > strong {

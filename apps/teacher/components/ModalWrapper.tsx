@@ -16,7 +16,7 @@ const ModalWrapper = ({ children, closeModal }: PropsWithChildren<Props>) => {
 export default ModalWrapper;
 
 const _Wrapper = styled.section`
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.25);

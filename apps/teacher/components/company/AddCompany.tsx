@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
+import { ModalDispatchContext } from '../../context/ModalContext';
 
 type keyValue =
     | 'profile_image_path'
@@ -69,12 +70,16 @@ function AddCompany() {
         phone_number: '',
         email: '',
     });
+    const dispatch = useContext(ModalDispatchContext);
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.name);
         setCompanyInfo({
             ...companyInfo,
             [e.target.name]: e.target.value,
         });
+    };
+    const onClick = () => {
+        dispatch({ type: 'SELECT', selected: 'SUCCESS' });
     };
     return (
         <_Wrapper>
@@ -107,6 +112,7 @@ function AddCompany() {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="기업 추가"
+                    onClick={onClick}
                 />
             </_Center>
         </_Wrapper>
