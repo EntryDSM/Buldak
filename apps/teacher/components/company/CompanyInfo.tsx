@@ -32,7 +32,7 @@ function CompanyInfo() {
                     </_SideWrapper>
                     <_InputsWrapper>
                         {inputArray.map((item) => (
-                            <_InputWrapper>
+                            <_InputWrapper key={item.name}>
                                 <p>{item.title}</p>
                                 <div>{companyInfo[item.name]}</div>
                             </_InputWrapper>

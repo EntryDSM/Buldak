@@ -17,13 +17,12 @@ function AddCompany() {
         email: '',
     });
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.name);
         setCompanyInfo({
             ...companyInfo,
             [e.target.name]: e.target.value,
         });
     };
-    const { closeModal, selectModal } = useModal();
+    const { selectModal } = useModal();
     return (
         <_Wrapper>
             <_Center>
@@ -33,7 +32,7 @@ function AddCompany() {
                 </_ImgWrapper>
                 {inputArray.map((item) => {
                     return (
-                        <_InputWrapper>
+                        <_InputWrapper key={item.name}>
                             <p>{item.title}</p>
                             <TextBox
                                 width={380}
