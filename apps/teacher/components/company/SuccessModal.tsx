@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
+import { ModalDispatchContext } from '../../context/ModalContext';
 
 function SuccessModal() {
-    const [modalOnoff, setModalOnoff] = useState<boolean>(false);
+    const dispatch = useContext(ModalDispatchContext);
     const closeModal = () => {
-        setModalOnoff(false);
+        dispatch({ type: 'SELECT', selected: '' });
     };
 
     return (
