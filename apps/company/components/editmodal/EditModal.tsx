@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import ImgFrame from '../../assets/editmodal/Frame.jpg';
 import ExitButton from '../../assets/editmodal/Exit.png';
+import { Button } from '../../../../packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
 
 const inputArr = ['담당자 이름', '담당자 연락처', '기업 이름', '기업 주소'];
 
@@ -29,7 +31,14 @@ function EditModal({ closeModal }: Props) {
                                 <Input title={value} />
                             ))}
                         </div>
-                        <div id="temp"></div>
+                        <Button
+                            width={380}
+                            height={46}
+                            borderColor={theme.color.main}
+                            content="정보 변경"
+                            fontColor={theme.color.main}
+                            backgroundColor={theme.color.white}
+                        />
                     </Body>
                 </div>
             </Box>
@@ -136,12 +145,7 @@ const Body = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-    #temp {
-        width: 380px;
-        height: 46px;
-        border: 1px solid black;
-        margin-top: 60px;
+        margin-bottom: 60px;
     }
 `;
 
