@@ -1,0 +1,1 @@
+export {default as Gear} from '../list/gear.png'
