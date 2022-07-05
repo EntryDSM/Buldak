@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import StudentBox from '../../components/studentbox/StudentBox';
 import EditModal from '../../components/editmodal/EditModal';
 import { useState } from 'react';
-import { Button, DropDown } from '../../../../packages/ui';
+import { Button, DropDown, TextBox } from '../../../../packages/ui';
 import { Gear } from '../../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
 
@@ -22,11 +22,11 @@ function StudentList({}: Props) {
                         <h1>전체 학생 리스트</h1>
                         <div>
                             <div>
-                                <div id="temp" />
+                                <TextBox type="search" width={300} correct={true} />
                                 <DropDown
                                     placeholder="학과"
                                     width={220}
-                                    items={[]}
+                                    items={['asdf', 'asdf']}
                                     onChange={() => {}}
                                 />
                                 <DropDown
@@ -41,6 +41,7 @@ function StudentList({}: Props) {
                                 height={42}
                                 image={Gear}
                                 borderColor={theme.color.main}
+                                borderWidth={2}
                                 onClick={() => {
                                     setOnOff(true);
                                 }}
