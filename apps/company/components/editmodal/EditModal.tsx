@@ -1,31 +1,46 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import ImgFrame from '../../assets/editmodal/Frame.jpg';
-import ExitButton from '../../assets/editmodal/Exit.png';
+import { Frame, ExitButton } from '../../assets/editmodal';
+import { Button } from '../../../../packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
+import { onlineManager } from 'react-query';
 
-interface Props {}
+const inputArr = ['담당자 이름', '담당자 연락처', '기업 이름', '기업 주소'];
 
-function EditModal({}: Props) {
+interface Props {
+    closeModal: () => void;
+}
+
+function EditModal({ closeModal }: Props) {
     return (
         <Background>
             <Box>
-                <Side>
-                    <h1>정보 변경</h1>
-                    <div id="wrapper-img">
-                        <BoxImg backgroundImg={ImgFrame} />
-                        <p>프로필 사진 설정</p>
-                    </div>
-                </Side>
-                <Body>
-                    <Exit backgroundImg={ExitButton} />
-                    <div id="wrapper-input">
-                        <Input title="담당자 이름" />
-                        <Input title="1" />
-                        <Input title="1" />
-                        <Input title="1" />
-                    </div>
-                    <div id="temp"></div>
-                </Body>
+                <Header />
+                <div>
+                    <Side>
+                        <h1>정보 변경</h1>
+                        <div id="wrapper-img">
+                            <BoxImg backgroundImg={Frame} />
+                            <p>프로필 사진 설정</p>
+                        </div>
+                    </Side>
+                    <Body>
+                        <Exit backgroundImg={ExitButton} onClick={() => closeModal()} />
+                        <div id="wrapper-input">
+                            {inputArr.map((value) => (
+                                <Input title={value} />
+                            ))}
+                        </div>
+                        <Button
+                            width={380}
+                            height={46}
+                            borderColor={theme.color.main}
+                            content="정보 변경"
+                            fontColor={theme.color.main}
+                            backgroundColor={theme.color.white}
+                        />
+                    </Body>
+                </div>
             </Box>
         </Background>
     );
@@ -65,7 +80,17 @@ const Box = styled.div`
     border-radius: 10px;
     position: absolute;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    > div {
+        display: flex;
+        flex-direction: row;
+    }
+`;
+
+const Header = styled.div`
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
+    width: 100%;
+    height: 70px;
 `;
 const Side = styled.div`
     border-right: 1px solid ${({ theme }) => theme.color.gray300};
@@ -75,19 +100,22 @@ const Side = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
     > h1 {
         position: absolute;
-        top: 25px;
-        left: 30px;
+        top: 20px;
+        left: 25px;
         font-weight: 700;
         font-size: 23px;
         line-height: 29px;
+        color: ${({ theme }) => theme.color.gray700};
     }
     > #wrapper-img {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 40px;
         > p {
             font-weight: 500;
             font-size: 18px;
@@ -113,16 +141,11 @@ const Body = styled.div`
     #wrapper-input {
         width: 380px;
         height: 365px;
-        margin-top: 65px;
+        margin-top: 25px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    }
-    #temp {
-        width: 380px;
-        height: 46px;
-        border: 1px solid black;
-        margin-top: 80px;
+        margin-bottom: 60px;
     }
 `;
 
@@ -133,6 +156,7 @@ const Exit = styled.div<{ backgroundImg: StaticImageData }>`
     top: 20px;
     right: 20px;
     background-image: url(${(props) => props.backgroundImg.src});
+    cursor: pointer;
 `;
 
 const InputWrapper = styled.div`
