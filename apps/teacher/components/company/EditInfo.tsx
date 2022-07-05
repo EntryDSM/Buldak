@@ -1,14 +1,23 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
-
-const inputArr = ['기업 이름', '기업 주소', '담당자 이름', '담당자 연락처', '담당자 이메일'];
+import { Button, TextBox } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
+import { CompanyInfo, inputArray } from '../constant';
+import useModal from '../../hooks/useModal';
 
 function EditInfo() {
-    const [modalOnOff, setModalOnOff] = useState<boolean>(false);
-    const closeModal = () => {
-        setModalOnOff(false);
-    };
+    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+        profile_image_path: '',
+        company_name: '',
+        location: '',
+        start_at: '',
+        end_at: '',
+        name: '',
+        phone_number: '',
+        email: '',
+    });
+    const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -18,11 +27,30 @@ function EditInfo() {
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
-                        {inputArr.map((value) => <Inputs title={value} placeholder={value + '을/를 입력해 주세요'} />)}
+                        {inputArray.map((item) => (
+                            <_InputWrapper>
+                                <p>{item.title}</p>
+                                <TextBox
+                                    width={300}
+                                    type="text"
+                                    name={item.name}
+                                    correct={true}
+                                    placeholder={item.placeholder}
+                                    value={companyInfo[item.name]}
+                                />
+                            </_InputWrapper>
+                        ))}
                     </_InputsWrapper>
                     <_CalendarWrapper>
                         <_TempCalendar />
-                        <button>정보 변경</button>
+                        <Button
+                            width={300}
+                            height={44}
+                            content="정보 변경"
+                            borderColor={theme.color.skyblue}
+                            fontColor={theme.color.skyblue}
+                            borderWidth={2}
+                        />
                     </_CalendarWrapper>
                 </_Body>
             </_Wrapper>
@@ -97,11 +125,6 @@ const _InputWrapper = styled.div`
         font-size: 20px;
         line-height: 28px;
     }
-    > input {
-        width: 300px;
-        height: 40px;
-        border: 1px solid black;
-    }
 `;
 
 const _InputsWrapper = styled.div`
@@ -118,9 +141,6 @@ const _CalendarWrapper = styled.div`
     width: 530px;
     > button {
         margin-top: 50px;
-        width: 300px;
-        height: 44px;
-        border: 1px solid ${({ theme }) => theme.color.skyblue};
     }
 `;
 

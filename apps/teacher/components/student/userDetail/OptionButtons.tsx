@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const OptionButtons = () => {
     return (
@@ -7,15 +8,17 @@ const OptionButtons = () => {
             <Button
                 width={180}
                 height={44}
-                borderColor="#E03131"
-                fontColor="#E03131"
+                borderWidth={2}
+                borderColor={theme.color.error}
+                fontColor={theme.color.error}
                 content="학생 탈퇴"
             />
             <Button
                 width={180}
                 height={44}
-                borderColor="#E03131"
-                fontColor="#E03131"
+                borderWidth={2}
+                borderColor={theme.color.error}
+                fontColor={theme.color.error}
                 content="공개 문서 삭제"
             />
         </_Wrapper>

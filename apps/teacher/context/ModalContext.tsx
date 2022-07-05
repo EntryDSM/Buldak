@@ -4,7 +4,13 @@ interface ModalState {
     selectedModal: selectedModalType;
 }
 
-type selectedModalType = 'PDF' | 'USER_DETAIL' | 'COMPANY_DETAIL' | 'PATCH_COMPANY_DETAIL' | '';
+export type selectedModalType =
+    | 'PDF'
+    | 'USER_DETAIL'
+    | 'COMPANY_DETAIL'
+    | 'PATCH_COMPANY_DETAIL'
+    | 'SUCCESS'
+    | '';
 
 type SelectModalAction = {
     type: 'SELECT';

@@ -3,15 +3,14 @@ import ManageStudent from '../components/student';
 import styled from '@emotion/styled';
 import UserDetail from '../components/student/userDetail';
 import PdfModal from '../components/student/pdf';
-import { ModalStateContext } from '../context/ModalContext';
-import { useContext } from 'react';
+import useModal from '../hooks/useModal';
 
 export default function Home() {
-    const modalState = useContext(ModalStateContext);
+    const { selectedModal } = useModal();
     return (
         <>
-            {modalState.selectedModal === 'USER_DETAIL' && <UserDetail />}
-            {modalState.selectedModal === 'PDF' && <PdfModal />}
+            {selectedModal === 'USER_DETAIL' && <UserDetail />}
+            {selectedModal === 'PDF' && <PdfModal />}
             <Wrapper>
                 <SideBar managementType="student" />
                 <ManageStudent />

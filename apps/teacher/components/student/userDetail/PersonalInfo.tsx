@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Tag } from '@packages/ui';
 
 const PersonalInfo = () => {
     return (
@@ -21,7 +22,7 @@ const PersonalInfo = () => {
                 </_List>
             </ul>
             <_Tags>
-                <div className="tag" />
+                <Tag tagName="React" color="bdblue" />
             </_Tags>
         </_PersonalInfo>
     );

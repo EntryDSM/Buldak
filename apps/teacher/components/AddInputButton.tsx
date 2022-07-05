@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { Button } from '@packages/ui';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const AddInputButton = () => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
@@ -9,7 +11,12 @@ const AddInputButton = () => {
     return (
         <_Wrapper>
             <_Input isOpened={isOpened} />
-            <_Button onClick={onClickOpenInput}> + </_Button>
+            <Button
+                width={30}
+                height={28}
+                backgroundColor={theme.color.skyblue}
+                onClick={onClickOpenInput}
+            />
         </_Wrapper>
     );
 };
@@ -22,6 +29,9 @@ const _Wrapper = styled.section`
     margin-left: 16px;
     height: 30px;
     max-width: 170px;
+    > button {
+        border-radius: 0 2px 2px 0;
+    }
 `;
 
 interface InputProps {

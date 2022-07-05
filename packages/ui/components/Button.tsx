@@ -29,7 +29,7 @@ const Button: FC<ButtonProps> = (props) => {
                 image && setIcon(image);
             }}
             onClick={onClick}>
-            {icon && image && <Image src={icon} />}
+            {icon && image && <Image src={icon} width={20} height={20} className={'image'} />}
             {content && <p>{content}</p>}
         </ButtonWrapper>
     );
@@ -44,16 +44,11 @@ const ButtonWrapper = styled.button<ButtonProps>`
         borderColor && borderWidth ? `${borderWidth}px solid ${borderColor}` : 'none'};
     border-radius: 3px;
     font-size: 20px;
-    padding: 0px 14px;
+    padding: ${({ content }) => content && '0px 14px'};
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
-    > img {
-        width: 20px;
-        height: 20px;
-        display: block;
-        margin: auto;
-    }
     > p {
         line-height: ${({ height }) => height}px;
     }
