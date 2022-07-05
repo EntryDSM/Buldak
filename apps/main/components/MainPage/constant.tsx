@@ -5,8 +5,7 @@ export const cardTwoText: string =
 
 export const cardTheeTitle: string = '기존의 형식적인 Resume Book이\n아닙니다';
 
-export const cardThreeText: string =
-    '자신의 스타일로 새롭고 자유롭게 \nResume Book을 꾸며보세요';
+export const cardThreeText: string = '자신의 스타일로 새롭고 자유롭게 \nResume Book을 꾸며보세요';
 
 export const cardFourTitle: string = '온라인 Resume Book을 보시고\n원하시는 학생을 만나보세요';
 

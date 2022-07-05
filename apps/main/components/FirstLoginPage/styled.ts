@@ -109,7 +109,7 @@ export const FirstLoginInput = styled.input`
     border-radius: 5px;
 `;
 
-export const FirstLoginCitationInput = styled.div`
+export const FirstLoginCitationInput = styled.input`
     width: 280px;
     height: 44px;
     background: ${({ theme }) => theme.color.white};

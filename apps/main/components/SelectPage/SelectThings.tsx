@@ -3,20 +3,20 @@ import * as S from './styled';
 
 interface SelectThingsType {
     onClickLoginType: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    Name: string;
-    Text: string;
-    Img: string;
+    name: string;
+    text: string;
+    img: string;
 }
 
-const SelectThings: React.FC<SelectThingsType> = ({ onClickLoginType, Name, Text, Img }) => {
+const SelectThings = ({ onClickLoginType, name, text, img }: SelectThingsType) => {
     return (
         <S.SelectThingsBox>
             <S.ThingsPorfile>
-                <Image src={Img} />
+                <Image src={img} />
             </S.ThingsPorfile>
-            <S.ThingsName>{Name}</S.ThingsName>
-            <S.ThingsText>{Text}</S.ThingsText>
-            <S.ThingsSelectButton onClick={onClickLoginType} name={Name}>
+            <S.ThingsName>{name}</S.ThingsName>
+            <S.ThingsText>{text}</S.ThingsText>
+            <S.ThingsSelectButton onClick={onClickLoginType} name={name}>
                 선택
             </S.ThingsSelectButton>
         </S.SelectThingsBox>

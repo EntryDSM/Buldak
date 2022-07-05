@@ -35,18 +35,18 @@ export const LoginButton = styled.div`
     border-radius: 5px;
 `;
 
-type CardContainerType = {
-    Color: string;
+type cardContainerType = {
+    color: string;
 };
 
-export const CardContainer = styled.div<CardContainerType>`
+export const CardContainer = styled.div<cardContainerType>`
     display: flex;
     align-items: center;
     justify-content: space-around;
 
     width: 100%;
     height: 600px;
-    background: ${(props) => props.Color};
+    background: ${(props) => props.color};
 `;
 
 export const CardTextLayout = styled.div`
@@ -108,7 +108,46 @@ export const CardAllText = styled.pre<TextAlignType>`
 `;
 
 export const Footter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
     width: 100%;
     height: 300px;
-    background: ${({ theme }) => theme.color.gay300};
+    background: ${({ theme }) => theme.color.point};
+`;
+
+export const IntroduceTextLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const IntroduceLinkLayout = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 130px;
+`;
+
+export const FootterTitle = styled.p`
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #ffffff;
+
+    margin-bottom: 20px;
+`;
+
+export const FootterText = styled.p`
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+`;
+
+export const FootterTextLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 20px;
 `;

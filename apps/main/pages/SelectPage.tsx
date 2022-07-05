@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { selectData } from '../components/SelectPage/constatnt';
+import { selectData } from '../components/SelectPage/constant';
 import BackImg from '../assets/Img/BackImg.jpg';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
@@ -30,9 +30,9 @@ const SelectPage = () => {
         return (
             <SelectThings
                 onClickLoginType={onClickLoginType}
-                Text={item.text}
-                Name={item.loginType}
-                Img={item.img}
+                text={item.text}
+                name={item.loginType}
+                img={item.img}
             />
         );
     });

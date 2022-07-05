@@ -1,21 +1,20 @@
 import Image from 'next/image';
+import theme from '@packages/emotion-style-provider/src/theme';
 import * as S from './styled';
 
 interface cardBoxType {
-    backGroundColor: string;
-    textAlign: string;
     img: string;
     title: string;
     text: string;
 }
 
-const CardBoxTwo: React.FC<cardBoxType> = ({ backGroundColor, img, text, textAlign, title }) => {
+const CardBoxTwo = ({ img, text, title }: cardBoxType) => {
     return (
-        <S.CardContainer Color={backGroundColor}>
+        <S.CardContainer color={theme.color.background}>
             <Image src={img} />
             <S.CardTextLayout>
-                <S.CardAllTitle TextAlignProps={textAlign}>{title}</S.CardAllTitle>
-                <S.CardAllText TextAlignProps={textAlign}>{text}</S.CardAllText>
+                <S.CardAllTitle TextAlignProps="right">{title}</S.CardAllTitle>
+                <S.CardAllText TextAlignProps="right">{text}</S.CardAllText>
             </S.CardTextLayout>
         </S.CardContainer>
     );
