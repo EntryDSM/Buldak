@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useRef } from 'react';
 
 const FeedbackComment = () => {
-    const feedbackInput = useRef<HTMLTextAreaElement>(null);
+    const feedbackInput = useRef<HTMLTextAreaElement | null>(null);
     const autoResizeTextBox = () => {
-        if (feedbackInput.current !== null) {
+        if (feedbackInput.current) {
             feedbackInput.current.style.height = 'auto';
             const height = feedbackInput.current.scrollHeight;
             feedbackInput.current.style.height = `${height + 8}px`;
