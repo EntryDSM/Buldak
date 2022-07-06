@@ -41,7 +41,7 @@ const _Wrapper = styled.section<InputProps>`
 const _Input = styled.input<InputProps>`
     border: 1px solid ${({ theme, isOpened }) => (isOpened ? theme.color.skyblue : 'none')};
     border-right: none;
-    border-radius: 2px 0 0 2px;
+    border-radius: 4px 0 0 4px;
     height: 30px;
     width: ${(props) => (props.isOpened ? '140px' : '0px')};
     background-color: transparent;
@@ -50,11 +50,4 @@ const _Input = styled.input<InputProps>`
     font-size: 16px;
     line-height: 20px;
     transition: width 1s ease-in-out, padding 1s ease-in-out;
-`;
-const _Button = styled.button`
-    width: 30px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.color.skyblue};
-    color: ${({ theme }) => theme.color.white};
-    font-size: 14px;
 `;
