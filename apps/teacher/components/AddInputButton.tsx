@@ -9,7 +9,7 @@ const AddInputButton = () => {
         setIsOpened(true);
     };
     return (
-        <_Wrapper>
+        <_Wrapper isOpened={isOpened}>
             <_Input isOpened={isOpened} />
             <Button
                 width={30}
@@ -22,23 +22,27 @@ const AddInputButton = () => {
 };
 export default AddInputButton;
 
-const _Wrapper = styled.section`
+interface InputProps {
+    isOpened: boolean;
+}
+
+const _Wrapper = styled.section<InputProps>`
     display: flex;
-    border: 1px solid ${({ theme }) => theme.color.skyblue};
     border-radius: 4px;
     margin-left: 16px;
     height: 30px;
     max-width: 170px;
     > button {
-        border-radius: 0 2px 2px 0;
+        height: 30px;
+        border-radius: ${({ isOpened }) => (isOpened ? ' 0 4px 4px 0' : '4px')};
     }
 `;
 
-interface InputProps {
-    isOpened: boolean;
-}
-
 const _Input = styled.input<InputProps>`
+    border: 1px solid ${({ theme, isOpened }) => (isOpened ? theme.color.skyblue : 'none')};
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    height: 30px;
     width: ${(props) => (props.isOpened ? '140px' : '0px')};
     background-color: transparent;
     ${(props) => props.isOpened && 'padding: 5px 15px'};
@@ -46,11 +50,4 @@ const _Input = styled.input<InputProps>`
     font-size: 16px;
     line-height: 20px;
     transition: width 1s ease-in-out, padding 1s ease-in-out;
-`;
-const _Button = styled.button`
-    width: 30px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.color.skyblue};
-    color: ${({ theme }) => theme.color.white};
-    font-size: 14px;
 `;
