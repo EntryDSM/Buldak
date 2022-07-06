@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
-import { theme } from '@packages/ui/types/theme';
+import { theme } from '@packages/emotion-style-provider/src/theme';
 
 const Header = () => {
     return (
@@ -29,6 +29,7 @@ export default Header;
 const _Wrapper = styled.header`
     width: 100%;
     height: 70px;
+    position: fixed;
     background-color: ${({ theme }) => theme.color.white};
     display: flex;
     align-items: center;

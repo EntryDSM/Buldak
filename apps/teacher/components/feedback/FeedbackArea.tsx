@@ -23,7 +23,6 @@ const _Wrapper = styled.section`
     position: fixed;
     width: 450px;
     height: 100%;
-    z-index: 2;
     background-color: ${({ theme }) => theme.color.white};
     padding: 30px 50px;
     border-right: 2px solid ${({ theme }) => theme.color.gray300};
