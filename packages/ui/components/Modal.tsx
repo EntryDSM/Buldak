@@ -10,9 +10,9 @@ interface ModalProps {
     subContent: Array<string>; // 한 줄씩 배열에 담기
     top: number;
     left: number;
-    onCloseBtnClick: () => void;
-    onSubmitBtnClick?: () => void;
-    onCancleBtnClick?: () => void;
+    onCloseBtnClick: (props?: any) => void;
+    onSubmitBtnClick?: (props?: any) => void;
+    onCancleBtnClick?: (props?: any) => void;
 }
 
 const Modal: FC<ModalProps> = (props) => {
