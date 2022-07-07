@@ -9,10 +9,11 @@ import theme from '@packages/emotion-style-provider/src/theme';
 interface Props {}
 
 function StudentList({}: Props) {
-    const [onOff, setOnOff] = useState(true);
+    const [onOff, setOnOff] = useState(false);
     const closeModal = () => {
         setOnOff(false);
     };
+    const test = ['HTML', 'CSS'];
     return (
         <>
             {onOff && <EditModal closeModal={closeModal} />}
@@ -22,7 +23,12 @@ function StudentList({}: Props) {
                         <h1>전체 학생 리스트</h1>
                         <div>
                             <div>
-                                <TextBox type="search" width={300} correct={true} />
+                                <TextBox
+                                    type="search"
+                                    width={300}
+                                    correct={true}
+                                    placeholder="검색어를 입력해주세요"
+                                />
                                 <DropDown
                                     placeholder="학과"
                                     width={220}
@@ -49,7 +55,33 @@ function StudentList({}: Props) {
                             />
                         </div>
                     </Header>
-                    <StudentBox />
+                    <BoxesWrapper>
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                    </BoxesWrapper>
                 </Wrapper>
             </Background>
         </>
@@ -61,7 +93,8 @@ export default StudentList;
 const Background = styled.div`
     min-width: 100%;
     width: fit-content;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
@@ -106,4 +139,12 @@ const Header = styled.div`
             }
         }
     }
+`;
+
+const BoxesWrapper = styled.div`
+    width: 1370;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 `;

@@ -1,23 +1,35 @@
 import styled from '@emotion/styled';
+import theme from '@packages/emotion-style-provider/src/theme';
+import { Tag } from '@packages/ui';
+import { useEffect } from 'react';
 
 interface Props {
-    profile_img: string;
-    tags: string;
+    profile_img?: string;
+    tags: string[];
+    name: string;
+    num: string | number;
+    major: string;
 }
 
-function StudentBox() {
+function StudentBox(props: Props) {
+    const { profile_img, tags, name, num, major } = props;
+    useEffect(() => {
+        console.log(tags);
+    }, []);
     return (
         <Wrapper>
-            <ImgBlock></ImgBlock>
+            <ImgBlock src={profile_img}></ImgBlock>
             <Body>
-                <strong id="major">프론트엔드</strong>
-                <TagsWrapper></TagsWrapper>
+                <strong id="major">{major}</strong>
+                <TagsWrapper>
+                    {tags ? tags.map((value) => <Tag tagName={value} color="bdblue" />) : ''}
+                </TagsWrapper>
             </Body>
             <Footer>
                 <div id="imgblock"></div>
                 <div id="wrapper-name">
-                    <p id="name">성이름</p>
-                    <p id="num">1234</p>
+                    <p id="name">{name}</p>
+                    <p id="num">{num}</p>
                 </div>
             </Footer>
         </Wrapper>
@@ -35,14 +47,16 @@ const Wrapper = styled.div`
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
     justify-content: space-between;
+    margin-bottom: 30px;
 `;
 
-const ImgBlock = styled.div`
+const ImgBlock = styled.div<{ src: string | undefined }>`
     width: 100%;
     height: 160px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     background-color: #d9d9d9;
+    background-image: ${({ src }) => (src ? src : '')};
 `;
 
 const Body = styled.div`
@@ -54,7 +68,15 @@ const Body = styled.div`
         margin-bottom: 10px;
     }
 `;
-const TagsWrapper = styled.div``;
+const TagsWrapper = styled.div`
+    margin-top: 10px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    >div{
+        margin-right:5px;
+    }
+`;
 const Footer = styled.div`
     height: 50px;
     width: 100%;
