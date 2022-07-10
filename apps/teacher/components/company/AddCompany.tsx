@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { CompanyInfo, inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
+import Calendar from "../Calendar";
 
 function AddCompany() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -46,7 +47,7 @@ function AddCompany() {
                         </_InputWrapper>
                     );
                 })}
-                <_TempCalendar />
+                <Calendar/>
                 <Button
                     width={530}
                     height={44}
@@ -78,6 +79,9 @@ const _Center = styled.div`
     > button {
         margin-top: 25px;
     }
+  >.calendar{
+    margin-top: 35px;
+  }
 `;
 
 const _ImgWrapper = styled.div`
