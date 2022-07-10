@@ -1,65 +1,55 @@
 import styled from '@emotion/styled';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import AddPlusBtn from '../../assets/svgs/AddPlusBtn';
-import EditerBanner from '../../assets/svgs/EditerBanner';
-import EditerDoubleText from '../../assets/svgs/EditerDoubleText';
-import EditerImage from '../../assets/svgs/EditerImage';
-import EditerText from '../../assets/svgs/EditerText';
 import MeatballMenu from '../../assets/svgs/MeatballsMenu';
-
-const CompositionList = [
-    {
-        image: <EditerText />,
-        text: '텍스트',
-    },
-    {
-        image: <EditerDoubleText />,
-        text: '2단 텍스트',
-    },
-    {
-        image: <EditerImage />,
-        text: '이미지',
-    },
-    {
-        image: <EditerBanner />,
-        text: '배너',
-    },
-];
+import CompositionList from '../../constants/CompositionList';
+import PatchAside from './PatchAside';
 
 interface PropsType {
     setElementDropDown: Dispatch<SetStateAction<boolean>>;
 }
 
 function AsideBar({ setElementDropDown }: PropsType) {
+    const [elementPatch, setelementPatch] = useState<boolean>(false);
+    const [deleteModal, setDeleteModal] = useState<boolean>(false);
     return (
-        <AsideBox>
-            <ContentBox>
-                <SiteComposition>
-                    웹 사이트 구성
-                    <span onClick={() => setElementDropDown(true)}>
-                        <AddPlusBtn />
-                    </span>
-                </SiteComposition>
-
-                {CompositionList.map((Composition, index) => (
-                    <CompositionBox key={index}>
-                        <CompositionContent>
-                            <CompositionItem>
-                                {Composition.image}
-                                <span>{Composition.text}</span>
-                            </CompositionItem>
-                            <MeatBallBox>
-                                <MeatballMenu />
-                            </MeatBallBox>
-                        </CompositionContent>
-                    </CompositionBox>
-                ))}
-            </ContentBox>
-        </AsideBox>
+        <_AsideBox>
+            {elementPatch ? (
+                <PatchAside setelementPatch={setelementPatch} />
+            ) : (
+                <_ContentBox>
+                    <div>
+                        <_SiteComposition>
+                            웹 사이트 구성
+                            <span onClick={() => setElementDropDown(true)}>
+                                <AddPlusBtn />
+                            </span>
+                        </_SiteComposition>
+                        {CompositionList.map((Composition, index) => (
+                            <_CompositionBox
+                                onClick={() => {
+                                    setelementPatch(true);
+                                }}
+                                key={index}>
+                                <_CompositionContent>
+                                    <_CompositionItem>
+                                        {Composition.image}
+                                        <span>{Composition.text}</span>
+                                    </_CompositionItem>
+                                    <_MeatBallBox onClick={() => setDeleteModal(true)}>
+                                        <MeatballMenu />
+                                    </_MeatBallBox>
+                                </_CompositionContent>
+                            </_CompositionBox>
+                        ))}
+                    </div>
+                </_ContentBox>
+            )}
+        </_AsideBox>
     );
 }
 
-const MeatBallBox = styled.div`
+const _MeatBallBox = styled.div`
     width: 26px;
     height: 26px;
     display: flex;
@@ -71,7 +61,7 @@ const MeatBallBox = styled.div`
     }
 `;
 
-const CompositionItem = styled.div`
+const _CompositionItem = styled.div`
     display: flex;
     align-items: center;
     width: 170px;
@@ -80,18 +70,33 @@ const CompositionItem = styled.div`
     }
 `;
 
-const CompositionContent = styled.div`
-    width: 200px;
+const _CompositionContent = styled.div`
+    width: 220px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 `;
 
-const ContentBox = styled.div`
-    width: 250px;
+const _ContentBox = styled.div`
+    display: flex;
+    justify-content: center;
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translate3d(100%, 0, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translateZ(0);
+        }
+    }
+    animation: fadeInRight 0.3s;
+    > div {
+        width: 280px;
+    }
 `;
 
-const CompositionBox = styled.div`
-    width: 250px;
+const _CompositionBox = styled.div`
     height: 45px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -107,7 +112,7 @@ const CompositionBox = styled.div`
     }
 `;
 
-const SiteComposition = styled.div`
+const _SiteComposition = styled.div`
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -118,15 +123,14 @@ const SiteComposition = styled.div`
     }
 `;
 
-const AsideBox = styled.aside`
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    left: 0;
-    bottom: 0;
+const _AsideBox = styled.aside`
+    position: fixed;
     width: 350px;
+    background-color: ${({ theme }) => theme.color.white};
+    padding-top: 70px;
     height: 100vh;
     overflow: auto;
+    scrollbar-width: none;
 `;
 
 export default AsideBar;
