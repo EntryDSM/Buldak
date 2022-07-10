@@ -5,6 +5,8 @@ type dateType = 'next' | 'prev' | 'thisMonth';
 
 export type selectedType = 'startDate' | 'endDate' | 'startDateOnly' | 'equal' | '';
 
+export type dayType = 'sun' | 'sat' | 'weekday';
+
 interface SelectedDate {
     startDate: {
         year: number;
@@ -73,8 +75,19 @@ const useCalendar = () => {
     const prevMonth = () => {
         setMonth(month - 1);
     };
+    const checkDayType = (index: number): dayType => {
+        switch (index % 7) {
+            case 0:
+                return 'sun';
+            case 6:
+                return 'sat';
+            default:
+                return 'weekday';
+        }
+    };
     const onClickDate = (dateType: dateType, year: number, month: number, date: number) => {
         if (
+            dateType === 'thisMonth' &&
             selectedDate.startDate !== null &&
             selectedDate.endDate === null &&
             selectedDate.startDate.year >= year &&
@@ -176,8 +189,8 @@ const useCalendar = () => {
             const type = checkDate(date, index);
             return (
                 <_DateBox
-                    dateType={index % 7 === 0 ? 'sun' : 'weekday'}
-                    isWeekEnd={index % 7 === 0 || index % 7 === 6}
+                    dateType={checkDayType(index)}
+                    isWeekEnd={checkDayType(index) !== 'weekday'}
                     key={index}
                     selectedType={selectedType(date)}
                     className={`${type}  ${
@@ -205,6 +218,7 @@ const useCalendar = () => {
         prevMonth,
         nextMonth,
         list,
+        checkDayType,
     };
 };
 export default useCalendar;

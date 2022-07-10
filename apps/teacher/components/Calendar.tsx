@@ -4,7 +4,7 @@ import useCalendar, { selectedType } from '../hooks/useCalendar';
 const dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
 const Calendar = () => {
-    const { year, month, prevMonth, nextMonth, list } = useCalendar();
+    const { year, month, prevMonth, nextMonth, list, checkDayType } = useCalendar();
     return (
         <_Wrapper className="calendar">
             <_MonthWrapper>
@@ -17,8 +17,8 @@ const Calendar = () => {
             <_DayWrapper>
                 {dayList.map((item, index) => (
                     <_DateBox
-                        dateType={index === 0 ? 'sun' : 'weekday'}
-                        isWeekEnd={index % 7 === 0 || index % 7 === 6}
+                        dateType={checkDayType(index)}
+                        isWeekEnd={checkDayType(index) !== 'weekday'}
                         key={index}>
                         {item}
                     </_DateBox>
@@ -91,14 +91,27 @@ export const _DateBox = styled.li<DateProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${({ dateType, theme }) => (dateType === 'sun' ? theme.color.error : theme.color.black)};
-    border-radius: ${({ selectedType }) => {
-        switch (selectedType) {
+    color: ${({ dateType, theme }) => {
+        switch (dateType) {
+            case 'sun':
+                return theme.color.error;
+            case 'sat':
+                return theme.color.skyblue;
+            default:
+                return theme.color.black;
+        }
+    }};
+    border-radius: ${({ selectedType, dateType }) => {
+        switch (selectedType || dateType) {
             case 'startDate':
                 return '100px 0 0 100px';
-            case 'startDateOnly' || 'equal':
+            case 'startDateOnly':
                 return '100px';
             case 'endDate':
+                return '0 100px 100px 0';
+            case 'sun':
+                return '100px 0 0 100px';
+            case 'sat':
                 return '0 100px 100px 0';
             default:
                 return '';
