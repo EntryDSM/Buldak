@@ -5,14 +5,26 @@ import { useState } from 'react';
 import { Button, DropDown, TextBox } from '../../../../packages/ui';
 import { Gear, HoverGear } from '../../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
+import { EachStudentType, StudentsListResponseType } from '../../types';
 
 interface Props {}
 
 function StudentList({}: Props) {
-    const [onOff, setOnOff] = useState(true);
+    const [onOff, setOnOff] = useState<boolean>(false);
     const closeModal = () => {
         setOnOff(false);
     };
+    const testtag = ['HTML', 'CSS'];
+    const test: EachStudentType = {
+        gcn: '123',
+        major: '프론트엔드',
+        name: '김아무개',
+        preview_image_path: '',
+        profile_image_path: '',
+        student_id: '123',
+        tag_list: testtag,
+    };
+    const studentArr: EachStudentType[] = [test, test, test, test];
     return (
         <>
             {onOff && <EditModal closeModal={closeModal} />}
@@ -22,7 +34,12 @@ function StudentList({}: Props) {
                         <h1>전체 학생 리스트</h1>
                         <div>
                             <div>
-                                <TextBox type="search" width={300} correct={true} />
+                                <TextBox
+                                    type="search"
+                                    width={300}
+                                    correct={true}
+                                    placeholder="검색어를 입력해주세요"
+                                />
                                 <DropDown
                                     placeholder="학과"
                                     width={220}
@@ -49,7 +66,20 @@ function StudentList({}: Props) {
                             />
                         </div>
                     </Header>
-                    <StudentBox />
+                    <BoxesWrapper>
+                        {studentArr.map((value, index) => (
+                            <>
+                                <StudentBox
+                                    name={value.name}
+                                    major={value.major}
+                                    num={value.gcn}
+                                    tags={value.tag_list}
+                                    EOL={!((index + 1) % 4)}
+                                    key={index}
+                                />
+                            </>
+                        ))}
+                    </BoxesWrapper>
                 </Wrapper>
             </Background>
         </>
@@ -61,7 +91,8 @@ export default StudentList;
 const Background = styled.div`
     min-width: 100%;
     width: fit-content;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
@@ -98,12 +129,13 @@ const Header = styled.div`
             width: 780px;
             align-items: center;
             justify-content: space-between;
-            #temp {
-                //temp input
-                width: 300px;
-                height: 42px;
-                border: 1px solid black;
-            }
         }
     }
+`;
+
+const BoxesWrapper = styled.div`
+    width: 1370;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 `;

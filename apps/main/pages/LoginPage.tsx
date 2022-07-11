@@ -47,7 +47,11 @@ const LoginPage = () => {
                     <S.LoginTitle>로그인</S.LoginTitle>
                     <S.LoginPoint />
                     <S.LoginInputLayout>
-                        <S.LoginInputText>이메일</S.LoginInputText>
+                        {loginState.user_type == 'MOU' ? (
+                            <S.LoginInputText>아이디</S.LoginInputText>
+                        ) : (
+                            <S.LoginInputText>이메일</S.LoginInputText>
+                        )}
                         <S.LoginInput
                             value={loginState.email}
                             onChange={onChangeLoginState}

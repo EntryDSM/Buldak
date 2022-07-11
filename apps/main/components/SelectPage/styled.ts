@@ -74,7 +74,7 @@ export const SelectThingsBox = styled.section`
     width: 240px;
     height: 270px;
     background: ${({ theme }) => theme.color.white};
-    border: 2px solid ${({ theme }) => theme.color.gay300};
+    border: 2px solid ${({ theme }) => theme.color.gray300};
     border-radius: 8px;
 `;
 
@@ -86,7 +86,7 @@ export const ThingsPorfile = styled.div`
     width: 76px;
     height: 76px;
     background: ${({ theme }) => theme.color.background};
-    border: 2px solid ${({ theme }) => theme.color.gay300};
+    border: 2px solid ${({ theme }) => theme.color.gray300};
     border-radius: 100px;
     margin-top: 25px;
 `;

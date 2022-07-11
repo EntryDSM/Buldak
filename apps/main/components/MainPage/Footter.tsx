@@ -20,8 +20,12 @@ const Footter = () => {
                 </S.FootterTextLayout>
             </S.IntroduceTextLayout>
             <S.IntroduceLinkLayout>
-                <Image src={FaceBook} />
-                <Image src={GitHub} />
+                <a href="https://www.facebook.com/entrydsm/" target={'_blank'}>
+                    <Image src={FaceBook} />
+                </a>
+                <a href="https://github.com/EntryDSM" target={'_blank'}>
+                    <Image src={GitHub} />
+                </a>
             </S.IntroduceLinkLayout>
         </S.Footter>
     );
