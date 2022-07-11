@@ -15,7 +15,7 @@ interface ModalProps {
     onCancleBtnClick?: (props?: any) => void;
 }
 
-const Modal: FC<ModalProps> = (props) => {
+const Modal = (props: ModalProps) => {
     const {
         option,
         title,
