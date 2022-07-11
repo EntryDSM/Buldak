@@ -85,6 +85,28 @@ const useCalendar = () => {
                 return 'weekday';
         }
     };
+    const checkPossibleDate = (type: dateType) => {
+        const thisYear =
+            type === 'prev' && month === 1
+                ? year - 1
+                : type === 'next' && month === 12
+                ? year + 1
+                : year;
+        const thisMonth =
+            type === 'prev'
+                ? month === 1
+                    ? 12
+                    : month - 1
+                : type === 'next'
+                ? month === 12
+                    ? 1
+                    : month + 1
+                : month;
+        return {
+            thisYear,
+            thisMonth,
+        };
+    };
     const onClickDate = (dateType: dateType, year: number, month: number, date: number) => {
         if (
             dateType === 'thisMonth' &&
@@ -126,6 +148,17 @@ const useCalendar = () => {
             }
         }
     };
+    const selectedType = (date: number, type: dateType): selectedType => {
+        const possibleDate = checkPossibleDate(type);
+        const startDate = `${selectedDate.startDate?.year}-${selectedDate.startDate?.month}-${selectedDate.startDate?.date}`;
+        const endDate = `${selectedDate.endDate?.year}-${selectedDate.endDate?.month}-${selectedDate.endDate?.date}`;
+        if (startDate === endDate && startDate === `${year}-${month}-${date}`) return 'equal';
+        if (`${possibleDate.thisYear}-${possibleDate.thisMonth}-${date}` === startDate)
+            return selectedDate.endDate === null ? 'startDateOnly' : 'startDate';
+        if (`${possibleDate.thisYear}-${possibleDate.thisMonth}-${date}` === endDate)
+            return 'endDate';
+        return '';
+    };
     const isIncludeSelectedDate = (year: number, month: number, date: number) => {
         if (selectedDate.startDate !== null && selectedDate.endDate === null) {
             return (
@@ -159,50 +192,37 @@ const useCalendar = () => {
             }
             if (selectedDate.endDate.month > selectedDate.startDate.month) {
                 return (
-                    (month === selectedDate.startDate.month &&
+                    (year === selectedDate.startDate.year &&
+                        month === selectedDate.startDate.month &&
                         date >= selectedDate.startDate.date) ||
-                    (month === selectedDate.endDate.month && date <= selectedDate.endDate.date) ||
+                    (year === selectedDate.endDate.year &&
+                        month === selectedDate.endDate.month &&
+                        date <= selectedDate.endDate.date) ||
                     (month > selectedDate.startDate.month && month < selectedDate.endDate.month)
                 );
             }
             return (
-                year >= selectedDate.startDate.year &&
-                month >= selectedDate.startDate.month &&
+                year === selectedDate.startDate.year &&
+                month === selectedDate.startDate.month &&
                 date >= selectedDate.startDate.date &&
-                year <= selectedDate.endDate.year &&
-                month <= selectedDate.endDate.month &&
+                year === selectedDate.endDate.year &&
+                month === selectedDate.endDate.month &&
                 date <= selectedDate.endDate.date
             );
         }
     };
-    const selectedType = (date: number): selectedType => {
-        const startDate = `${selectedDate.startDate?.year}-${selectedDate.startDate?.month}-${selectedDate.startDate?.date}`;
-        const endDate = `${selectedDate.endDate?.year}-${selectedDate.endDate?.month}-${selectedDate.endDate?.date}`;
-        if (`${year}-${month}-${date}` === startDate)
-            return selectedDate.endDate === null ? 'startDateOnly' : 'startDate';
-        if (`${year}-${month}-${date}` === endDate) return 'endDate';
-        if (startDate === endDate && startDate === `${year}-${month}-${date}`) return 'equal';
-        return '';
-    };
     const list = useMemo(() => {
         return date.newArray.map((date, index) => {
             const type = checkDate(date, index);
+            const possibleDate = checkPossibleDate(type);
             return (
                 <_DateBox
                     dateType={checkDayType(index)}
                     isWeekEnd={checkDayType(index) !== 'weekday'}
                     key={index}
-                    selectedType={selectedType(date)}
+                    selectedType={selectedType(date, type)}
                     className={`${type}  ${
-                        isIncludeSelectedDate(
-                            type === 'prev' && month === 1
-                                ? year - 1
-                                : type === 'next' && month === 12
-                                ? year + 1
-                                : year,
-                            type === 'prev' ? month - 1 : type === 'next' ? month + 1 : month,
-                            date,
-                        )
+                        isIncludeSelectedDate(possibleDate.thisYear, possibleDate.thisMonth, date)
                             ? 'include'
                             : 'notInclude'
                     }`}

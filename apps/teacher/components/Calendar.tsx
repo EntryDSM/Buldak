@@ -103,6 +103,8 @@ export const _DateBox = styled.li<DateProps>`
     }};
     border-radius: ${({ selectedType, dateType }) => {
         switch (selectedType || dateType) {
+            case 'equal':
+                return '100px';
             case 'startDate':
                 return '100px 0 0 100px';
             case 'startDateOnly':
