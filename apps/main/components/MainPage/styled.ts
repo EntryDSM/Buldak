@@ -17,7 +17,7 @@ export const Header = styled.div`
 
     width: 100%;
     height: 60px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.gay300};
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
     background-color: ${({ theme }) => theme.color.white};
 `;
 
