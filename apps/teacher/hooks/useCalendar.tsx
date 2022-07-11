@@ -21,7 +21,7 @@ interface SelectedDate {
 }
 
 const useCalendar = () => {
-    const [month, setMonth] = useState<number>(new Date().getMonth() + 1);
+    const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [year, setYear] = useState(new Date().getFullYear());
     const [selectedDate, setSelectedDate] = useState<SelectedDate>({
         startDate: null,
