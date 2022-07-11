@@ -16,7 +16,7 @@ function StudentBox(props: Props) {
     const { profile_img, tags, name, num, major, EOL = false } = props;
     return (
         <Wrapper EOL={EOL}>
-            <ImgBlock src={profile_img}></ImgBlock>
+            <ImgBlock src={profile_img} />
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
