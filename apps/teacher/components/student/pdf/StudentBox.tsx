@@ -1,28 +1,23 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
+import { PdfStudentListProps } from './index';
 
-interface PdfStudentListProps {
-    public_id: string;
-    name: string;
-    gcn: number;
-    profile_image_path: string;
-    isSelected: boolean;
-}
 
 interface Props {
     item: PdfStudentListProps;
+    onClick : (student_id : string) => void;
 }
 
-const StudentBox = ({ item }: Props) => {
+const StudentBox = ({ item,onClick }: Props) => {
     return (
-        <_Wrapper key={item.public_id}>
+        <_Wrapper key={item.student_id}>
             <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
             <_Name>{item.name}</_Name>
             <_StudentNumber>{item.gcn}</_StudentNumber>
-            {!item.isSelected ? (
-                <_ChangeStatusButton>+</_ChangeStatusButton>
+            {item.isSelected ? (
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>-</_ChangeStatusButton>
             ) : (
-                <_ChangeStatusButton>-</_ChangeStatusButton>
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>+</_ChangeStatusButton>
             )}
         </_Wrapper>
     );
