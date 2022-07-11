@@ -15,11 +15,11 @@ function StudentBox(props: Props) {
     const { profile_img, tags, name, num, major } = props;
     return (
         <Wrapper>
-            <ImgBlock src={profile_img}></ImgBlock>
+            <ImgBlock src={profile_img} />
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
-                    {tags ? tags.map((value) => <Tag tagName={value} color="bdblue" />) : ''}
+                    {tags ? tags.map((value,index) => <Tag tagName={value} color="bdblue" key={index} />) : ''}
                 </TagsWrapper>
             </Body>
             <Footer>
