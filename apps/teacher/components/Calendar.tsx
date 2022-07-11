@@ -1,16 +1,25 @@
 import styled from '@emotion/styled';
-import useCalendar, { selectedType } from '../hooks/useCalendar';
+import useCalendar, { dayType, selectedType } from '../hooks/useCalendar';
 
 const dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
-const Calendar = () => {
-    const { year, month, prevMonth, nextMonth, list, checkDayType } = useCalendar();
+interface Props {
+    year: number;
+    month: number;
+    prevMonth: () => void;
+    nextMonth: () => void;
+    list: JSX.Element[];
+    checkDayType: (index: number) => dayType;
+}
+
+const Calendar = ({ year, month, prevMonth, nextMonth, list, checkDayType }: Props) => {
     return (
         <_Wrapper className="calendar">
             <_MonthWrapper>
                 <button onClick={prevMonth}>{'<'}</button>
                 <_Month>
-                    <p>{year}년</p><p className='month'>{month}월</p>
+                    <p>{year}년</p>
+                    <p className="month">{month}월</p>
                 </_Month>
                 <button onClick={nextMonth}>{'>'}</button>
             </_MonthWrapper>
@@ -54,14 +63,14 @@ const _MonthWrapper = styled.div`
 `;
 const _Month = styled.strong`
     display: flex;
-  width: 105px;
+    width: 105px;
     font-size: 20px;
     line-height: 25px;
     color: ${({ theme }) => theme.color.black};
     font-weight: 500;
-  >.month{
-    margin-left: auto;
-  }
+    > .month {
+        margin-left: auto;
+    }
 `;
 const _DayWrapper = styled.div`
     display: flex;
@@ -81,9 +90,9 @@ const _DateWrapper = styled.ul`
     .next {
         color: ${({ theme }) => theme.color.point};
     }
-  > li {
-    cursor: pointer;
-  }
+    > li {
+        cursor: pointer;
+    }
 `;
 
 interface DateProps {

@@ -170,10 +170,12 @@ const useCalendar = () => {
         if (selectedDate.startDate !== null && selectedDate.endDate !== null) {
             if (selectedDate.endDate.year > selectedDate.startDate.year) {
                 return (
-                    (year === selectedDate.startDate.year && month >= selectedDate.startDate.month &&
-                          date >= selectedDate.startDate.date) ||
-                    (year === selectedDate.endDate.year && month <= selectedDate.endDate.month &&
-                          date <= selectedDate.endDate.date) ||
+                    (year === selectedDate.startDate.year &&
+                        month >= selectedDate.startDate.month &&
+                        date >= selectedDate.startDate.date) ||
+                    (year === selectedDate.endDate.year &&
+                        month <= selectedDate.endDate.month &&
+                        date <= selectedDate.endDate.date) ||
                     (year > selectedDate.startDate.year && year < selectedDate.endDate.year) ||
                     (year === selectedDate.startDate.year &&
                         month > selectedDate.startDate.month) ||
@@ -235,6 +237,7 @@ const useCalendar = () => {
         nextMonth,
         list,
         checkDayType,
+        selectedDate,
     };
 };
 export default useCalendar;

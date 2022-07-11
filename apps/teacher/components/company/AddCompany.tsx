@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { CompanyInfo, inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
-import Calendar from "../Calendar";
+import Calendar from '../Calendar';
+import useCalendar from '../../hooks/useCalendar';
 
 function AddCompany() {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
@@ -24,6 +25,21 @@ function AddCompany() {
         });
     };
     const { selectModal } = useModal();
+    const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
+    useEffect(() => {
+        if (selectedDate.startDate && selectedDate.endDate)
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: `${selectedDate.startDate.year}-${selectedDate.startDate.month}-${selectedDate.startDate.date}`,
+                end_at: `${selectedDate.endDate.year}-${selectedDate.endDate.month}-${selectedDate.endDate.date}`,
+            });
+        else
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: '',
+                end_at: '',
+            });
+    }, [selectedDate]);
     return (
         <_Wrapper>
             <_Center>
@@ -47,7 +63,14 @@ function AddCompany() {
                         </_InputWrapper>
                     );
                 })}
-                <Calendar/>
+                <Calendar
+                    year={year}
+                    month={month}
+                    checkDayType={checkDayType}
+                    list={list}
+                    prevMonth={prevMonth}
+                    nextMonth={nextMonth}
+                />
                 <Button
                     width={530}
                     height={44}
@@ -79,9 +102,9 @@ const _Center = styled.div`
     > button {
         margin-top: 25px;
     }
-  >.calendar{
-    margin-top: 35px;
-  }
+    > .calendar {
+        margin-top: 35px;
+    }
 `;
 
 const _ImgWrapper = styled.div`
