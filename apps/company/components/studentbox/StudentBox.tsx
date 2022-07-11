@@ -9,20 +9,22 @@ interface Props {
     name: string;
     num: string | number;
     major: string;
+    EOL: boolean;
 }
 
 function StudentBox(props: Props) {
-    const { profile_img, tags, name, num, major } = props;
-    useEffect(() => {
-        console.log(tags);
-    }, []);
+    const { profile_img, tags, name, num, major, EOL = false } = props;
     return (
-        <Wrapper>
+        <Wrapper EOL={EOL}>
             <ImgBlock src={profile_img}></ImgBlock>
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
-                    {tags ? tags.map((value) => <Tag tagName={value} color="bdblue" />) : ''}
+                    {tags
+                        ? tags.map((value, index) => (
+                              <Tag tagName={value} color="bdblue" key={index} />
+                          ))
+                        : ''}
                 </TagsWrapper>
             </Body>
             <Footer>
@@ -38,7 +40,7 @@ function StudentBox(props: Props) {
 
 export default StudentBox;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ EOL: boolean }>`
     width: 320px;
     height: 340px;
     background-color: ${({ theme }) => theme.color.white};
@@ -48,6 +50,7 @@ const Wrapper = styled.div`
     border-radius: 5px;
     justify-content: space-between;
     margin-bottom: 30px;
+    margin-right: ${({ EOL }) => (EOL ? '0px' : '30px')};
 `;
 
 const ImgBlock = styled.div<{ src: string | undefined }>`
@@ -70,11 +73,11 @@ const Body = styled.div`
 `;
 const TagsWrapper = styled.div`
     margin-top: 10px;
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    >div{
-        margin-right:5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    > div {
+        margin-right: 5px;
     }
 `;
 const Footer = styled.div`
