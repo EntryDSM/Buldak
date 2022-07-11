@@ -131,12 +131,6 @@ const Header = styled.div`
             width: 780px;
             align-items: center;
             justify-content: space-between;
-            #temp {
-                //temp input
-                width: 300px;
-                height: 42px;
-                border: 1px solid black;
-            }
         }
     }
 `;
