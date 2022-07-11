@@ -13,9 +13,6 @@ interface Props {
 
 function StudentBox(props: Props) {
     const { profile_img, tags, name, num, major } = props;
-    useEffect(() => {
-        console.log(tags);
-    }, []);
     return (
         <Wrapper>
             <ImgBlock src={profile_img}></ImgBlock>
