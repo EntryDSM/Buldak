@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, DropDown, TextBox } from '../../../../packages/ui';
 import { Gear, HoverGear } from '../../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
+import { EachStudentType, StudentsListResponseType } from '../../types';
 
 interface Props {}
 
@@ -13,7 +14,17 @@ function StudentList({}: Props) {
     const closeModal = () => {
         setOnOff(false);
     };
-    const test = ['HTML', 'CSS'];
+    const testtag = ['HTML', 'CSS'];
+    const test: EachStudentType = {
+        gcn: '123',
+        major: '프론트엔드',
+        name: '김아무개',
+        preview_image_path: '',
+        profile_image_path: '',
+        student_id: '123',
+        tag_list: testtag,
+    };
+    const studentArr: EachStudentType[] = [test, test, test, test];
     return (
         <>
             {onOff && <EditModal closeModal={closeModal} />}
@@ -56,31 +67,18 @@ function StudentList({}: Props) {
                         </div>
                     </Header>
                     <BoxesWrapper>
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
-                        <StudentBox name="김아무개" major="프론트엔드" num="1234" tags={test} />
+                        {studentArr.map((value, index) => (
+                            <>
+                                <StudentBox
+                                    name={value.name}
+                                    major={value.major}
+                                    num={value.gcn}
+                                    tags={value.tag_list}
+                                    EOL={!((index + 1) % 4)}
+                                    key={index}
+                                />
+                            </>
+                        ))}
                     </BoxesWrapper>
                 </Wrapper>
             </Background>
@@ -140,5 +138,4 @@ const BoxesWrapper = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
 `;
