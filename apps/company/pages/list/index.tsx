@@ -9,7 +9,7 @@ import theme from '@packages/emotion-style-provider/src/theme';
 interface Props {}
 
 function StudentList({}: Props) {
-    const [onOff, setOnOff] = useState(false);
+    const [onOff, setOnOff] = useState<boolean>(false);
     const closeModal = () => {
         setOnOff(false);
     };
