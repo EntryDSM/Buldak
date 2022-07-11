@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import useCalendar, { dayType, selectedType } from '../hooks/useCalendar';
+import { dayType, selectedType } from '../hooks/useCalendar';
 
 const dayList = ['일', '월', '화', '수', '목', '금', '토'];
 

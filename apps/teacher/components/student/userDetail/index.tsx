@@ -6,7 +6,6 @@ import OptionButtons from './OptionButtons';
 import useModal from '../../../hooks/useModal';
 
 const UserDetail = () => {
-    // todo : modal 상태관리 context로 뺴야함
     const { closeModal } = useModal();
     return (
         <ModalWrapper closeModal={closeModal}>
