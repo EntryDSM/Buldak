@@ -10,7 +10,7 @@ const Calendar = () => {
             <_MonthWrapper>
                 <button onClick={prevMonth}>{'<'}</button>
                 <_Month>
-                    {year}년 {month}월
+                    <p>{year}년</p><p className='month'>{month}월</p>
                 </_Month>
                 <button onClick={nextMonth}>{'>'}</button>
             </_MonthWrapper>
@@ -53,10 +53,15 @@ const _MonthWrapper = styled.div`
     }
 `;
 const _Month = styled.strong`
+    display: flex;
+  width: 105px;
     font-size: 20px;
     line-height: 25px;
     color: ${({ theme }) => theme.color.black};
     font-weight: 500;
+  >.month{
+    margin-left: auto;
+  }
 `;
 const _DayWrapper = styled.div`
     display: flex;
@@ -76,6 +81,9 @@ const _DateWrapper = styled.ul`
     .next {
         color: ${({ theme }) => theme.color.point};
     }
+  > li {
+    cursor: pointer;
+  }
 `;
 
 interface DateProps {
