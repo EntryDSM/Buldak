@@ -85,23 +85,23 @@ export const CardOneText = styled.p`
     margin-top: 10px;
 `;
 
-type TextAlignType = {
-    TextAlignProps: string;
+interface textAlignType  {
+    textAlignProps: string;
 };
 
-export const CardAllTitle = styled.pre<TextAlignType>`
+export const CardAllTitle = styled.pre<textAlignType>`
     font-weight: 500;
     font-size: 25px;
     line-height: 31px;
-    text-align: ${(props) => props.TextAlignProps};
+    text-align: ${(props) => props.textAlignProps};
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const CardAllText = styled.pre<TextAlignType>`
+export const CardAllText = styled.pre<textAlignType>`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
-    text-align: ${(props) => props.TextAlignProps};
+    text-align: ${(props) => props.textAlignProps};
     color: ${({ theme }) => theme.color.gray900};
 
     margin-top: 15px;

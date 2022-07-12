@@ -12,8 +12,8 @@ const CardBoxTwo = ({ img, text, title }: cardBoxType) => {
     return (
         <S.CardContainer color={theme.color.white}>
             <S.CardTextLayout>
-                <S.CardAllTitle TextAlignProps="left">{title}</S.CardAllTitle>
-                <S.CardAllText TextAlignProps="left">{text}</S.CardAllText>
+                <S.CardAllTitle textAlignProps="left">{title}</S.CardAllTitle>
+                <S.CardAllText textAlignProps="left">{text}</S.CardAllText>
             </S.CardTextLayout>
             <Image src={img} />
         </S.CardContainer>

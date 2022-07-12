@@ -13,8 +13,8 @@ const CardBoxTwo = ({ img, text, title }: cardBoxType) => {
         <S.CardContainer color={theme.color.background}>
             <Image src={img} />
             <S.CardTextLayout>
-                <S.CardAllTitle TextAlignProps="right">{title}</S.CardAllTitle>
-                <S.CardAllText TextAlignProps="right">{text}</S.CardAllText>
+                <S.CardAllTitle textAlignProps="right">{title}</S.CardAllTitle>
+                <S.CardAllText textAlignProps="right">{text}</S.CardAllText>
             </S.CardTextLayout>
         </S.CardContainer>
     );
