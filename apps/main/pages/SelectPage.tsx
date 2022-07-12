@@ -38,27 +38,27 @@ const SelectPage = () => {
     });
 
     return (
-        <S.SelectPageContainer>
-            <S.ImgContainer>
+        <S._SelectPageContainer>
+            <S._ImgContainer>
                 <Image src={BackImg} />
-            </S.ImgContainer>
-            <S.SelectContainer>
-                <S.SelectBox>
-                    <S.SelectTitle>로그인 선택</S.SelectTitle>
-                    <S.SelectLine />
-                    <S.SelectAria>
-                        <S.SelectLayout>{SelectThingsMap}</S.SelectLayout>
-                        <S.SelectBackLayout
+            </S._ImgContainer>
+            <S._SelectContainer>
+                <S._SelectBox>
+                    <S._SelectTitle>로그인 선택</S._SelectTitle>
+                    <S._SelectLine />
+                    <S._SelectAria>
+                        <S._SelectLayout>{SelectThingsMap}</S._SelectLayout>
+                        <S._SelectBackLayout
                             onClick={() => {
                                 window.location.href = './';
                             }}>
                             <Image src={Left_arrow} />
-                            <S.SelectBackText>돌아가기</S.SelectBackText>
-                        </S.SelectBackLayout>
-                    </S.SelectAria>
-                </S.SelectBox>
-            </S.SelectContainer>
-        </S.SelectPageContainer>
+                            <S._SelectBackText>돌아가기</S._SelectBackText>
+                        </S._SelectBackLayout>
+                    </S._SelectAria>
+                </S._SelectBox>
+            </S._SelectContainer>
+        </S._SelectPageContainer>
     );
 };
 

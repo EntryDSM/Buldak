@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const SelectPageContainer = styled.div`
+export const _SelectPageContainer = styled.div`
     position: relative;
 
     width: 100%;
     height: 100vh;
 `;
 
-export const ImgContainer = styled.div`
+export const _ImgContainer = styled.div`
     position: absolute;
     overflow: hidden;
 
@@ -15,7 +15,7 @@ export const ImgContainer = styled.div`
     height: 100%;
 `;
 
-export const SelectContainer = styled.div`
+export const _SelectContainer = styled.div`
     position: absolute;
 
     display: flex;
@@ -26,7 +26,7 @@ export const SelectContainer = styled.div`
     height: 100vh;
 `;
 
-export const SelectBox = styled.div`
+export const _SelectBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +38,7 @@ export const SelectBox = styled.div`
     border-radius: 10px;
 `;
 
-export const SelectTitle = styled.p`
+export const _SelectTitle = styled.p`
     font-weight: 700;
     font-size: 25px;
     line-height: 31px;
@@ -47,26 +47,26 @@ export const SelectTitle = styled.p`
     margin-top: 40px;
 `;
 
-export const SelectLine = styled.div`
+export const _SelectLine = styled.div`
     width: 50px;
     height: 2px;
     background: ${({ theme }) => theme.color.skyblue};
     margin: 20px 0px;
 `;
 
-export const SelectAria = styled.div`
+export const _SelectAria = styled.div`
     display: flex;
     flex-direction: column;
     gap: 35px;
 `;
 
-export const SelectLayout = styled.div`
+export const _SelectLayout = styled.div`
     display: flex;
     align-items: center;
     gap: 25px;
 `;
 
-export const SelectThingsBox = styled.section`
+export const _SelectThingsBox = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,7 +78,7 @@ export const SelectThingsBox = styled.section`
     border-radius: 8px;
 `;
 
-export const ThingsPorfile = styled.div`
+export const _ThingsPorfile = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +91,7 @@ export const ThingsPorfile = styled.div`
     margin-top: 25px;
 `;
 
-export const ThingsName = styled.p`
+export const _ThingsName = styled.p`
     font-weight: 500;
     font-size: 20px;
     line-height: 25px;
@@ -101,7 +101,7 @@ export const ThingsName = styled.p`
     margin-bottom: 5px;
 `;
 
-export const ThingsText = styled.pre`
+export const _ThingsText = styled.pre`
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
@@ -109,7 +109,7 @@ export const ThingsText = styled.pre`
     color: ${({ theme }) => theme.color.gray700};
 `;
 
-export const ThingsSelectButton = styled.button`
+export const _ThingsSelectButton = styled.button`
     cursor: pointer;
 
     display: flex;
@@ -129,7 +129,7 @@ export const ThingsSelectButton = styled.button`
     border: none;
 `;
 
-export const SelectBackLayout = styled.button`
+export const _SelectBackLayout = styled.button`
     cursor: pointer;
 
     display: flex;
@@ -140,7 +140,7 @@ export const SelectBackLayout = styled.button`
     width: 150px;
 `;
 
-export const SelectBackText = styled.p`
+export const _SelectBackText = styled.p`
     transition: all 0.4s;
 
     font-weight: 700;
