@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const LoginPageContainer = styled.div`
+export const _LoginPageContainer = styled.div`
     position: relative;
 
     width: 100%;
     height: 100vh;
 `;
 
-export const ImgContainer = styled.div`
+export const _ImgContainer = styled.div`
     position: absolute;
     overflow: hidden;
 
@@ -15,7 +15,7 @@ export const ImgContainer = styled.div`
     height: 100%;
 `;
 
-export const LoginContainer = styled.div`
+export const _LoginContainer = styled.div`
     position: absolute;
 
     display: flex;
@@ -26,7 +26,7 @@ export const LoginContainer = styled.div`
     height: 100%;
 `;
 
-export const LoginBox = styled.div`
+export const _LoginBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +38,7 @@ export const LoginBox = styled.div`
     border-radius: 10px;
 `;
 
-export const LoginTitle = styled.p`
+export const _LoginTitle = styled.p`
     font-weight: 700;
     font-size: 28px;
     line-height: 35px;
@@ -47,7 +47,7 @@ export const LoginTitle = styled.p`
     margin-top: 75px;
 `;
 
-export const LoginPoint = styled.div`
+export const _LoginPoint = styled.div`
     width: 10px;
     height: 10px;
     background: ${({ theme }) => theme.color.navy};
@@ -56,7 +56,7 @@ export const LoginPoint = styled.div`
     margin: 20px 0px;
 `;
 
-export const LoginInputLayout = styled.div`
+export const _LoginInputLayout = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -65,14 +65,14 @@ export const LoginInputLayout = styled.div`
     margin-bottom: 30px;
 `;
 
-export const LoginInputText = styled.p`
+export const _LoginInputText = styled.p`
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const LoginInput = styled.input`
+export const _LoginInput = styled.input`
     width: 380px;
     height: 44px;
     background: ${({ theme }) => theme.color.white};
@@ -80,7 +80,7 @@ export const LoginInput = styled.input`
     border-radius: 5px;
 `;
 
-export const LoginButton = styled.div`
+export const _LoginButton = styled.div`
     cursor: pointer;
     transition: all 0.3s;
 
@@ -105,7 +105,7 @@ export const LoginButton = styled.div`
     }
 `;
 
-export const SearchPassword = styled.p`
+export const _SearchPassword = styled.p`
     font-weight: 400;
     font-size: 17px;
     line-height: 21px;
@@ -114,7 +114,7 @@ export const SearchPassword = styled.p`
     margin-top: 20px;
 `;
 
-export const SearchPasswordA = styled.a`
+export const _SearchPasswordA = styled.a`
     cursor: pointer;
 
     font-weight: 400;
