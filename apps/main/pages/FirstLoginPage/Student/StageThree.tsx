@@ -9,15 +9,15 @@ const StageThree = () => {
     const FileInputRef = useRef<HTMLInputElement>(null);
 
     return (
-        <S.FirstLoginPageContainer>
-            <S.ImgContainer>
+        <S._FirstLoginPageContainer>
+            <S._ImgContainer>
                 <Image src={BackImg} />
-            </S.ImgContainer>
-            <S.FirstLoginContainer>
-                <S.FirstLoginBox>
-                    <S.FirstLoginTitle>프로필 설정</S.FirstLoginTitle>
-                    <S.FirstLoginPoint />
-                    <S.FirstLoginSetProfile
+            </S._ImgContainer>
+            <S._FirstLoginContainer>
+                <S._FirstLoginBox>
+                    <S._FirstLoginTitle>프로필 설정</S._FirstLoginTitle>
+                    <S._FirstLoginPoint />
+                    <S._FirstLoginSetProfile
                         onClick={() => {
                             FileInputRef.current?.click();
                         }}>
@@ -28,22 +28,22 @@ const StageThree = () => {
                             style={{ display: 'none' }}
                         />
                         <Image src={PlusBlack} />
-                    </S.FirstLoginSetProfile>
-                    <S.FirstLoginProfileText
+                    </S._FirstLoginSetProfile>
+                    <S._FirstLoginProfileText
                         onClick={() => {
                             FileInputRef.current?.click();
                         }}>
                         프로필 설정
-                    </S.FirstLoginProfileText>
-                    <S.displayFlex>
+                    </S._FirstLoginProfileText>
+                    <S._displayFlex>
                         <Link href={'./StageTwo'}>
-                            <S.FirstLoginBackButton>이전으로</S.FirstLoginBackButton>
+                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
                         </Link>
-                        <S.FirstLoginNextButton>회원가입</S.FirstLoginNextButton>
-                    </S.displayFlex>
-                </S.FirstLoginBox>
-            </S.FirstLoginContainer>
-        </S.FirstLoginPageContainer>
+                        <S._FirstLoginNextButton>회원가입</S._FirstLoginNextButton>
+                    </S._displayFlex>
+                </S._FirstLoginBox>
+            </S._FirstLoginContainer>
+        </S._FirstLoginPageContainer>
     );
 };
 

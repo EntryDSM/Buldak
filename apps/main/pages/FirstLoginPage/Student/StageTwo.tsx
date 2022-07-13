@@ -45,49 +45,48 @@ const StageTwo = () => {
     };
 
     return (
-        <S.FirstLoginPageContainer>
-            <S.ImgContainer>
+        <S._FirstLoginPageContainer>
+            <S._ImgContainer>
                 <Image src={BackImg} />
-            </S.ImgContainer>
-            <S.FirstLoginContainer>
-                <S.FirstLoginBox>
-                    dww
-                    <S.FirstLoginTitle>추가정보 입력</S.FirstLoginTitle>
-                    <S.FirstLoginPoint />
-                    <S.FistLoginInputLayout marginBottom="20px">
-                        <S.FirstLoginInputText>전화번호</S.FirstLoginInputText>
-                        <S.displayFlex>
-                            <S.FirstLoginCitationInput
+            </S._ImgContainer>
+            <S._FirstLoginContainer>
+                <S._FirstLoginBox>
+                    <S._FirstLoginTitle>추가정보 입력</S._FirstLoginTitle>
+                    <S._FirstLoginPoint />
+                    <S._FistLoginInputLayout marginBottom="20px">
+                        <S._FirstLoginInputText>전화번호</S._FirstLoginInputText>
+                        <S._displayFlex>
+                            <S._FirstLoginCitationInput
                                 name="phoneNumber"
                                 value={certified.phoneNumber}
                                 onChange={onChangeNumber}
                             />
-                            <S.FirstLoginCitation onClick={onPostPhoneNumber}>
+                            <S._FirstLoginCitation onClick={onPostPhoneNumber}>
                                 인증하기
-                            </S.FirstLoginCitation>
-                        </S.displayFlex>
-                    </S.FistLoginInputLayout>
-                    <S.FistLoginInputLayout marginBottom="135px">
-                        <S.FirstLoginInputText>인증번호</S.FirstLoginInputText>
-                        <S.FirstLoginInput
+                            </S._FirstLoginCitation>
+                        </S._displayFlex>
+                    </S._FistLoginInputLayout>
+                    <S._FistLoginInputLayout marginBottom="135px">
+                        <S._FirstLoginInputText>인증번호</S._FirstLoginInputText>
+                        <S._FirstLoginInput
                             name="certifiedNumber"
                             value={certified.certifiedNumber}
                             onChange={onChangeNumber}
                         />
-                    </S.FistLoginInputLayout>
-                    <S.displayFlex>
+                    </S._FistLoginInputLayout>
+                    <S._displayFlex>
                         <Link href={'./StageOne'}>
-                            <S.FirstLoginBackButton>이전으로</S.FirstLoginBackButton>
+                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
                         </Link>
                         <Link href={'./StageThree'}>
-                            <S.FirstLoginNextButton onClick={onPostCertified}>
+                            <S._FirstLoginNextButton onClick={onPostCertified}>
                                 다음으로
-                            </S.FirstLoginNextButton>
+                            </S._FirstLoginNextButton>
                         </Link>
-                    </S.displayFlex>
-                </S.FirstLoginBox>
-            </S.FirstLoginContainer>
-        </S.FirstLoginPageContainer>
+                    </S._displayFlex>
+                </S._FirstLoginBox>
+            </S._FirstLoginContainer>
+        </S._FirstLoginPageContainer>
     );
 };
 
