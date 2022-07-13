@@ -10,13 +10,13 @@ interface cardBoxType {
 
 const CardBoxTwo = ({ img, text, title }: cardBoxType) => {
     return (
-        <S.CardContainer color={theme.color.background}>
+        <S._CardContainer color={theme.color.background}>
             <Image src={img} />
-            <S.CardTextLayout>
-                <S.CardAllTitle textAlignProps="right">{title}</S.CardAllTitle>
-                <S.CardAllText textAlignProps="right">{text}</S.CardAllText>
-            </S.CardTextLayout>
-        </S.CardContainer>
+            <S._CardTextLayout>
+                <S._CardAllTitle textAlignProps="right">{title}</S._CardAllTitle>
+                <S._CardAllText textAlignProps="right">{text}</S._CardAllText>
+            </S._CardTextLayout>
+        </S._CardContainer>
     );
 };
 

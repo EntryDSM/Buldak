@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const MainPageContainer = styled.div`
+export const _MainPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@ export const MainPageContainer = styled.div`
     background: ${({ theme }) => theme.color.white};
 `;
 
-export const Header = styled.div`
+export const _Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,12 +21,12 @@ export const Header = styled.div`
     background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const IMGBox = styled.div`
+export const _IMGBox = styled.div`
     margin-left: 9vw;
     margin-top: 10px;
 `;
 
-export const LoginButton = styled.div`
+export const _LoginButton = styled.div`
     width: 100px;
     height: 44px;
     background: ${({ theme }) => theme.color.white};
@@ -39,7 +39,7 @@ type cardContainerType = {
     color: string;
 };
 
-export const CardContainer = styled.div<cardContainerType>`
+export const _CardContainer = styled.div<cardContainerType>`
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -49,26 +49,26 @@ export const CardContainer = styled.div<cardContainerType>`
     background: ${(props) => props.color};
 `;
 
-export const CardTextLayout = styled.div`
+export const _CardTextLayout = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-export const CardOneTitleOne = styled.p`
+export const _CardOneTitleOne = styled.p`
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const CardOneTitleTwo = styled.p`
+export const _CardOneTitleTwo = styled.p`
     font-weight: 300;
     font-size: 36px;
     line-height: 40px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const CardOneTitleThree = styled.p`
+export const _CardOneTitleThree = styled.p`
     font-weight: 400;
     font-size: 36px;
     line-height: 40px;
@@ -76,7 +76,7 @@ export const CardOneTitleThree = styled.p`
     color: ${({ theme }) => theme.color.skyblue};
 `;
 
-export const CardOneText = styled.p`
+export const _CardOneText = styled.p`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
@@ -89,7 +89,7 @@ interface textAlignType  {
     textAlignProps: string;
 };
 
-export const CardAllTitle = styled.pre<textAlignType>`
+export const _CardAllTitle = styled.pre<textAlignType>`
     font-weight: 500;
     font-size: 25px;
     line-height: 31px;
@@ -97,7 +97,7 @@ export const CardAllTitle = styled.pre<textAlignType>`
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const CardAllText = styled.pre<textAlignType>`
+export const _CardAllText = styled.pre<textAlignType>`
     font-weight: 300;
     font-size: 20px;
     line-height: 25px;
@@ -107,7 +107,7 @@ export const CardAllText = styled.pre<textAlignType>`
     margin-top: 15px;
 `;
 
-export const Footter = styled.div`
+export const _Footter = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -117,19 +117,19 @@ export const Footter = styled.div`
     background: ${({ theme }) => theme.color.point};
 `;
 
-export const IntroduceTextLayout = styled.div`
+export const _IntroduceTextLayout = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-export const IntroduceLinkLayout = styled.div`
+export const _IntroduceLinkLayout = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
     margin-top: 130px;
 `;
 
-export const FootterTitle = styled.p`
+export const _FootterTitle = styled.p`
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -138,13 +138,13 @@ export const FootterTitle = styled.p`
     margin-bottom: 20px;
 `;
 
-export const FootterText = styled.p`
+export const _FootterText = styled.p`
     font-weight: 400;
     font-size: 16px;
     color: #ffffff;
 `;
 
-export const FootterTextLayout = styled.div`
+export const _FootterTextLayout = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
