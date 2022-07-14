@@ -55,7 +55,7 @@ const StageTwo = () => {
                     <S._FirstLoginPoint />
                     <S._FistLoginInputLayout marginBottom="20px">
                         <S._FirstLoginInputText>전화번호</S._FirstLoginInputText>
-                        <S._displayFlex>
+                        <S._DisplayFlex>
                             <S._FirstLoginCitationInput
                                 name="phoneNumber"
                                 value={certified.phoneNumber}
@@ -64,7 +64,7 @@ const StageTwo = () => {
                             <S._FirstLoginCitation onClick={onPostPhoneNumber}>
                                 인증하기
                             </S._FirstLoginCitation>
-                        </S._displayFlex>
+                        </S._DisplayFlex>
                     </S._FistLoginInputLayout>
                     <S._FistLoginInputLayout marginBottom="135px">
                         <S._FirstLoginInputText>인증번호</S._FirstLoginInputText>
@@ -74,7 +74,7 @@ const StageTwo = () => {
                             onChange={onChangeNumber}
                         />
                     </S._FistLoginInputLayout>
-                    <S._displayFlex>
+                    <S._DisplayFlex>
                         <Link href={'./StageOne'}>
                             <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
                         </Link>
@@ -83,7 +83,7 @@ const StageTwo = () => {
                                 다음으로
                             </S._FirstLoginNextButton>
                         </Link>
-                    </S._displayFlex>
+                    </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
         </S._FirstLoginPageContainer>

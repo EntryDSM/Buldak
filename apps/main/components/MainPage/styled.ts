@@ -21,7 +21,7 @@ export const _Header = styled.div`
     background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const _IMGBox = styled.div`
+export const _ImgBox = styled.div`
     margin-left: 9vw;
     margin-top: 10px;
 `;

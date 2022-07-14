@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const _displayFlex = styled.div`
+export const _DisplayFlex = styled.div`
     display: flex;
 `;
 

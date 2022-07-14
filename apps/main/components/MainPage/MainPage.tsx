@@ -22,9 +22,9 @@ const MainPage = () => {
     return (
         <S._MainPageContainer>
             <S._Header>
-                <S._IMGBox>
+                <S._ImgBox>
                     <Image src={Logo} />
-                </S._IMGBox>
+                </S._ImgBox>
                 <S._LoginButton />
             </S._Header>
             <S._CardContainer color={theme.color.white}>

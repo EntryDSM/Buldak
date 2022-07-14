@@ -35,12 +35,12 @@ const StageThree = () => {
                         }}>
                         프로필 설정
                     </S._FirstLoginProfileText>
-                    <S._displayFlex>
+                    <S._DisplayFlex>
                         <Link href={'./StageTwo'}>
                             <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
                         </Link>
                         <S._FirstLoginNextButton>회원가입</S._FirstLoginNextButton>
-                    </S._displayFlex>
+                    </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
         </S._FirstLoginPageContainer>

@@ -22,7 +22,7 @@ const StageOne = () => {
                         <S._FirstLoginInputText>새로운 비밀번호</S._FirstLoginInputText>
                         <S._FirstLoginInput />
                     </S._FistLoginInputLayout>
-                    <S._displayFlex>
+                    <S._DisplayFlex>
                         <S._FirstLoginBackButton
                             onClick={() => {
                                 window.location.href = './';
@@ -32,7 +32,7 @@ const StageOne = () => {
                         <Link href={'./StageTwo'}>
                             <S._FirstLoginNextButton>변경하기</S._FirstLoginNextButton>
                         </Link>
-                    </S._displayFlex>
+                    </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
         </S._FirstLoginPageContainer>
