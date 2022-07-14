@@ -36,3 +36,6 @@ export interface CreateCompanyResponse {
     id: string;
     password: string;
 }
+export interface ResetCompanyPasswordResponse {
+    password: string;
+}
