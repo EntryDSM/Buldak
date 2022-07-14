@@ -38,41 +38,42 @@ const LoginPage = () => {
     };
 
     return (
-        <S.LoginPageContainer>
-            <S.ImgContainer>
+        <S._LoginPageContainer>
+            <S._ImgContainer>
                 <Image src={BackImg} />
-            </S.ImgContainer>
-            <S.LoginContainer>
-                <S.LoginBox>
-                    <S.LoginTitle>로그인</S.LoginTitle>
-                    <S.LoginPoint />
-                    <S.LoginInputLayout>
+            </S._ImgContainer>
+            <S._LoginContainer>
+                <S._LoginBox>
+                    <S._LoginTitle>로그인</S._LoginTitle>
+                    <S._LoginPoint />
+                    <S._LoginInputLayout>
                         {loginState.user_type == 'MOU' ? (
-                            <S.LoginInputText>아이디</S.LoginInputText>
+                            <S._LoginInputText>아이디</S._LoginInputText>
                         ) : (
-                            <S.LoginInputText>이메일</S.LoginInputText>
+                            <S._LoginInputText>이메일</S._LoginInputText>
                         )}
-                        <S.LoginInput
+                        <S._LoginInput
                             value={loginState.email}
                             onChange={onChangeLoginState}
                             name="email"
                         />
-                    </S.LoginInputLayout>
-                    <S.LoginInputLayout>
-                        <S.LoginInputText>비밀번호</S.LoginInputText>
-                        <S.LoginInput
+                    </S._LoginInputLayout>
+                    <S._LoginInputLayout>
+                        <S._LoginInputText>비밀번호</S._LoginInputText>
+                        <S._LoginInput
                             value={loginState.password}
                             onChange={onChangeLoginState}
                             name="password"
                         />
-                    </S.LoginInputLayout>
-                    <S.LoginButton onClick={postLogin}>로그인</S.LoginButton>
-                    <S.SearchPassword>
-                        비밀번호를 잊으셨다면? <S.SearchPasswordA>비밀번호 찾기</S.SearchPasswordA>
-                    </S.SearchPassword>
-                </S.LoginBox>
-            </S.LoginContainer>
-        </S.LoginPageContainer>
+                    </S._LoginInputLayout>
+                    <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
+                    <S._SearchPassword>
+                        비밀번호를 잊으셨다면?{' '}
+                        <S._SearchPasswordA>비밀번호 찾기</S._SearchPasswordA>
+                    </S._SearchPassword>
+                </S._LoginBox>
+            </S._LoginContainer>
+        </S._LoginPageContainer>
     );
 };
 

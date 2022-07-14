@@ -10,16 +10,16 @@ interface SelectThingsType {
 
 const SelectThings = ({ onClickLoginType, name, text, img }: SelectThingsType) => {
     return (
-        <S.SelectThingsBox>
-            <S.ThingsPorfile>
+        <S._SelectThingsBox>
+            <S._ThingsPorfile>
                 <Image src={img} />
-            </S.ThingsPorfile>
-            <S.ThingsName>{name}</S.ThingsName>
-            <S.ThingsText>{text}</S.ThingsText>
-            <S.ThingsSelectButton onClick={onClickLoginType} name={name}>
+            </S._ThingsPorfile>
+            <S._ThingsName>{name}</S._ThingsName>
+            <S._ThingsText>{text}</S._ThingsText>
+            <S._ThingsSelectButton onClick={onClickLoginType} name={name}>
                 선택
-            </S.ThingsSelectButton>
-        </S.SelectThingsBox>
+            </S._ThingsSelectButton>
+        </S._SelectThingsBox>
     );
 };
 

@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
-export const displayFlex = styled.div`
+export const _DisplayFlex = styled.div`
     display: flex;
 `;
 
-export const FirstLoginPageContainer = styled.div`
+export const _FirstLoginPageContainer = styled.div`
     position: relative;
 
     width: 100%;
     height: 100vh;
 `;
 
-export const ImgContainer = styled.div`
+export const _ImgContainer = styled.div`
     position: absolute;
     overflow: hidden;
 
@@ -19,7 +19,7 @@ export const ImgContainer = styled.div`
     height: 100%;
 `;
 
-export const FirstLoginContainer = styled.div`
+export const _FirstLoginContainer = styled.div`
     position: absolute;
 
     display: flex;
@@ -30,7 +30,7 @@ export const FirstLoginContainer = styled.div`
     height: 100%;
 `;
 
-export const FirstLoginBox = styled.div`
+export const _FirstLoginBox = styled.div`
     position: relative;
 
     display: flex;
@@ -45,7 +45,7 @@ export const FirstLoginBox = styled.div`
     border-radius: 10px;
 `;
 
-export const FirstLoginBackButton = styled.button`
+export const _FirstLoginBackButton = styled.button`
     width: 180px;
     height: 40px;
     background: ${({ theme }) => theme.color.white};
@@ -54,7 +54,7 @@ export const FirstLoginBackButton = styled.button`
     margin-bottom: 55px;
 `;
 
-export const FirstLoginNextButton = styled.button`
+export const _FirstLoginNextButton = styled.button`
     width: 180px;
     height: 40px;
     background: ${({ theme }) => theme.color.skyblue};
@@ -63,7 +63,7 @@ export const FirstLoginNextButton = styled.button`
     margin-bottom: 55px;
 `;
 
-export const FirstLoginTitle = styled.p`
+export const _FirstLoginTitle = styled.p`
     font-weight: 700;
     font-size: 28px;
     line-height: 35px;
@@ -72,7 +72,7 @@ export const FirstLoginTitle = styled.p`
     margin-top: 45px;
 `;
 
-export const FirstLoginPoint = styled.div`
+export const _FirstLoginPoint = styled.div`
     width: 10px;
     height: 10px;
     background: ${({ theme }) => theme.color.navy};
@@ -81,11 +81,11 @@ export const FirstLoginPoint = styled.div`
     margin: 20px 0px;
 `;
 
-interface FistLoginInputLayoutProps {
+interface fistLoginInputLayoutProps {
     marginBottom: string;
 }
 
-export const FistLoginInputLayout = styled.div<FistLoginInputLayoutProps>`
+export const _FistLoginInputLayout = styled.div<fistLoginInputLayoutProps>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -94,14 +94,14 @@ export const FistLoginInputLayout = styled.div<FistLoginInputLayoutProps>`
     margin-bottom: ${(props) => props.marginBottom};
 `;
 
-export const FirstLoginInputText = styled.p`
+export const _FirstLoginInputText = styled.p`
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const FirstLoginInput = styled.input`
+export const _FirstLoginInput = styled.input`
     width: 380px;
     height: 44px;
     background: ${({ theme }) => theme.color.white};
@@ -109,7 +109,7 @@ export const FirstLoginInput = styled.input`
     border-radius: 5px;
 `;
 
-export const FirstLoginCitationInput = styled.input`
+export const _FirstLoginCitationInput = styled.input`
     width: 280px;
     height: 44px;
     background: ${({ theme }) => theme.color.white};
@@ -117,7 +117,7 @@ export const FirstLoginCitationInput = styled.input`
     border-radius: 5px;
 `;
 
-export const FirstLoginCitation = styled.button`
+export const _FirstLoginCitation = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +132,7 @@ export const FirstLoginCitation = styled.button`
     margin-left: 10px;
 `;
 
-export const FirstLoginSetProfile = styled.button`
+export const _FirstLoginSetProfile = styled.button`
     cursor: pointer;
 
     display: flex;
@@ -145,7 +145,7 @@ export const FirstLoginSetProfile = styled.button`
     border-radius: 7142.86px;
 `;
 
-export const FirstLoginProfileText = styled.button`
+export const _FirstLoginProfileText = styled.button`
     cursor: pointer;
 
     font-weight: 500;
