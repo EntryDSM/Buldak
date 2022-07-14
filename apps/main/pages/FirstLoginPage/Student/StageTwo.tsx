@@ -96,7 +96,7 @@ const StageTwo = () => {
                                 fontColor={theme.color.black}
                                 content="이전으로"
                                 onClick={() => {
-                                    window.location.href = '/';
+                                    window.location.href = './StageOne';
                                 }}
                             />
                             <Button

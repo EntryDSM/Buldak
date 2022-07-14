@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Button, TextBox } from '@packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import * as S from '../../../components/FirstLoginPage/styled';
@@ -36,10 +37,27 @@ const StageThree = () => {
                         프로필 설정
                     </S._FirstLoginProfileText>
                     <S._DisplayFlex>
-                        <Link href={'./StageTwo'}>
-                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
-                        </Link>
-                        <S._FirstLoginNextButton>회원가입</S._FirstLoginNextButton>
+                        <S._FirstLoginBoxLayout>
+                            <Button
+                                width={180}
+                                height={40}
+                                borderColor={theme.color.gray700}
+                                borderWidth={2}
+                                backgroundColor={theme.color.white}
+                                fontColor={theme.color.black}
+                                content="이전으로"
+                                onClick={() => {
+                                    window.location.href = './StageTwo';
+                                }}
+                            />
+                            <Button
+                                width={180}
+                                height={40}
+                                backgroundColor={theme.color.main}
+                                fontColor={theme.color.white}
+                                content="회원가입"
+                            />
+                        </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
