@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { Dispatch, SetStateAction } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import Close from '../../assets/svgs/Close';
 import ModalCommitBtn from './ModalCommitBtn';
-import ModalExplain from './ModalExplain';
+import ModalExplain from './ModalType';
 import ModalSearchInput from './ModalSearchInput';
 
 interface PropsType {
