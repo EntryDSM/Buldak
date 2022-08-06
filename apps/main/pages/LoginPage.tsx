@@ -25,8 +25,7 @@ const LoginPage = () => {
 
     const onChangeLoginState = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        const afterValue = value.replace(/[^0-9|a-z|@|/.]/gi, '');
-        setLoginState({ ...loginState, [name]: afterValue });
+        setLoginState({ ...loginState, [name]: value });
     };
 
     const postLogin = () => {
