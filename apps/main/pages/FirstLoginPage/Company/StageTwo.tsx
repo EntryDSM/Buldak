@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { TextBox } from '@packages/ui';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import * as S from '../../../components/FirstLoginPage/styled';

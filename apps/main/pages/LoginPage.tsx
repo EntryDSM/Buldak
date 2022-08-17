@@ -36,9 +36,10 @@ const LoginPage = () => {
             data: loginState,
         })
             .then((res) => {
+                console.log(res);
                 localStorage.setItem('access_token', res.data.access_token);
                 localStorage.setItem('refresh_token', res.data.refresh_token);
-                if (res.data.first_login == false) {
+                if (res.data.first_login == true) {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = '/FirstLoginPage/Student/StageOne';
                     } else if (loginState.user_type == 'MOU') {

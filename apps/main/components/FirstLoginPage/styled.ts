@@ -45,21 +45,9 @@ export const _FirstLoginBox = styled.div`
     border-radius: 10px;
 `;
 
-export const _FirstLoginBackButton = styled.button`
-    width: 180px;
-    height: 40px;
-    background: ${({ theme }) => theme.color.white};
-    border: 1px solid ${({ theme }) => theme.color.gray700};
-    border-radius: 3px;
-    margin-bottom: 55px;
-`;
-
-export const _FirstLoginNextButton = styled.button`
-    width: 180px;
-    height: 40px;
-    background: ${({ theme }) => theme.color.skyblue};
-    border-radius: 3px;
-    margin-left: 20px;
+export const _FirstLoginBoxLayout = styled.div`
+    display: flex;
+    gap: 20px;
     margin-bottom: 55px;
 `;
 
@@ -99,14 +87,6 @@ export const _FirstLoginInputText = styled.p`
     font-size: 18px;
     line-height: 23px;
     color: ${({ theme }) => theme.color.black};
-`;
-
-export const _FirstLoginInput = styled.input`
-    width: 380px;
-    height: 44px;
-    background: ${({ theme }) => theme.color.white};
-    border: 2px solid ${({ theme }) => theme.color.gray700};
-    border-radius: 5px;
 `;
 
 export const _FirstLoginCitationInput = styled.input`
