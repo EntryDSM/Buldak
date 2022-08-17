@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import BackImg from '../assets/img/BackImg.jpg';
+import { TextBox } from '@packages/ui';
 import * as S from '../components/LoginPage/styled';
 
 type userType = 'TEACHER' | 'STUDENT' | 'MOU' | '';
@@ -30,10 +31,30 @@ const LoginPage = () => {
 
     const postLogin = () => {
         axios({
-            url: '',
-            method: 'post',
+            url: 'http://114.108.176.85:8080/users/auth',
+            method: 'POST',
             data: loginState,
-        }).then((res) => {});
+        })
+            .then((res) => {
+                localStorage.setItem('access_token', res.data.access_token);
+                localStorage.setItem('refresh_token', res.data.refresh_token);
+                if (res.data.first_login == false) {
+                    if (loginState.user_type == 'STUDENT') {
+                        window.location.href = '/FirstLoginPage/Student/StageOne';
+                    } else if (loginState.user_type == 'MOU') {
+                        window.location.href = '/FirstLoginPage/Company/StageOne';
+                    } else {
+                    }
+                }
+            })
+            .catch((res) => {
+                setLoginState({
+                    email: '',
+                    password: '',
+                    user_type: localStorage.getItem('LoginType') as userType,
+                });
+                window.alert('로그인에 실패하였습니다다');
+            });
     };
 
     return (
@@ -47,19 +68,40 @@ const LoginPage = () => {
                     <S._LoginPoint />
                     <S._LoginInputLayout>
                         {loginState.user_type == 'MOU' ? (
-                            <S._LoginInputText>아이디</S._LoginInputText>
+                            <>
+                                <S._LoginInputText>아이디</S._LoginInputText>
+                                <TextBox
+                                    correct={true}
+                                    placeholder="아이디를 입력해주세요"
+                                    width={380}
+                                    type="text"
+                                    value={loginState.email}
+                                    onChange={onChangeLoginState}
+                                    name="email"
+                                />
+                            </>
                         ) : (
-                            <S._LoginInputText>이메일</S._LoginInputText>
+                            <>
+                                <S._LoginInputText>이메일</S._LoginInputText>
+                                <TextBox
+                                    correct={true}
+                                    placeholder="이메일을 입력해주세요"
+                                    width={380}
+                                    type="text"
+                                    value={loginState.email}
+                                    onChange={onChangeLoginState}
+                                    name="email"
+                                />
+                            </>
                         )}
-                        <S._LoginInput
-                            value={loginState.email}
-                            onChange={onChangeLoginState}
-                            name="email"
-                        />
                     </S._LoginInputLayout>
                     <S._LoginInputLayout>
                         <S._LoginInputText>비밀번호</S._LoginInputText>
-                        <S._LoginInput
+                        <TextBox
+                            correct={true}
+                            placeholder="비밀번호를 입력해주세요"
+                            width={380}
+                            type="password"
                             value={loginState.password}
                             onChange={onChangeLoginState}
                             name="password"
@@ -67,7 +109,7 @@ const LoginPage = () => {
                     </S._LoginInputLayout>
                     <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
                     <S._SearchPassword>
-                        비밀번호를 잊으셨다면?{' '}
+                        비밀번호를 잊으셨다면?
                         <S._SearchPasswordA>비밀번호 찾기</S._SearchPasswordA>
                     </S._SearchPassword>
                 </S._LoginBox>

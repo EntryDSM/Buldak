@@ -65,7 +65,7 @@ const TextBox: FC<TextBoxProps> = (props) => {
 
 const TextBoxWrapper = styled.div<TextBoxProps>`
     width: ${({ width }) => width}px;
-    height: 38px;
+    height: 42px;
     border: 2px solid ${({ theme, correct }) => (correct ? theme.color.gray700 : theme.color.error)};
     border-radius: 5px;
     background-color: ${({ theme }) => theme.color.white};

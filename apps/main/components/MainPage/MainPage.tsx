@@ -21,7 +21,7 @@ import * as S from './styled';
 
 const MainPage = () => {
     const linkLoginPage = () => {
-        window.location.href = '/LoginPage';
+        window.location.href = '/SelectPage';
     };
 
     return (
