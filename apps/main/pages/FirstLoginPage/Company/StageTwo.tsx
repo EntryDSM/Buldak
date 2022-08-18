@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { TextBox } from '@packages/ui';
+import { TextBox, Button } from '@packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import * as S from '../../../components/FirstLoginPage/styled';
@@ -49,12 +50,30 @@ const StageTwo = () => {
                         프로필 설정
                     </S._FirstLoginProfileText>
                     <S._DisplayFlex>
-                        <Link href={'./StageOne'}>
-                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
-                        </Link>
-                        <S._FirstLoginNextButton onClick={onPostProfile}>
-                            회원가입
-                        </S._FirstLoginNextButton>
+                        <S._FirstLoginBoxLayout>
+                            <Button
+                                width={180}
+                                height={40}
+                                borderColor={theme.color.gray700}
+                                borderWidth={2}
+                                backgroundColor={theme.color.white}
+                                fontColor={theme.color.black}
+                                content="돌아가기"
+                                onClick={() => {
+                                    window.location.href = './StageOne';
+                                }}
+                            />
+                            <Button
+                                width={180}
+                                height={40}
+                                backgroundColor={theme.color.main}
+                                fontColor={theme.color.white}
+                                content="변경하기"
+                                onClick={() => {
+                                    console.log('sdf');
+                                }}
+                            />
+                        </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
@@ -63,6 +82,3 @@ const StageTwo = () => {
 };
 
 export default StageTwo;
-
-{
-}

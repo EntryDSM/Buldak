@@ -20,22 +20,24 @@ const StageOne = () => {
 
     const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        const afterValue = value.replace(/[^0-9|a-z]/gi, '');
-        setNewPasswordState({ ...newPasswordState, [name]: afterValue });
+        setNewPasswordState({ ...newPasswordState, [name]: value });
     };
 
     const onPostNewPassword = () => {
-        console.log('ㅇㅇ');
-        // axios({
-        //     url: 'http://114.108.176.85:8080/users/auth',
-        //     method: 'post',
-        //     data: newPasswordState,
-        //     headers: {
-        //         Authorization: localStorage.getItem('access_token') || '',
-        //     },
-        // }).then((res) => {
-        //     console.log('가나달');
-        // });
+        axios({
+            url: 'http://114.108.176.85:8080/users/first-password',
+            method: 'patch',
+            data: newPasswordState,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        })
+            .then((res) => {
+                window.location.href = './StageTwo';
+            })
+            .catch((res) => {
+                alert('비밀번호 찾기에 실패했습니다');
+            });
     };
 
     return (
@@ -80,21 +82,19 @@ const StageOne = () => {
                                 borderWidth={2}
                                 backgroundColor={theme.color.white}
                                 fontColor={theme.color.black}
-                                content="돌아가기"
+                                content="이전으로"
                                 onClick={() => {
                                     window.location.href = '/';
                                 }}
                             />
-                            <Link href={'./StageTwo'}>
-                                <Button
-                                    width={180}
-                                    height={40}
-                                    backgroundColor={theme.color.main}
-                                    fontColor={theme.color.white}
-                                    content="변경하기"
-                                    onClick={onPostNewPassword}
-                                />
-                            </Link>
+                            <Button
+                                width={180}
+                                height={40}
+                                backgroundColor={theme.color.main}
+                                fontColor={theme.color.white}
+                                content="회원가입"
+                                onClick={onPostNewPassword}
+                            />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
                 </S._FirstLoginBox>
