@@ -6,19 +6,20 @@ import theme from '@packages/emotion-style-provider/src/theme';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import * as S from '../../../components/FirstLoginPage/styled';
+import axios from 'axios';
 
 const StageTwo = () => {
     const [file, setFile] = useState<string | Blob>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const onChangeImg = (event: any) => {
-        setFile(event.target.files[0]);
-    };
+        event.preventDefault();
+        if (event.target.files) {
+            const formData = new FormData();
+            formData.append('img', event.target.files[0]);
 
-    const onPostProfile = () => {
-        const formData = new FormData();
-        formData.append('img', file);
-        console.log(file);
+            axios({ url: 'http://114.108.176.85:8080/users/first-password', method: 'patch' });
+        }
     };
 
     return (
