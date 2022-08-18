@@ -15,3 +15,6 @@ export interface EditCompanyInfoRequest {
 export interface CreateCompanyRequest extends EditCompanyInfoRequest {
     profile_image_path: string;
 }
+export type GradeValue = '1' | '2' | '3' | null;
+export type ClassNumValue = '1' | '2' | '3' | '4' | null;
+export type DocumentStatusValue = 'LOCAL' | 'STAY' | 'PROTECTED' | 'PUBLIC' | null;
