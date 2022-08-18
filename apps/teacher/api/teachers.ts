@@ -79,9 +79,9 @@ export const getStudentList = async (
 ): Promise<GetStudentListResponse> => {
     try {
         return await instance.get(
-            `/teachers/student/list?${grade ? `grade=${grade}&` : ''}${
-                classNum ? `classNum=${classNum}&` : ''
-            }${docStatus ? `docStatus=${docStatus}` : ''}`,
+            `/teachers/student/list?${`grade=${grade || ''}`}${`&classNum=${
+                classNum || ''
+            }`}${`&docStatus=${docStatus || ''}`}`,
         );
     } catch (err) {
         throw err;
