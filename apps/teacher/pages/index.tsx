@@ -23,26 +23,17 @@ export default function Home() {
         classNum: null,
         docStatus: null,
     });
-    const [studentList, setStudentList] = useState<GetStudentListResponse>({
-        student_list: [],
-    });
-    const { data } = useQuery(
-        ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
-        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
-    );
-    data && setStudentList(data);
-    console.log(filter);
+    // const { data } = useQuery(
+    //     ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
+    //     () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    // );
     return (
         <>
             {selectedModal === 'USER_DETAIL' && <UserDetail />}
             {selectedModal === 'PDF' && <PdfModal />}
             <Wrapper>
                 <SideBar managementType="student" />
-                <ManageStudent
-                    studentList={studentList!.student_list}
-                    filter={filter}
-                    setFilter={setFilter}
-                />
+                <ManageStudent studentList={[]} filter={filter} setFilter={setFilter} />
             </Wrapper>
         </>
     );
