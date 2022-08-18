@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import UserDetail from '../components/student/userDetail';
 import PdfModal from '../components/student/pdf';
 import useModal from '../hooks/useModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { getStudentList } from '../api/teachers';
 import { GetStudentListResponse } from '../models/teachers/responses';
@@ -26,8 +26,9 @@ export default function Home() {
     const [studentList, setStudentList] = useState<GetStudentListResponse>({
         student_list: [],
     });
-    const { data } = useQuery('getStudentList', () =>
-        getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    const { data } = useQuery(
+        ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
     );
     data && setStudentList(data);
     console.log(filter);
