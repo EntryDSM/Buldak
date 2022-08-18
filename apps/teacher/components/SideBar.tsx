@@ -85,16 +85,16 @@ interface NavItem {
 }
 const navArray: NavItem[] = [
     {
-        summary: '태그 관리',
-        image: '',
-        url: '/managementTag',
-        managementType: 'tag',
-    },
-    {
         summary: '학생 관리',
         image: '',
         url: '/',
         managementType: 'student',
+    },
+    {
+        summary: '태그 관리',
+        image: '',
+        url: '/managementTag',
+        managementType: 'tag',
     },
     {
         summary: '기업 관리',
