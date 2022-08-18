@@ -2,52 +2,38 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Profile } from '@packages/ui';
 import useModal from '../../hooks/useModal';
+import { StudentInfo } from '../../models/teachers/responses';
 
-const StudentBox = () => {
+interface Props {
+    studentInfo: StudentInfo;
+}
+
+const StudentBox: React.FC<Props> = ({ studentInfo }) => {
     const { selectModal } = useModal();
     return (
-        <>
-            <_Wrapper isSubmitted={true} onClick={() => selectModal('USER_DETAIL')}>
-                {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
-                <Profile type="default" width="56px" height="56px" />
-                <_Name className="submittedFont">김의찬</_Name>
-                <_StudentNumber className="submittedFont">2106</_StudentNumber>
-                <_States>
-                    <_StatusSummary className="submittedFont">
-                        피드백 상태
-                        <_Status isSubmitted={true} isOn={false}>
-                            OFF
-                        </_Status>
-                    </_StatusSummary>
-                    <_StatusSummary className="public submittedFont">
-                        공개 상태
-                        <_Status isSubmitted={true} isOn={true}>
-                            ON
-                        </_Status>
-                    </_StatusSummary>
-                </_States>
-            </_Wrapper>
-            <_Wrapper isSubmitted={false} onClick={() => selectModal('USER_DETAIL')}>
-                {/*todo type을 image로 바꾸고 src를 서버에서 받아와서 넣어야함*/}
-                <Profile type="default" width="56px" height="56px" />
-                <_Name className="submittedFont">김의찬</_Name>
-                <_StudentNumber className="submittedFont">2106</_StudentNumber>
-                <_States>
-                    <_StatusSummary className="submittedFont">
-                        피드백 상태
-                        <_Status isSubmitted={false} isOn={false}>
-                            OFF
-                        </_Status>
-                    </_StatusSummary>
-                    <_StatusSummary className="public submittedFont">
-                        공개 상태
-                        <_Status isSubmitted={false} isOn={false}>
-                            OFF
-                        </_Status>
-                    </_StatusSummary>
-                </_States>
-            </_Wrapper>
-        </>
+        <_Wrapper isSubmitted={studentInfo.is_submitted} onClick={() => selectModal('USER_DETAIL')}>
+            <Profile type="image" width="56px" height="56px" src={studentInfo.profile_image_path} />
+            <_Name className="submittedFont">{studentInfo.name}</_Name>
+            <_StudentNumber className="submittedFont">{studentInfo.gcn}</_StudentNumber>
+            <_States>
+                <_StatusSummary className="submittedFont">
+                    피드백 상태
+                    <_Status
+                        isSubmitted={studentInfo.is_submitted}
+                        isOn={studentInfo.feedback_status}>
+                        OFF
+                    </_Status>
+                </_StatusSummary>
+                <_StatusSummary className="public submittedFont">
+                    공개 상태
+                    <_Status
+                        isSubmitted={studentInfo.is_submitted}
+                        isOn={studentInfo.public_status}>
+                        ON
+                    </_Status>
+                </_StatusSummary>
+            </_States>
+        </_Wrapper>
     );
 };
 export default StudentBox;
