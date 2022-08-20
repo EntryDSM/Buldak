@@ -51,7 +51,7 @@ export const editCompany = async (company_id: string, body: EditCompanyInfoReque
 };
 export const searchCompany = async (name: string): Promise<SearchCompanyResponse> => {
     try {
-        return await instance.get(`/teacher/company/search?name=${name}`);
+        return await instance.get(`teachers/company/search?name=${name}`);
     } catch (err) {
         throw err;
     }
