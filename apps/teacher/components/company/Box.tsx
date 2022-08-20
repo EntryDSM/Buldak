@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
 import useModal from '../../hooks/useModal';
+import { CompanyInfo } from '../../models/teachers/responses';
 
-const CompanyBox = () => {
+interface Props {
+    companyInfo: CompanyInfo;
+}
+
+const CompanyBox = ({ companyInfo }: Props) => {
     const { selectModal } = useModal();
     return (
         <_Wrapper onClick={() => selectModal('COMPANY_DETAIL')}>
-            <Profile type="school" width="56px" height="56px" />
-            <_Name>김의찬</_Name>
-            <_Email>company@gmail.com</_Email>
+            <Profile type="image" width="56px" height="56px" src={companyInfo.profile_image_path} />
+            <_Name>{companyInfo.company_name}</_Name>
+            <_Email>{companyInfo.email}</_Email>
         </_Wrapper>
     );
 };
