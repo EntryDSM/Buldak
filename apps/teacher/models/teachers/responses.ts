@@ -19,18 +19,20 @@ export interface GetStudentDetailResponse {
     tag: string[];
 }
 export interface CompanyInfo {
-    company_id: number;
+    company_id: string;
     profile_image_path: string;
     company_name: string;
     email: string;
 }
 export interface SearchCompanyResponse {
-    company_list: CompanyInfo[];
+    company_element_list: CompanyInfo[];
 }
 export interface GetCompanyDetailResponse extends CompanyInfo {
     location: string;
     name: string;
     phone_number: string;
+    start_at: string;
+    end_at: string;
 }
 export interface CreateCompanyResponse {
     id: string;

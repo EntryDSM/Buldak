@@ -11,7 +11,9 @@ interface Props {
 const StudentBox: React.FC<Props> = ({ studentInfo }) => {
     const { selectModal } = useModal();
     return (
-        <_Wrapper isSubmitted={studentInfo.is_submitted} onClick={() => selectModal('USER_DETAIL')}>
+        <_Wrapper
+            isSubmitted={studentInfo.is_submitted}
+            onClick={() => selectModal('USER_DETAIL', studentInfo.student_id)}>
             <Profile type="image" width="56px" height="56px" src={studentInfo.profile_image_path} />
             <_Name className="submittedFont">{studentInfo.name}</_Name>
             <_StudentNumber className="submittedFont">{studentInfo.gcn}</_StudentNumber>
