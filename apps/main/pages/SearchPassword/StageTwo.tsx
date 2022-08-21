@@ -6,7 +6,38 @@ import axios from 'axios';
 import BackImg from '../../assets/img/BackImg.jpg';
 import * as S from '../../components/SearchPassword/styled';
 
+interface newPasswordType {
+    password: string;
+    new_password: string;
+}
 const StageTwo = () => {
+    const [newPasswordState, setNewPasswordState] = useState<newPasswordType>({
+        password: '',
+        new_password: '',
+    });
+
+    const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setNewPasswordState({ ...newPasswordState, [name]: value });
+    };
+
+    const onPostNewPassword = () => {
+        axios({
+            url: 'http://114.108.176.85:8080/users/first-password',
+            method: 'patch',
+            data: newPasswordState,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        })
+            .then((res) => {
+                window.location.href = './StageTwo';
+            })
+            .catch((res) => {
+                alert('비밀번호 수정에 실패했습니다');
+            });
+    };
+
     return (
         <S._FirstLoginPageContainer>
             <S._ImgContainer>
@@ -22,6 +53,8 @@ const StageTwo = () => {
                             width={380}
                             correct={true}
                             type="password"
+                            value={newPasswordState.password}
+                            onChange={onChangePassword}
                             placeholder="받으신 비밀번호를 입력해 주세요."
                             name="password"
                         />
@@ -32,6 +65,8 @@ const StageTwo = () => {
                             width={380}
                             correct={true}
                             type="password"
+                            value={newPasswordState.new_password}
+                            onChange={onChangePassword}
                             placeholder="새로운 비밀번호를 다시 입력해 주세요."
                             name="new_password"
                         />
@@ -56,6 +91,7 @@ const StageTwo = () => {
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
                                 content="변경하기"
+                                onClick={onPostNewPassword}
                             />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
