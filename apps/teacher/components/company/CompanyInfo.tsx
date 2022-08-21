@@ -1,23 +1,33 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, inputArray } from '../constant';
+import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
+import { useQuery } from 'react-query';
+import { getCompanyDetail } from '../../api/teachers';
+import { GetCompanyDetailResponse } from '../../models/teachers/responses';
 
 function CompanyInfo() {
-    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+    const [companyInfo, setCompanyInfo] = useState<GetCompanyDetailResponse>({
+        location: '',
+        phone_number: '',
         profile_image_path: '',
-        company_name: '엔트리 24',
-        location: '유성구 가장동 725',
+        name: '',
+        company_id: '',
+        company_name: '',
+        email: '',
         start_at: '',
         end_at: '',
-        name: '김의찬',
-        phone_number: '042-8282-8282',
-        email: 'EntryDSM1234@naver.com',
     });
-    const { closeModal, selectModal } = useModal();
+    const { closeModal, selectModal, selectedId } = useModal();
+    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
+        getCompanyDetail(selectedId || ''),
+    );
+    useEffect(() => {
+        data !== undefined && setCompanyInfo(data);
+    }, [data]);
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -27,7 +37,7 @@ function CompanyInfo() {
                 </_Header>
                 <_Body>
                     <_SideWrapper>
-                        <Profile type="default" />
+                        <Profile type="image" src={data?.profile_image_path} />
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
@@ -53,7 +63,7 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
-                                onClick={() => selectModal('PATCH_COMPANY_DETAIL')}
+                                onClick={() => selectModal('PATCH_COMPANY_DETAIL', selectedId)}
                             />
                         </_ButtonsWrapper>
                     </_InputsWrapper>

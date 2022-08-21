@@ -7,7 +7,7 @@ import {
 
 const useModal = () => {
     const dispatch = useContext(ModalDispatchContext);
-    const { selectedModal } = useContext(ModalStateContext);
+    const { selectedModal, selectedId } = useContext(ModalStateContext);
     const closeModal = () => {
         dispatch({ type: 'SELECT', selected: '', id: null });
     };
@@ -17,6 +17,7 @@ const useModal = () => {
     return {
         closeModal,
         selectedModal,
+        selectedId,
         selectModal,
     };
 };

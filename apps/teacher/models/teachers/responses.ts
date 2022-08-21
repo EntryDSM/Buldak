@@ -31,6 +31,8 @@ export interface GetCompanyDetailResponse extends CompanyInfo {
     location: string;
     name: string;
     phone_number: string;
+    start_at: string;
+    end_at: string;
 }
 export interface CreateCompanyResponse {
     id: string;
