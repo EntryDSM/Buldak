@@ -7,6 +7,8 @@ import BackImg from '../../assets/img/BackImg.jpg';
 import * as S from '../../components/SearchPassword/styled';
 
 const StageOne = () => {
+    const postEmail = () => {};
+
     return (
         <S._FirstLoginPageContainer>
             <S._ImgContainer>
