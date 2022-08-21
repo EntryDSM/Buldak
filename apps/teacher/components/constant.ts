@@ -16,22 +16,12 @@ export type keyValue =
     | 'profile_image_path'
     | 'company_name'
     | 'location'
-    | 'start_at'
-    | 'end_at'
     | 'name'
     | 'phone_number'
-    | 'email';
-
-export interface CompanyInfo {
-    profile_image_path: string;
-    company_name: string;
-    location: string;
-    start_at: string;
-    end_at: string;
-    name: string;
-    phone_number: string;
-    email: string;
-}
+    | 'email'
+    | 'company_id'
+    | 'start_at'
+    | 'end_at';
 
 export interface CompanyInputArray {
     title: string;
