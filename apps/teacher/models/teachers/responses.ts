@@ -25,7 +25,7 @@ export interface CompanyInfo {
     email: string;
 }
 export interface SearchCompanyResponse {
-    company_list: CompanyInfo[];
+    company_element_list: CompanyInfo[];
 }
 export interface GetCompanyDetailResponse extends CompanyInfo {
     location: string;

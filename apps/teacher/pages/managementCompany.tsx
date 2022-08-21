@@ -29,7 +29,7 @@ const ManagementCompany = () => {
             <ManageCompany
                 searchName={name}
                 onChangeSearchName={dobounceSearchName}
-                companyList={companyList?.company_list || []}
+                companyList={companyList?.company_element_list || []}
             />
         </_Wrapper>
     );
@@ -37,7 +37,7 @@ const ManagementCompany = () => {
 
 export async function getServerSideProps() {
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery('searchCompany', () => searchCompany(''));
+    await queryClient.prefetchQuery(['searchCompany'], () => searchCompany(''));
     return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 
