@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { TextBox, Button } from '@packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
+import axios from 'axios';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import * as S from '../../../components/FirstLoginPage/styled';
-import axios from 'axios';
 
 interface certifiedType {
     phoneNumber: string;
@@ -24,12 +25,14 @@ const StageTwo = () => {
 
     const onPostPhoneNumber = () => {
         axios({
-            url: '',
+            url: 'http://114.108.176.85:8080/auth/phone-number',
             method: 'post',
-            data: certified.phoneNumber,
+            data: { phone_number: certified.phoneNumber },
             headers: {
-                Authorization: '',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
             },
+        }).then((res) => {
+            console.log(res);
         });
     };
 
@@ -56,10 +59,14 @@ const StageTwo = () => {
                     <S._FistLoginInputLayout marginBottom="20px">
                         <S._FirstLoginInputText>전화번호</S._FirstLoginInputText>
                         <S._DisplayFlex>
-                            <S._FirstLoginCitationInput
-                                name="phoneNumber"
+                            <TextBox
+                                width={280}
+                                correct={true}
+                                type="text"
                                 value={certified.phoneNumber}
                                 onChange={onChangeNumber}
+                                placeholder="전화번호를 입력해 주세요."
+                                name="phoneNumber"
                             />
                             <S._FirstLoginCitation onClick={onPostPhoneNumber}>
                                 인증하기
@@ -68,21 +75,39 @@ const StageTwo = () => {
                     </S._FistLoginInputLayout>
                     <S._FistLoginInputLayout marginBottom="135px">
                         <S._FirstLoginInputText>인증번호</S._FirstLoginInputText>
-                        <S._FirstLoginInput
-                            name="certifiedNumber"
+                        <TextBox
+                            width={380}
+                            correct={true}
+                            type="text"
                             value={certified.certifiedNumber}
                             onChange={onChangeNumber}
+                            placeholder="인증번호를 입력해 주세요."
+                            name="certifiedNumber"
                         />
                     </S._FistLoginInputLayout>
                     <S._DisplayFlex>
-                        <Link href={'./StageOne'}>
-                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
-                        </Link>
-                        <Link href={'./StageThree'}>
-                            <S._FirstLoginNextButton onClick={onPostCertified}>
-                                다음으로
-                            </S._FirstLoginNextButton>
-                        </Link>
+                        <S._FirstLoginBoxLayout>
+                            <Button
+                                width={180}
+                                height={40}
+                                borderColor={theme.color.gray700}
+                                borderWidth={2}
+                                backgroundColor={theme.color.white}
+                                fontColor={theme.color.black}
+                                content="이전으로"
+                                onClick={() => {
+                                    window.location.href = '/';
+                                }}
+                            />
+                            <Button
+                                width={180}
+                                height={40}
+                                backgroundColor={theme.color.main}
+                                fontColor={theme.color.white}
+                                content="다음으로"
+                                onClick={() => {}}
+                            />
+                        </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>

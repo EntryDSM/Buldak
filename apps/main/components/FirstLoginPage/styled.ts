@@ -89,14 +89,6 @@ export const _FirstLoginInputText = styled.p`
     color: ${({ theme }) => theme.color.black};
 `;
 
-export const _FirstLoginCitationInput = styled.input`
-    width: 280px;
-    height: 44px;
-    background: ${({ theme }) => theme.color.white};
-    border: 2px solid ${({ theme }) => theme.color.gray700};
-    border-radius: 5px;
-`;
-
 export const _FirstLoginCitation = styled.button`
     display: flex;
     justify-content: center;
