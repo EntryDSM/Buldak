@@ -19,7 +19,7 @@ export interface GetStudentDetailResponse {
     tag: string[];
 }
 export interface CompanyInfo {
-    company_id: number;
+    company_id: string;
     profile_image_path: string;
     company_name: string;
     email: string;

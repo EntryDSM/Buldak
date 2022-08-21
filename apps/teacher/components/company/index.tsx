@@ -30,8 +30,8 @@ const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) =
                 </Link>
             </_FlexWrapper>
             <_List>
-                {companyList.map((i) => (
-                    <CompanyBox companyInfo={i} />
+                {companyList.map((info) => (
+                    <CompanyBox companyInfo={info} />
                 ))}
             </_List>
         </_Wrapper>

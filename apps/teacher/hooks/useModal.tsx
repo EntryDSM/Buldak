@@ -9,10 +9,10 @@ const useModal = () => {
     const dispatch = useContext(ModalDispatchContext);
     const { selectedModal } = useContext(ModalStateContext);
     const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '' });
+        dispatch({ type: 'SELECT', selected: '', id: null });
     };
-    const selectModal = (modal: selectedModalType) => {
-        dispatch({ type: 'SELECT', selected: modal });
+    const selectModal = (modal: selectedModalType, id: string | null) => {
+        dispatch({ type: 'SELECT', selected: modal, id: id });
     };
     return {
         closeModal,
