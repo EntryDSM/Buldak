@@ -1,3 +1,4 @@
+import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
 import {
     AddFeedbackRequest,
     CreateCompanyRequest,
@@ -71,9 +72,17 @@ export const resetCompanyPassword = async (
         throw err;
     }
 };
-export const getStudentList = async (): Promise<GetStudentListResponse> => {
+export const getStudentList = async (
+    grade: GradeValue,
+    classNum: ClassNumValue,
+    docStatus: DocumentStatusValue,
+): Promise<GetStudentListResponse> => {
     try {
-        return await instance.get('/teachers/student/list');
+        return await instance.get(
+            `/teachers/student/list?${`grade=${grade || ''}`}${`&classNum=${
+                classNum || ''
+            }`}${`&docStatus=${docStatus || ''}`}`,
+        );
     } catch (err) {
         throw err;
     }

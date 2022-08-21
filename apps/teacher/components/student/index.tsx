@@ -1,20 +1,33 @@
 import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentBox from './Box';
+import { StudentInfo } from '../../models/teachers/responses';
+import { FilterProps } from '../../pages';
+import { Dispatch, SetStateAction } from 'react';
 
-const ManageStudent = () => {
+export interface FilterStateProps {
+    filter: FilterProps;
+    setFilter: Dispatch<SetStateAction<FilterProps>>;
+}
+
+interface Props extends FilterStateProps {
+    studentList: StudentInfo[];
+}
+
+const ManageStudent: React.FC<Props> = ({ studentList, filter, setFilter }) => {
     return (
         <_Wrapper>
             <_FlexWrapper>
                 <_PageTitle>전체 학생 리스트</_PageTitle>
                 <_ReviewPeriod>
                     <strong className="summary">검토기간</strong>
-                    <div className="switch"></div>
                 </_ReviewPeriod>
             </_FlexWrapper>
-            <Filter />
+            <Filter filter={filter} setFilter={setFilter} />
             <_List>
-                <StudentBox />
+                {studentList.map((studentInfo) => {
+                    <StudentBox studentInfo={studentInfo} />;
+                })}
             </_List>
         </_Wrapper>
     );
