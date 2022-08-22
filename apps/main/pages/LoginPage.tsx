@@ -109,17 +109,6 @@ const LoginPage = () => {
                         />
                     </S._LoginInputLayout>
                     <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
-                    {loginState.user_type == 'STUDENT' ? (
-                        <S._SearchPassword
-                            onClick={() => {
-                                window.location.href = '/SearchPassword/StageOne';
-                            }}>
-                            비밀번호를 잊으셨다면?
-                            <S._SearchPasswordA>비밀번호 찾기</S._SearchPasswordA>
-                        </S._SearchPassword>
-                    ) : (
-                        <></>
-                    )}
                 </S._LoginBox>
             </S._LoginContainer>
         </S._LoginPageContainer>
