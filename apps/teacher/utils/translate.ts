@@ -3,6 +3,7 @@ import {
     DocumentStatusDropdownType,
     GradeDropdownType,
 } from '../components/constant';
+import { SelectedDate } from '../hooks/useCalendar';
 import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
 
 export const translateGradeDropdownValue = (value: GradeDropdownType): GradeValue => {
@@ -44,4 +45,37 @@ export const translateDocStatusDropdownValue = (
         case '요청 대기 문서':
             return 'STAY';
     }
+};
+
+interface TranslateDateToString {
+    start_at: string;
+    end_at: string;
+}
+
+export const translateDateToString = (selectedDate: SelectedDate): TranslateDateToString => {
+    if (selectedDate.startDate && selectedDate.endDate)
+        return {
+            start_at: `${selectedDate.startDate.year}-${selectedDate.startDate.month}-${selectedDate.startDate.date}`,
+            end_at: `${selectedDate.endDate.year}-${selectedDate.endDate.month}-${selectedDate.endDate.date}`,
+        };
+    return {
+        start_at: '',
+        end_at: '',
+    };
+};
+export const translateStringToDate = (startDate: string, endString: string): SelectedDate => {
+    const startDateArr = startDate.split('-');
+    const endDateArr = endString.split('-');
+    return {
+        startDate: {
+            year: Number(startDateArr[0]),
+            month: Number(startDateArr[1]),
+            date: Number(startDateArr[2]),
+        },
+        endDate: {
+            year: Number(endDateArr[0]),
+            month: Number(endDateArr[1]),
+            date: Number(endDateArr[2]),
+        },
+    };
 };

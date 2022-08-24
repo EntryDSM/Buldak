@@ -2,13 +2,15 @@ import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, inputArray } from '../constant';
+import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import Calendar from '../Calendar';
 import useCalendar from '../../hooks/useCalendar';
+import { GetCompanyDetailResponse } from '../../models/teachers/responses';
+import { translateDateToString } from '../../utils/translate';
 
 function AddCompany() {
-    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+    const [companyInfo, setCompanyInfo] = useState<GetCompanyDetailResponse>({
         profile_image_path: '',
         company_name: '',
         location: '',
@@ -17,6 +19,7 @@ function AddCompany() {
         name: '',
         phone_number: '',
         email: '',
+        company_id: '',
     });
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setCompanyInfo({
@@ -27,13 +30,14 @@ function AddCompany() {
     const { selectModal } = useModal();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
     useEffect(() => {
-        if (selectedDate.startDate && selectedDate.endDate)
+        if (selectedDate.startDate && selectedDate.endDate) {
+            const date = translateDateToString(selectedDate);
             setCompanyInfo({
                 ...companyInfo,
-                start_at: `${selectedDate.startDate.year}-${selectedDate.startDate.month}-${selectedDate.startDate.date}`,
-                end_at: `${selectedDate.endDate.year}-${selectedDate.endDate.month}-${selectedDate.endDate.date}`,
+                start_at: date.start_at,
+                end_at: date.end_at,
             });
-        else
+        } else
             setCompanyInfo({
                 ...companyInfo,
                 start_at: '',
@@ -78,7 +82,7 @@ function AddCompany() {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="기업 추가"
-                    onClick={() => selectModal('SUCCESS')}
+                    onClick={() => selectModal('SUCCESS', '')}
                 />
             </_Center>
         </_Wrapper>

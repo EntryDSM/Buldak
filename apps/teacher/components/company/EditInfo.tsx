@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
-import { getCompanyDetail } from '../../api/teachers';
+import { editCompany, getCompanyDetail } from '../../api/teachers';
 import { GetCompanyDetailResponse } from '../../models/teachers/responses';
+import Calendar from '../Calendar';
+import useCalendar from '../../hooks/useCalendar';
+import { translateDateToString, translateStringToDate } from '../../utils/translate';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
@@ -25,9 +28,42 @@ function EditInfo() {
     const { data } = useQuery(['getCompanyDetail', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
+    const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
+        useCalendar();
     useEffect(() => {
-        data !== undefined && setCompanyInfo(data);
+        if (data !== undefined) {
+            setCompanyInfo(data);
+            const { startDate, endDate } = translateStringToDate(data.start_at, data.end_at);
+            setSelectedDate({
+                startDate,
+                endDate,
+            });
+        }
     }, [data]);
+    const onChnageCompanyInfo = (e: ChangeEvent<HTMLInputElement>) => {
+        setCompanyInfo({
+            ...companyInfo,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const onClickEditCompanyInfo = () => {
+        editCompany(selectedId || '', companyInfo);
+    };
+    useEffect(() => {
+        if (selectedDate.startDate && selectedDate.endDate) {
+            const date = translateDateToString(selectedDate);
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: date.start_at,
+                end_at: date.end_at,
+            });
+        } else
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: '',
+                end_at: '',
+            });
+    }, [selectedDate]);
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
@@ -47,12 +83,20 @@ function EditInfo() {
                                     correct={true}
                                     placeholder={item.placeholder}
                                     value={companyInfo[item.name]}
+                                    onChange={onChnageCompanyInfo}
                                 />
                             </_InputWrapper>
                         ))}
                     </_InputsWrapper>
                     <_CalendarWrapper>
-                        <_TempCalendar />
+                        <Calendar
+                            year={year}
+                            month={month}
+                            prevMonth={prevMonth}
+                            nextMonth={nextMonth}
+                            list={list}
+                            checkDayType={checkDayType}
+                        />
                         <Button
                             width={300}
                             height={44}
@@ -60,25 +104,12 @@ function EditInfo() {
                             borderColor={theme.color.skyblue}
                             fontColor={theme.color.skyblue}
                             borderWidth={2}
+                            onClick={onClickEditCompanyInfo}
                         />
                     </_CalendarWrapper>
                 </_Body>
             </_Wrapper>
         </ModalWrapper>
-    );
-}
-
-interface InputProps {
-    title: string;
-    placeholder: string;
-}
-
-function Inputs({ title, placeholder }: InputProps) {
-    return (
-        <_InputWrapper>
-            <p>{title}</p>
-            <input type="text" placeholder={placeholder} />
-        </_InputWrapper>
     );
 }
 
@@ -88,7 +119,7 @@ const _Wrapper = styled.div`
     background: ${({ theme }) => theme.color.white};
     border-radius: 8px;
     width: 1100px;
-    height: 580px;
+    min-height: 580px;
     display: flex;
     flex-direction: column;
 `;
@@ -119,7 +150,7 @@ const _Body = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px 50px 0px 50px;
+    padding: 63px 50px 53px 50px;
 `;
 
 const _InputWrapper = styled.div`
@@ -138,7 +169,6 @@ const _InputWrapper = styled.div`
 `;
 
 const _InputsWrapper = styled.div`
-    margin-top: 54px;
     width: 440px;
     display: flex;
     flex-direction: column;
@@ -149,14 +179,8 @@ const _CalendarWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
     width: 530px;
+    box-sizing: border-box;
     > button {
         margin-top: 50px;
     }
-`;
-
-const _TempCalendar = styled.div`
-    border: 1px solid black;
-    width: 530px;
-    height: 300px;
-    margin-top: 64px;
 `;

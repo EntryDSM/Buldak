@@ -7,7 +7,7 @@ export type selectedType = 'startDate' | 'endDate' | 'startDateOnly' | 'equal' |
 
 export type dayType = 'sun' | 'sat' | 'weekday';
 
-interface SelectedDate {
+export interface SelectedDate {
     startDate: {
         year: number;
         month: number;
@@ -19,6 +19,9 @@ interface SelectedDate {
         date: number;
     } | null;
 }
+
+const fiveWeekDay = 35;
+const sixWeekDay = 42;
 
 const useCalendar = () => {
     const [month, setMonth] = useState(new Date().getMonth() + 1);
@@ -50,7 +53,9 @@ const useCalendar = () => {
             .map((_, index) => index + 1);
 
         const nextMonthPreviewDateCount =
-            prevMonthLastDate + lastDate > 35 ? 42 - firstDay - lastDate : 35 - firstDay - lastDate;
+            prevMonthLastDate + lastDate > fiveWeekDay
+                ? sixWeekDay - firstDay - lastDate
+                : fiveWeekDay - firstDay - lastDate;
 
         const nextMonthPreviewArray = Array(nextMonthPreviewDateCount)
             .fill(void 0)
@@ -238,6 +243,7 @@ const useCalendar = () => {
         list,
         checkDayType,
         selectedDate,
+        setSelectedDate,
     };
 };
 export default useCalendar;
