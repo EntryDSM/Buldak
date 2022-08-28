@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { TextBox } from '@packages/ui';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { searchTag } from '../api/tags';
 import SideBar from '../components/SideBar';
@@ -10,16 +10,23 @@ import useDebounce from '../hooks/useDebounce';
 const ManagementTag = () => {
     const [keyword, setKeyword] = useState('');
     const [name, setName] = useState('');
+    const [tagIsAdded, setTagIsAdded] = useState(false);
     const { debounce } = useDebounce();
-    const { data: commonTagList } = useQuery(['getCommonTagList', keyword], () =>
+    const { data: commonTagList } = useQuery(['getCommonTagList', keyword, tagIsAdded], () =>
         searchTag(keyword, false),
     );
-    const { data: majorTagList } = useQuery(['getMajorTagList', keyword], () =>
+    const { data: majorTagList } = useQuery(['getMajorTagList', keyword, tagIsAdded], () =>
         searchTag(keyword, true),
     );
+    useEffect(() => {
+        setTagIsAdded(false);
+    }, [commonTagList, majorTagList]);
     const debounceOnChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         debounce(() => setKeyword(e.target.value), 500);
         setName(e.target.value);
+    };
+    const addTagIsSuccess = () => {
+        setTagIsAdded(true);
     };
     return (
         <_Wrapper>
@@ -37,8 +44,16 @@ const ManagementTag = () => {
                         value={name}
                     />
                 </_InputWrapper>
-                <TagList listType="태그" list={commonTagList?.tag_list || []} />
-                <TagList listType="대표분야" list={majorTagList?.tag_list || []} />
+                <TagList
+                    listType="태그"
+                    list={commonTagList?.tag_list || []}
+                    addTagIsSuccess={addTagIsSuccess}
+                />
+                <TagList
+                    listType="대표분야"
+                    list={majorTagList?.tag_list || []}
+                    addTagIsSuccess={addTagIsSuccess}
+                />
             </_ListWrapper>
         </_Wrapper>
     );

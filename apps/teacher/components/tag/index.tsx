@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Tag } from '@packages/ui';
-import { createTag } from '../../api/tags';
+import { createTag, deleteTag } from '../../api/tags';
 import { TagInfo } from '../../models/tags/responses';
 import AddInputButton from '../AddInputButton';
 
@@ -9,14 +9,21 @@ type listType = '태그' | '대표분야';
 interface Props {
     listType: listType;
     list: TagInfo[];
+    addTagIsSuccess: () => void;
 }
 
-const TagList = ({ listType, list }: Props) => {
+const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
     const onClickCreateTag = (name: string) => {
         createTag({
             name,
             is_major: listType === '대표분야',
+        }).then(() => {
+            addTagIsSuccess();
         });
+    };
+    // todo : 태그에 onClick Event 연결하기
+    const onClickDeleteTag = () => {
+        deleteTag('');
     };
     return (
         <_Wrapper>
