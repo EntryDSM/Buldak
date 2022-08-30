@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TextBox, Button } from '@packages/ui';
@@ -12,7 +12,7 @@ const StageTwo = () => {
     const [file, setFile] = useState<string | Blob>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const onChangeImg = (event: any) => {
+    const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         if (event.target.files) {
             const formData = new FormData();
