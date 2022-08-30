@@ -1,18 +1,41 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import { useMemo, useState } from 'react';
+import ArrowIcon from '../../../assets/arrow';
+import { DocumentPreivew } from '../../../models/documents/responses';
+import { DocumentStateEnum } from '../../../utils/enum';
 
-const DocumentList = () => {
+type DocumentState = 'PUBLIC' | 'STAY';
+
+interface Props {
+    documentPreview: DocumentPreivew[];
+}
+
+const DocumentList = ({ documentPreview }: Props) => {
+    const [documentState, setDocumentState] = useState<DocumentState>('PUBLIC');
+    const onClickChangeDocumentType = () => {
+        if (documentState === 'PUBLIC') setDocumentState('STAY');
+        else setDocumentState('PUBLIC');
+    };
+    const previewState = useMemo(() => {
+        return documentPreview.filter((i) => i.type === documentState)[0];
+    }, [documentState]);
     return (
         <_Wrapper>
             <_DocumentType>
-                <_ChangeDocumentTypeButton></_ChangeDocumentTypeButton>
-                <strong className="type">공개 문서</strong>
-                <_ChangeDocumentTypeButton></_ChangeDocumentTypeButton>
+                <_ChangeDocumentTypeButton onClick={onClickChangeDocumentType}>
+                    <ArrowIcon arrowType="LEFT" />
+                </_ChangeDocumentTypeButton>
+                <strong className="type">{DocumentStateEnum[documentState]} 문서</strong>
+                <_ChangeDocumentTypeButton onClick={onClickChangeDocumentType}>
+                    <ArrowIcon arrowType="RIGHT" />
+                </_ChangeDocumentTypeButton>
             </_DocumentType>
             <_Document>
                 {/* todo
                     Next/Image 로 수정할것.
                 */}
-                <div className="previewImage" />
+                {/* <Image src={previewState.preview_image_path} className="previewImage" /> */}
                 <p className="developPart">프론트엔드</p>
                 <_UserSummary>
                     <div className="profileImage" />
@@ -34,14 +57,15 @@ const _Wrapper = styled.div`
 `;
 const _DocumentType = styled.div`
     margin: 0 auto;
+    width: 219px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     > .type {
         font-size: 20px;
         font-weight: 500;
         line-height: 25px;
         color: ${({ theme }) => theme.color.black};
-        margin: 0 40px;
     }
 `;
 const _ChangeDocumentTypeButton = styled.button`
@@ -49,6 +73,9 @@ const _ChangeDocumentTypeButton = styled.button`
     height: 30px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.color.gray500};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 const _Document = styled.section`
     width: 100%;
@@ -57,6 +84,7 @@ const _Document = styled.section`
     border: 2px solid ${({ theme }) => theme.color.gray300};
     margin-top: 7px;
     > .previewImage {
+        object-fit: contain;
         height: 190px;
         background-color: ${({ theme }) => theme.color.gray900};
     }
