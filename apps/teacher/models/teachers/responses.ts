@@ -15,8 +15,8 @@ export interface GetStudentDetailResponse {
     gcn: number;
     email: string;
     phone_number: string;
-    major: string;
-    tag: string[];
+    major_tag_name: string;
+    my_skill_name_list: string[];
 }
 export interface CompanyInfo {
     company_id: string;

@@ -44,7 +44,7 @@ export const approveDocument = async (document_id: string) => {
 };
 export const previewDocument = async (student_id: string): Promise<GetDocumentPreviewResponse> => {
     try {
-        return await instance.patch(`documents/preview/${student_id}`);
+        return await instance.get(`documents/preview/${student_id}`);
     } catch (err) {
         throw err;
     }

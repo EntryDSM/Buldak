@@ -22,9 +22,7 @@ function CompanyInfo() {
         end_at: '',
     });
     const { closeModal, selectModal, selectedId } = useModal();
-    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
-        getCompanyDetail(selectedId || ''),
-    );
+    const { data } = useQuery(['getCompanyDetail', selectedId], () => getCompanyDetail(selectedId));
     useEffect(() => {
         data !== undefined && setCompanyInfo(data);
     }, [data]);
