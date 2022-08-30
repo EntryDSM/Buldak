@@ -9,7 +9,8 @@ export const getPublicDocument = async (
     document_id: string,
 ): Promise<GetPublicDocumentResponse> => {
     try {
-        return await instance.get(`/documents/public/${document_id}`);
+        const response = await instance.get(`/documents/public/${document_id}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
@@ -23,7 +24,8 @@ export const deletePublicDocument = async (student_id: string) => {
 };
 export const getStayDocument = async (document_id: string): Promise<GetStayDocumentResponse> => {
     try {
-        return await instance.get(`/documents/stay/${document_id}`);
+        const reponse = await instance.get(`/documents/stay/${document_id}`);
+        return reponse.data;
     } catch (err) {
         throw err;
     }
@@ -44,7 +46,8 @@ export const approveDocument = async (document_id: string) => {
 };
 export const previewDocument = async (student_id: string): Promise<GetDocumentPreviewResponse> => {
     try {
-        return await instance.get(`documents/preview/${student_id}`);
+        const repsonse = await instance.get(`documents/preview/${student_id}`);
+        return repsonse.data;
     } catch (err) {
         throw err;
     }
