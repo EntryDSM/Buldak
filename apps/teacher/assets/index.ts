@@ -4,3 +4,4 @@ export { default as plusWhite } from './plusIconWhite.svg';
 export { default as studentIcon } from './studentIcon.svg';
 export { default as tagIcon } from './tagIcon.svg';
 export { default as companyIcon } from './compnayIcon.svg';
+export { default as plusBlackIcon } from './plusBlackIcon.svg';
