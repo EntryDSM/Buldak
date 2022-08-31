@@ -19,7 +19,7 @@ const DocumentList = ({ documentPreview }: Props) => {
     };
     const previewState = useMemo(() => {
         return documentPreview.filter((i) => i.type === documentState)[0];
-    }, [documentState]);
+    }, [documentState, documentPreview]);
     return (
         <_Wrapper>
             <_DocumentType>
@@ -32,13 +32,15 @@ const DocumentList = ({ documentPreview }: Props) => {
                 </_ChangeDocumentTypeButton>
             </_DocumentType>
             <_Document>
-                {/* todo
-                    Next/Image 로 수정할것.
-                */}
-                {/* <Image src={previewState.preview_image_path} className="previewImage" /> */}
+                {previewState?.preview_image_path !== undefined ? (
+                    <img src={previewState.preview_image_path} className="previewImage" />
+                ) : (
+                    ''
+                )}
                 <p className="developPart">프론트엔드</p>
                 <_UserSummary>
                     <div className="profileImage" />
+                    {/* <img src={}></img> */}
                     <p className="name">김의찬</p>
                     <p className="studentNumber">2101</p>
                 </_UserSummary>
@@ -86,7 +88,9 @@ const _Document = styled.section`
     > .previewImage {
         object-fit: contain;
         height: 190px;
-        background-color: ${({ theme }) => theme.color.gray900};
+        width: 320px;
+        object-position: center;
+        background-color: ${({ theme }) => theme.color.gray500};
     }
     > .developPart {
         height: 40px;
