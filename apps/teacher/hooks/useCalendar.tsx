@@ -7,17 +7,15 @@ export type selectedType = 'startDate' | 'endDate' | 'startDateOnly' | 'equal' |
 
 export type dayType = 'sun' | 'sat' | 'weekday';
 
-interface SelectedDate {
-    startDate: {
-        year: number;
-        month: number;
-        date: number;
-    } | null;
-    endDate: {
-        year: number;
-        month: number;
-        date: number;
-    } | null;
+export interface DateObject {
+    year: number;
+    month: number;
+    date: number;
+}
+
+export interface SelectedDate {
+    startDate: DateObject | null;
+    endDate: DateObject | null;
 }
 
 const useCalendar = () => {

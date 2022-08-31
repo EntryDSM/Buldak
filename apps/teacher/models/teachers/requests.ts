@@ -3,17 +3,17 @@ export interface AddFeedbackRequest {
     comment: string;
 }
 export interface EditCompanyInfoRequest {
+    name: string;
+    email: string;
+    phone_number: string;
+    location: string;
     profile_image_path: string;
     company_name: string;
-    location: string;
-    name: string;
-    phone_number: string;
-    email: string;
     start_at: string;
     end_at: string;
 }
 export interface CreateCompanyRequest extends EditCompanyInfoRequest {
-    profile_image_path: string;
+    is_mou: boolean;
 }
 export type GradeValue = '1' | '2' | '3' | null;
 export type ClassNumValue = '1' | '2' | '3' | '4' | null;
