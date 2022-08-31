@@ -10,7 +10,8 @@ interface Props {
 const CompanyBox = ({ companyInfo }: Props) => {
     const { selectModal } = useModal();
     return (
-        <_Wrapper onClick={() => selectModal('COMPANY_DETAIL', companyInfo.company_id)}>
+        <_Wrapper
+            onClick={() => selectModal({ modal: 'COMPANY_DETAIL', id: companyInfo.company_id })}>
             <Profile type="image" width="56px" height="56px" src={companyInfo.profile_image_path} />
             <_Name>{companyInfo.company_name}</_Name>
             <_Email>{companyInfo.email}</_Email>

@@ -10,6 +10,7 @@ import { plusBlackIcon } from '../../assets';
 import Image from 'next/image';
 import useCompany from '../../hooks/useCompany';
 import { translateObjectToString } from '../../utils/translate';
+import { createCompany } from '../../api/teachers';
 
 const companyTypeRadioOptions = ['MOU', 'NON_MOU'];
 
@@ -17,6 +18,11 @@ function AddCompany() {
     const { selectModal } = useModal();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
     const { setCompanyInfo, companyInfo, onChangeRadioValue, onChangeInputValue } = useCompany();
+    const onClickCreateCompany = () => {
+        createCompany(companyInfo).then((res) => {
+            selectModal({ modal: 'SUCCESS', password: res.password });
+        });
+    };
     useEffect(() => {
         if (selectedDate.startDate && selectedDate.endDate)
             setCompanyInfo({
@@ -85,7 +91,7 @@ function AddCompany() {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="기업 추가"
-                    onClick={() => selectModal('SUCCESS', '')}
+                    onClick={onClickCreateCompany}
                 />
             </_Center>
         </_Wrapper>

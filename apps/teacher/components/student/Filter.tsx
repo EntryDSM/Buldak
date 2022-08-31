@@ -77,7 +77,7 @@ const Filter: React.FC<FilterStateProps> = ({ filter, setFilter }) => {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="pdf 출력"
-                    onClick={() => selectModal('PDF')}
+                    onClick={() => selectModal({ modal: 'PDF' })}
                 />
             </_OptionWrapper>
         </_Wrapper>

@@ -2,7 +2,8 @@ import React, { createContext, Dispatch, FunctionComponent, useReducer } from 'r
 
 interface ModalState {
     selectedModal: selectedModalType;
-    selectedId: string | null;
+    selectedId?: string;
+    password?: string;
 }
 
 export type selectedModalType =
@@ -16,14 +17,15 @@ export type selectedModalType =
 type SelectModalAction = {
     type: 'SELECT';
     selected: selectedModalType;
-    id: string | null;
+    id?: string;
+    password?: string;
 };
 
 type ActionTypes = SelectModalAction;
 
 const modalDefaultValue: ModalState = {
     selectedModal: '',
-    selectedId: null,
+    selectedId: undefined,
 };
 
 export const ModalStateContext = createContext<ModalState>(modalDefaultValue);
