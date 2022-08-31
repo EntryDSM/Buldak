@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 const useDebounce = () => {
     const timer = useRef<null | NodeJS.Timeout>(null);

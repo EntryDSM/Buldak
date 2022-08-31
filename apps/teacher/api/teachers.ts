@@ -17,7 +17,7 @@ import { instance } from './axios';
 
 export const deleteStudent = async (student_id: string) => {
     try {
-        await instance.delete(`/student/${student_id}`);
+        await instance.delete(`/teachers/student/${student_id}`);
     } catch (err) {
         throw err;
     }
