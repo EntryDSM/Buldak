@@ -17,11 +17,23 @@ const companyTypeRadioOptions = ['MOU', 'NON_MOU'];
 function AddCompany() {
     const { selectModal } = useModal();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
-    const { setCompanyInfo, companyInfo, onChangeRadioValue, onChangeInputValue } = useCompany();
-    const onClickCreateCompany = () => {
-        createCompany(companyInfo).then((res) => {
-            selectModal({ modal: 'SUCCESS', password: res.password });
-        });
+    const {
+        setCompanyInfo,
+        companyInfo,
+        onChangeRadioValue,
+        onChangeInputValue,
+        onChangeFile,
+        profilePreview,
+        uploadImage,
+        FD,
+    } = useCompany();
+    const onClickCreateCompany = async () => {
+        try {
+            await uploadImage(FD);
+            createCompany(companyInfo).then((res) => {
+                selectModal({ modal: 'SUCCESS', password: res.password });
+            });
+        } catch (err) {}
     };
     useEffect(() => {
         if (selectedDate.startDate && selectedDate.endDate)
@@ -41,13 +53,17 @@ function AddCompany() {
         <_Wrapper>
             <_Center>
                 <_ImgWrapper>
-                    <input type="file" />
+                    <input type="file" onChange={onChangeFile} />
                     <div className="profileImage">
-                        <Image
-                            src={companyInfo.profile_image_path || plusBlackIcon}
-                            alt="추가"
-                            className="profileImage"
-                        />
+                        {profilePreview ? (
+                            <img src={profilePreview} alt="preview" className="preview" />
+                        ) : (
+                            <Image
+                                src={companyInfo.profile_image_path || plusBlackIcon}
+                                alt="추가"
+                                className="profileImage"
+                            />
+                        )}
                     </div>
                     <p>프로필 사진 설정</p>
                 </_ImgWrapper>
@@ -138,6 +154,16 @@ const _ImgWrapper = styled.label`
         display: flex;
         align-items: center;
         justify-content: center;
+        > img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .preview {
+            border: 1px solid black;
+            border-radius: 100px;
+        }
     }
     > p {
         font-weight: 400;
