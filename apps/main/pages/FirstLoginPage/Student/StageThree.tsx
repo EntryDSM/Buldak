@@ -15,47 +15,49 @@ const StageThree = () => {
         event.preventDefault();
         if (event.target.files) {
             formData.append('img', event.target.files[0]);
-            axios({
-                method: 'post',
-                url: 'http://114.108.176.85:8080/images',
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                },
-                params: {
-                    type: 'PROFILE',
-                },
-                data: formData,
-            }).then((res) => {
-                console.log('Ds');
-            });
+            axios
+                .post('http://114.108.176.85:8080/images', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    },
+                    params: {
+                        type: 'PROFILE',
+                    },
+                })
+                .then((res) => {
+                    console.log('Ds');
+                });
         }
     };
 
     const onPostProfile = () => {
-        axios({
-            method: 'get',
-            url: 'http://114.108.176.85:8080/students',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            },
-        }).then((res) => {
-            console.log(res);
-            axios({
-                method: 'patch',
-                url: 'http://114.108.176.85:8080/users/information',
+        axios
+            .get('http://114.108.176.85:8080/students', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
-                data: {
-                    location: res.data.location,
-                    name: res.data.name,
-                    phone_number: res.data.phone_number,
-                    profile_image_path: '',
-                },
-            }).then((res) => {
+            })
+            .then((res) => {
                 console.log(res);
+                axios
+                    .patch(
+                        'http://114.108.176.85:8080/users/information',
+                        {
+                            location: res.data.location,
+                            name: res.data.name,
+                            phone_number: res.data.phone_number,
+                            profile_image_path: '',
+                        },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                            },
+                        },
+                    )
+                    .then((res) => {
+                        console.log(res);
+                    });
             });
-        });
     };
 
     return (
