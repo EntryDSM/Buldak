@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button, TextBox } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
@@ -9,13 +9,25 @@ import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const formData = new FormData();
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formData = new FormData();
         event.preventDefault();
         if (event.target.files) {
             formData.append('img', event.target.files[0]);
-            console.log(event.target.files[0]);
+            axios({
+                method: 'post',
+                url: 'http://114.108.176.85:8080/images',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+                params: {
+                    type: 'PROFILE',
+                },
+                data: formData,
+            }).then((res) => {
+                console.log('Ds');
+            });
         }
     };
 
@@ -38,7 +50,7 @@ const StageThree = () => {
                     location: res.data.location,
                     name: res.data.name,
                     phone_number: res.data.phone_number,
-                    profile_image_path: formData,
+                    profile_image_path: '',
                 },
             }).then((res) => {
                 console.log(res);
