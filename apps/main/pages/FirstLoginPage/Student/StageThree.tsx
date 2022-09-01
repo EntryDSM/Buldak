@@ -4,10 +4,47 @@ import { Button, TextBox } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
+import axios from 'axios';
 import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
-    const FileInputRef = useRef<HTMLInputElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const formData = new FormData();
+
+    const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        if (event.target.files) {
+            formData.append('img', event.target.files[0]);
+            console.log(event.target.files[0]);
+        }
+    };
+
+    const onPostProfile = () => {
+        axios({
+            method: 'get',
+            url: 'http://114.108.176.85:8080/students',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        }).then((res) => {
+            console.log(res);
+            axios({
+                method: 'patch',
+                url: 'http://114.108.176.85:8080/users/information',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+                data: {
+                    location: res.data.location,
+                    name: res.data.name,
+                    phone_number: res.data.phone_number,
+                    profile_image_path: formData,
+                },
+            }).then((res) => {
+                console.log(res);
+            });
+        });
+    };
 
     return (
         <S._FirstLoginPageContainer>
@@ -20,19 +57,20 @@ const StageThree = () => {
                     <S._FirstLoginPoint />
                     <S._FirstLoginSetProfile
                         onClick={() => {
-                            FileInputRef.current?.click();
+                            fileInputRef.current?.click();
                         }}>
                         <input
-                            ref={FileInputRef}
+                            ref={fileInputRef}
                             type="file"
                             accept="image/jpg, image/jpeg, image/png"
                             style={{ display: 'none' }}
+                            onChange={onChangeImg}
                         />
                         <Image src={PlusBlack} />
                     </S._FirstLoginSetProfile>
                     <S._FirstLoginProfileText
                         onClick={() => {
-                            FileInputRef.current?.click();
+                            fileInputRef.current?.click();
                         }}>
                         프로필 설정
                     </S._FirstLoginProfileText>
@@ -56,6 +94,7 @@ const StageThree = () => {
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
                                 content="회원가입"
+                                onClick={onPostProfile}
                             />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>

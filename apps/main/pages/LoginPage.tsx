@@ -54,7 +54,7 @@ const LoginPage = () => {
                     password: '',
                     user_type: localStorage.getItem('LoginType') as userType,
                 });
-                window.alert('로그인에 실패하였습니다다');
+                window.alert('로그인에 실패하였습니다');
             });
     };
 

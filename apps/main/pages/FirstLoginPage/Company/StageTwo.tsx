@@ -9,17 +9,27 @@ import * as S from '../../../components/FirstLoginPage/styled';
 import axios from 'axios';
 
 const StageTwo = () => {
-    const [file, setFile] = useState<string | Blob>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const formData = new FormData();
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         if (event.target.files) {
-            const formData = new FormData();
             formData.append('img', event.target.files[0]);
-
-            axios({ url: 'http://114.108.176.85:8080/users/first-password', method: 'patch' });
         }
+    };
+
+    const onPostProfile = () => {
+        axios({
+            method: 'get',
+            url: 'http://114.108.176.85:8080/students',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        }).then((res) => {
+            console.log(res);
+        });
     };
 
     return (
@@ -70,9 +80,7 @@ const StageTwo = () => {
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
                                 content="변경하기"
-                                onClick={() => {
-                                    console.log('sdf');
-                                }}
+                                onClick={onPostProfile}
                             />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
