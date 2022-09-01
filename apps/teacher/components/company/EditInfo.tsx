@@ -22,9 +22,7 @@ function EditInfo() {
         email: '',
         company_id: '',
     });
-    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
-        getCompanyDetail(selectedId || ''),
-    );
+    const { data } = useQuery(['getCompanyDetail', selectedId], () => getCompanyDetail(selectedId));
     useEffect(() => {
         data !== undefined && setCompanyInfo(data);
     }, [data]);

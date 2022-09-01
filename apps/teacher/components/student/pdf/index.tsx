@@ -6,7 +6,7 @@ import { Button, CheckBox } from '@packages/ui';
 import { useEffect, useMemo, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { GetStudentListResponse, StudentInfo } from '../../../models/teachers/responses';
+import { StudentInfo } from '../../../models/teachers/responses';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../../../api/teachers';
 import { FilterProps } from '../../../pages';
@@ -20,18 +20,17 @@ const PdfModal = () => {
     const [allSelected, setAllSelected] = useState(false);
     const [studentList, setStudentList] = useState<PdfStudentListProps[]>([]);
     const [filter, setFilter] = useState<FilterProps>({
-        grade: null,
-        classNum: null,
-        docStatus: null,
+        grade: '1',
+        classNum: '1',
+        docStatus: 'PUBLIC',
     });
     const onClick = () => {
         setAllSelected(!allSelected);
     };
-    // const { data } = useQuery(
-    //     ['getStudentList', filter.grade, filter.classNum, filter.docStatus],
-    //     () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
-    // );
-    const data: GetStudentListResponse = [];
+    const { data } = useQuery(
+        ['getStudentList', filter.grade, filter.classNum, filter.docStatus],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    );
     useEffect(() => {
         setStudentList(
             data?.student_list.map((i) => {
@@ -41,7 +40,7 @@ const PdfModal = () => {
                 };
             }) || [],
         );
-    }, []);
+    }, [data, studentList]);
     useEffect(() => {
         if (allSelected)
             setStudentList(

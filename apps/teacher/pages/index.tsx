@@ -19,21 +19,25 @@ export interface FilterProps {
 export default function Home() {
     const { selectedModal } = useModal();
     const [filter, setFilter] = useState<FilterProps>({
-        grade: null,
-        classNum: null,
-        docStatus: null,
+        grade: '1',
+        classNum: '1',
+        docStatus: 'PUBLIC',
     });
-    // const { data } = useQuery(
-    //     ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
-    //     () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
-    // );
+    const { data } = useQuery(
+        ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    );
     return (
         <>
             {selectedModal === 'USER_DETAIL' && <UserDetail />}
             {selectedModal === 'PDF' && <PdfModal />}
             <Wrapper>
                 <SideBar managementType="student" />
-                <ManageStudent studentList={[]} filter={filter} setFilter={setFilter} />
+                <ManageStudent
+                    studentList={data?.student_list || []}
+                    filter={filter}
+                    setFilter={setFilter}
+                />
             </Wrapper>
         </>
     );
