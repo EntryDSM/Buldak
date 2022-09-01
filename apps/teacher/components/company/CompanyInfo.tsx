@@ -22,7 +22,9 @@ function CompanyInfo() {
         end_at: '',
     });
     const { closeModal, selectModal, selectedId } = useModal();
-    const { data } = useQuery(['getCompanyDetail', selectedId], () => getCompanyDetail(selectedId));
+    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
+        getCompanyDetail(selectedId || ''),
+    );
     useEffect(() => {
         data !== undefined && setCompanyInfo(data);
     }, [data]);
@@ -61,7 +63,9 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
-                                onClick={() => selectModal('PATCH_COMPANY_DETAIL', selectedId)}
+                                onClick={() =>
+                                    selectModal({ modal: 'PATCH_COMPANY_DETAIL', id: selectedId })
+                                }
                             />
                         </_ButtonsWrapper>
                     </_InputsWrapper>

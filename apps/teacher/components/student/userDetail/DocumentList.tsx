@@ -33,7 +33,11 @@ const DocumentList = ({ documentPreview }: Props) => {
             </_DocumentType>
             <_Document>
                 {previewState?.preview_image_path !== undefined ? (
-                    <img src={previewState.preview_image_path} className="previewImage" />
+                    <img
+                        src={previewState.preview_image_path}
+                        className="previewImage"
+                        alt="미리보기"
+                    />
                 ) : (
                     ''
                 )}

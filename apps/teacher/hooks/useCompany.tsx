@@ -3,6 +3,7 @@ import { CreateCompanyRequest } from '../models/teachers/requests';
 import { createImage } from '../api/default';
 
 const useCompany = () => {
+    const FD = new FormData();
     const [companyInfo, setCompanyInfo] = useState<CreateCompanyRequest>({
         profile_image_path: '',
         company_name: '',
@@ -27,7 +28,6 @@ const useCompany = () => {
         });
     };
     const [profilePreview, setProfilePreview] = useState('');
-    const FD = new FormData();
     const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
@@ -36,12 +36,12 @@ const useCompany = () => {
                 const base64 = reader.result;
                 if (base64) setProfilePreview(base64.toString());
             };
-            FD.append('image', e.target.files[0]);
+            FD.append('file', e.target.files[0]);
         }
     };
     const uploadImage = (body: FormData) => {
         createImage('PROFILE', {
-            image: body,
+            file: body,
         }).then((res) => {
             setCompanyInfo({
                 ...companyInfo,
