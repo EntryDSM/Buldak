@@ -21,15 +21,15 @@ const StageTwo = () => {
     };
 
     const onPostProfile = () => {
-        axios({
-            method: 'get',
-            url: 'http://114.108.176.85:8080/students',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            },
-        }).then((res) => {
-            console.log(res);
-        });
+        axios
+            .get('http://114.108.176.85:8080/students', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+            })
+            .then((res) => {
+                console.log(res);
+            });
     };
 
     return (

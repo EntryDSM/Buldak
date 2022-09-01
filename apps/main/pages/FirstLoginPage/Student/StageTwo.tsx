@@ -24,19 +24,23 @@ const StageTwo = () => {
     };
 
     const onPostPhoneNumber = () => {
-        axios({
-            url: 'http://114.108.176.85:8080/auth/phone-number',
-            method: 'post',
-            data: { phone_number: certified.phoneNumber },
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            },
-        }).then((res) => {
-            console.log(res);
-        });
+        axios
+            .post(
+                'http://114.108.176.85:8080/auth/phone-number',
+                { phone_number: certified.phoneNumber },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    },
+                },
+            )
+            .then((res) => {
+                console.log(res);
+            });
     };
 
     const onPostCertified = () => {
+        
         axios({
             url: '',
             method: 'post',

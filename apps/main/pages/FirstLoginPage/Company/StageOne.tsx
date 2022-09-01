@@ -24,14 +24,12 @@ const StageOne = () => {
     };
 
     const onPostNewPassword = () => {
-        axios({
-            url: 'http://114.108.176.85:8080/users/first-password',
-            method: 'patch',
-            data: newPasswordState,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            },
-        })
+        axios
+            .patch('http://114.108.176.85:8080/users/first-password', newPasswordState, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+            })
             .then((res) => {
                 window.location.href = './StageTwo';
             })
