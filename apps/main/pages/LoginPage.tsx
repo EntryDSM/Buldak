@@ -30,11 +30,8 @@ const LoginPage = () => {
     };
 
     const postLogin = () => {
-        axios({
-            url: 'http://114.108.176.85:8080/users/auth',
-            method: 'POST',
-            data: loginState,
-        })
+        axios
+            .post('http://114.108.176.85:8080/users/auth', loginState)
             .then((res) => {
                 console.log(res);
                 localStorage.setItem('access_token', res.data.access_token);

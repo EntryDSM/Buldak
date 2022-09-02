@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Button, TextBox } from '@packages/ui';
+import { Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
@@ -9,14 +9,15 @@ import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [imageSrc, setImageSrc] = useState<string>('');
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
         const formData = new FormData();
         event.preventDefault();
         if (event.target.files) {
-            formData.append('img', event.target.files[0]);
+            formData.append('file', event.target.files[0]);
             axios
-                .post('http://114.108.176.85:8080/images', {
+                .post('http://114.108.176.85:8080/images', formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -25,7 +26,10 @@ const StageThree = () => {
                     },
                 })
                 .then((res) => {
-                    console.log('Ds');
+                    setImageSrc(res.data.image_path);
+                })
+                .catch((res) => {
+                    alert('사진을 선택해주세요요');
                 });
         }
     };
@@ -46,7 +50,7 @@ const StageThree = () => {
                             location: res.data.location,
                             name: res.data.name,
                             phone_number: res.data.phone_number,
-                            profile_image_path: '',
+                            profile_image_path: imageSrc,
                         },
                         {
                             headers: {
