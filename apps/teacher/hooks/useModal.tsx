@@ -5,14 +5,20 @@ import {
     selectedModalType,
 } from '../context/ModalContext';
 
+interface SelectModalProps {
+    modal: selectedModalType;
+    id?: string;
+    password?: string;
+}
+
 const useModal = () => {
     const dispatch = useContext(ModalDispatchContext);
     const { selectedModal, selectedId } = useContext(ModalStateContext);
     const closeModal = () => {
-        dispatch({ type: 'SELECT', selected: '', id: '' });
+        dispatch({ type: 'SELECT', selected: '', id: undefined });
     };
-    const selectModal = (modal: selectedModalType, id: string) => {
-        dispatch({ type: 'SELECT', selected: modal, id: id });
+    const selectModal = ({ modal, id, password }: SelectModalProps) => {
+        dispatch({ type: 'SELECT', selected: modal, id: id, password: password });
     };
     return {
         closeModal,

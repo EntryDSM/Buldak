@@ -4,6 +4,7 @@ import {
     GradeDropdownType,
 } from '../components/constant';
 import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
+import { DateObject } from '../hooks/useCalendar';
 
 export const translateGradeDropdownValue = (value: GradeDropdownType): GradeValue => {
     switch (value) {
@@ -44,4 +45,9 @@ export const translateDocStatusDropdownValue = (
         case '요청 대기 문서':
             return 'STAY';
     }
+};
+export const translateObjectToString = (dateObject: DateObject) => {
+    return `${dateObject.year}-${
+        dateObject.month < 10 ? '0' + dateObject.month.toString() : dateObject.month
+    }-${dateObject.date < 10 ? '0' + dateObject.date.toString() : dateObject.date}T:00:00:00:000`;
 };

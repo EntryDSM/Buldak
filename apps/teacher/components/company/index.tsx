@@ -5,6 +5,7 @@ import { theme } from '@packages/emotion-style-provider/src/theme';
 import Link from 'next/link';
 import { ChangeEvent } from 'react';
 import { CompanyInfo } from '../../models/teachers/responses';
+import { plusWhite } from '../../assets';
 
 interface Props {
     searchName: string;
@@ -26,7 +27,12 @@ const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) =
                     onChange={onChangeSearchName}
                 />
                 <Link href={'/add-company'}>
-                    <Button width={44} height={44} backgroundColor={theme.color.skyblue} />
+                    <Button
+                        width={44}
+                        height={44}
+                        backgroundColor={theme.color.skyblue}
+                        image={plusWhite}
+                    />
                 </Link>
             </_FlexWrapper>
             <_List>

@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { Profile } from '@packages/ui';
+import Image from 'next/image';
+import { companyIcon, studentIcon, tagIcon } from '../assets';
 
 type ManagementType = 'tag' | 'student' | 'company';
 
@@ -17,7 +19,7 @@ const SideBar = ({ managementType }: Props) => {
                 {navArray.map((item) => (
                     <Link href={item.url} key={item.managementType}>
                         <_NavButton isSelected={managementType === item.managementType}>
-                            <div className="icon"></div>
+                            <Image src={item.image} width={26} height={26} />
                             <p className="managementType">{item.summary}</p>
                         </_NavButton>
                     </Link>
@@ -63,13 +65,8 @@ const _NavButton = styled.a<NavButtonProps>`
     display: flex;
     cursor: pointer;
     background-color: ${(props) => props.isSelected && '#477DE3'};
-    > .icon {
-        width: 26px;
-        height: 26px;
-        margin-right: 19px;
-        background-color: #ffffff;
-    }
     > .managementType {
+        margin-left: 19px;
         color: ${({ theme }) => theme.color.white};
         font-size: 20px;
         line-height: 25px;
@@ -86,19 +83,19 @@ interface NavItem {
 const navArray: NavItem[] = [
     {
         summary: '학생 관리',
-        image: '',
+        image: studentIcon,
         url: '/',
         managementType: 'student',
     },
     {
         summary: '태그 관리',
-        image: '',
+        image: tagIcon,
         url: '/managementTag',
         managementType: 'tag',
     },
     {
         summary: '기업 관리',
-        image: '',
+        image: companyIcon,
         url: '/managementCompany',
         managementType: 'company',
     },

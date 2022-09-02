@@ -13,15 +13,15 @@ export const documentStatusDropdownItems: DocumentStatusDropdownType[] = [
 ];
 
 export type keyValue =
+    | 'name'
+    | 'email'
+    | 'phone_number'
+    | 'location'
     | 'profile_image_path'
     | 'company_name'
-    | 'location'
-    | 'name'
-    | 'phone_number'
-    | 'email'
-    | 'company_id'
     | 'start_at'
-    | 'end_at';
+    | 'end_at'
+    | 'is_mou';
 
 export interface CompanyInputArray {
     title: string;

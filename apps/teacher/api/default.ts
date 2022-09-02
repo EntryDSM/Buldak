@@ -1,7 +1,7 @@
 import { CreateImageRequest, CreateImageResponse } from '../models/default';
 import { instance } from './axios';
 
-type CreateImageType = 'PROFILE' | 'PREVIEW';
+export type CreateImageType = 'PROFILE' | 'PREVIEW';
 
 export const createImage = async (
     type: CreateImageType,
