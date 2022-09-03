@@ -29,7 +29,7 @@ const StageThree = () => {
                     setImageSrc(res.data.image_path);
                 })
                 .catch((res) => {
-                    alert('사진을 선택해주세요요');
+                    alert('사진을 선택해주세요');
                 });
         }
     };
