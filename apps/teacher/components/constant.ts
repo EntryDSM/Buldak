@@ -20,8 +20,7 @@ export type keyValue =
     | 'profile_image_path'
     | 'company_name'
     | 'start_at'
-    | 'end_at'
-    | 'is_mou';
+    | 'end_at';
 
 export interface CompanyInputArray {
     title: string;
