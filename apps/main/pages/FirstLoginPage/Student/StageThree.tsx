@@ -42,7 +42,6 @@ const StageThree = () => {
                 },
             })
             .then((res) => {
-                console.log(res);
                 axios
                     .patch(
                         'http://114.108.176.85:8080/users/information',
