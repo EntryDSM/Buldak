@@ -1,9 +1,14 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { CreateCompanyRequest } from '../models/teachers/requests';
 import { createImage } from '../api/default';
+import useModal from './useModal';
+import { createCompany, editCompany } from '../api/teachers';
+import { useRouter } from 'next/router';
 
 const useCompany = () => {
     const FD = new FormData();
+    const { selectModal } = useModal();
+    const router = useRouter();
     const [companyInfo, setCompanyInfo] = useState<CreateCompanyRequest>({
         profile_image_path: '',
         company_name: '',
@@ -49,6 +54,21 @@ const useCompany = () => {
             });
         });
     };
+    const onClickCreateCompany = async () => {
+        try {
+            await uploadImage(FD);
+            createCompany(companyInfo).then((res) => {
+                selectModal({ modal: 'SUCCESS', password: res.password });
+            });
+        } catch (err) {}
+    };
+    const onClickEditCompany = (id: string) => {
+        try {
+            editCompany(id, companyInfo).then(() => {
+                router.reload();
+            });
+        } catch (err) {}
+    };
     return {
         onChangeInputValue,
         onChangeRadioValue,
@@ -56,8 +76,8 @@ const useCompany = () => {
         setCompanyInfo,
         onChangeFile,
         profilePreview,
-        uploadImage,
-        FD,
+        onClickCreateCompany,
+        onClickEditCompany,
     };
 };
 export default useCompany;
