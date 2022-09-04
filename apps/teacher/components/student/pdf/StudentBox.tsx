@@ -1,23 +1,28 @@
 import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
 import { PdfStudentListProps } from './index';
-
+import Image from 'next/image';
+import { plusIcon, minusIcon } from '../../../assets/index';
 
 interface Props {
     item: PdfStudentListProps;
-    onClick : (student_id : string) => void;
+    onClick: (student_id: string) => void;
 }
 
-const StudentBox = ({ item,onClick }: Props) => {
+const StudentBox = ({ item, onClick }: Props) => {
     return (
         <_Wrapper key={item.student_id}>
             <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
             <_Name>{item.name}</_Name>
             <_StudentNumber>{item.gcn}</_StudentNumber>
             {item.isSelected ? (
-                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>-</_ChangeStatusButton>
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={minusIcon} />
+                </_ChangeStatusButton>
             ) : (
-                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>+</_ChangeStatusButton>
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={plusIcon} />
+                </_ChangeStatusButton>
             )}
         </_Wrapper>
     );
@@ -51,6 +56,10 @@ const _ChangeStatusButton = styled.button`
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.main};
+    background-color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.main};
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

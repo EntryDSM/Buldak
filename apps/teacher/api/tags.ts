@@ -4,7 +4,8 @@ import { instance } from './axios';
 
 export const searchTag = async (name: string, isMajor: boolean): Promise<SearchTagResponse> => {
     try {
-        return await instance.get(`/tags?name=${name}&isMajor=${isMajor}`);
+        const response = await instance.get(`/tags?name=${name}&isMajor=${isMajor}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
