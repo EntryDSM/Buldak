@@ -50,7 +50,9 @@ function EditInfo() {
             <_Wrapper>
                 <_Header>
                     <p>기업 정보 변경</p>
-                    <Image src={closeIcon} alt="닫기" />
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
