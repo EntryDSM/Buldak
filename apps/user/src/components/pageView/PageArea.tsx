@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { TestArr } from '../../constant/elements';
+import { TestArr } from '../../constants/elements';
 import Header from './Header';
 import Pages from './Pages';
 
