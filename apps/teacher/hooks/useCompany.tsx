@@ -55,7 +55,7 @@ const useCompany = () => {
                 ...companyInfo,
                 profile_image_path: image.image_path,
             }).then((res) => {
-                selectModal({ modal: 'SUCCESS', password: res.password });
+                selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
             });
             console.log(companyInfo);
         } catch (err) {}

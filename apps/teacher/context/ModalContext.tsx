@@ -11,7 +11,8 @@ export type selectedModalType =
     | 'USER_DETAIL'
     | 'COMPANY_DETAIL'
     | 'PATCH_COMPANY_DETAIL'
-    | 'SUCCESS'
+    | 'RESET_SUCCESS'
+    | 'CREATE_SUCCESS'
     | '';
 
 type SelectModalAction = {
@@ -26,6 +27,7 @@ type ActionTypes = SelectModalAction;
 const modalDefaultValue: ModalState = {
     selectedModal: '',
     selectedId: undefined,
+    password: undefined,
 };
 
 export const ModalStateContext = createContext<ModalState>(modalDefaultValue);
@@ -50,6 +52,7 @@ const modalReducer = (state: ModalState, action: ActionTypes): ModalState => {
                 ...state,
                 selectedModal: action.selected,
                 selectedId: action.id,
+                password: action.password,
             };
         default:
             return state;
