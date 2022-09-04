@@ -6,19 +6,18 @@ import { createCompany, editCompany } from '../api/teachers';
 import { useRouter } from 'next/router';
 
 const useCompany = () => {
-    const FD = new FormData();
     const { selectModal } = useModal();
     const router = useRouter();
     const [companyInfo, setCompanyInfo] = useState<CreateCompanyRequest>({
+        name: '',
+        email: '',
+        phone_number: '',
+        location: '',
         profile_image_path: '',
         company_name: '',
-        location: '',
+        is_mou: true,
         start_at: '',
         end_at: '',
-        name: '',
-        phone_number: '',
-        email: '',
-        is_mou: true,
     });
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setCompanyInfo({
@@ -33,7 +32,9 @@ const useCompany = () => {
         });
     };
     const [profilePreview, setProfilePreview] = useState('');
+    const [file, setFile] = useState<File>();
     const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
@@ -41,25 +42,22 @@ const useCompany = () => {
                 const base64 = reader.result;
                 if (base64) setProfilePreview(base64.toString());
             };
-            FD.append('file', e.target.files[0]);
+            setFile(e.target.files[0]);
         }
-    };
-    const uploadImage = (body: FormData) => {
-        createImage('PROFILE', {
-            file: body,
-        }).then((res) => {
-            setCompanyInfo({
-                ...companyInfo,
-                profile_image_path: res.image_path,
-            });
-        });
     };
     const onClickCreateCompany = async () => {
         try {
-            await uploadImage(FD);
-            createCompany(companyInfo).then((res) => {
+            const FD = new FormData();
+            if (file !== undefined) FD.append('file', file);
+            const image = await createImage('PROFILE', FD);
+            console.log(image);
+            createCompany({
+                ...companyInfo,
+                profile_image_path: image.image_path,
+            }).then((res) => {
                 selectModal({ modal: 'SUCCESS', password: res.password });
             });
+            console.log(companyInfo);
         } catch (err) {}
     };
     const onClickEditCompany = (id: string) => {
@@ -67,7 +65,9 @@ const useCompany = () => {
             editCompany(id, companyInfo).then(() => {
                 router.reload();
             });
-        } catch (err) {}
+        } catch (err) {
+            console.log(err);
+        }
     };
     return {
         onChangeInputValue,
