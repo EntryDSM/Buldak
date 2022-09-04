@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import DoubleText from '../template/DoubleText';
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import ArrIntoJsx from '../../constant/arrIntoJsx';
+import ArrIntoJsx from '../../constants/arrIntoJsx';
 
 interface PagesProps {
     zoom: number;
