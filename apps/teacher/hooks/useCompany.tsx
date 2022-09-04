@@ -18,7 +18,9 @@ const useCompany = () => {
         is_mou: true,
         start_at: '',
         end_at: '',
+        company_id: '',
     });
+    useEffect(() => console.log(companyInfo), [companyInfo]);
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setCompanyInfo({
             ...companyInfo,
