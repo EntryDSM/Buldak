@@ -1,11 +1,15 @@
 import styled from '@emotion/styled';
+import PageArea from '../pageView/PageArea';
 
 function ShowPage() {
-    return <Background></Background>;
+    return (
+        <PageArea />
+    );
+
 }
 
 const Background = styled.div`
-    background-color: ${({ theme }) => theme.color.gray100};
+    background-color: #fbfbfb;
     width: 100%;
     padding-left: 350px;
     height: 100vh;

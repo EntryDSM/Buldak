@@ -73,7 +73,7 @@ const Background = styled.div`
     z-index: 6;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
