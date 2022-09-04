@@ -17,7 +17,7 @@ const ManagementCompany = () => {
     const { data: companyList } = useQuery(['searchCompany', searchName], () =>
         searchCompany(searchName),
     );
-    const dobounceSearchName = (e: ChangeEvent<HTMLInputElement>) => {
+    const debounceSearchName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
         debounce(() => setSearchName(e.target.value), 500);
     };
@@ -28,7 +28,7 @@ const ManagementCompany = () => {
             <SideBar managementType="company" />
             <ManageCompany
                 searchName={name}
-                onChangeSearchName={dobounceSearchName}
+                onChangeSearchName={debounceSearchName}
                 companyList={companyList?.company_element_list || []}
             />
         </_Wrapper>
@@ -42,7 +42,6 @@ export async function getServerSideProps() {
 }
 
 export default ManagementCompany;
-
 const _Wrapper = styled.section`
     display: flex;
 `;

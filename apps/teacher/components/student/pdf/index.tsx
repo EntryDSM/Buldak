@@ -10,6 +10,8 @@ import { StudentInfo } from '../../../models/teachers/responses';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../../../api/teachers';
 import { FilterProps } from '../../../pages';
+import Image from 'next/image';
+import { closeIcon } from '../../../assets';
 
 export interface PdfStudentListProps extends StudentInfo {
     isSelected: boolean;
@@ -20,9 +22,9 @@ const PdfModal = () => {
     const [allSelected, setAllSelected] = useState(false);
     const [studentList, setStudentList] = useState<PdfStudentListProps[]>([]);
     const [filter, setFilter] = useState<FilterProps>({
-        grade: '1',
-        classNum: '1',
-        docStatus: 'PUBLIC',
+        grade: null,
+        classNum: null,
+        docStatus: null,
     });
     const onClick = () => {
         setAllSelected(!allSelected);
@@ -84,7 +86,9 @@ const PdfModal = () => {
             <_Box>
                 <_Header>
                     <h1 className="title">pdf 출력</h1>
-                    <button className="xButton" onClick={closeModal}></button>
+                    <button className="xButton" onClick={closeModal}>
+                        <Image src={closeIcon} />
+                    </button>
                 </_Header>
                 <_Content>
                     <Filter />
@@ -142,7 +146,6 @@ const _Header = styled.header`
         margin-left: auto;
         width: 34px;
         height: 34px;
-        background-color: ${({ theme }) => theme.color.gray300};
     }
 `;
 const _Content = styled.div`

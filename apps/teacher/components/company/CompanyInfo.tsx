@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
@@ -7,33 +6,20 @@ import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getCompanyDetail } from '../../api/teachers';
-import { GetCompanyDetailResponse } from '../../models/teachers/responses';
+import Image from 'next/image';
+import { closeIcon } from '../../assets';
 
 function CompanyInfo() {
-    const [companyInfo, setCompanyInfo] = useState<GetCompanyDetailResponse>({
-        location: '',
-        phone_number: '',
-        profile_image_path: '',
-        name: '',
-        company_id: '',
-        company_name: '',
-        email: '',
-        start_at: '',
-        end_at: '',
-    });
     const { closeModal, selectModal, selectedId } = useModal();
     const { data } = useQuery(['getCompanyDetail', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
-    useEffect(() => {
-        data !== undefined && setCompanyInfo(data);
-    }, [data]);
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
                 <_Header>
                     <p>기업 정보</p>
-                    <div id="exit" />
+                    <Image src={closeIcon} alt="닫기" />
                 </_Header>
                 <_Body>
                     <_SideWrapper>
@@ -41,12 +27,15 @@ function CompanyInfo() {
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        {inputArray.map((item) => (
-                            <_InputWrapper key={item.name}>
-                                <p>{item.title}</p>
-                                <div>{companyInfo[item.name]}</div>
-                            </_InputWrapper>
-                        ))}
+                        {inputArray.map(
+                            (item) =>
+                                data !== undefined && (
+                                    <_InputWrapper key={item.name}>
+                                        <p>{item.title}</p>
+                                        <div>{data[item.name]}</div>
+                                    </_InputWrapper>
+                                ),
+                        )}
                         <_ButtonsWrapper>
                             <Button
                                 width={200}
@@ -94,7 +83,7 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px;
     > p {
         font-weight: 500;
         font-size: 22px;
