@@ -1,5 +1,5 @@
 export interface CreateImageRequest {
-    image: FormData;
+    file: FormData;
 }
 export interface CreateImageResponse {
     image_path: string;

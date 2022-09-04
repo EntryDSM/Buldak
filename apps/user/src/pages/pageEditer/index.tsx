@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import Header from '../../components/header/Header';
-import AddElement from '../../components/pageEditer/AddElement';
+import AddElement from '../../components/pageEditer/AddElementModal';
 import AsideBar from '../../components/pageEditer/AsideBar';
 import ShowPage from '../../components/pageEditer/ShowPage';
 
@@ -10,18 +10,11 @@ function PageEditer() {
     return (
         <>
             <Header />
-            <PageEditerBox>
-                <AsideBar setElementDropDown={setElementDropDown} />
-                <ShowPage />
-                {elementDropDown && <AddElement setElementDropDown={setElementDropDown} />}
-            </PageEditerBox>
+            <AsideBar setElementDropDown={setElementDropDown} />
+            <ShowPage />
+            {elementDropDown && <AddElement setElementDropDown={setElementDropDown} />}
         </>
     );
 }
-
-const PageEditerBox = styled.div`
-    display: flex;
-    padding-top: 70px;
-`;
 
 export default PageEditer;
