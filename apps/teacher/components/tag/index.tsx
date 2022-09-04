@@ -3,6 +3,7 @@ import { Tag } from '@packages/ui';
 import { createTag, deleteTag } from '../../api/tags';
 import { TagInfo } from '../../models/tags/responses';
 import AddInputButton from '../AddInputButton';
+import { useRouter } from 'next/router';
 
 type listType = '태그' | '대표분야';
 
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
+    const router = useRouter();
     const onClickCreateTag = (name: string) => {
         createTag({
             name,
@@ -22,8 +24,10 @@ const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
         });
     };
     // todo : 태그에 onClick Event 연결하기
-    const onClickDeleteTag = () => {
-        deleteTag('');
+    const onClickDeleteTag = (id: string) => {
+        deleteTag(id).then(() => {
+            router.reload();
+        });
     };
     return (
         <_Wrapper>
@@ -33,7 +37,11 @@ const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
             </_FlexWrapper>
             <_List>
                 {list.length !== 0 ? (
-                    list.map((info) => <Tag color="bdblue" tagName={info.name} />)
+                    list.map((info) => (
+                        <div onClick={() => onClickDeleteTag(info.tag_id)}>
+                            <Tag color="bdblue" tagName={info.name} />
+                        </div>
+                    ))
                 ) : (
                     <EmptyArea listType={listType} />
                 )}
