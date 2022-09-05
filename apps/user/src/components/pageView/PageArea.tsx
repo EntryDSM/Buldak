@@ -7,8 +7,7 @@ import Pages from './Pages';
 function PageArea() {
     const [zoom, setZoom] = useState<number>(100);
     const [templateArr, setTemplateArr] = useState(TestArr);
-    useEffect(()=>{
-    },[])
+    useEffect(() => {}, []);
     const zoomUp = () => {
         if (zoom < 200) setZoom(zoom + 10);
     };
@@ -18,7 +17,7 @@ function PageArea() {
     return (
         <Background>
             <Header zoom={zoom} zoomUp={zoomUp} zoomDown={zoomDown} />
-            <Pages zoom={zoom} templateArr={TestArr} />
+            <Pages zoom={zoom} templateArr={templateArr} />
         </Background>
     );
 }
@@ -26,6 +25,8 @@ function PageArea() {
 const Background = styled.div`
     background-color: #fbfbfb;
     width: 100%;
+    overflow-x: hidden;
+    padding-left:350px;
     display: flex;
     flex-direction: column;
     align-items: center;
