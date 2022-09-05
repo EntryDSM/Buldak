@@ -13,7 +13,6 @@ interface Props {
 export default function DefProfile({ name, email, github, phone, url }: Props) {
     return (
         <Wrapper>
-            <FeedBack />
             <ImgBox>
                 <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
             </ImgBox>
