@@ -23,6 +23,8 @@ export default function ImageText({ url, bottomText, topText }: Props) {
 }
 
 const Wrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     height: 360px;
     border: 1px solid black;

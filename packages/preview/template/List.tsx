@@ -30,6 +30,8 @@ const EachList = ({ value }: { value: string }) => {
 };
 
 const Wrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     min-height: 285px;
     border: 1px solid black;

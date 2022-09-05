@@ -86,6 +86,7 @@ export default function DoubleText({
 }
 
 const TotalWrapper = styled.div`
+    position:relative;
     width: 1000px;
     display: flex;
     flex-direction: row;

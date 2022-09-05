@@ -11,6 +11,7 @@ export default function RowLine({height}: Props) {
 }
 
 const Wrapper = styled.div`
+    position:relative;
     width: 1000px;
     height: 44px;
     border: 1px solid black;

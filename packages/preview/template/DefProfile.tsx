@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react'
+import FeedBack from './FeedBack';
 
 interface Props {
     name: string;
@@ -12,6 +13,7 @@ interface Props {
 export default function DefProfile({ name, email, github, phone, url }: Props) {
     return (
         <Wrapper>
+            <FeedBack />
             <ImgBox>
                 <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
             </ImgBox>
@@ -29,6 +31,8 @@ export default function DefProfile({ name, email, github, phone, url }: Props) {
 }
 
 const Wrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     height: 285px;
     padding: 47px 95px;

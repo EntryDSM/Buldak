@@ -51,6 +51,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position:relative;
     > div {
         min-height: 44px;
         width: 1000px;
