@@ -96,7 +96,6 @@ const TotalWrapper = styled.div`
 const Wrapper = styled.div`
     width: 1000px;
     min-height: 96px;
-    border: 1px solid black;
     > #top {
         min-height: 52px;
         width: 100%;

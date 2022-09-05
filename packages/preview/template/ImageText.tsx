@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NoImg } from '../assets';
 
 interface Props {
     url: string;
@@ -9,7 +10,7 @@ interface Props {
 export default function ImageText({ url, bottomText, topText }: Props) {
     return (
         <Wrapper>
-            <Img url={url}></Img>
+            <Img url={url}>{!url && <NoImg />}</Img>
             <TextBox>
                 <div id="top">
                     <p>{topText}</p>
@@ -27,7 +28,6 @@ const Wrapper = styled.div`
 
     width: 1000px;
     height: 360px;
-    border: 1px solid black;
     padding: 20px 50px;
     display: flex;
     flex-direction: row;
@@ -41,7 +41,10 @@ const Img = styled.div<{ url: string }>`
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
-    border: 1px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:${({theme})=>theme.color.gray300}
 `;
 const TextBox = styled.div`
     width: 430px;

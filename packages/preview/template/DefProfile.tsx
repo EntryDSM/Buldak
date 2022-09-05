@@ -59,7 +59,7 @@ const Wrapper = styled.div`
     a {
         color: ${({ theme }) => theme.color.skyblue};
         text-decoration: underline;
-        margin-left:8px;
+        margin-left: 8px;
     }
 `;
 
@@ -71,10 +71,14 @@ const ImgBox = styled.div`
     justify-content: center;
     border: 5px solid ${({ theme }) => theme.color.gray300};
     border-radius: 100px;
+
     > #img {
         width: 150px;
         height: 150px;
         border-radius: 100px;
-        border: 1px solid black;
+        background-color: ${({ theme }) => theme.color.gray300};
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;
