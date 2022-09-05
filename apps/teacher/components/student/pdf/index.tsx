@@ -6,12 +6,13 @@ import { Button, CheckBox } from '@packages/ui';
 import { useEffect, useMemo, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { GetStudentListResponse, StudentInfo } from '../../../models/teachers/responses';
+import { StudentInfo } from '../../../models/teachers/responses';
 import { FilterProps } from '../../../pages';
 import Image from 'next/image';
 import { closeIcon } from '../../../assets';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../../../api/teachers';
+import { pdfArrow } from '@apps/teacher/assets/index';
 
 export interface PdfStudentListProps extends StudentInfo {
     isSelected: boolean;
@@ -102,7 +103,7 @@ const PdfModal = () => {
                             isSelectedBox={false}
                             onClick={onClickChangeSelectedStatus}
                         />
-                        <div className="arrow" />
+                        <Image src={pdfArrow} alt="화살표" />
                         <StudentList
                             studentList={lists.selectedStudentList}
                             isSelectedBox={true}
