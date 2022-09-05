@@ -12,7 +12,7 @@ import Image from 'next/image';
 import { closeIcon } from '../../../assets';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../../../api/teachers';
-import { pdfArrow } from '@apps/teacher/assets/index';
+import { pdfArrow } from '@apps/teacher/assets';
 
 export interface PdfStudentListProps extends StudentInfo {
     isSelected: boolean;
