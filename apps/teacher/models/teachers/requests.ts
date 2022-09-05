@@ -11,6 +11,7 @@ export interface EditCompanyInfoRequest {
     company_name: string;
     start_at: string;
     end_at: string;
+    company_id?: string;
 }
 export interface CreateCompanyRequest extends EditCompanyInfoRequest {
     is_mou?: boolean;

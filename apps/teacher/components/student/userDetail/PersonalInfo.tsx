@@ -1,6 +1,14 @@
 import styled from '@emotion/styled';
 import { Tag } from '@packages/ui';
-import { GetStudentDetailResponse } from '../../../models/teachers/responses';
+
+interface Props {
+    name: string;
+    gcn: number;
+    email: string;
+    phone_number: string;
+    major_tag_name: string;
+    my_skill_name_list: string[];
+}
 
 const PersonalInfo = ({
     name,
@@ -9,7 +17,7 @@ const PersonalInfo = ({
     phone_number,
     major_tag_name,
     my_skill_name_list,
-}: GetStudentDetailResponse) => {
+}: Props) => {
     return (
         <_PersonalInfo>
             <ul>

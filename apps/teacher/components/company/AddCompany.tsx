@@ -3,19 +3,16 @@ import { Button, RadioButtonBox, TextBox } from '@packages/ui';
 import { useEffect } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
-import useModal from '../../hooks/useModal';
 import Calendar from '../Calendar';
 import useCalendar from '../../hooks/useCalendar';
 import { plusBlackIcon } from '../../assets';
 import Image from 'next/image';
 import useCompany from '../../hooks/useCompany';
 import { translateObjectToString } from '../../utils/translate';
-import { createCompany } from '../../api/teachers';
 
 const companyTypeRadioOptions = ['MOU', 'NON_MOU'];
 
 function AddCompany() {
-    const { selectModal } = useModal();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
     const {
         setCompanyInfo,
@@ -24,17 +21,8 @@ function AddCompany() {
         onChangeInputValue,
         onChangeFile,
         profilePreview,
-        uploadImage,
-        FD,
+        onClickCreateCompany,
     } = useCompany();
-    const onClickCreateCompany = async () => {
-        try {
-            await uploadImage(FD);
-            createCompany(companyInfo).then((res) => {
-                selectModal({ modal: 'SUCCESS', password: res.password });
-            });
-        } catch (err) {}
-    };
     useEffect(() => {
         if (selectedDate.startDate && selectedDate.endDate)
             setCompanyInfo({

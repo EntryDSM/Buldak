@@ -7,11 +7,12 @@ import { useEffect, useMemo, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { StudentInfo } from '../../../models/teachers/responses';
-import { useQuery } from 'react-query';
-import { getStudentList } from '../../../api/teachers';
 import { FilterProps } from '../../../pages';
 import Image from 'next/image';
 import { closeIcon } from '../../../assets';
+import { useQuery } from 'react-query';
+import { getStudentList } from '../../../api/teachers';
+import { pdfArrow } from '@apps/teacher/assets';
 
 export interface PdfStudentListProps extends StudentInfo {
     isSelected: boolean;
@@ -26,13 +27,13 @@ const PdfModal = () => {
         classNum: null,
         docStatus: null,
     });
+    const { data } = useQuery(
+        ['getStudentLists', filter.docStatus, filter.classNum, filter.grade],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    );
     const onClick = () => {
         setAllSelected(!allSelected);
     };
-    const { data } = useQuery(
-        ['getStudentList', filter.grade, filter.classNum, filter.docStatus],
-        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
-    );
     useEffect(() => {
         setStudentList(
             data?.student_list.map((i) => {
@@ -42,13 +43,13 @@ const PdfModal = () => {
                 };
             }) || [],
         );
-    }, [data, studentList]);
+    }, [data]);
     useEffect(() => {
         if (allSelected)
             setStudentList(
-                studentList.map((stduentInfo) => {
+                studentList.map((studentInfo) => {
                     return {
-                        ...stduentInfo,
+                        ...studentInfo,
                         isSelected: true,
                     };
                 }),
@@ -102,7 +103,7 @@ const PdfModal = () => {
                             isSelectedBox={false}
                             onClick={onClickChangeSelectedStatus}
                         />
-                        <div className="arrow" />
+                        <Image src={pdfArrow} alt="화살표" />
                         <StudentList
                             studentList={lists.selectedStudentList}
                             isSelectedBox={true}

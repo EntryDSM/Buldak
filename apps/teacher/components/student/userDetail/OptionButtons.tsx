@@ -3,17 +3,23 @@ import { Button } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { deletePublicDocument } from '../../../api/documents';
 import { deleteStudent } from '../../../api/teachers';
+import { useRouter } from 'next/router';
 
 interface Props {
     student_id: string;
 }
 
 const OptionButtons = ({ student_id }: Props) => {
+    const router = useRouter();
     const onClickDeleteStudent = () => {
-        deleteStudent(student_id);
+        deleteStudent(student_id).then(() => {
+            router.reload();
+        });
     };
     const onClickDeletePublicDocument = () => {
-        deletePublicDocument(student_id);
+        deletePublicDocument(student_id).then(() => {
+            router.reload();
+        });
     };
     return (
         <_Wrapper>
