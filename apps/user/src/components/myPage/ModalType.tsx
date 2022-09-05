@@ -5,16 +5,16 @@ interface PropsType {
     title: string;
 }
 
-function ModalExplain({ title }: PropsType) {
+function ModalType({ title }: PropsType) {
     return (
-        <ModalExplainBox>
+        <_ModalTypeWrapper>
             {title}
             <Close />
-        </ModalExplainBox>
+        </_ModalTypeWrapper>
     );
 }
 
-const ModalExplainBox = styled.div`
+const _ModalTypeWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,4 +26,4 @@ const ModalExplainBox = styled.div`
     padding: 0px 25px;
 `;
 
-export default ModalExplain;
+export default ModalType;

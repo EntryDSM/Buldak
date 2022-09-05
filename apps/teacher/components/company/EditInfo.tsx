@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, inputArray } from '../constant';
+import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
+import { useQuery } from 'react-query';
+import { getCompanyDetail } from '../../api/teachers';
+import { GetCompanyDetailResponse } from '../../models/teachers/responses';
 
 function EditInfo() {
-    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
+    const { closeModal, selectedId } = useModal();
+    const [companyInfo, setCompanyInfo] = useState<GetCompanyDetailResponse>({
         profile_image_path: '',
         company_name: '',
         location: '',
@@ -16,8 +20,12 @@ function EditInfo() {
         name: '',
         phone_number: '',
         email: '',
+        company_id: '',
     });
-    const { closeModal } = useModal();
+    const { data } = useQuery(['getCompanyDetail', selectedId], () => getCompanyDetail(selectedId));
+    useEffect(() => {
+        data !== undefined && setCompanyInfo(data);
+    }, [data]);
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>

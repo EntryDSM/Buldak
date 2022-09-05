@@ -2,6 +2,8 @@ import React, { createContext, Dispatch, FunctionComponent, useReducer } from 'r
 
 interface ModalState {
     selectedModal: selectedModalType;
+    selectedId?: string;
+    password?: string;
 }
 
 export type selectedModalType =
@@ -15,12 +17,15 @@ export type selectedModalType =
 type SelectModalAction = {
     type: 'SELECT';
     selected: selectedModalType;
+    id?: string;
+    password?: string;
 };
 
 type ActionTypes = SelectModalAction;
 
 const modalDefaultValue: ModalState = {
     selectedModal: '',
+    selectedId: undefined,
 };
 
 export const ModalStateContext = createContext<ModalState>(modalDefaultValue);
@@ -44,6 +49,7 @@ const modalReducer = (state: ModalState, action: ActionTypes): ModalState => {
             return {
                 ...state,
                 selectedModal: action.selected,
+                selectedId: action.id,
             };
         default:
             return state;

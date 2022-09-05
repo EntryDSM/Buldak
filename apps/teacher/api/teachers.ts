@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
 import {
     AddFeedbackRequest,
     CreateCompanyRequest,
@@ -15,49 +17,52 @@ import { instance } from './axios';
 
 export const deleteStudent = async (student_id: string) => {
     try {
-        await instance.delete(`/student/${student_id}`);
+        await instance.delete(`/teachers/student/${student_id}`);
     } catch (err) {
         throw err;
     }
 };
 export const addFeedback = async (student_id: string, body: AddFeedbackRequest) => {
     try {
-        await instance.post(`/teacher/feedback/${student_id}`, body);
+        await instance.post(`/teachers/feedback/${student_id}`, body);
     } catch (err) {
         throw err;
     }
 };
 export const deleteCompany = async (company_id: string) => {
     try {
-        await instance.delete(`/teacher/company/${company_id}`);
+        await instance.delete(`/teachers/company/${company_id}`);
     } catch (err) {
         throw err;
     }
 };
 export const getCompanyDetail = async (company_id: string): Promise<GetCompanyDetailResponse> => {
     try {
-        return await instance.get(`/teacher/company/${company_id}`);
+        const response = await instance.get(`/teachers/company/${company_id}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
 };
 export const editCompany = async (company_id: string, body: EditCompanyInfoRequest) => {
     try {
-        await instance.patch(`teacher/company/${company_id}`, body);
+        await instance.patch(`teachers/company/${company_id}`, body);
     } catch (err) {
         throw err;
     }
 };
 export const searchCompany = async (name: string): Promise<SearchCompanyResponse> => {
     try {
-        return await instance.get(`/teacher/company/search?name=${name}`);
+        const response = await instance.get(`teachers/company/search?name=${name}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
 };
 export const getStudentDetail = async (student_id: string): Promise<GetStudentDetailResponse> => {
     try {
-        return await instance.get(`/teacher/student/${student_id}`);
+        const response = await instance.get(`/teachers/student/${student_id}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
@@ -66,21 +71,32 @@ export const resetCompanyPassword = async (
     company_id: string,
 ): Promise<ResetCompanyPasswordResponse> => {
     try {
-        return await instance.patch(`/teacher/company/reset/${company_id}`);
+        const response = await instance.patch(`/teachers/company/reset/${company_id}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
 };
-export const getStudentList = async (): Promise<GetStudentListResponse> => {
+export const getStudentList = async (
+    grade: GradeValue,
+    classNum: ClassNumValue,
+    docStatus: DocumentStatusValue,
+): Promise<GetStudentListResponse> => {
     try {
-        return await instance.get('/teachers/student/list');
+        const response = await instance.get(
+            `/teachers/student/list?${`grade=${grade || ''}`}${`&classNum=${
+                classNum || ''
+            }`}${`&docStatus=${docStatus || ''}`}`,
+        );
+        return response.data;
     } catch (err) {
         throw err;
     }
 };
 export const createCompany = async (body: CreateCompanyRequest): Promise<CreateCompanyResponse> => {
     try {
-        return await instance.post('/teachers/company', body);
+        const response = await instance.post('/teachers/company', body);
+        return response.data;
     } catch (err) {
         throw err;
     }

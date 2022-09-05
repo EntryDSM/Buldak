@@ -1,27 +1,27 @@
-export const gradeDropdownItems = ['전체', '1학년', '2학년', '3학년'];
-export const classRoomDropdownItems = ['전체', '1반', '2반', '3반', '4반'];
-export const documentStatusDropdownItems = ['전체', '미제출', '요청 대기 문서', '공개 문서'];
+export type GradeDropdownType = '전체' | '1학년' | '2학년' | '3학년';
+export const gradeDropdownItems: GradeDropdownType[] = ['전체', '1학년', '2학년', '3학년'];
+
+export type ClassNumDropdownType = '전체' | '1반' | '2반' | '3반' | '4반';
+export const classRoomDropdownItems: ClassNumDropdownType[] = ['전체', '1반', '2반', '3반', '4반'];
+
+export type DocumentStatusDropdownType = '전체' | '미제출' | '요청 대기 문서' | '공개 문서';
+export const documentStatusDropdownItems: DocumentStatusDropdownType[] = [
+    '전체',
+    '미제출',
+    '요청 대기 문서',
+    '공개 문서',
+];
 
 export type keyValue =
+    | 'name'
+    | 'email'
+    | 'phone_number'
+    | 'location'
     | 'profile_image_path'
     | 'company_name'
-    | 'location'
     | 'start_at'
     | 'end_at'
-    | 'name'
-    | 'phone_number'
-    | 'email';
-
-export interface CompanyInfo {
-    profile_image_path: string;
-    company_name: string;
-    location: string;
-    start_at: string;
-    end_at: string;
-    name: string;
-    phone_number: string;
-    email: string;
-}
+    | 'is_mou';
 
 export interface CompanyInputArray {
     title: string;

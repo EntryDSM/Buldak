@@ -3,110 +3,107 @@ import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
 import { Button, CheckBox } from '@packages/ui';
-import {useMemo, useState} from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import {StudentInfo} from "../../../models/teachers/responses";
+import { StudentInfo } from '../../../models/teachers/responses';
+import { useQuery } from 'react-query';
+import { getStudentList } from '../../../api/teachers';
+import { FilterProps } from '../../../pages';
 
 export interface PdfStudentListProps extends StudentInfo {
-    isSelected : boolean;
+    isSelected: boolean;
 }
 
-export const dummyData: PdfStudentListProps[] =  [
-    {
-        student_id: '550e8400-e29b-41d4-a716-446655440000',
-        name: '강석현',
-        gcn: 1406,
-        profile_image_path: 'https://~~~~~~~~~~~',
-        feedback_status: true,
-        public_status: false,
-        is_submitted: true,
-        isSelected: false
-    },
-    {
-        student_id: '550e8400-e29b-41d4-a716-446655440001',
-        name: '김의찬',
-        gcn: 1406,
-        profile_image_path: 'https://~~~~~~~~~~~',
-        feedback_status: true,
-        public_status: false,
-        is_submitted: true,
-        isSelected: false
-    },
-    {
-        student_id: '550e8400-e29b-41d4-a716-446655440002',
-        name: '조상현',
-        gcn: 1406,
-        profile_image_path: '',
-        feedback_status: true,
-        public_status: false,
-        is_submitted: true,
-        isSelected: false
-    },
-    {
-        student_id: '550e8400-e29b-41d4-a716-446655440003',
-        name: '이경수',
-        gcn: 1406,
-        profile_image_path: '',
-        feedback_status: true,
-        public_status: false,
-        is_submitted: true,
-        isSelected: false
-    },
-    {
-        student_id: '550e8400-e29b-41d4-a716-446655440004',
-        name: '손지원',
-        gcn: 1406,
-        profile_image_path: '',
-        feedback_status: true,
-        public_status: false,
-        is_submitted: true,
-        isSelected: false
-    }
-    ]
-
 const PdfModal = () => {
-    const [clicked, setClicked] = useState(false);
-    const [studentList,setStudentList] = useState<PdfStudentListProps[]>(dummyData)
-    const onClick = () => {
-        setClicked(!clicked);
-    };
     const { closeModal } = useModal();
-    const onClickChangeSelectedStatus = (student_id:string) => {
-        const newList = studentList.map(item => {
-            if(item.student_id === student_id) return {
-                ...item,
-                isSelected : !item.isSelected
-            }
-            return item
-        })
-        setStudentList(newList)
-    }
+    const [allSelected, setAllSelected] = useState(false);
+    const [studentList, setStudentList] = useState<PdfStudentListProps[]>([]);
+    const [filter, setFilter] = useState<FilterProps>({
+        grade: '1',
+        classNum: '1',
+        docStatus: 'PUBLIC',
+    });
+    const onClick = () => {
+        setAllSelected(!allSelected);
+    };
+    const { data } = useQuery(
+        ['getStudentList', filter.grade, filter.classNum, filter.docStatus],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    );
+    useEffect(() => {
+        setStudentList(
+            data?.student_list.map((i) => {
+                return {
+                    ...i,
+                    isSelected: false,
+                };
+            }) || [],
+        );
+    }, [data, studentList]);
+    useEffect(() => {
+        if (allSelected)
+            setStudentList(
+                studentList.map((stduentInfo) => {
+                    return {
+                        ...stduentInfo,
+                        isSelected: true,
+                    };
+                }),
+            );
+        else
+            setStudentList(
+                studentList.map((studentInfo) => {
+                    return {
+                        ...studentInfo,
+                        isSelected: false,
+                    };
+                }),
+            );
+    }, [allSelected]);
+    const onClickChangeSelectedStatus = (student_id: string) => {
+        const newList = studentList.map((item) => {
+            if (item.student_id === student_id)
+                return {
+                    ...item,
+                    isSelected: !item.isSelected,
+                };
+            return item;
+        });
+        setStudentList(newList);
+    };
     const lists = useMemo(
         () => ({
-                selectedStudentList : studentList.filter(item => item.isSelected),
-                notSelectedStudentList : studentList.filter(item => !item.isSelected)
-            }),[studentList]
-    )
+            selectedStudentList: studentList.filter((item) => item.isSelected),
+            notSelectedStudentList: studentList.filter((item) => !item.isSelected),
+        }),
+        [studentList],
+    );
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
                 <_Header>
                     <h1 className="title">pdf 출력</h1>
-                    <button className="xButton" onClick={closeModal}>
-                        x
-                    </button>
+                    <button className="xButton" onClick={closeModal}></button>
                 </_Header>
                 <_Content>
                     <Filter />
                     <_SelectAll>
                         <p className="summary">전체선택</p>
-                        <CheckBox isChecked={clicked} onClick={onClick} />
+                        <CheckBox isChecked={allSelected} onClick={onClick} />
                     </_SelectAll>
                     <_StudentArea>
-                        <StudentList studentList={lists.notSelectedStudentList} isSelectedBox={false} onClick={onClickChangeSelectedStatus} />
+                        <StudentList
+                            studentList={lists.notSelectedStudentList}
+                            isSelectedBox={false}
+                            onClick={onClickChangeSelectedStatus}
+                        />
                         <div className="arrow" />
-                        <StudentList studentList={lists.selectedStudentList} isSelectedBox={true} onClick={onClickChangeSelectedStatus} />
+                        <StudentList
+                            studentList={lists.selectedStudentList}
+                            isSelectedBox={true}
+                            onClick={onClickChangeSelectedStatus}
+                        />
                     </_StudentArea>
                     <Button
                         width={130}
