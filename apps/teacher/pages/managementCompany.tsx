@@ -8,7 +8,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { searchCompany } from '../api/teachers';
 import { ChangeEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
-import SuccessModal from '../components/company/SuccessModal';
+import SuccessModal from '../components/modals/SuccessModal';
 
 const ManagementCompany = () => {
     const { selectedModal, password } = useModal();

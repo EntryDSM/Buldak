@@ -13,7 +13,7 @@ function SuccessModal({ type, password }: Props) {
     const { closeModal } = useModal();
 
     return (
-        <ModalWrapper closeModal={closeModal}>
+        <ModalWrapper>
             <_Wrapper>
                 <_Header>
                     <p>알림</p>
