@@ -10,8 +10,8 @@ import { FilterProps } from '../../../pages';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../../../api/teachers';
-import { pdfArrow } from '@apps/teacher/assets';
-import ModalHeader from '../../modals/ModalHeader';
+import ModalHeader from '../ModalHeader';
+import { pdfArrow } from '../../../assets';
 
 export interface PdfStudentListProps extends StudentInfo {
     isSelected: boolean;

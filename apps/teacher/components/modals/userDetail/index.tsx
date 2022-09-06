@@ -7,7 +7,7 @@ import useModal from '../../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getStudentDetail } from '../../../api/teachers';
 import { previewDocument } from '../../../api/documents';
-import ModalHeader from '../../modals/ModalHeader';
+import ModalHeader from '../ModalHeader';
 
 const UserDetail = () => {
     const { selectedId } = useModal();

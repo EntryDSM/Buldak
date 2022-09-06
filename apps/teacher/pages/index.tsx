@@ -1,8 +1,8 @@
 import SideBar from '../components/SideBar';
 import ManageStudent from '../components/student';
 import styled from '@emotion/styled';
-import UserDetail from '../components/student/userDetail';
-import PdfModal from '../components/student/pdf';
+import UserDetail from '../components/modals/userDetail';
+import PdfModal from '../components/modals/pdf';
 import useModal from '../hooks/useModal';
 import { useState } from 'react';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
