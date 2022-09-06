@@ -8,7 +8,6 @@ import { useQuery } from 'react-query';
 import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
 import Image from 'next/image';
 import { closeIcon } from '../../assets';
-import { useRouter } from 'next/router';
 
 function CompanyInfo() {
     const { closeModal, selectModal, selectedId } = useModal();
@@ -35,6 +34,7 @@ function CompanyInfo() {
                 </_Header>
                 <_Body>
                     <_SideWrapper>
+                        <_CompanyType>{data?.is_mou ? 'MOU' : 'NON_MOU'}</_CompanyType>
                         <Profile type="image" src={data?.profile_image_path} />
                         <p>프로필 이미지</p>
                     </_SideWrapper>
@@ -144,7 +144,7 @@ const _SideWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 65px;
+    margin-top: 55px;
     > p {
         margin-top: 20px;
 
@@ -154,7 +154,12 @@ const _SideWrapper = styled.div`
         color: ${({ theme }) => theme.color.black};
     }
 `;
-
+const _CompanyType = styled.strong`
+    font-size: 20px;
+    color: ${({ theme }) => theme.color.main};
+    font-weight: bold;
+    margin-bottom: 9px;
+`;
 const _InputsWrapper = styled.div`
     width: 510px;
     height: 404px;
