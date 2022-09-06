@@ -12,23 +12,29 @@ interface Props {
 
 const SideBar = ({ managementType }: Props) => {
     return (
-        <_Wrapper>
-            <Profile type="school" width="90px" height="90px" />
-            <_AccountType>선생님 계정</_AccountType>
-            <_Navigation>
-                {navArray.map((item) => (
-                    <Link href={item.url} key={item.managementType}>
-                        <_NavButton isSelected={managementType === item.managementType}>
-                            <Image src={item.image} width={26} height={26} />
-                            <p className="managementType">{item.summary}</p>
-                        </_NavButton>
-                    </Link>
-                ))}
-            </_Navigation>
-        </_Wrapper>
+        <_Margin>
+            <_Wrapper>
+                <Profile type="school" width="90px" height="90px" />
+                <_AccountType>선생님 계정</_AccountType>
+                <_Navigation>
+                    {navArray.map((item) => (
+                        <Link href={item.url} key={item.managementType}>
+                            <_NavButton isSelected={managementType === item.managementType}>
+                                <Image src={item.image} width={26} height={26} />
+                                <p className="managementType">{item.summary}</p>
+                            </_NavButton>
+                        </Link>
+                    ))}
+                </_Navigation>
+            </_Wrapper>
+        </_Margin>
     );
 };
 export default SideBar;
+
+const _Margin = styled.div`
+    margin-right: 360px;
+`;
 
 const _Wrapper = styled.aside`
     width: 360px;
@@ -38,6 +44,7 @@ const _Wrapper = styled.aside`
     flex-direction: column;
     align-items: center;
     padding: 40px;
+    position: fixed;
 `;
 
 const _AccountType = styled.strong`

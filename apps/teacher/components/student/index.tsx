@@ -26,7 +26,7 @@ const ManageStudent: React.FC<Props> = ({ studentList, filter, setFilter }) => {
             <Filter filter={filter} setFilter={setFilter} />
             <_List>
                 {studentList.map((studentInfo) => (
-                    <StudentBox studentInfo={studentInfo} />
+                    <StudentBox studentInfo={studentInfo} key={studentInfo.student_id} />
                 ))}
             </_List>
         </_Wrapper>

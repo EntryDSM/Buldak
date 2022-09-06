@@ -8,16 +8,17 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { searchCompany } from '../api/teachers';
 import { ChangeEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
+import SuccessModal from '../components/company/SuccessModal';
 
 const ManagementCompany = () => {
-    const { selectedModal } = useModal();
+    const { selectedModal, password } = useModal();
     const [name, setName] = useState('');
     const [searchName, setSearchName] = useState(name);
     const { debounce } = useDebounce();
     const { data: companyList } = useQuery(['searchCompany', searchName], () =>
         searchCompany(searchName),
     );
-    const dobounceSearchName = (e: ChangeEvent<HTMLInputElement>) => {
+    const debounceSearchName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
         debounce(() => setSearchName(e.target.value), 500);
     };
@@ -25,10 +26,13 @@ const ManagementCompany = () => {
         <_Wrapper>
             {selectedModal === 'PATCH_COMPANY_DETAIL' && <EditInfo />}
             {selectedModal === 'COMPANY_DETAIL' && <CompanyInfo />}
+            {selectedModal === 'RESET_SUCCESS' && (
+                <SuccessModal type="RESET_PASSWORD" password={password || ''} />
+            )}
             <SideBar managementType="company" />
             <ManageCompany
                 searchName={name}
-                onChangeSearchName={dobounceSearchName}
+                onChangeSearchName={debounceSearchName}
                 companyList={companyList?.company_element_list || []}
             />
         </_Wrapper>
@@ -42,7 +46,6 @@ export async function getServerSideProps() {
 }
 
 export default ManagementCompany;
-
 const _Wrapper = styled.section`
     display: flex;
 `;
