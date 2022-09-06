@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import ModalWrapper from '../ModalWrapper';
 import useModal from '../../hooks/useModal';
 import Image from 'next/image';
-import { closeIcon } from '../../assets';
+import { closeIcon, successCheckIcon } from '../../assets';
 
 interface Props {
     type: 'RESET_PASSWORD' | 'ADD_COMPANY';
@@ -22,7 +22,9 @@ function SuccessModal({ type, password }: Props) {
                     </button>
                 </_Header>
                 <_Center>
-                    <div id="check-icon" />
+                    <div id="check-icon">
+                        <Image src={successCheckIcon} alt="성공" />
+                    </div>
                     <div id="border" />
                     <strong>
                         {type === 'RESET_PASSWORD' ? '비밀번호 초기화' : '기업 추가'}에 성공했습니다
@@ -84,8 +86,10 @@ const _Center = styled.div`
     > #check-icon {
         width: 90px;
         height: 90px;
-        border: 1px solid black;
         background-color: ${({ theme }) => theme.color.skyblue};
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 100px;
     }
     > #border {
