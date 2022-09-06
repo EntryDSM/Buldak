@@ -18,7 +18,7 @@ function PageArea() {
     return (
         <Background>
             <Header zoom={zoom} zoomUp={zoomUp} zoomDown={zoomDown} />
-            <Pages zoom={zoom} templateArr={TestArr} />
+            <Pages zoom={zoom} templateArr={templateArr} />
         </Background>
     );
 }

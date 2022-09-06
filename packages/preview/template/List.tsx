@@ -30,9 +30,10 @@ const EachList = ({ value }: { value: string }) => {
 };
 
 const Wrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     min-height: 285px;
-    border: 1px solid black;
     padding: 41px 96px;
     > p {
         font-size: 22px;
@@ -41,7 +42,6 @@ const Wrapper = styled.div`
 `;
 
 const TextBox = styled.div`
-    border: 1px solid black;
     width: 800px;
     min-height: 165px;
 `;

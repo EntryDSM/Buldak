@@ -47,6 +47,8 @@ export default function Link({ href1, href2, href3, grade }: Props) {
 }
 
 const TotalWrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     min-height: 44px;
     display: flex;

@@ -47,10 +47,10 @@ export default function Text({ grade, text1, text2, text3 }: Props) {
 const Wrapper = styled.div`
     width: 1000px;
     min-height: 44px;
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position:relative;
     > div {
         min-height: 44px;
         width: 1000px;
