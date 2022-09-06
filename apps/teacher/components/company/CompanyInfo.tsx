@@ -6,11 +6,10 @@ import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
-import Image from 'next/image';
-import { closeIcon } from '../../assets';
+import ModalHeader from '../modals/ModalHeader';
 
 function CompanyInfo() {
-    const { closeModal, selectModal, selectedId } = useModal();
+    const { selectModal, selectedId } = useModal();
     const { data } = useQuery(['getCompanyDetail', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
@@ -24,14 +23,9 @@ function CompanyInfo() {
         });
     };
     return (
-        <ModalWrapper closeModal={closeModal}>
+        <ModalWrapper>
             <_Wrapper>
-                <_Header>
-                    <p>기업 정보</p>
-                    <button onClick={closeModal}>
-                        <Image src={closeIcon} alt="닫기" />
-                    </button>
-                </_Header>
+                <ModalHeader title="기업 정보" />
                 <_Body>
                     <_SideWrapper>
                         <_CompanyType>{data?.is_mou ? 'MOU' : 'NON_MOU'}</_CompanyType>
@@ -87,29 +81,6 @@ const _Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-const _Header = styled.div`
-    width: 100%;
-    height: 68px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    > p {
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 28px;
-        color: ${({ theme }) => theme.color.gray700};
-    }
-    > #exit {
-        width: 34px;
-        height: 34px;
-        border: 1px solid black;
-    }
-`;
-
 const _InputWrapper = styled.div`
     width: 510px;
     height: 40px;
