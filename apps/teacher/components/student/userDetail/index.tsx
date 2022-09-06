@@ -7,6 +7,8 @@ import useModal from '../../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getStudentDetail } from '../../../api/teachers';
 import { previewDocument } from '../../../api/documents';
+import Image from 'next/image';
+import { closeIcon } from '../../../assets';
 
 const UserDetail = () => {
     const { closeModal, selectedId } = useModal();
@@ -19,7 +21,12 @@ const UserDetail = () => {
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
-                <_Title>학생 정보 조회</_Title>
+                <_TitleWrapper>
+                    <_Title>학생 정보 조회</_Title>
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
+                </_TitleWrapper>
                 <_FlexWrapper>
                     <PersonalInfo
                         name={studentDetail?.name || '이걸 보시면'}
@@ -46,14 +53,21 @@ const _Box = styled.div`
     height: 500px;
     background-color: ${({ theme }) => theme.color.white};
     border-radius: 10px;
-    padding: 30px 35px;
+    padding: 20px 0;
+`;
+const _TitleWrapper = styled.div`
+    margin-bottom: 14px;
+    padding: 0 25px 20px 25px;
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
+    display: flex;
+    justify-content: space-between;
 `;
 const _Title = styled.h2`
     font-size: 25px;
     line-height: 31px;
-    color: ${({ theme }) => theme.color.black};
-    margin-bottom: 14px;
+    color: ${({ theme }) => theme.color.gray700};
 `;
 const _FlexWrapper = styled.div`
     display: flex;
+    padding: 0 35px;
 `;
