@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { TestArr } from '../../constant/elements';
+import { TestArr } from '../../constants/elements';
 import Header from './Header';
 import Pages from './Pages';
 
@@ -18,7 +18,7 @@ function PageArea() {
     return (
         <Background>
             <Header zoom={zoom} zoomUp={zoomUp} zoomDown={zoomDown} />
-            <Pages zoom={zoom} templateArr={TestArr} />
+            <Pages zoom={zoom} templateArr={templateArr} />
         </Background>
     );
 }
