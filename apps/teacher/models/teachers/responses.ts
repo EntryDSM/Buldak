@@ -13,6 +13,7 @@ export interface GetStudentListResponse {
 export interface GetStudentDetailResponse {
     name: string;
     gcn: number;
+    profile_image_path: string;
     email: string;
     phone_number: string;
     major_tag_name: string;

@@ -6,3 +6,4 @@ export { default as tagIcon } from './tagIcon.svg';
 export { default as companyIcon } from './compnayIcon.svg';
 export { default as plusBlackIcon } from './plusBlackIcon.svg';
 export { default as closeIcon } from './close.svg';
+export { default as pdfArrow } from './pdfArrow.svg';

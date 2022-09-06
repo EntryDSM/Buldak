@@ -5,21 +5,33 @@ import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
-import { getCompanyDetail } from '../../api/teachers';
+import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
 import Image from 'next/image';
 import { closeIcon } from '../../assets';
+import { useRouter } from 'next/router';
 
 function CompanyInfo() {
     const { closeModal, selectModal, selectedId } = useModal();
     const { data } = useQuery(['getCompanyDetail', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
+    const onClickResetPassword = () => {
+        resetCompanyPassword(selectedId || '').then((res) => {
+            console.log(res);
+            selectModal({
+                modal: 'RESET_SUCCESS',
+                password: res.password,
+            });
+        });
+    };
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
                 <_Header>
                     <p>기업 정보</p>
-                    <Image src={closeIcon} alt="닫기" />
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Body>
                     <_SideWrapper>
@@ -44,6 +56,7 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
+                                onClick={onClickResetPassword}
                             />
                             <Button
                                 width={200}

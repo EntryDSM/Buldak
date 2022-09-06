@@ -11,9 +11,11 @@ import { previewDocument } from '../../../api/documents';
 const UserDetail = () => {
     const { closeModal, selectedId } = useModal();
     const { data: studentDetail } = useQuery(['getStudentDetail', selectedId], () =>
-        getStudentDetail(selectedId),
+        getStudentDetail(selectedId || ''),
     );
-    const { data: preview } = useQuery(['getDocumentPreview'], () => previewDocument(selectedId));
+    const { data: preview } = useQuery(['getDocumentPreview'], () =>
+        previewDocument(selectedId || ''),
+    );
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
@@ -27,8 +29,11 @@ const UserDetail = () => {
                         my_skill_name_list={studentDetail?.my_skill_name_list || []}
                         phone_number={studentDetail?.phone_number || ''}
                     />
-                    <DocumentList documentPreview={preview?.document_list || []} />
-                    <OptionButtons student_id={selectedId} />
+                    <DocumentList
+                        documentPreview={preview?.document_list || []}
+                        profileImagePath={studentDetail?.profile_image_path || ''}
+                    />
+                    <OptionButtons student_id={selectedId || ''} />
                 </_FlexWrapper>
             </_Box>
         </ModalWrapper>

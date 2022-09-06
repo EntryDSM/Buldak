@@ -18,7 +18,9 @@ const useCompany = () => {
         is_mou: true,
         start_at: '',
         end_at: '',
+        company_id: '',
     });
+    useEffect(() => console.log(companyInfo), [companyInfo]);
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setCompanyInfo({
             ...companyInfo,
@@ -50,14 +52,12 @@ const useCompany = () => {
             const FD = new FormData();
             if (file !== undefined) FD.append('file', file);
             const image = await createImage('PROFILE', FD);
-            console.log(image);
             createCompany({
                 ...companyInfo,
                 profile_image_path: image.image_path,
             }).then((res) => {
-                selectModal({ modal: 'SUCCESS', password: res.password });
+                selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
             });
-            console.log(companyInfo);
         } catch (err) {}
     };
     const onClickEditCompany = (id: string) => {

@@ -1,4 +1,4 @@
-import * as T from '@packages/preview/index'
+import * as T from '@packages/preview';
 
 function ArrIntoJsx(value: any) {
     switch (value.tagType) {

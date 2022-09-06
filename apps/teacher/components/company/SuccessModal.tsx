@@ -1,8 +1,15 @@
 import styled from '@emotion/styled';
 import ModalWrapper from '../ModalWrapper';
 import useModal from '../../hooks/useModal';
+import Image from 'next/image';
+import { closeIcon } from '../../assets';
 
-function SuccessModal() {
+interface Props {
+    type: 'RESET_PASSWORD' | 'ADD_COMPANY';
+    password: string;
+}
+
+function SuccessModal({ type, password }: Props) {
     const { closeModal } = useModal();
 
     return (
@@ -10,14 +17,19 @@ function SuccessModal() {
             <_Wrapper>
                 <_Header>
                     <p>알림</p>
-                    <div id="exit"></div>
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Center>
                     <div id="check-icon" />
                     <div id="border" />
-                    <strong>기업 추가에 성공했습니다</strong>
-                    <p id="id">발급된 아이디 : 123123</p>
-                    <p id="pwd">발급된 비밀번호 : 123123</p>
+                    <strong>
+                        {type === 'RESET_PASSWORD' ? '비밀번호 초기화' : '기업 추가'}에 성공했습니다
+                    </strong>
+                    <p id="pwd">
+                        {type === 'RESET_PASSWORD' ? '초기화' : '발급'}된 비밀번호 : {password}
+                    </p>
                 </_Center>
             </_Wrapper>
         </ModalWrapper>
@@ -28,7 +40,7 @@ export default SuccessModal;
 
 const _Wrapper = styled.div`
     width: 650px;
-    height: 500px;
+    height: 400px;
     background: ${({ theme }) => theme.color.white};
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
@@ -57,10 +69,12 @@ const _Header = styled.div`
         height: 30px;
         border: 1px solid black;
     }
+    > button {
+        cursor: pointer;
+    }
 `;
 
 const _Center = styled.div`
-    width: 325px;
     height: 260px;
     margin-top: 76px;
     display: flex;

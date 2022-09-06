@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react'
+import FeedBack from './FeedBack';
 
 interface Props {
     name: string;
@@ -29,6 +30,8 @@ export default function DefProfile({ name, email, github, phone, url }: Props) {
 }
 
 const Wrapper = styled.div`
+    position:relative;
+
     width: 1000px;
     height: 285px;
     padding: 47px 95px;
@@ -55,7 +58,7 @@ const Wrapper = styled.div`
     a {
         color: ${({ theme }) => theme.color.skyblue};
         text-decoration: underline;
-        margin-left:8px;
+        margin-left: 8px;
     }
 `;
 
@@ -67,10 +70,14 @@ const ImgBox = styled.div`
     justify-content: center;
     border: 5px solid ${({ theme }) => theme.color.gray300};
     border-radius: 100px;
+
     > #img {
         width: 150px;
         height: 150px;
         border-radius: 100px;
-        border: 1px solid black;
+        background-color: ${({ theme }) => theme.color.gray300};
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;

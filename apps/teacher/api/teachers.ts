@@ -71,7 +71,7 @@ export const resetCompanyPassword = async (
     company_id: string,
 ): Promise<ResetCompanyPasswordResponse> => {
     try {
-        const response = await instance.patch(`/teachers/company/reset/${company_id}`);
+        const response = await instance.patch(`/teachers/company/change/${company_id}`);
         return response.data;
     } catch (err) {
         throw err;

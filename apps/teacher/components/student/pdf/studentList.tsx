@@ -4,11 +4,11 @@ import { PdfStudentListProps } from '.';
 
 interface Props {
     isSelectedBox: boolean;
-    studentList : PdfStudentListProps[]
-    onClick : (student_id : string) => void;
+    studentList: PdfStudentListProps[];
+    onClick: (student_id: string) => void;
 }
 
-const StudentList = ({ isSelectedBox,studentList,onClick}: Props) => {
+const StudentList = ({ isSelectedBox, studentList, onClick }: Props) => {
     return (
         <_Wrapper>
             {isSelectedBox && studentList.length === 0 ? (
@@ -16,7 +16,9 @@ const StudentList = ({ isSelectedBox,studentList,onClick}: Props) => {
                     <em className="empty">학생을 추가해주세요</em>
                 </_IsEmpty>
             ) : (
-                studentList.map((item) => <StudentBox onClick={onClick} item={item} />)
+                studentList.map((item) => (
+                    <StudentBox onClick={onClick} item={item} key={item.student_id} />
+                ))
             )}
         </_Wrapper>
     );

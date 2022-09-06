@@ -8,9 +8,10 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { searchCompany } from '../api/teachers';
 import { ChangeEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
+import SuccessModal from '../components/company/SuccessModal';
 
 const ManagementCompany = () => {
-    const { selectedModal } = useModal();
+    const { selectedModal, password } = useModal();
     const [name, setName] = useState('');
     const [searchName, setSearchName] = useState(name);
     const { debounce } = useDebounce();
@@ -25,6 +26,9 @@ const ManagementCompany = () => {
         <_Wrapper>
             {selectedModal === 'PATCH_COMPANY_DETAIL' && <EditInfo />}
             {selectedModal === 'COMPANY_DETAIL' && <CompanyInfo />}
+            {selectedModal === 'RESET_SUCCESS' && (
+                <SuccessModal type="RESET_PASSWORD" password={password || ''} />
+            )}
             <SideBar managementType="company" />
             <ManageCompany
                 searchName={name}

@@ -10,19 +10,26 @@ import { getCompanyDetail } from '../../api/teachers';
 import useCompany from '../../hooks/useCompany';
 import Calendar from '../Calendar';
 import useCalendar from '../../hooks/useCalendar';
-import { translateObjectToString } from '../../utils/translate';
+import { translateObjectToString, translateStringToObject } from '../../utils/translate';
 import { closeIcon } from '../../assets';
 import Image from 'next/image';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
     const { companyInfo, setCompanyInfo, onChangeInputValue, onClickEditCompany } = useCompany();
-    const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
+    const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
+        useCalendar();
     const { data } = useQuery(['getCompanyDetails', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
     useEffect(() => {
-        data !== undefined && setCompanyInfo(data);
+        if (data !== undefined) {
+            setCompanyInfo(data);
+            setSelectedDate({
+                startDate: translateStringToObject(data.start_at),
+                endDate: translateStringToObject(data.end_at),
+            });
+        }
     }, [data]);
     useEffect(() => {
         if (selectedDate.startDate && selectedDate.endDate)
@@ -43,7 +50,9 @@ function EditInfo() {
             <_Wrapper>
                 <_Header>
                     <p>기업 정보 변경</p>
-                    <Image src={closeIcon} alt="닫기" />
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
