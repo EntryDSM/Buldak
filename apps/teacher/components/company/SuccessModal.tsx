@@ -66,14 +66,6 @@ const _Header = styled.div`
         line-height: 25px;
         color: ${({ theme }) => theme.color.gray700};
     }
-    > #exit {
-        width: 30px;
-        height: 30px;
-        border: 1px solid black;
-    }
-    > button {
-        cursor: pointer;
-    }
 `;
 
 const _Center = styled.div`
