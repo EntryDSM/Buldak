@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import ArrIntoJsx from '../../constants/arrIntoJsx';
 
 interface PagesProps {
@@ -32,14 +32,12 @@ function Page({ children }: PageProps) {
 export default Pages;
 
 const PagesWrapper = styled.div`
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
 `;
 
 const PageWrapper = styled.div`
-    border: 1px solid black;
     width: 530px;
     min-height: 700px;
     height: fit-content;
