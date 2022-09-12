@@ -5,6 +5,10 @@ interface Props {
     url: string;
     topText: string;
     bottomText: string;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function TextImage({ url, bottomText, topText }: Props) {

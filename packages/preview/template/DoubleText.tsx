@@ -8,6 +8,10 @@ interface Props {
     topText3?: string;
     bottomText3?: string;
     grade: number;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function DoubleText({

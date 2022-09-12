@@ -5,6 +5,10 @@ interface Props {
     text2?: string;
     text3?: string;
     grade: number;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function Text({ grade, text1, text2, text3 }: Props) {

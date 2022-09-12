@@ -2,6 +2,10 @@ import styled from '@emotion/styled';
 
 interface Props {
     height:number;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function RowLine({height}: Props) {

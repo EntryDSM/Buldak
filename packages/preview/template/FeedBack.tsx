@@ -9,7 +9,7 @@ interface FeedProps {
 }
 
 function FeedBack({ isRead = false, feedInfo }: FeedProps) {
-    const [isReadFeed, setIsRead] = useState(isRead);
+    const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
     return (
         <>
@@ -26,7 +26,12 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
                         <p>{feedInfo}</p>
                         <div id="confirm">
                             <p>확인</p>
-                            <CheckBox isChecked={isReadFeed} onClick={() => {setIsRead(!isReadFeed)}} />
+                            <CheckBox
+                                isChecked={isApplyFeed}
+                                onClick={() => {
+                                    setIsApply(!isApplyFeed);
+                                }}
+                            />
                         </div>
                     </CenterWrapper>
                 </Wrapper>
@@ -37,7 +42,7 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
                 onClick={() => {
                     setFeedOpen(true);
                 }}>
-                {!feedOpen ? !isReadFeed ? <Icon.Icon_NewFeed /> : <Icon.Icon_ReadFeed /> : <></>}
+                {!feedOpen ? !isApplyFeed ? <Icon.Icon_NewFeed /> : <Icon.Icon_ReadFeed /> : <></>}
             </FeedWrapper>
         </>
     );
@@ -46,6 +51,8 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
 export default FeedBack;
 
 const Wrapper = styled.div`
+    zoom: 190%;
+    border-radius: 5px;
     filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.15));
     position: absolute;
     width: 400px;
@@ -93,6 +100,7 @@ const CenterWrapper = styled.div`
 `;
 
 const FeedWrapper = styled.div`
+    zoom: 190%;
     cursor: pointer;
     position: absolute;
     right: -44px;

@@ -5,6 +5,10 @@ interface Props {
     href1: string;
     href2?: string;
     href3?: string;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function Link({ href1, href2, href3, grade }: Props) {

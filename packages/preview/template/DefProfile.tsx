@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React from 'react'
+import React, { useEffect } from 'react';
 import FeedBack from './FeedBack';
 
 interface Props {
@@ -8,11 +8,21 @@ interface Props {
     github: string;
     phone: string;
     url: string;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    };
 }
 
-export default function DefProfile({ name, email, github, phone, url }: Props) {
+export default function DefProfile({ name, email, github, phone, url, feedback }: Props) {
+    useEffect(()=>{
+        console.log(feedback)
+    },[])
     return (
         <Wrapper>
+            {feedback?.feedInfo && (
+                <FeedBack feedInfo={feedback.feedInfo} isRead={!!feedback.isRead} />
+            )}
             <ImgBox>
                 <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
             </ImgBox>
@@ -30,7 +40,7 @@ export default function DefProfile({ name, email, github, phone, url }: Props) {
 }
 
 const Wrapper = styled.div`
-    position:relative;
+    position: relative;
 
     width: 1000px;
     height: 285px;

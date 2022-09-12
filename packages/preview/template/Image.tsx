@@ -6,6 +6,10 @@ interface Props {
     url2?: string;
     url3?: string;
     grade: number;
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function Image({ url1, url2 = '', url3 = '', grade }: Props) {

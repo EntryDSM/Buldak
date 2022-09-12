@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 interface Props {
     title: string;
     list: string[];
+    feedback?: {
+        feedInfo: string;
+        isRead: boolean;
+    },
 }
 
 export default function List({ title, list }: Props) {
