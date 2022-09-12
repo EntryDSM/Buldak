@@ -7,9 +7,13 @@ import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
 import ModalHeader from '../modals/ModalHeader';
+import useCompany from '../../hooks/useCompany';
+import { companyIcon } from '../../assets';
+import { useEffect } from 'react';
 
 function CompanyInfo() {
     const { selectModal, selectedId } = useModal();
+    const { onChangeFile, profilePreview, setCompanyInfo } = useCompany();
     const { data } = useQuery(['getCompanyDetail', selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
@@ -22,6 +26,9 @@ function CompanyInfo() {
             });
         });
     };
+    useEffect(() => {
+        data !== undefined && setCompanyInfo(data);
+    }, [data]);
     return (
         <ModalWrapper>
             <_Wrapper>
@@ -29,8 +36,18 @@ function CompanyInfo() {
                 <_Body>
                     <_SideWrapper>
                         <_CompanyType>{data?.is_mou ? 'MOU' : 'NON_MOU'}</_CompanyType>
-                        <Profile type="image" src={data?.profile_image_path} />
-                        <p>프로필 이미지</p>
+                        {profilePreview ? (
+                            <img src={profilePreview} alt="preview" className="preview" />
+                        ) : (
+                            <Profile type="image" src={data?.profile_image_path || companyIcon} />
+                        )}
+                        <p>프로필 변경</p>
+                        <input
+                            type="file"
+                            onChange={onChangeFile}
+                            name="companyInfo"
+                            id={data?.company_id}
+                        />
                     </_SideWrapper>
                     <_InputsWrapper>
                         {inputArray.map(
@@ -109,20 +126,35 @@ const _Body = styled.div`
     height: 480px;
 `;
 
-const _SideWrapper = styled.div`
+const _SideWrapper = styled.label`
     width: 310px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 55px;
+    > input[type='file'] {
+        width: 0;
+        height: 0;
+    }
     > p {
         margin-top: 20px;
-
+        border-bottom: 1px solid black;
         font-weight: 500;
         font-size: 20px;
         line-height: 25px;
         color: ${({ theme }) => theme.color.black};
+    }
+    > img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 100px;
+    }
+    > .default {
+        background-color: ${({ theme }) => theme.color.skyblue};
+        border: 1px solid;
     }
 `;
 const _CompanyType = styled.strong`

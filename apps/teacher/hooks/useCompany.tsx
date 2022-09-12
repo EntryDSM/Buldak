@@ -45,26 +45,42 @@ const useCompany = () => {
                 if (base64) setProfilePreview(base64.toString());
             };
             setFile(e.target.files[0]);
+            if (e.target.name === 'companyInfo' && e.target.files[0]) {
+                console.log(e.target.files[0]);
+                onClickEditCompany(e.target.id, e.target.files[0]);
+            }
         }
     };
     const onClickCreateCompany = async () => {
         try {
-            const FD = new FormData();
-            if (file !== undefined) FD.append('file', file);
-            const image = await createImage('PROFILE', FD);
-            createCompany({
-                ...companyInfo,
-                profile_image_path: image.image_path,
-            }).then((res) => {
-                selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
-            });
+            if (file !== undefined) {
+                const FD = new FormData();
+                FD.append('file', file);
+                const image = await createImage('PROFILE', FD);
+                createCompany({
+                    ...companyInfo,
+                    profile_image_path: image.image_path,
+                }).then((res) => {
+                    selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
+                });
+            }
         } catch (err) {}
     };
-    const onClickEditCompany = (id: string) => {
+    const onClickEditCompany = async (id: string, file?: File) => {
         try {
-            editCompany(id, companyInfo).then(() => {
-                router.reload();
-            });
+            if (file !== undefined) {
+                const FD = new FormData();
+                FD.append('file', file);
+                await createImage('PROFILE', FD).then((res) => {
+                    editCompany(id, {
+                        ...companyInfo,
+                        profile_image_path: res.image_path,
+                    });
+                });
+            } else
+                editCompany(id, companyInfo).then(() => {
+                    // router.reload();
+                });
         } catch (err) {
             console.log(err);
         }
