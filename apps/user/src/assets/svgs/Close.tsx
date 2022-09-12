@@ -1,6 +1,9 @@
-function Close() {
+import { HTMLAttributes } from 'react';
+
+function Close(props: HTMLAttributes<HTMLOrSVGElement>) {
     return (
         <svg
+            {...props}
             width="19"
             height="20"
             viewBox="0 0 19 20"
