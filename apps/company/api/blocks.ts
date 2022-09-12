@@ -1,11 +1,10 @@
 import { instance } from './axios';
-import { StudentsListResponseType,SearchProps } from '../types/index';
+import { StudentsListResponseType } from '../types/index';
 
-export const readAllBlocks = async ():Promise<StudentsListResponseType> => {
+export const readAllBlocks = async (): Promise<StudentsListResponseType> => {
     try {
         return (await instance.get(`/companies/students`)).data;
-    } catch (err){
+    } catch (err) {
         throw err;
     }
 };
-

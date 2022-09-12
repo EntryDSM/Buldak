@@ -23,6 +23,8 @@ function PageArea() {
 
 const Background = styled.div`
     background-color: #fbfbfb;
+    min-height: 100vh;
+    height: fit-content;
     width: 100%;
     min-height:100vh;
     height:fit-content;
