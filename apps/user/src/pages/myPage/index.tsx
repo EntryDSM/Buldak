@@ -6,10 +6,22 @@ import EditProfile from '../../components/myPage/EditProfile';
 import MoveBtn from '../../components/myPage/MoveBox';
 import AddTagModal from '../../components/myPage/AddTagModal';
 import Technology from '../../components/myPage/Technology';
+import { NextPage } from 'next';
+import { useMutation, useQuery } from 'react-query';
+import { profileImageConverter } from '../../utils/api/userConverter';
+import { myInfomationResource } from '../../utils/api/userResouce';
 
-function MyPage() {
+export type UploadImage = {
+    file: File;
+    thumbnail: string;
+    type: string;
+};
+
+const MyPage: NextPage<{}> = (data) => {
+    console.log(data);
     const [openAddTagModal, setOpenAddTagModal] = useState<boolean>(false);
     const [openRepresentativeModal, setOpenRepresentativeModal] = useState<boolean>(false);
+
     return (
         <_MyPageBox>
             <div>
@@ -23,13 +35,15 @@ function MyPage() {
                 </_UnderWrapper>
                 <MoveBtn />
             </div>
-            {openAddTagModal && <RepresentativeModal setOpenAddTagModal={setOpenAddTagModal} />}
             {openRepresentativeModal && (
-                <AddTagModal setOpenRepresentativeModal={setOpenRepresentativeModal} />
+                <RepresentativeModal setOpenRepresentativeModal={setOpenRepresentativeModal} />
             )}
+            {openAddTagModal && <AddTagModal setOpenAddTagModal={setOpenAddTagModal} />}
         </_MyPageBox>
     );
-}
+};
+
+MyPage.requiredResources = [myInfomationResource];
 
 const _MyPageBox = styled.div`
     display: flex;
