@@ -34,8 +34,12 @@ const StageTwo = () => {
                     },
                 },
             )
-            .then((res) => {
-                console.log(res);
+            .catch(() => {
+                alert('전화번호가 잘못됐습니다');
+                setCertified({
+                    phoneNumber: '',
+                    certifiedNumber: '',
+                });
             });
     };
 

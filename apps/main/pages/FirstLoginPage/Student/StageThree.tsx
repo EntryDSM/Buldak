@@ -9,7 +9,7 @@ import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [imageSrc, setImageSrc] = useState<string>('');
+    const [imageSrc, setImageSrc] = useState<string>(PlusBlack);
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
         const formData = new FormData();
@@ -28,7 +28,7 @@ const StageThree = () => {
                 .then((res) => {
                     setImageSrc(res.data.image_path);
                 })
-                .catch((res) => {
+                .catch(() => {
                     alert('사진을 선택해주세요');
                 });
         }
@@ -83,7 +83,9 @@ const StageThree = () => {
                             style={{ display: 'none' }}
                             onChange={onChangeImg}
                         />
-                        <Image src={PlusBlack} />
+                        <S._FirstLoginProfileBox>
+                            <Image src={imageSrc} />
+                        </S._FirstLoginProfileBox>
                     </S._FirstLoginSetProfile>
                     <S._FirstLoginProfileText
                         onClick={() => {

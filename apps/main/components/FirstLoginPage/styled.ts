@@ -93,27 +93,31 @@ export const _FirstLoginCitation = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
     color: ${({ theme }) => theme.color.white};
-
     width: 90px;
     height: 44px;
     background: ${({ theme }) => theme.color.skyblue};
     border-radius: 4px;
-
     margin-left: 10px;
 `;
 
 export const _FirstLoginSetProfile = styled.button`
     cursor: pointer;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 100px;
     height: 100px;
     border: 1.42857px dashed ${({ theme }) => theme.color.black};
+    border-radius: 7142.86px;
+`;
+
+export const _FirstLoginProfileBox = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
     border-radius: 7142.86px;
 `;
 
