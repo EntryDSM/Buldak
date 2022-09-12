@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { Frame, ExitButton } from '../../assets/editmodal';
-import { Button } from '../../../../packages/ui';
+import { Button, TextBox } from '../../../../packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import { onlineManager } from 'react-query';
 
@@ -34,9 +34,10 @@ function EditModal({ closeModal }: Props) {
                         <Button
                             width={380}
                             height={46}
-                            borderColor={theme.color.main}
+                            borderColor={theme.color.skyblue}
+                            borderWidth={2}
                             content="정보 변경"
-                            fontColor={theme.color.main}
+                            fontColor={theme.color.skyblue}
                             backgroundColor={theme.color.white}
                         />
                     </Body>
@@ -48,14 +49,20 @@ function EditModal({ closeModal }: Props) {
 
 interface InputProps {
     title?: string;
-    placeholder?: string;
 }
 
-function Input({ title, placeholder }: InputProps) {
+function Input({ title }: InputProps) {
     return (
         <InputWrapper>
             <h1>{title}</h1>
-            <div className="temp"></div>
+            <div className="temp">
+                <TextBox
+                    type="text"
+                    width={380}
+                    correct={true}
+                    placeholder={title + '을(를) 입력해주세요'}
+                />
+            </div>
         </InputWrapper>
     );
 }
@@ -63,9 +70,10 @@ function Input({ title, placeholder }: InputProps) {
 export default EditModal;
 
 const Background = styled.div`
+    z-index: 6;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
@@ -74,6 +82,7 @@ const Background = styled.div`
 `;
 
 const Box = styled.div`
+    z-index: 6;
     width: 750px;
     height: 600px;
     background-color: ${({ theme }) => theme.color.white};
@@ -173,6 +182,5 @@ const InputWrapper = styled.div`
     .temp {
         width: 380px;
         height: 44px;
-        border: 1px solid black;
     }
 `;

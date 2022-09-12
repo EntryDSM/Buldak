@@ -3,8 +3,17 @@ import CompanyBox from './Box';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import Link from 'next/link';
+import { ChangeEvent } from 'react';
+import { CompanyInfo } from '../../models/teachers/responses';
+import { plusWhite } from '../../assets';
 
-const ManageCompany = () => {
+interface Props {
+    searchName: string;
+    onChangeSearchName: (e: ChangeEvent<HTMLInputElement>) => void;
+    companyList: CompanyInfo[];
+}
+
+const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) => {
     return (
         <_Wrapper>
             <_Title>전체 기업 리스트</_Title>
@@ -14,14 +23,22 @@ const ManageCompany = () => {
                     type="search"
                     correct={true}
                     placeholder="검색어를 입력해주세요"
+                    value={searchName}
+                    onChange={onChangeSearchName}
                 />
                 <Link href={'/add-company'}>
-                    <Button width={44} height={44} backgroundColor={theme.color.skyblue} />
+                    <Button
+                        width={44}
+                        height={44}
+                        backgroundColor={theme.color.skyblue}
+                        image={plusWhite}
+                    />
                 </Link>
             </_FlexWrapper>
             <_List>
-                <CompanyBox />
-                <CompanyBox />
+                {companyList.map((info) => (
+                    <CompanyBox companyInfo={info} key={info.company_id} />
+                ))}
             </_List>
         </_Wrapper>
     );

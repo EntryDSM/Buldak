@@ -68,7 +68,8 @@ const TextBoxWrapper = styled.div<TextBoxProps>`
     height: 38px;
     border: 2px solid ${({ theme, correct }) => (correct ? theme.color.gray700 : theme.color.error)};
     border-radius: 5px;
-    padding: 0px 15px;
+    background-color: ${({ theme }) => theme.color.white};
+    padding: 0 15px;
     display: flex;
     .image {
         cursor: pointer;
