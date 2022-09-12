@@ -3,35 +3,112 @@ import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
 import { Button, CheckBox } from '@packages/ui';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useModal from '../../../hooks/useModal';
 import { theme } from '@packages/emotion-style-provider/src/theme';
+import { StudentInfo } from '../../../models/teachers/responses';
+import { FilterProps } from '../../../pages';
+import Image from 'next/image';
+import { closeIcon } from '../../../assets';
+import { useQuery } from 'react-query';
+import { getStudentList } from '../../../api/teachers';
+import { pdfArrow } from '@apps/teacher/assets';
+
+export interface PdfStudentListProps extends StudentInfo {
+    isSelected: boolean;
+}
 
 const PdfModal = () => {
-    const [clicked, setClicked] = useState(false);
-    const onClick = () => {
-        setClicked(!clicked);
-    };
     const { closeModal } = useModal();
+    const [allSelected, setAllSelected] = useState(false);
+    const [studentList, setStudentList] = useState<PdfStudentListProps[]>([]);
+    const [filter, setFilter] = useState<FilterProps>({
+        grade: null,
+        classNum: null,
+        docStatus: null,
+    });
+    const { data } = useQuery(
+        ['getStudentLists', filter.docStatus, filter.classNum, filter.grade],
+        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+    );
+    const onClick = () => {
+        setAllSelected(!allSelected);
+    };
+    useEffect(() => {
+        setStudentList(
+            data?.student_list.map((i) => {
+                return {
+                    ...i,
+                    isSelected: false,
+                };
+            }) || [],
+        );
+    }, [data]);
+    useEffect(() => {
+        if (allSelected)
+            setStudentList(
+                studentList.map((studentInfo) => {
+                    return {
+                        ...studentInfo,
+                        isSelected: true,
+                    };
+                }),
+            );
+        else
+            setStudentList(
+                studentList.map((studentInfo) => {
+                    return {
+                        ...studentInfo,
+                        isSelected: false,
+                    };
+                }),
+            );
+    }, [allSelected]);
+    const onClickChangeSelectedStatus = (student_id: string) => {
+        const newList = studentList.map((item) => {
+            if (item.student_id === student_id)
+                return {
+                    ...item,
+                    isSelected: !item.isSelected,
+                };
+            return item;
+        });
+        setStudentList(newList);
+    };
+    const lists = useMemo(
+        () => ({
+            selectedStudentList: studentList.filter((item) => item.isSelected),
+            notSelectedStudentList: studentList.filter((item) => !item.isSelected),
+        }),
+        [studentList],
+    );
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Box>
                 <_Header>
                     <h1 className="title">pdf 출력</h1>
                     <button className="xButton" onClick={closeModal}>
-                        x
+                        <Image src={closeIcon} />
                     </button>
                 </_Header>
                 <_Content>
                     <Filter />
                     <_SelectAll>
                         <p className="summary">전체선택</p>
-                        <CheckBox isChecked={clicked} onClick={onClick} />
+                        <CheckBox isChecked={allSelected} onClick={onClick} />
                     </_SelectAll>
                     <_StudentArea>
-                        <StudentList isAddList={false} />
-                        <div className="arrow" />
-                        <StudentList isAddList={true} />
+                        <StudentList
+                            studentList={lists.notSelectedStudentList}
+                            isSelectedBox={false}
+                            onClick={onClickChangeSelectedStatus}
+                        />
+                        <Image src={pdfArrow} alt="화살표" />
+                        <StudentList
+                            studentList={lists.selectedStudentList}
+                            isSelectedBox={true}
+                            onClick={onClickChangeSelectedStatus}
+                        />
                     </_StudentArea>
                     <Button
                         width={130}
@@ -70,7 +147,6 @@ const _Header = styled.header`
         margin-left: auto;
         width: 34px;
         height: 34px;
-        background-color: ${({ theme }) => theme.color.gray300};
     }
 `;
 const _Content = styled.div`

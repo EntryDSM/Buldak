@@ -3,25 +3,23 @@ import Arrow from '../../assets/svgs/Arrow';
 
 function MoveBox() {
     return (
-        <MoveWrapper>
-            <BackBtn>
+        <_Wrapper>
+            <_BackBtn>
                 <Arrow />
                 <span>돌아가기</span>
-            </BackBtn>
-            <EditPassWord>비밀번호 변경</EditPassWord>
-        </MoveWrapper>
+            </_BackBtn>
+            <_ChangePwdBtn>비밀번호 변경</_ChangePwdBtn>
+        </_Wrapper>
     );
 }
 
-const MoveWrapper = styled.div`
+const _Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 `;
 
-const BackBtn = styled.button`
-    all: unset;
-    cursor: pointer;
+const _BackBtn = styled.button`
     font-size: 22px;
     color: ${({ theme }) => theme.color.main};
     font-weight: bold;
@@ -30,8 +28,7 @@ const BackBtn = styled.button`
     }
 `;
 
-const EditPassWord = styled.button`
-    all: unset;
+const _ChangePwdBtn = styled.button`
     width: 200px;
     height: 40px;
     text-align: center;
@@ -40,7 +37,6 @@ const EditPassWord = styled.button`
     color: ${({ theme }) => theme.color.skyblue};
     font-size: 20px;
     font-weight: bold;
-    cursor: pointer;
 `;
 
 export default MoveBox;

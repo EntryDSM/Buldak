@@ -10,12 +10,12 @@ interface ModalProps {
     subContent: Array<string>; // 한 줄씩 배열에 담기
     top: number;
     left: number;
-    onCloseBtnClick: () => void;
-    onSubmitBtnClick?: () => void;
-    onCancleBtnClick?: () => void;
+    onCloseBtnClick: (props?: any) => void;
+    onSubmitBtnClick?: (props?: any) => void;
+    onCancleBtnClick?: (props?: any) => void;
 }
 
-const Modal: FC<ModalProps> = (props) => {
+const Modal = (props: ModalProps) => {
     const {
         option,
         title,
@@ -72,6 +72,7 @@ const ModalWrapper = styled.div<ModalProps>`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
     position: absolute;
+    background-color: ${({ theme }) => theme.color.white};
     top: ${({ top }) => top}px;
     left: ${({ left }) => left}px;
     .image {

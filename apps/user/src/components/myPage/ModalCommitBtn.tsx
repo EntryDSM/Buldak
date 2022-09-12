@@ -6,19 +6,19 @@ interface PropsType {
 
 function ModalCommitBtn({ content }: PropsType) {
     return (
-        <AddBtnBox>
-            <AddBtn>{content}</AddBtn>
-        </AddBtnBox>
+        <_CommitBtnWrapper>
+            <_CommitBtn>{content}</_CommitBtn>
+        </_CommitBtnWrapper>
     );
 }
 
-const AddBtnBox = styled.div`
+const _CommitBtnWrapper = styled.div`
     border-top: 1px solid ${({ theme }) => theme.color.gray500};
     display: flex;
     justify-content: center;
 `;
 
-const AddBtn = styled.button`
+const _CommitBtn = styled.button`
     color: ${({ theme }) => theme.color.main};
     border: 2px solid ${({ theme }) => theme.color.main};
     width: 300px;
@@ -27,7 +27,7 @@ const AddBtn = styled.button`
     background-color: ${({ theme }) => theme.color.white};
     font-weight: bold;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 15px;
 `;
 
 export default ModalCommitBtn;

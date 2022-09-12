@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Profile } from '@packages/ui';
+import Image from 'next/image';
+import { companyIcon, studentIcon, tagIcon } from '../assets';
 
 type ManagementType = 'tag' | 'student' | 'company';
 
@@ -11,23 +12,29 @@ interface Props {
 
 const SideBar = ({ managementType }: Props) => {
     return (
-        <_Wrapper>
-            <Profile type="school" width="90px" height="90px" />
-            <_AccountType>선생님 계정</_AccountType>
-            <_Navigation>
-                {navArray.map((item) => (
-                    <Link href={item.url} key={item.managementType}>
-                        <_NavButton isSelected={managementType === item.managementType}>
-                            <div className="icon"></div>
-                            <p className="managementType">{item.summary}</p>
-                        </_NavButton>
-                    </Link>
-                ))}
-            </_Navigation>
-        </_Wrapper>
+        <_Margin>
+            <_Wrapper>
+                <Profile type="school" width="90px" height="90px" />
+                <_AccountType>선생님 계정</_AccountType>
+                <_Navigation>
+                    {navArray.map((item) => (
+                        <Link href={item.url} key={item.managementType}>
+                            <_NavButton isSelected={managementType === item.managementType}>
+                                <Image src={item.image} width={26} height={26} />
+                                <p className="managementType">{item.summary}</p>
+                            </_NavButton>
+                        </Link>
+                    ))}
+                </_Navigation>
+            </_Wrapper>
+        </_Margin>
     );
 };
 export default SideBar;
+
+const _Margin = styled.div`
+    margin-right: 360px;
+`;
 
 const _Wrapper = styled.aside`
     width: 360px;
@@ -37,6 +44,7 @@ const _Wrapper = styled.aside`
     flex-direction: column;
     align-items: center;
     padding: 40px;
+    position: fixed;
 `;
 
 const _AccountType = styled.strong`
@@ -64,13 +72,8 @@ const _NavButton = styled.a<NavButtonProps>`
     display: flex;
     cursor: pointer;
     background-color: ${(props) => props.isSelected && '#477DE3'};
-    > .icon {
-        width: 26px;
-        height: 26px;
-        margin-right: 19px;
-        background-color: #ffffff;
-    }
     > .managementType {
+        margin-left: 19px;
         color: ${({ theme }) => theme.color.white};
         font-size: 20px;
         line-height: 25px;
@@ -86,20 +89,20 @@ interface NavItem {
 }
 const navArray: NavItem[] = [
     {
-        summary: '태그 관리',
-        image: '',
-        url: '/managementTag',
-        managementType: 'tag',
-    },
-    {
         summary: '학생 관리',
-        image: '',
+        image: studentIcon,
         url: '/',
         managementType: 'student',
     },
     {
+        summary: '태그 관리',
+        image: tagIcon,
+        url: '/managementTag',
+        managementType: 'tag',
+    },
+    {
         summary: '기업 관리',
-        image: '',
+        image: companyIcon,
         url: '/managementCompany',
         managementType: 'company',
     },

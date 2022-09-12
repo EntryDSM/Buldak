@@ -1,28 +1,46 @@
 import styled from '@emotion/styled';
 import { Tag } from '@packages/ui';
 
-const PersonalInfo = () => {
+interface Props {
+    name: string;
+    gcn: number;
+    email: string;
+    phone_number: string;
+    major_tag_name: string;
+    my_skill_name_list: string[];
+}
+
+const PersonalInfo = ({
+    name,
+    gcn,
+    email,
+    phone_number,
+    major_tag_name,
+    my_skill_name_list,
+}: Props) => {
     return (
         <_PersonalInfo>
             <ul>
                 <_List>
-                    <p>이름 : 김의찬</p>
+                    <p>이름 : {name}</p>
                 </_List>
                 <_List>
-                    <p>학번 : 2101</p>
+                    <p>학번 : {gcn}</p>
                 </_List>
                 <_List>
-                    <p>이메일 : Entry1020@dsm.hs.kr</p>
+                    <p>이메일 : {email}</p>
                 </_List>
                 <_List>
-                    <p>전화번호 : 010-1234-5678</p>
+                    <p>전화번호 : {phone_number}</p>
                 </_List>
                 <_List>
-                    <p>분야 : 프론트엔드</p>
+                    <p>분야 : {major_tag_name}</p>
                 </_List>
             </ul>
             <_Tags>
-                <Tag tagName="React" color="bdblue" />
+                {my_skill_name_list.map((i) => (
+                    <Tag tagName={i} color="bdblue" key={i} />
+                ))}
             </_Tags>
         </_PersonalInfo>
     );

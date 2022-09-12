@@ -1,19 +1,6 @@
-import styled from '@emotion/styled';
-import Header from '../../components/feedback/Header';
-import FeedbackArea from '../../components/feedback/FeedbackArea';
+import Feedback from '../../components/feedback';
 
 const FeedbackPage = () => {
-    return (
-        <_Wrapper>
-            <FeedbackArea />
-            <Header />
-        </_Wrapper>
-    );
+    return <Feedback />;
 };
 export default FeedbackPage;
-
-const _Wrapper = styled.section`
-    width: 100vw;
-    height: 100vh;
-    background-color: ${({ theme }) => theme.color.gray300};
-`;
