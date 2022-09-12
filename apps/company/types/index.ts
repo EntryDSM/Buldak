@@ -1,3 +1,4 @@
+
 import { type } from "os";
 
 export interface EachStudentType {
@@ -21,4 +22,3 @@ export interface SearchProps {
 }
 
 
-// https://{{BASE_URL}}/companies/student/list

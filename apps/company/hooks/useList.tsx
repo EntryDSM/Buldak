@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { readAllBlocks } from '../api/blocks';
 import { EachStudentType, SearchProps, StudentsListResponseType } from '../types';
 
@@ -17,12 +17,12 @@ export const useList = () => {
                     value.name.includes(search) &&
                     (value.gcn.slice(1, 2) == classnum || !classnum) &&
                     (value.major == major || !major)
+
                 ) {
                     return value;
                 }
             });
         });
     };
-
     return { getState, searchList };
 };

@@ -1,42 +1,53 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, inputArray } from '../constant';
+import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
+import { useQuery } from 'react-query';
+import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
+import Image from 'next/image';
+import { closeIcon } from '../../assets';
+import { useRouter } from 'next/router';
 
 function CompanyInfo() {
-    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-        profile_image_path: '',
-        company_name: '엔트리 24',
-        location: '유성구 가장동 725',
-        start_at: '',
-        end_at: '',
-        name: '김의찬',
-        phone_number: '042-8282-8282',
-        email: 'EntryDSM1234@naver.com',
-    });
-    const { closeModal, selectModal } = useModal();
+    const { closeModal, selectModal, selectedId } = useModal();
+    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
+        getCompanyDetail(selectedId || ''),
+    );
+    const onClickResetPassword = () => {
+        resetCompanyPassword(selectedId || '').then((res) => {
+            console.log(res);
+            selectModal({
+                modal: 'RESET_SUCCESS',
+                password: res.password,
+            });
+        });
+    };
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
                 <_Header>
                     <p>기업 정보</p>
-                    <div id="exit" />
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Body>
                     <_SideWrapper>
-                        <Profile type="default" />
+                        <Profile type="image" src={data?.profile_image_path} />
                         <p>프로필 이미지</p>
                     </_SideWrapper>
                     <_InputsWrapper>
-                        {inputArray.map((item) => (
-                            <_InputWrapper key={item.name}>
-                                <p>{item.title}</p>
-                                <div>{companyInfo[item.name]}</div>
-                            </_InputWrapper>
-                        ))}
+                        {inputArray.map(
+                            (item) =>
+                                data !== undefined && (
+                                    <_InputWrapper key={item.name}>
+                                        <p>{item.title}</p>
+                                        <div>{data[item.name]}</div>
+                                    </_InputWrapper>
+                                ),
+                        )}
                         <_ButtonsWrapper>
                             <Button
                                 width={200}
@@ -45,6 +56,7 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
+                                onClick={onClickResetPassword}
                             />
                             <Button
                                 width={200}
@@ -53,7 +65,9 @@ function CompanyInfo() {
                                 borderWidth={2}
                                 borderColor={theme.color.skyblue}
                                 fontColor={theme.color.skyblue}
-                                onClick={() => selectModal('PATCH_COMPANY_DETAIL')}
+                                onClick={() =>
+                                    selectModal({ modal: 'PATCH_COMPANY_DETAIL', id: selectedId })
+                                }
                             />
                         </_ButtonsWrapper>
                     </_InputsWrapper>
@@ -82,7 +96,7 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px;
     > p {
         font-weight: 500;
         font-size: 22px;

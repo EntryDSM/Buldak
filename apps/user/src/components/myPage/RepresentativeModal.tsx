@@ -38,7 +38,7 @@ const _Representative = styled.p`
 
 const _ContentBox = styled.div`
     padding: 0px 50px;
-    height: 280px;
+    height: 295px;
 `;
 
 const _Background = styled.div`

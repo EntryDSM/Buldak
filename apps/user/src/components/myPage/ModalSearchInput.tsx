@@ -2,10 +2,9 @@ import styled from '@emotion/styled';
 
 interface PropsType {
     subtitle: string;
-    placeholder: string;
 }
 
-function ModalSearchInput({ subtitle, placeholder }: PropsType) {
+function ModalSearchInput({ subtitle }: PropsType) {
     return (
         <>
             <ModalSubTitle>{subtitle}</ModalSubTitle>
