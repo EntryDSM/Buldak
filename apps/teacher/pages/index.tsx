@@ -19,9 +19,9 @@ export interface FilterProps {
 export default function Home() {
     const { selectedModal } = useModal();
     const [filter, setFilter] = useState<FilterProps>({
-        grade: '1',
-        classNum: '1',
-        docStatus: 'PUBLIC',
+        grade: null,
+        classNum: null,
+        docStatus: null,
     });
     const { data } = useQuery(
         ['getStudentList', filter.docStatus, filter.classNum, filter.grade],

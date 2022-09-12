@@ -11,9 +11,10 @@ export interface EditCompanyInfoRequest {
     company_name: string;
     start_at: string;
     end_at: string;
+    company_id?: string;
 }
 export interface CreateCompanyRequest extends EditCompanyInfoRequest {
-    is_mou: boolean;
+    is_mou?: boolean;
 }
 export type GradeValue = '1' | '2' | '3' | null;
 export type ClassNumValue = '1' | '2' | '3' | '4' | null;

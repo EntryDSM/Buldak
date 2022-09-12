@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ModalWrapper from '../ModalWrapper';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
@@ -7,36 +7,57 @@ import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getCompanyDetail } from '../../api/teachers';
-import { GetCompanyDetailResponse } from '../../models/teachers/responses';
+import useCompany from '../../hooks/useCompany';
+import Calendar from '../Calendar';
+import useCalendar from '../../hooks/useCalendar';
+import { translateObjectToString, translateStringToObject } from '../../utils/translate';
+import { closeIcon } from '../../assets';
+import Image from 'next/image';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
-    const [companyInfo, setCompanyInfo] = useState<GetCompanyDetailResponse>({
-        profile_image_path: '',
-        company_name: '',
-        location: '',
-        start_at: '',
-        end_at: '',
-        name: '',
-        phone_number: '',
-        email: '',
-        company_id: '',
-    });
-    const { data } = useQuery(['getCompanyDetail', selectedId], () => getCompanyDetail(selectedId));
+    const { companyInfo, setCompanyInfo, onChangeInputValue, onClickEditCompany } = useCompany();
+    const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
+        useCalendar();
+    const { data } = useQuery(['getCompanyDetails', selectedId], () =>
+        getCompanyDetail(selectedId || ''),
+    );
     useEffect(() => {
-        data !== undefined && setCompanyInfo(data);
+        if (data !== undefined) {
+            setCompanyInfo(data);
+            setSelectedDate({
+                startDate: translateStringToObject(data.start_at),
+                endDate: translateStringToObject(data.end_at),
+            });
+        }
     }, [data]);
+    useEffect(() => {
+        if (selectedDate.startDate && selectedDate.endDate)
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: translateObjectToString(selectedDate.startDate),
+                end_at: translateObjectToString(selectedDate.endDate),
+            });
+        else
+            setCompanyInfo({
+                ...companyInfo,
+                start_at: '',
+                end_at: '',
+            });
+    }, [selectedDate]);
     return (
         <ModalWrapper closeModal={closeModal}>
             <_Wrapper>
                 <_Header>
                     <p>기업 정보 변경</p>
-                    <div id="exit" />
+                    <button onClick={closeModal}>
+                        <Image src={closeIcon} alt="닫기" />
+                    </button>
                 </_Header>
                 <_Body>
                     <_InputsWrapper>
                         {inputArray.map((item) => (
-                            <_InputWrapper>
+                            <_InputWrapper key={item.name}>
                                 <p>{item.title}</p>
                                 <TextBox
                                     width={300}
@@ -44,39 +65,32 @@ function EditInfo() {
                                     name={item.name}
                                     correct={true}
                                     placeholder={item.placeholder}
-                                    value={companyInfo[item.name]}
+                                    value={companyInfo[item.name] as string}
+                                    onChange={onChangeInputValue}
                                 />
                             </_InputWrapper>
                         ))}
                     </_InputsWrapper>
-                    <_CalendarWrapper>
-                        <_TempCalendar />
-                        <Button
-                            width={300}
-                            height={44}
-                            content="정보 변경"
-                            borderColor={theme.color.skyblue}
-                            fontColor={theme.color.skyblue}
-                            borderWidth={2}
-                        />
-                    </_CalendarWrapper>
+                    <Calendar
+                        year={year}
+                        month={month}
+                        prevMonth={prevMonth}
+                        nextMonth={nextMonth}
+                        list={list}
+                        checkDayType={checkDayType}
+                    />
                 </_Body>
+                <Button
+                    width={300}
+                    height={44}
+                    content="정보 변경"
+                    borderColor={theme.color.skyblue}
+                    fontColor={theme.color.skyblue}
+                    borderWidth={2}
+                    onClick={() => onClickEditCompany(selectedId || '')}
+                />
             </_Wrapper>
         </ModalWrapper>
-    );
-}
-
-interface InputProps {
-    title: string;
-    placeholder: string;
-}
-
-function Inputs({ title, placeholder }: InputProps) {
-    return (
-        <_InputWrapper>
-            <p>{title}</p>
-            <input type="text" placeholder={placeholder} />
-        </_InputWrapper>
     );
 }
 
@@ -89,6 +103,9 @@ const _Wrapper = styled.div`
     height: 580px;
     display: flex;
     flex-direction: column;
+    > button {
+        margin: 30px 50px 0 auto;
+    }
 `;
 
 const _Header = styled.div`
@@ -99,7 +116,7 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 20px;
     > p {
         font-weight: 500;
         font-size: 22px;
@@ -115,9 +132,13 @@ const _Header = styled.div`
 
 const _Body = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px 50px 0px 50px;
+    padding: 0 50px;
+    height: 340px;
+    align-items: center;
+    margin-top: 53px;
 `;
 
 const _InputWrapper = styled.div`
@@ -133,28 +154,13 @@ const _InputWrapper = styled.div`
         font-size: 20px;
         line-height: 28px;
     }
-`;
-
-const _InputsWrapper = styled.div`
-    margin-top: 54px;
-    width: 440px;
-    display: flex;
-    flex-direction: column;
-`;
-
-const _CalendarWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 530px;
-    > button {
-        margin-top: 50px;
+    :last-child {
+        margin-bottom: 0;
     }
 `;
 
-const _TempCalendar = styled.div`
-    border: 1px solid black;
-    width: 530px;
-    height: 300px;
-    margin-top: 64px;
+const _InputsWrapper = styled.div`
+    width: 440px;
+    display: flex;
+    flex-direction: column;
 `;

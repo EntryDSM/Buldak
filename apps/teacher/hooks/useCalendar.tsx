@@ -236,6 +236,7 @@ const useCalendar = () => {
         list,
         checkDayType,
         selectedDate,
+        setSelectedDate,
     };
 };
 export default useCalendar;

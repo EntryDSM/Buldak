@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import PatchElementWrapper from './PatchElementWrapper';
-import { Color, ColorResult, SketchPicker } from 'react-color';
-import { useState } from 'react';
+import { ColorResult, SketchPicker } from 'react-color';
+import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 
 function Color() {

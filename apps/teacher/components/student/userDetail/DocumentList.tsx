@@ -9,9 +9,10 @@ type DocumentState = 'PUBLIC' | 'STAY';
 
 interface Props {
     documentPreview: DocumentPreivew[];
+    profileImagePath: string;
 }
 
-const DocumentList = ({ documentPreview }: Props) => {
+const DocumentList = ({ documentPreview, profileImagePath }: Props) => {
     const [documentState, setDocumentState] = useState<DocumentState>('PUBLIC');
     const onClickChangeDocumentType = () => {
         if (documentState === 'PUBLIC') setDocumentState('STAY');
@@ -33,21 +34,22 @@ const DocumentList = ({ documentPreview }: Props) => {
             </_DocumentType>
             <_Document>
                 {previewState?.preview_image_path !== undefined ? (
-                    <img
-                        src={previewState.preview_image_path}
-                        className="previewImage"
-                        alt="미리보기"
-                    />
+                    <>
+                        <img
+                            src={previewState.preview_image_path}
+                            className="previewImage"
+                            alt="미리보기"
+                        />
+                        <p className="developPart">프론트엔드</p>
+                        <_UserSummary>
+                            <img src={profileImagePath} alt="프로필" className="profileImage" />
+                            <p className="name">김의찬</p>
+                            <p className="studentNumber">2101</p>
+                        </_UserSummary>
+                    </>
                 ) : (
-                    ''
+                    <_EmptyDocument>요청 문서가 없습니다.</_EmptyDocument>
                 )}
-                <p className="developPart">프론트엔드</p>
-                <_UserSummary>
-                    <div className="profileImage" />
-                    {/* <img src={}></img> */}
-                    <p className="name">김의찬</p>
-                    <p className="studentNumber">2101</p>
-                </_UserSummary>
             </_Document>
         </_Wrapper>
     );
@@ -92,7 +94,7 @@ const _Document = styled.section`
     > .previewImage {
         object-fit: contain;
         height: 190px;
-        width: 320px;
+        width: 100%;
         object-position: center;
         background-color: ${({ theme }) => theme.color.gray500};
     }
@@ -129,4 +131,13 @@ const _UserSummary = styled.div`
         color: ${({ theme }) => theme.color.gray700};
         margin-left: 5px;
     }
+`;
+const _EmptyDocument = styled.p`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 20px;
+    color: ${({ theme }) => theme.color.gray700};
 `;
