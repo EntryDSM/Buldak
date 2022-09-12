@@ -40,15 +40,19 @@ const StageTwo = () => {
     };
 
     const onPostCertified = () => {
-        
-        axios({
-            url: '',
-            method: 'post',
-            data: certified,
-            headers: {
-                Authorization: '',
-            },
-        });
+        axios
+            .head('http://114.108.176.85:8080/auth/verify', {
+                params: {
+                    authCode: certified.certifiedNumber,
+                    value: certified.phoneNumber,
+                },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+            })
+            .then((res) => {
+                console.log(res);
+            });
     };
 
     return (
@@ -109,7 +113,7 @@ const StageTwo = () => {
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
                                 content="다음으로"
-                                onClick={() => {}}
+                                onClick={onPostCertified}
                             />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
