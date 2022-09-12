@@ -51,4 +51,5 @@ const _Box = styled.div`
 const _FlexWrapper = styled.div`
     display: flex;
     padding: 0 35px;
+    margin-top: 25px;
 `;

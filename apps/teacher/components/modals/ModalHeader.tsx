@@ -21,7 +21,6 @@ const ModalHeader = ({ title }: Props) => {
 export default ModalHeader;
 
 const _TitleWrapper = styled.div`
-    margin-bottom: 14px;
     padding: 12px 25px;
     border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
     display: flex;
