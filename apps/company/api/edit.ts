@@ -10,7 +10,7 @@ interface EditProps {
 
 export const editCompanyInfo = async (data: EditProps) => {
     try{
-        return await (await instance.post('/companies/information', data)).data;
+        return (await instance.post('/companies/information', data)).data;
 
     }
     catch{
