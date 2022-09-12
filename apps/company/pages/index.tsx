@@ -130,3 +130,69 @@ function StudentList({}: Props) {
         </>
     );
 }
+
+const Background = styled.div`
+    min-width: 100%;
+    width: fit-content;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const Wrapper = styled.div`
+    margin-top: 70px;
+    width: 1370px;
+    height: fit-content;
+`;
+
+const Header = styled.div`
+    width: 100%;
+    height: 100px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > h1 {
+        font-size: 25px;
+        font-weight: bold;
+    }
+    > div {
+        //button,div wrapper
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        > div {
+            //input,dropdown wrapper
+            display: flex;
+            flex-direction: row;
+            width: 780px;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+`;
+
+const BoxesWrapper = styled.div`
+    width: 1370;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+`;
+
+const Box = styled.div`
+    width: 100%;
+    height: calc(100vh - 300px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > #center {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+`;
