@@ -10,13 +10,28 @@ import axios from 'axios';
 
 const StageTwo = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const formData = new FormData();
+    const [imageSrc, setImageSrc] = useState<string>('');
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formData = new FormData();
         event.preventDefault();
         if (event.target.files) {
-            formData.append('img', event.target.files[0]);
+            formData.append('file', event.target.files[0]);
+            axios
+                .post('http://114.108.176.85:8080/images', formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    },
+                    params: {
+                        type: 'PROFILE',
+                    },
+                })
+                .then((res) => {
+                    setImageSrc(res.data.image_path);
+                })
+                .catch((res) => {
+                    alert('사진을 선택해주세요');
+                });
         }
     };
 
@@ -28,7 +43,24 @@ const StageTwo = () => {
                 },
             })
             .then((res) => {
-                console.log(res);
+                axios
+                    .patch(
+                        'http://114.108.176.85:8080/users/information',
+                        {
+                            location: res.data.location,
+                            name: res.data.name,
+                            phone_number: res.data.phone_number,
+                            profile_image_path: imageSrc,
+                        },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                            },
+                        },
+                    )
+                    .catch(() => {
+                        alert('다시한번 시도해주세요요');
+                    });
             });
     };
 

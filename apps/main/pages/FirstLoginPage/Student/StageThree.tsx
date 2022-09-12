@@ -57,7 +57,7 @@ const StageThree = () => {
                             },
                         },
                     )
-                    .catch((res) => {
+                    .catch(() => {
                         alert('다시한번 시도해주세요요');
                     });
             });
