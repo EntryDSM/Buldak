@@ -12,6 +12,7 @@ interface certifiedType {
 }
 
 const StageTwo = () => {
+    const [success, setSuccess] = useState<boolean>(false);
     const [certified, setCertified] = useState<certifiedType>({
         email: '',
         certifiedNumber: '',
@@ -52,7 +53,13 @@ const StageTwo = () => {
                 },
             })
             .then((res) => {
-                window.location.href = './StageTwo';
+                setSuccess(true);
+            })
+            .catch((res) => {
+                setCertified({
+                    email: '',
+                    certifiedNumber: '',
+                });
             });
     };
 
@@ -66,7 +73,7 @@ const StageTwo = () => {
                     <S._FirstLoginTitle>비밀번호 변경</S._FirstLoginTitle>
                     <S._FirstLoginPoint />
                     <S._FistLoginInputLayout marginBottom="20px">
-                        <S._FirstLoginInputText>인증번호 발송</S._FirstLoginInputText>
+                        <S._FirstLoginInputText>인증코드 발송</S._FirstLoginInputText>
                         <Button
                             onClick={onPostEmail}
                             width={380}
@@ -83,12 +90,14 @@ const StageTwo = () => {
                                 width={280}
                                 correct={true}
                                 type="text"
-                                value={certified.email}
+                                value={certified.certifiedNumber}
                                 onChange={onChangeNumber}
                                 placeholder="전화번호를 입력해 주세요."
                                 name="phoneNumber"
                             />
-                            <S._FirstLoginCitation>인증하기</S._FirstLoginCitation>
+                            <S._FirstLoginCitation onClick={onPostCertified}>
+                                인증하기
+                            </S._FirstLoginCitation>
                         </S._DisplayFlex>
                     </S._FistLoginInputLayout>
                     <S._DisplayFlex>
@@ -102,7 +111,7 @@ const StageTwo = () => {
                                 fontColor={theme.color.black}
                                 content="이전으로"
                                 onClick={() => {
-                                    window.location.href = './StageOne';
+                                    window.location.href = '/';
                                 }}
                             />
                             <Button
@@ -111,7 +120,11 @@ const StageTwo = () => {
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
                                 content="다음으로"
-                                onClick={onPostCertified}
+                                onClick={() => {
+                                    if (success) {
+                                        window.location.href = './StageTwo';
+                                    }
+                                }}
                             />
                         </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>

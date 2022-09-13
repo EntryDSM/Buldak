@@ -3,7 +3,7 @@ import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import axios from 'axios';
 import Image from 'next/image';
-import BackImg from '../../../assets/img/BackImg.jpg';
+import BackImg from '../../assets/img/BackImg.jpg';
 import * as S from '../../components/ChangePassword/styled';
 
 interface newPasswordType {
@@ -29,10 +29,10 @@ const StageOne = () => {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
             })
-            .then((res) => {
+            .then(() => {
                 window.location.href = '';
             })
-            .catch((res) => {
+            .catch(() => {
                 alert('비밀번호 수정에 실패했습니다');
             });
     };
