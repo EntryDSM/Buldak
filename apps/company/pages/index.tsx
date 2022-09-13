@@ -130,6 +130,7 @@ function StudentList({}: Props) {
         </>
     );
 }
+export default StudentList;
 
 const Background = styled.div`
     min-width: 100%;
