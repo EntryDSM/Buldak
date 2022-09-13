@@ -4,14 +4,23 @@ import * as S from '../components/UserMainPage/styled';
 import DocumentPlus from '../components/UserMainPage/DocumentPlus';
 import Document from '../components/UserMainPage/Document';
 import SideBar from '../components/UserMainPage/SideBar';
-import pdf from '../assets/svg/pdf.svg';
-import copy from '../assets/svg/copy.svg';
-import messege from '../assets/svg/messege.svg';
+import pdf from '../assets/svgs/pdf.svg';
+import copy from '../assets/svgs/copy.svg';
+import messege from '../assets/svgs/messege.svg';
+import { NextPage } from 'next';
+import { localListResource, myInfomationResource } from '../utils/api/userResouce';
+import { useResource } from '../hook/useResource';
+import usePreviewPublicStayDocument from '../hook/usePreviewPublicStayDocument';
+import { documentTypeCheck } from '../utils/function/documentTypeCheck';
 
-const UserMainPage = () => {
+const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
-    const [waitingDocument, setWaitingDocument] = useState<boolean>(true);
-    const [publicDocument, setPublicDocument] = useState<boolean>(true);
+
+    const { data: myInformation } = useResource(myInfomationResource);
+    const { data: localList } = useResource(localListResource);
+    const { data: previewPublicStayDocument } = usePreviewPublicStayDocument(
+        myInformation?.student_id,
+    );
 
     return (
         <S.UserMainContainer>
@@ -21,14 +30,14 @@ const UserMainPage = () => {
                 <S.TagLayout>
                     <S.TagBox>
                         <S.DocumentTitle>대표분야</S.DocumentTitle>
-                        <S.testTag />
+                        <S.testTag>{myInformation?.major_tag}</S.testTag>
                     </S.TagBox>
                     <S.TagBox>
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
                         <S.TagAria>
-                            <S.testTag />
-                            <S.testTag />
-                            <S.testTag />
+                            {myInformation?.skill_tag_list.map((info, idx) => (
+                                <S.testTag key={idx}>{info}</S.testTag>
+                            ))}
                         </S.TagAria>
                     </S.TagBox>
                 </S.TagLayout>
@@ -36,17 +45,22 @@ const UserMainPage = () => {
                 <S.DocumentText>로컬 문서</S.DocumentText>
                 <S.DocumentsLayout>
                     <DocumentPlus />
-                    <Document />
-                    <Document />
-                    <Document />
+                    {localList?.document_list?.map((info) => {
+                        return <Document previewImagePath={info.preview_image_path} />;
+                    })}
                 </S.DocumentsLayout>
                 <S.DocumentsLayout>
                     <S.DocumentBox marginL="0vw">
                         <S.DocumentText>공개 요청 대기 문서</S.DocumentText>
-                        {waitingDocument ? (
+                        {!!documentTypeCheck('STAY', previewPublicStayDocument)?.type ? (
                             <>
+                                <Document
+                                    previewImagePath={
+                                        documentTypeCheck('STAY', previewPublicStayDocument)
+                                            ?.preview_image_path || ''
+                                    }
+                                />
                                 <S.DocumentLayout>
-                                    <Document />
                                     <S.DocumentSignal>
                                         <Image src={messege} />
                                     </S.DocumentSignal>
@@ -58,10 +72,15 @@ const UserMainPage = () => {
                     </S.DocumentBox>
                     <S.DocumentBox marginL="13.6vw">
                         <S.DocumentText>공개 문서</S.DocumentText>
-                        {publicDocument ? (
+                        {!!documentTypeCheck('PUBLIC', previewPublicStayDocument)?.type ? (
                             <>
                                 <S.DocumentLayout>
-                                    <Document />
+                                    <Document
+                                        previewImagePath={
+                                            documentTypeCheck('PUBLIC', previewPublicStayDocument)
+                                                ?.preview_image_path || ''
+                                        }
+                                    />
                                     <S.DocumentButtonBox>
                                         <S.DocumentButton>
                                             <Image src={pdf} />
@@ -81,5 +100,7 @@ const UserMainPage = () => {
         </S.UserMainContainer>
     );
 };
+
+UserMainPage.requiredResources = [myInfomationResource, localListResource];
 
 export default UserMainPage;
