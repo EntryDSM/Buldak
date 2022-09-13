@@ -40,11 +40,14 @@ const LoginPage = () => {
                         window.location.href = '/FirstLoginPage/Student/StageOne';
                     } else if (loginState.user_type == 'MOU') {
                         window.location.href = '/FirstLoginPage/Company/StageOne';
-                    } else {
+                    }
+                } else if (res.data.first_login == false) {
+                    if (loginState.user_type == 'STUDENT') {
+                    } else if (loginState.user_type == 'MOU') {
                     }
                 }
             })
-            .catch((res) => {
+            .catch(() => {
                 setLoginState({
                     email: '',
                     password: '',

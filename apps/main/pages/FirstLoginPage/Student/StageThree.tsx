@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
@@ -9,7 +9,7 @@ import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [imageSrc, setImageSrc] = useState<string>(PlusBlack);
+    const [imageSrc, setImageSrc] = useState<string>('');
 
     const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
         const formData = new FormData();
@@ -58,7 +58,8 @@ const StageThree = () => {
                         },
                     )
                     .catch(() => {
-                        alert('다시한번 시도해주세요요');
+                        alert('다시한번 시도해주세요');
+                        setImageSrc('');
                     });
             });
     };
@@ -84,7 +85,13 @@ const StageThree = () => {
                             onChange={onChangeImg}
                         />
                         <S._FirstLoginProfileBox>
-                            <Image src={imageSrc} />
+                            {imageSrc ? (
+                                <S._FirstLoginProfile
+                                    style={{ backgroundImage: `url(${imageSrc})` }}
+                                />
+                            ) : (
+                                <Image src={PlusBlack} />
+                            )}
                         </S._FirstLoginProfileBox>
                     </S._FirstLoginSetProfile>
                     <S._FirstLoginProfileText

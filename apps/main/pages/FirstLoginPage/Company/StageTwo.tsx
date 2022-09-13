@@ -31,13 +31,14 @@ const StageTwo = () => {
                 })
                 .catch((res) => {
                     alert('사진을 선택해주세요');
+                    setImageSrc('');
                 });
         }
     };
 
     const onPostProfile = () => {
         axios
-            .get('http://114.108.176.85:8080/students', {
+            .get('http://114.108.176.85:8080/companies', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
@@ -84,7 +85,15 @@ const StageTwo = () => {
                             style={{ display: 'none' }}
                             onChange={onChangeImg}
                         />
-                        <Image src={PlusBlack} />
+                        <S._FirstLoginProfileBox>
+                            {imageSrc ? (
+                                <S._FirstLoginProfile
+                                    style={{ backgroundImage: `url(${imageSrc})` }}
+                                />
+                            ) : (
+                                <Image src={PlusBlack} />
+                            )}
+                        </S._FirstLoginProfileBox>
                     </S._FirstLoginSetProfile>
                     <S._FirstLoginProfileText
                         onClick={() => {

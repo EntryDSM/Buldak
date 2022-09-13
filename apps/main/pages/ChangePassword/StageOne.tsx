@@ -3,43 +3,40 @@ import Image from 'next/image';
 import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import axios from 'axios';
-import BackImg from '../../../assets/img/BackImg.jpg';
-import * as S from '../../../components/ChangePassword/styled';
+import BackImg from '../../assets/img/BackImg.jpg';
+import * as S from '../../components/ChangePassword/styled';
 
 interface certifiedType {
-    phoneNumber: string;
+    email: string;
     certifiedNumber: string;
 }
 
 const StageTwo = () => {
     const [certified, setCertified] = useState<certifiedType>({
-        phoneNumber: '',
+        email: '',
         certifiedNumber: '',
     });
 
     const onChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        const afterValue = value.replace(/[^0-9]/gi, '');
-        setCertified({ ...certified, [name]: afterValue });
+        setCertified({ ...certified, certifiedNumber: event.target.value });
     };
 
-    const onPostPhoneNumber = () => {
+    const onPostEmail = () => {
         axios
             .post(
-                'http://114.108.176.85:8080/auth/phone-number',
-                { phone_number: certified.phoneNumber },
+                'http://114.108.176.85:8080/auth/email',
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 },
             )
+            .then((res) => {
+                setCertified({ ...certified, email: res.data.email });
+            })
             .catch(() => {
-                alert('전화번호가 잘못됐습니다');
-                setCertified({
-                    phoneNumber: '',
-                    certifiedNumber: '',
-                });
+                alert('오류가 발생했습니다');
             });
     };
 
@@ -48,7 +45,7 @@ const StageTwo = () => {
             .head('http://114.108.176.85:8080/auth/verify', {
                 params: {
                     authCode: certified.certifiedNumber,
-                    value: certified.phoneNumber,
+                    value: certified.email,
                 },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -66,36 +63,33 @@ const StageTwo = () => {
             </S._ImgContainer>
             <S._FirstLoginContainer>
                 <S._FirstLoginBox>
-                    <S._FirstLoginTitle>추가정보 입력</S._FirstLoginTitle>
+                    <S._FirstLoginTitle>비밀번호 변경</S._FirstLoginTitle>
                     <S._FirstLoginPoint />
                     <S._FistLoginInputLayout marginBottom="20px">
-                        <S._FirstLoginInputText>전화번호</S._FirstLoginInputText>
+                        <S._FirstLoginInputText>인증번호 발송</S._FirstLoginInputText>
+                        <Button
+                            onClick={onPostEmail}
+                            width={380}
+                            height={44}
+                            backgroundColor={theme.color.skyblue}
+                            fontColor={theme.color.white}
+                            content="인증번호 발송"
+                        />
+                    </S._FistLoginInputLayout>
+                    <S._FistLoginInputLayout marginBottom="135px">
+                        <S._FirstLoginInputText>인증코드 확인</S._FirstLoginInputText>
                         <S._DisplayFlex>
                             <TextBox
                                 width={280}
                                 correct={true}
                                 type="text"
-                                value={certified.phoneNumber}
+                                value={certified.email}
                                 onChange={onChangeNumber}
                                 placeholder="전화번호를 입력해 주세요."
                                 name="phoneNumber"
                             />
-                            <S._FirstLoginCitation onClick={onPostPhoneNumber}>
-                                인증하기
-                            </S._FirstLoginCitation>
+                            <S._FirstLoginCitation>인증하기</S._FirstLoginCitation>
                         </S._DisplayFlex>
-                    </S._FistLoginInputLayout>
-                    <S._FistLoginInputLayout marginBottom="135px">
-                        <S._FirstLoginInputText>인증번호</S._FirstLoginInputText>
-                        <TextBox
-                            width={380}
-                            correct={true}
-                            type="text"
-                            value={certified.certifiedNumber}
-                            onChange={onChangeNumber}
-                            placeholder="인증번호를 입력해 주세요."
-                            name="certifiedNumber"
-                        />
                     </S._FistLoginInputLayout>
                     <S._DisplayFlex>
                         <S._FirstLoginBoxLayout>
