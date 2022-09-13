@@ -12,16 +12,18 @@ export const useList = () => {
         const major = majorP == '전체' ? '' : majorP;
         const classnum = classnumP == '전체' ? '' : classnumP;
         return getState().then((result) => {
-            result.filter((value) => {
-                if (
-                    value.name.includes(search) &&
-                    (value.gcn.slice(1, 2) == classnum || !classnum) &&
-                    (value.major == major || !major)
-
-                ) {
-                    return value;
-                }
-            });
+            console.log(
+                result.filter((value) => {
+                    console.log(search, major, classnum);
+                    if (
+                        (value.name.includes(search) || !search) &&
+                        (value.gcn.slice(1, 2) == classnum || !classnum) &&
+                        (value.major_tag == major || !major)
+                    ) {
+                        return value;
+                    }
+                }),
+            );
         });
     };
     return { getState, searchList };
