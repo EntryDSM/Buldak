@@ -1,20 +1,30 @@
-import Image from "next/image";
-import * as S from "./styled";
+import Image from 'next/image';
+import { useResource } from '../../hook/useResource';
+import { DocumentType, myInfomationResource } from '../../utils/api/userResouce';
+import { departmentConverter } from '../../utils/function/department';
+import * as S from './styled';
 
-const DocumentPlus = () => {
-  return (
-    <S.Documents>
-      <S.DocumentImg>{/* <Image /> */}</S.DocumentImg>
-      <S.DocumentLine />
-      <S.DocumentIntroBox>
-        <S.DocumentIntroImg></S.DocumentIntroImg>
-        <S.displayFlexColumn>
-          <S.DocumentIntroText>손지원</S.DocumentIntroText>
-          <S.DocumentIntroClass>소프트웨어개발과</S.DocumentIntroClass>
-        </S.displayFlexColumn>
-      </S.DocumentIntroBox>
-    </S.Documents>
-  );
+interface DocumentPlusProps {
+    previewImagePath: string;
+}
+
+const DocumentPlus = ({ previewImagePath }: DocumentPlusProps) => {
+    const { data: myInformation } = useResource(myInfomationResource);
+    return (
+        <S.Documents>
+            <S.DocumentImg src={previewImagePath || ''}></S.DocumentImg>
+            <S.DocumentLine />
+            <S.DocumentIntroBox>
+                <S.DocumentIntroImg></S.DocumentIntroImg>
+                <S.displayFlexColumn>
+                    <S.DocumentIntroText>{myInformation?.name}</S.DocumentIntroText>
+                    <S.DocumentIntroClass>
+                        {departmentConverter(myInformation?.class_num)}
+                    </S.DocumentIntroClass>
+                </S.displayFlexColumn>
+            </S.DocumentIntroBox>
+        </S.Documents>
+    );
 };
 
 export default DocumentPlus;
