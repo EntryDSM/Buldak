@@ -53,15 +53,17 @@ const useCompany = () => {
     };
     const onClickCreateCompany = async () => {
         try {
+            const FD = new FormData();
             if (file !== undefined) {
-                const FD = new FormData();
                 FD.append('file', file);
                 const image = await createImage('PROFILE', FD);
+
                 createCompany({
                     ...companyInfo,
                     profile_image_path: image.image_path,
                 }).then((res) => {
                     selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
+                    router.push('/managementCompany');
                 });
             }
         } catch (err) {}
@@ -77,10 +79,7 @@ const useCompany = () => {
                         profile_image_path: res.image_path,
                     });
                 });
-            } else
-                editCompany(id, companyInfo).then(() => {
-                    // router.reload();
-                });
+            } else editCompany(id, companyInfo).then(() => {});
         } catch (err) {
             console.log(err);
         }
