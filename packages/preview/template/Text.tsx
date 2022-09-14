@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     text1: string;
@@ -6,15 +7,16 @@ interface Props {
     text3?: string;
     grade: number;
     feedback?: {
-        feedInfo: string;
         isRead: boolean;
-    },
+        feedInfo: string;
+    };
 }
 
-export default function Text({ grade, text1, text2, text3 }: Props) {
+export default function Text({ grade, text1, text2, text3, feedback }: Props) {
     if (grade == 1)
         return (
             <Wrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <div>
                     <p>{text1}</p>
                 </div>
@@ -23,6 +25,7 @@ export default function Text({ grade, text1, text2, text3 }: Props) {
     if (grade == 2)
         return (
             <Wrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <div style={{ width: '500px' }}>
                     <p>{text1}</p>
                 </div>
@@ -34,6 +37,7 @@ export default function Text({ grade, text1, text2, text3 }: Props) {
     if (grade == 3)
         return (
             <Wrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <div style={{ width: '333px' }}>
                     <p>{text1}</p>
                 </div>
@@ -54,7 +58,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position:relative;
+    position: relative;
     > div {
         min-height: 44px;
         width: 1000px;

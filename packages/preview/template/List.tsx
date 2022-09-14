@@ -1,17 +1,19 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     title: string;
     list: string[];
     feedback?: {
-        feedInfo: string;
         isRead: boolean;
-    },
+        feedInfo: string;
+    };
 }
 
-export default function List({ title, list }: Props) {
+export default function List({ title, list, feedback }: Props) {
     return (
         <Wrapper>
+            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
             <p>{title}</p>
             <TextBox>
                 {list.map((value) => (
@@ -34,7 +36,7 @@ const EachList = ({ value }: { value: string }) => {
 };
 
 const Wrapper = styled.div`
-    position:relative;
+    position: relative;
 
     width: 1000px;
     min-height: 285px;

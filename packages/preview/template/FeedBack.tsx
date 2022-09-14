@@ -5,7 +5,7 @@ import CheckBox from '@packages/ui/components/CheckBox';
 
 interface FeedProps {
     isRead: boolean;
-    feedInfo: String;
+    feedInfo: string;
 }
 
 function FeedBack({ isRead = false, feedInfo }: FeedProps) {
@@ -27,9 +27,9 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
                         <div id="confirm">
                             <p>확인</p>
                             <CheckBox
-                                isChecked={isApplyFeed}
+                                isChecked={isReadFeed}
                                 onClick={() => {
-                                    setIsApply(!isApplyFeed);
+                                    setIsRead(!isReadFeed);
                                 }}
                             />
                         </div>

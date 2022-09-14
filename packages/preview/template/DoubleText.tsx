@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     topText1: string;
@@ -9,9 +10,9 @@ interface Props {
     bottomText3?: string;
     grade: number;
     feedback?: {
-        feedInfo: string;
         isRead: boolean;
-    },
+        feedInfo: string;
+    };
 }
 
 export default function DoubleText({
@@ -22,10 +23,12 @@ export default function DoubleText({
     grade,
     topText2,
     topText3,
+    feedback,
 }: Props) {
     if (grade == 1)
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper>
                     <div id="top">
                         <p>{topText1}</p>
@@ -39,6 +42,7 @@ export default function DoubleText({
     if (grade == 2)
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '500px' }}>
                     <div id="top">
                         <p>{topText1}</p>
@@ -60,6 +64,7 @@ export default function DoubleText({
     if (grade == 3)
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '333px' }}>
                     <div id="top">
                         <p>{topText1}</p>
@@ -90,7 +95,7 @@ export default function DoubleText({
 }
 
 const TotalWrapper = styled.div`
-    position:relative;
+    position: relative;
     width: 1000px;
     display: flex;
     flex-direction: row;
