@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import ModalWrapper from '../../ModalWrapper';
+import ModalWrapper from '../ModalWrapper';
 import PersonalInfo from './PersonalInfo';
 import DocumentList from './DocumentList';
 import OptionButtons from './OptionButtons';
@@ -7,9 +7,10 @@ import useModal from '../../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getStudentDetail } from '../../../api/teachers';
 import { previewDocument } from '../../../api/documents';
+import ModalHeader from '../ModalHeader';
 
 const UserDetail = () => {
-    const { closeModal, selectedId } = useModal();
+    const { selectedId } = useModal();
     const { data: studentDetail } = useQuery(['getStudentDetail', selectedId], () =>
         getStudentDetail(selectedId || ''),
     );
@@ -17,9 +18,9 @@ const UserDetail = () => {
         previewDocument(selectedId || ''),
     );
     return (
-        <ModalWrapper closeModal={closeModal}>
+        <ModalWrapper>
             <_Box>
-                <_Title>학생 정보 조회</_Title>
+                <ModalHeader title="학생 상세 정보" />
                 <_FlexWrapper>
                     <PersonalInfo
                         name={studentDetail?.name || '이걸 보시면'}
@@ -46,14 +47,9 @@ const _Box = styled.div`
     height: 500px;
     background-color: ${({ theme }) => theme.color.white};
     border-radius: 10px;
-    padding: 30px 35px;
-`;
-const _Title = styled.h2`
-    font-size: 25px;
-    line-height: 31px;
-    color: ${({ theme }) => theme.color.black};
-    margin-bottom: 14px;
 `;
 const _FlexWrapper = styled.div`
     display: flex;
+    padding: 0 35px;
+    margin-top: 25px;
 `;

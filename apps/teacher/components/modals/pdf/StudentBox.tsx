@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Profile from '@packages/ui/components/Profile';
 import { PdfStudentListProps } from './index';
 import Image from 'next/image';
-import { plusIcon, minusIcon } from '../../../assets/index';
+import { plusIcon, minusIcon } from '../../../assets';
 
 interface Props {
     item: PdfStudentListProps;
