@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import ModalWrapper from '../ModalWrapper';
-import useModal from '../../hooks/useModal';
+import ModalWrapper from './ModalWrapper';
 import Image from 'next/image';
-import { closeIcon, successCheckIcon } from '../../assets';
+import { successCheckIcon } from '../../assets';
+import ModalHeader from './ModalHeader';
 
 interface Props {
     type: 'RESET_PASSWORD' | 'ADD_COMPANY';
@@ -10,17 +10,10 @@ interface Props {
 }
 
 function SuccessModal({ type, password }: Props) {
-    const { closeModal } = useModal();
-
     return (
         <ModalWrapper>
             <_Wrapper>
-                <_Header>
-                    <p>알림</p>
-                    <button onClick={closeModal}>
-                        <Image src={closeIcon} alt="닫기" />
-                    </button>
-                </_Header>
+                <ModalHeader title="알림" />
                 <_Center>
                     <div id="check-icon">
                         <Image src={successCheckIcon} alt="성공" />
@@ -49,23 +42,6 @@ const _Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-const _Header = styled.div`
-    width: 100%;
-    height: 44px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    > p {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: ${({ theme }) => theme.color.gray700};
-    }
 `;
 
 const _Center = styled.div`

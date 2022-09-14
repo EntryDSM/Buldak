@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../modals/ModalWrapper';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';

@@ -22,6 +22,7 @@ export default ModalHeader;
 
 const _TitleWrapper = styled.div`
     padding: 12px 25px;
+    width: 100%;
     border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
     display: flex;
     justify-content: space-between;

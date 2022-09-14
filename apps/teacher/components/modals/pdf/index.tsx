@@ -1,4 +1,4 @@
-import ModalWrapper from '../../ModalWrapper';
+import ModalWrapper from '../ModalWrapper';
 import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';

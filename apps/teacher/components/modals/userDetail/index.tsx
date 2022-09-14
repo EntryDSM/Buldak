@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import ModalWrapper from '../../ModalWrapper';
+import ModalWrapper from '../ModalWrapper';
 import PersonalInfo from './PersonalInfo';
 import DocumentList from './DocumentList';
 import OptionButtons from './OptionButtons';

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../modals/ModalWrapper';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
