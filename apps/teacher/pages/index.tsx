@@ -9,6 +9,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { getStudentList } from '../api/teachers';
 import { GetStudentListResponse } from '../models/teachers/responses';
 import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
+import { queryKeys } from '../utils/constant';
 
 export interface FilterProps {
     grade: GradeValue;
@@ -45,7 +46,9 @@ export default function Home() {
 
 export async function getServerSideProps() {
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery('getStudentList', () => getStudentList(null, null, null));
+    await queryClient.prefetchQuery(queryKeys.getStudentList, () =>
+        getStudentList(null, null, null),
+    );
     return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 

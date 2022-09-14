@@ -10,11 +10,13 @@ import ModalHeader from '../modals/ModalHeader';
 import useCompany from '../../hooks/useCompany';
 import { companyIcon } from '../../assets';
 import { useEffect } from 'react';
+import { queryKeys } from '../../utils/constant';
 
 function CompanyInfo() {
     const { selectModal, selectedId } = useModal();
     const { onChangeFile, profilePreview, setCompanyInfo } = useCompany();
-    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
+    // tood : 이거랑 editInfo에 있는 쿼리키를 같게 하면 작동을 안 해요 개버그임
+    const { data } = useQuery([queryKeys.getCompanyDetail, selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
     const onClickResetPassword = () => {

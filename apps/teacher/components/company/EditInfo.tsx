@@ -13,13 +13,14 @@ import useCalendar from '../../hooks/useCalendar';
 import { translateObjectToString, translateStringToObject } from '../../utils/translate';
 import { closeIcon } from '../../assets';
 import Image from 'next/image';
+import { queryKeys } from '../../utils/constant';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
     const { companyInfo, setCompanyInfo, onChangeInputValue, onClickEditCompany } = useCompany();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
         useCalendar();
-    const { data } = useQuery(['getCompanyDetails', selectedId], () =>
+    const { data } = useQuery([queryKeys.getCompanyDetails, selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
     useEffect(() => {

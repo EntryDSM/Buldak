@@ -9,6 +9,7 @@ import { searchCompany } from '../api/teachers';
 import { ChangeEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 import SuccessModal from '../components/modals/SuccessModal';
+import { queryKeys } from '../utils/constant';
 
 const ManagementCompany = () => {
     const { selectedModal, password } = useModal();
@@ -41,7 +42,7 @@ const ManagementCompany = () => {
 
 export async function getServerSideProps() {
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery(['searchCompany'], () => searchCompany(''));
+    await queryClient.prefetchQuery([queryKeys.searchCompany], () => searchCompany(''));
     return { props: { dehydratedState: dehydrate(queryClient) } };
 }
 
