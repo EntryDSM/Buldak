@@ -27,9 +27,9 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
                         <div id="confirm">
                             <p>확인</p>
                             <CheckBox
-                                isChecked={isReadFeed}
+                                isChecked={isApplyFeed}
                                 onClick={() => {
-                                    setIsRead(!isReadFeed);
+                                    setIsApply(!isApplyFeed);
                                 }}
                             />
                         </div>

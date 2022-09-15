@@ -10,7 +10,11 @@ interface Props {
 }
 
 export default function Gap({ height, feedback }: Props) {
-    return <Wrapper style={{ height: `${height}px` }}></Wrapper>;
+    return (
+        <Wrapper style={{ height: `${height}px` }}>
+            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+        </Wrapper>
+    );
 }
 
 const Wrapper = styled.div`
