@@ -1,0 +1,108 @@
+<<<<<<< Updated upstream:apps/teacher/components/student/pdf/studentList.tsx
+import styled from '@emotion/styled';
+import StudentBox from './StudentBox';
+import { PdfStudentListProps } from '.';
+=======
+<<<<<<< HEAD:apps/teacher/components/modals/pdf/studentList.tsx
+import styled from '@emotion/styled';
+import StudentBox from './StudentBox';
+import { PdfStudentListProps } from './index';
+
+interface Props {
+    isSelectedBox: boolean;
+    studentList: PdfStudentListProps[];
+    onClick: (student_id: string) => void;
+}
+
+const StudentList = ({ isSelectedBox, studentList, onClick }: Props) => {
+    return (
+        <_Wrapper>
+            {isSelectedBox && studentList.length === 0 ? (
+                <_IsEmpty>
+                    <em className="empty">학생을 추가해주세요</em>
+                </_IsEmpty>
+            ) : (
+                studentList.map((item) => (
+                    <StudentBox onClick={onClick} item={item} key={item.student_id} />
+                ))
+            )}
+        </_Wrapper>
+    );
+};
+export default StudentList;
+
+const _Wrapper = styled.ul`
+    width: 410px;
+    height: 430px;
+    border-radius: 5px;
+    border: 2px solid ${({ theme }) => theme.color.gray300};
+    display: flex;
+    flex-direction: column;
+`;
+const _IsEmpty = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .empty {
+        font-size: 17px;
+        line-height: 21px;
+        color: ${({ theme }) => theme.color.gray700};
+        font-weight: 500;
+    }
+`;
+=======
+import styled from '@emotion/styled';
+import StudentBox from './StudentBox';
+import { PdfStudentListProps } from './index';
+>>>>>>> Stashed changes:apps/teacher/components/modals/pdf/studentList.tsx
+
+interface Props {
+    isSelectedBox: boolean;
+    studentList: PdfStudentListProps[];
+    onClick: (student_id: string) => void;
+}
+
+const StudentList = ({ isSelectedBox, studentList, onClick }: Props) => {
+    return (
+        <_Wrapper>
+            {isSelectedBox && studentList.length === 0 ? (
+                <_IsEmpty>
+                    <em className="empty">학생을 추가해주세요</em>
+                </_IsEmpty>
+            ) : (
+                studentList.map((item) => (
+                    <StudentBox onClick={onClick} item={item} key={item.student_id} />
+                ))
+            )}
+        </_Wrapper>
+    );
+};
+export default StudentList;
+
+const _Wrapper = styled.ul`
+    width: 410px;
+    height: 430px;
+    border-radius: 5px;
+    border: 2px solid ${({ theme }) => theme.color.gray300};
+    display: flex;
+    flex-direction: column;
+`;
+const _IsEmpty = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .empty {
+        font-size: 17px;
+        line-height: 21px;
+        color: ${({ theme }) => theme.color.gray700};
+        font-weight: 500;
+    }
+`;
+<<<<<<< Updated upstream:apps/teacher/components/student/pdf/studentList.tsx
+=======
+>>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366:apps/teacher/components/student/pdf/studentList.tsx
+>>>>>>> Stashed changes:apps/teacher/components/modals/pdf/studentList.tsx

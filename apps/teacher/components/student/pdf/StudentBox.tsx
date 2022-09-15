@@ -1,0 +1,143 @@
+<<<<<<< Updated upstream:apps/teacher/components/student/pdf/StudentBox.tsx
+=======
+<<<<<<< HEAD:apps/teacher/components/modals/pdf/StudentBox.tsx
+import styled from '@emotion/styled';
+import Profile from '@packages/ui/components/Profile';
+import { PdfStudentListProps } from './index';
+import Image from 'next/image';
+import { plusIcon, minusIcon } from '../../../assets';
+
+interface Props {
+    item: PdfStudentListProps;
+    onClick: (student_id: string) => void;
+}
+
+const StudentBox = ({ item, onClick }: Props) => {
+    return (
+        <_Wrapper key={item.student_id}>
+            <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
+            <_Name>{item.name}</_Name>
+            <_StudentNumber>{item.gcn}</_StudentNumber>
+            {item.isSelected ? (
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={minusIcon} />
+                </_ChangeStatusButton>
+            ) : (
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={plusIcon} />
+                </_ChangeStatusButton>
+            )}
+        </_Wrapper>
+    );
+};
+export default StudentBox;
+
+const _Wrapper = styled.li`
+    width: 100%;
+    height: 56px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.color.white};
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
+`;
+const _Name = styled.strong`
+    font-size: 19px;
+    line-height: 24px;
+    color: ${({ theme }) => theme.color.black};
+    font-weight: 500;
+    margin-left: 10px;
+`;
+const _StudentNumber = styled.em`
+    font-size: 17px;
+    line-height: 21px;
+    color: ${({ theme }) => theme.color.gray700};
+    font-weight: 500;
+    margin-left: 10px;
+`;
+const _ChangeStatusButton = styled.button`
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.main};
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+=======
+>>>>>>> Stashed changes:apps/teacher/components/modals/pdf/StudentBox.tsx
+import styled from '@emotion/styled';
+import Profile from '@packages/ui/components/Profile';
+import { PdfStudentListProps } from './index';
+import Image from 'next/image';
+<<<<<<< Updated upstream:apps/teacher/components/student/pdf/StudentBox.tsx
+import { plusIcon, minusIcon } from '../../../assets/index';
+=======
+import { plusIcon, minusIcon } from '../../../assets';
+>>>>>>> Stashed changes:apps/teacher/components/modals/pdf/StudentBox.tsx
+
+interface Props {
+    item: PdfStudentListProps;
+    onClick: (student_id: string) => void;
+}
+
+const StudentBox = ({ item, onClick }: Props) => {
+    return (
+        <_Wrapper key={item.student_id}>
+            <Profile type="image" src={item.profile_image_path} width="40px" height="40px" />
+            <_Name>{item.name}</_Name>
+            <_StudentNumber>{item.gcn}</_StudentNumber>
+            {item.isSelected ? (
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={minusIcon} />
+                </_ChangeStatusButton>
+            ) : (
+                <_ChangeStatusButton onClick={() => onClick(item.student_id)}>
+                    <Image src={plusIcon} />
+                </_ChangeStatusButton>
+            )}
+        </_Wrapper>
+    );
+};
+export default StudentBox;
+
+const _Wrapper = styled.li`
+    width: 100%;
+    height: 56px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.color.white};
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
+`;
+const _Name = styled.strong`
+    font-size: 19px;
+    line-height: 24px;
+    color: ${({ theme }) => theme.color.black};
+    font-weight: 500;
+    margin-left: 10px;
+`;
+const _StudentNumber = styled.em`
+    font-size: 17px;
+    line-height: 21px;
+    color: ${({ theme }) => theme.color.gray700};
+    font-weight: 500;
+    margin-left: 10px;
+`;
+const _ChangeStatusButton = styled.button`
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.main};
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+<<<<<<< Updated upstream:apps/teacher/components/student/pdf/StudentBox.tsx
+=======
+>>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366:apps/teacher/components/student/pdf/StudentBox.tsx
+>>>>>>> Stashed changes:apps/teacher/components/modals/pdf/StudentBox.tsx
