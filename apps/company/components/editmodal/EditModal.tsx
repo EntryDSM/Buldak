@@ -8,8 +8,6 @@ import { changeImageToUrl } from '../../api/image';
 import { ChangeEvent, useRef, useState } from 'react';
 import { editCompanyInfo } from '../../api/edit';
 
-const inputArr = ['담당자 이름', '담당자 연락처', '기업 이름', '기업 주소'];
-
 interface Props {
     closeModal: () => void;
 }
@@ -17,13 +15,13 @@ interface Props {
 function EditModal({ closeModal }: Props) {
     const [prev, setPrev] = useState<string>('');
     const [phone, setPhone] = useState('');
-    const EditBuffer = useRef({
+    const [EditBuffer, setBuffer] = useState({
         company_name: '',
         location: '',
         profile_image_path: '',
         name: '',
         phone_number: '',
-    }).current;
+    });
     const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const uploadFile = e.target.files[0];
@@ -62,7 +60,7 @@ function EditModal({ closeModal }: Props) {
                         <div id="wrapper-input">
                             <Inputs
                                 onChange={(e) => {
-                                    EditBuffer.name = e.target.value;
+                                    setBuffer({ ...EditBuffer, name: e.target.value });
                                 }}
                                 title={'담당자 이름'}
                             />
@@ -70,7 +68,7 @@ function EditModal({ closeModal }: Props) {
                                 onChange={(e) => {
                                     const regex = /^[0-9\b -]{0,11}$/;
                                     if (regex.test(e.target.value)) {
-                                        EditBuffer.phone_number = e.target.value;
+                                        setBuffer({ ...EditBuffer, phone_number: e.target.value });
                                         setPhone(e.target.value);
                                     }
                                 }}
@@ -79,14 +77,13 @@ function EditModal({ closeModal }: Props) {
                             />
                             <Inputs
                                 onChange={(e) => {
-                                    EditBuffer.company_name = e.target.value;
+                                    setBuffer({ ...EditBuffer, company_name: e.target.value });
                                 }}
                                 title={'기업 이름'}
                             />
                             <Inputs
                                 onChange={(e) => {
-                                    EditBuffer.location = e.target.value;
-                                    console.log(EditBuffer);
+                                    setBuffer({ ...EditBuffer, location: e.target.value });
                                 }}
                                 title={'기업 주소'}
                             />
@@ -100,8 +97,7 @@ function EditModal({ closeModal }: Props) {
                             fontColor={theme.color.skyblue}
                             backgroundColor={theme.color.white}
                             onClick={() => {
-                                EditBuffer.profile_image_path = prev;
-                                console.log(editCompanyInfo(EditBuffer));
+                                editCompanyInfo({ ...EditBuffer, profile_image_path: prev });
                             }}
                         />
                     </Body>
@@ -123,9 +119,11 @@ function Inputs({ title, onChange, value }: InputProps) {
             <h1>{title}</h1>
             <div className="temp">
                 <TextBox
+                    onChange={onChange}
                     type="text"
                     width={380}
                     correct={true}
+                    value={value}
                     placeholder={title + '을(를) 입력해주세요'}
                 />
             </div>
@@ -138,8 +136,8 @@ export default EditModal;
 const Background = styled.div`
     z-index: 6;
     width: 100%;
-    height: 100%;
-    position: absolute;
+    height: 100vh;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
