@@ -1,18 +1,17 @@
-import styled from '@emotion/styled';
 import { useState } from 'react';
 import Header from '../../components/header/Header';
-import AddElement from '../../components/pageEditer/AddElementModal';
-import AsideBar from '../../components/pageEditer/AsideBar';
-import ShowPage from '../../components/pageEditer/ShowPage';
+import AddElement from '../../components/pageEditer/AddModal';
+import AsideBox from '../../components/pageEditer/aside/Box';
+import PageArea from '../../components/pageEditer/view/PageArea';
 
 function PageEditer() {
-    const [elementDropDown, setElementDropDown] = useState(false);
+    const [elementDropDown, setElementDropDown] = useState<boolean>(false);
     return (
         <>
             <Header />
-            <AsideBar setElementDropDown={setElementDropDown} />
-            <ShowPage />
+            <AsideBox setElementDropDown={setElementDropDown} />
             {elementDropDown && <AddElement setElementDropDown={setElementDropDown} />}
+            <PageArea />
         </>
     );
 }

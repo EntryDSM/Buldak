@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     topText1: string;
@@ -8,6 +9,11 @@ interface Props {
     topText3?: string;
     bottomText3?: string;
     grade: number;
+    color: string[];
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
 export default function DoubleText({
@@ -16,25 +22,29 @@ export default function DoubleText({
     bottomText1,
     bottomText3,
     grade,
+    color,
     topText2,
     topText3,
+    feedback,
 }: Props) {
     if (grade == 1)
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper>
                     <div id="top">
-                        <p>{topText1}</p>
+                        <p style={{ color: color[0] }}>{topText1}</p>
                     </div>
                     <div id="bottom">
-                        <p>{bottomText1}</p>
+                        <p style={{ color: color[1] }}>{bottomText1}</p>
                     </div>
                 </Wrapper>
             </TotalWrapper>
         );
     if (grade == 2)
         return (
-            <TotalWrapper>
+            <TotalWrapper style={{ color: color }}>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '500px' }}>
                     <div id="top">
                         <p>{topText1}</p>
@@ -55,7 +65,8 @@ export default function DoubleText({
         );
     if (grade == 3)
         return (
-            <TotalWrapper>
+            <TotalWrapper style={{ color: color }}>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '333px' }}>
                     <div id="top">
                         <p>{topText1}</p>
@@ -86,11 +97,13 @@ export default function DoubleText({
 }
 
 const TotalWrapper = styled.div`
-    position:relative;
+    position: relative;
     width: 1000px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    p {
+    }
 `;
 
 const Wrapper = styled.div`

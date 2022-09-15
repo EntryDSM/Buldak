@@ -1,16 +1,22 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     grade: number;
     href1: string;
     href2?: string;
     href3?: string;
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
-export default function Link({ href1, href2, href3, grade }: Props) {
+export default function Link({ href1, href2, href3, grade, feedback }: Props) {
     if (grade == 1) {
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper1>
                     <a href={href1}>{href1}</a>
                 </Wrapper1>
@@ -19,6 +25,7 @@ export default function Link({ href1, href2, href3, grade }: Props) {
     } else if (grade == 2) {
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper2>
                     <a href={href1}>{href1}</a>
                 </Wrapper2>
@@ -30,6 +37,7 @@ export default function Link({ href1, href2, href3, grade }: Props) {
     } else if (grade == 3) {
         return (
             <TotalWrapper>
+                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper3>
                     <a href={href1}>{href1}</a>
                 </Wrapper3>
@@ -47,8 +55,7 @@ export default function Link({ href1, href2, href3, grade }: Props) {
 }
 
 const TotalWrapper = styled.div`
-    position:relative;
-
+    position: relative;
     width: 1000px;
     min-height: 44px;
     display: flex;

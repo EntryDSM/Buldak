@@ -1,15 +1,22 @@
 import styled from '@emotion/styled';
 import { NoImg } from '../assets';
+import FeedBack from './FeedBack';
 
 interface Props {
     url: string;
     topText: string;
     bottomText: string;
+    color:string;
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
-export default function ImageText({ url, bottomText, topText }: Props) {
+export default function ImageText({ url, bottomText, topText, feedback }: Props) {
     return (
-        <Wrapper>
+        <Wrapper style={{color:color}}>
+            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
             <Img url={url}>{!url && <NoImg />}</Img>
             <TextBox>
                 <div id="top">
@@ -24,8 +31,7 @@ export default function ImageText({ url, bottomText, topText }: Props) {
 }
 
 const Wrapper = styled.div`
-    position:relative;
-
+    position: relative;
     width: 1000px;
     height: 360px;
     padding: 20px 50px;
@@ -41,10 +47,10 @@ const Img = styled.div<{ url: string }>`
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background-color:${({theme})=>theme.color.gray300}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.color.gray300};
 `;
 const TextBox = styled.div`
     width: 430px;

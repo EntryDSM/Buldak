@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     title: string;
     list: string[];
+    color:string;
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
-export default function List({ title, list }: Props) {
+export default function List({ color,title, list }: Props) {
     return (
-        <Wrapper>
+        <Wrapper style={{color:color}}>
             <p>{title}</p>
             <TextBox>
                 {list.map((value) => (
@@ -30,8 +36,7 @@ const EachList = ({ value }: { value: string }) => {
 };
 
 const Wrapper = styled.div`
-    position:relative;
-
+    position: relative;
     width: 1000px;
     min-height: 285px;
     padding: 41px 96px;

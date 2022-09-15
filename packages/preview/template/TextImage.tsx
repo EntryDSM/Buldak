@@ -1,15 +1,21 @@
 import styled from '@emotion/styled';
 import { NoImg } from '../assets';
+import FeedBack from './FeedBack';
 
 interface Props {
     url: string;
     topText: string;
     bottomText: string;
+    color:string;
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
-export default function TextImage({ url, bottomText, topText }: Props) {
+export default function TextImage({color,url, bottomText, topText }: Props) {
     return (
-        <Wrapper>
+        <Wrapper style={{color:color}}>
             <TextBox>
                 <div id="top">
                     <p>{topText}</p>
@@ -18,17 +24,13 @@ export default function TextImage({ url, bottomText, topText }: Props) {
                     <p>{bottomText}</p>
                 </div>
             </TextBox>
-            <Img url={url}>
-                {
-                    !url && <NoImg />
-                }
-            </Img>
+            <Img url={url}>{!url && <NoImg />}</Img>
         </Wrapper>
     );
 }
 
 const Wrapper = styled.div`
-    position:relative;
+    position: relative;
     width: 1000px;
     height: 360px;
     padding: 20px 50px;

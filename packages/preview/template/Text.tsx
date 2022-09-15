@@ -1,16 +1,22 @@
 import styled from '@emotion/styled';
+import FeedBack from './FeedBack';
 
 interface Props {
     text1: string;
     text2?: string;
     text3?: string;
     grade: number;
+    color:string;
+    feedback?: {
+        isRead: boolean;
+        feedInfo: string;
+    };
 }
 
-export default function Text({ grade, text1, text2, text3 }: Props) {
+export default function Text({ color,grade, text1, text2, text3 }: Props) {
     if (grade == 1)
         return (
-            <Wrapper>
+            <Wrapper style={{color:color}}>
                 <div>
                     <p>{text1}</p>
                 </div>
@@ -18,7 +24,7 @@ export default function Text({ grade, text1, text2, text3 }: Props) {
         );
     if (grade == 2)
         return (
-            <Wrapper>
+            <Wrapper style={{color:color}}>
                 <div style={{ width: '500px' }}>
                     <p>{text1}</p>
                 </div>
@@ -29,7 +35,7 @@ export default function Text({ grade, text1, text2, text3 }: Props) {
         );
     if (grade == 3)
         return (
-            <Wrapper>
+            <Wrapper style={{color:color}}>
                 <div style={{ width: '333px' }}>
                     <p>{text1}</p>
                 </div>
@@ -50,7 +56,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position:relative;
+    position: relative;
     > div {
         min-height: 44px;
         width: 1000px;

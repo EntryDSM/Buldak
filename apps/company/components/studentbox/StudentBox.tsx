@@ -54,7 +54,7 @@ const Wrapper = styled.div<{ EOL: boolean }>`
     margin-right: ${({ EOL }) => (EOL ? '0px' : '30px')};
 `;
 
-const ImgBlock = styled.div<{ src: string | undefined }>`
+const ImgBlock = styled.div`
     width: 100%;
     height: 160px;
     border-top-right-radius: 5px;
