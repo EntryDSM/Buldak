@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 interface Props {
     profile_img?: string;
-    prev_img?: string;
     tags: string[];
     name: string;
     num: string | number;
@@ -14,10 +13,10 @@ interface Props {
 }
 
 function StudentBox(props: Props) {
-    const { profile_img, prev_img, tags, name, num, major, EOL = false } = props;
+    const { profile_img, tags, name, num, major, EOL = false } = props;
     return (
         <Wrapper EOL={EOL}>
-            <ImgBlock style={{ backgroundImage: `url(${profile_img})` }} />
+            <ImgBlock src={profile_img} />
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
@@ -29,7 +28,7 @@ function StudentBox(props: Props) {
                 </TagsWrapper>
             </Body>
             <Footer>
-                <PrevImg style={{ backgroundImage: `url(${prev_img})` }} />
+                <div id="imgblock"></div>
                 <div id="wrapper-name">
                     <p id="name">{name}</p>
                     <p id="num">{num}</p>
@@ -54,26 +53,13 @@ const Wrapper = styled.div<{ EOL: boolean }>`
     margin-right: ${({ EOL }) => (EOL ? '0px' : '30px')};
 `;
 
-const ImgBlock = styled.div`
+const ImgBlock = styled.div<{ src: string | undefined }>`
     width: 100%;
     height: 160px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    background-color: ${({ theme }) => theme.color.gray500};
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: 100%;
-`;
-
-const PrevImg = styled.div`
-    height: 30px;
-    width: 30px;
-    border-radius: 50px;
-    margin-right: 10px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: 100%;
-    background-color: ${({ theme }) => theme.color.gray500};
+    background-color: #d9d9d9;
+    background-image: ${({ src }) => (src ? src : '')};
 `;
 
 const Body = styled.div`
@@ -102,6 +88,13 @@ const Footer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    #imgblock {
+        height: 30px;
+        width: 30px;
+        border: 1px solid black;
+        border-radius: 50px;
+        margin-right: 10px;
+    }
     #wrapper-name {
         display: flex;
         flex-direction: row;

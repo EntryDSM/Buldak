@@ -1,5 +1,5 @@
 import AddCompany from '../components/company/AddCompany';
-import SuccessModal from '../components/modals/SuccessModal';
+import SuccessModal from '../components/company/SuccessModal';
 import useModal from '../hooks/useModal';
 
 const AddCompanyPage = () => {
