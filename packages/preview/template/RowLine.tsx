@@ -11,11 +11,10 @@ interface Props {
 
 export default function RowLine({ height, feedback }: Props) {
     return (
-        <Wrapper style={{ height: height }}>
+        <Wrapper style={{ height: `${height}px` }}>
             {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
             <div />
         </Wrapper>
-    );
 }
 
 const Wrapper = styled.div`

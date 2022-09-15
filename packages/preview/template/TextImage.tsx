@@ -6,16 +6,16 @@ interface Props {
     url: string;
     topText: string;
     bottomText: string;
+    color:string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
 }
 
-export default function TextImage({ url, bottomText, topText, feedback }: Props) {
+export default function TextImage({color,url, bottomText, topText }: Props) {
     return (
-        <Wrapper>
-            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+        <Wrapper style={{color:color}}>
             <TextBox>
                 <div id="top">
                     <p>{topText}</p>

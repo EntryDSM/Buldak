@@ -6,17 +6,17 @@ interface Props {
     text2?: string;
     text3?: string;
     grade: number;
+    color:string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
 }
 
-export default function Text({ grade, text1, text2, text3, feedback }: Props) {
+export default function Text({ color,grade, text1, text2, text3 }: Props) {
     if (grade == 1)
         return (
-            <Wrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+            <Wrapper style={{color:color}}>
                 <div>
                     <p>{text1}</p>
                 </div>
@@ -24,8 +24,7 @@ export default function Text({ grade, text1, text2, text3, feedback }: Props) {
         );
     if (grade == 2)
         return (
-            <Wrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+            <Wrapper style={{color:color}}>
                 <div style={{ width: '500px' }}>
                     <p>{text1}</p>
                 </div>
@@ -36,8 +35,7 @@ export default function Text({ grade, text1, text2, text3, feedback }: Props) {
         );
     if (grade == 3)
         return (
-            <Wrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+            <Wrapper style={{color:color}}>
                 <div style={{ width: '333px' }}>
                     <p>{text1}</p>
                 </div>

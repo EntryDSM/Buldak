@@ -6,6 +6,7 @@ interface Props {
     url: string;
     topText: string;
     bottomText: string;
+    color:string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
@@ -14,7 +15,7 @@ interface Props {
 
 export default function ImageText({ url, bottomText, topText, feedback }: Props) {
     return (
-        <Wrapper>
+        <Wrapper style={{color:color}}>
             {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
             <Img url={url}>{!url && <NoImg />}</Img>
             <TextBox>
@@ -31,7 +32,6 @@ export default function ImageText({ url, bottomText, topText, feedback }: Props)
 
 const Wrapper = styled.div`
     position: relative;
-
     width: 1000px;
     height: 360px;
     padding: 20px 50px;

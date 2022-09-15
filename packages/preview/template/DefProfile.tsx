@@ -36,7 +36,6 @@ export default function DefProfile({ name, email, github, phone, url, feedback }
 
 const Wrapper = styled.div`
     position: relative;
-
     width: 1000px;
     height: 285px;
     padding: 47px 95px;
@@ -75,7 +74,6 @@ const ImgBox = styled.div`
     justify-content: center;
     border: 5px solid ${({ theme }) => theme.color.gray300};
     border-radius: 100px;
-
     > #img {
         width: 150px;
         height: 150px;

@@ -53,7 +53,6 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback }: P
 
 const Wrapper = styled.div`
     position: relative;
-
     width: 1000px;
     height: 360px;
     padding: 20px 50px;
@@ -67,7 +66,6 @@ const Img = styled.div<{ url: string }>`
     width: 900px;
     height: 320px;
     background-image: url(${(props) => props.url});
-
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;

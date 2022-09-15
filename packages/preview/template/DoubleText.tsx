@@ -9,6 +9,7 @@ interface Props {
     topText3?: string;
     bottomText3?: string;
     grade: number;
+    color: string[];
     feedback?: {
         isRead: boolean;
         feedInfo: string;
@@ -21,6 +22,7 @@ export default function DoubleText({
     bottomText1,
     bottomText3,
     grade,
+    color,
     topText2,
     topText3,
     feedback,
@@ -31,17 +33,17 @@ export default function DoubleText({
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper>
                     <div id="top">
-                        <p>{topText1}</p>
+                        <p style={{ color: color[0] }}>{topText1}</p>
                     </div>
                     <div id="bottom">
-                        <p>{bottomText1}</p>
+                        <p style={{ color: color[1] }}>{bottomText1}</p>
                     </div>
                 </Wrapper>
             </TotalWrapper>
         );
     if (grade == 2)
         return (
-            <TotalWrapper>
+            <TotalWrapper style={{ color: color }}>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '500px' }}>
                     <div id="top">
@@ -63,7 +65,7 @@ export default function DoubleText({
         );
     if (grade == 3)
         return (
-            <TotalWrapper>
+            <TotalWrapper style={{ color: color }}>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '333px' }}>
                     <div id="top">
@@ -100,6 +102,8 @@ const TotalWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    p {
+    }
 `;
 
 const Wrapper = styled.div`
