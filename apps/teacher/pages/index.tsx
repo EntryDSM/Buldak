@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import SideBar from '../components/SideBar';
 import ManageStudent from '../components/student';
 import styled from '@emotion/styled';
@@ -56,7 +55,3 @@ export async function getServerSideProps() {
 const Wrapper = styled.section`
     display: flex;
 `;
-<<<<<<< Updated upstream
-=======
->>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366
->>>>>>> Stashed changes

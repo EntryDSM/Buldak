@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import styled from '@emotion/styled';
 import ModalWrapper from '../modals/ModalWrapper';
 import { Button, Profile } from '@packages/ui';
@@ -184,7 +183,3 @@ const _ButtonsWrapper = styled.div`
     gap: 20px;
     margin-left: auto;
 `;
-<<<<<<< Updated upstream
-=======
->>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366
->>>>>>> Stashed changes

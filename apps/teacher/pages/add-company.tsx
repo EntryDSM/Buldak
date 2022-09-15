@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import AddCompany from '../components/company/AddCompany';
 import SuccessModal from '../components/modals/SuccessModal';
 import useModal from '../hooks/useModal';
@@ -15,7 +14,3 @@ const AddCompanyPage = () => {
     );
 };
 export default AddCompanyPage;
-<<<<<<< Updated upstream
-=======
->>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366
->>>>>>> Stashed changes

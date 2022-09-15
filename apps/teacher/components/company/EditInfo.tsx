@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import ModalWrapper from '../modals/ModalWrapper';
@@ -166,7 +165,3 @@ const _InputsWrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
-<<<<<<< Updated upstream
-=======
->>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366
->>>>>>> Stashed changes
