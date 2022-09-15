@@ -16,7 +16,6 @@ function RepresentativeModal({ setOpenAddTagModal }: PropsType) {
                 <_ContentBox>
                     <ModalSearchInput
                         subtitle="대표분야 검색"
-                        placeholder="대표분야를 검색해주세요"
                     />
                     <_Representative>
                         대표분야 : <strong>프론트엔드</strong>
