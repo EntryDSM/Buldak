@@ -1,21 +1,35 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { Button } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
+import { plusWhite } from '../assets/index';
 
-const AddInputButton = () => {
+interface Props {
+    onClickCreate: (name: string) => void;
+}
+
+const AddInputButton = ({ onClickCreate }: Props) => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
+    const [tagName, setTagName] = useState('');
+    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setTagName(e.target.value);
+    };
     const onClickOpenInput = () => {
         setIsOpened(true);
+        isOpened && onClickCreate(tagName);
+    };
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
     };
     return (
-        <_Wrapper isOpened={isOpened}>
-            <_Input isOpened={isOpened} />
+        <_Wrapper isOpened={isOpened} onSubmit={onSubmit}>
+            <_Input isOpened={isOpened} value={tagName} onChange={onChangeInput} />
             <Button
                 width={30}
                 height={28}
                 backgroundColor={theme.color.skyblue}
                 onClick={onClickOpenInput}
+                image={plusWhite}
             />
         </_Wrapper>
     );
@@ -26,7 +40,7 @@ interface InputProps {
     isOpened: boolean;
 }
 
-const _Wrapper = styled.section<InputProps>`
+const _Wrapper = styled.form<InputProps>`
     display: flex;
     border-radius: 4px;
     margin-left: 16px;

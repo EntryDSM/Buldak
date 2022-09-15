@@ -1,37 +1,34 @@
 import styled from '@emotion/styled';
-import { Button, TextBox } from '@packages/ui';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { Button, RadioButtonBox, TextBox } from '@packages/ui';
+import { useEffect } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { CompanyInfo, inputArray } from '../constant';
-import useModal from '../../hooks/useModal';
+import { inputArray } from '../constant';
 import Calendar from '../Calendar';
 import useCalendar from '../../hooks/useCalendar';
+import { plusBlackIcon } from '../../assets';
+import Image from 'next/image';
+import useCompany from '../../hooks/useCompany';
+import { translateObjectToString } from '../../utils/translate';
+
+const companyTypeRadioOptions = ['MOU', 'NON_MOU'];
 
 function AddCompany() {
-    const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-        profile_image_path: '',
-        company_name: '',
-        location: '',
-        start_at: '',
-        end_at: '',
-        name: '',
-        phone_number: '',
-        email: '',
-    });
-    const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setCompanyInfo({
-            ...companyInfo,
-            [e.target.name]: e.target.value,
-        });
-    };
-    const { selectModal } = useModal();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate } = useCalendar();
+    const {
+        setCompanyInfo,
+        companyInfo,
+        onChangeRadioValue,
+        onChangeInputValue,
+        onChangeFile,
+        profilePreview,
+        onClickCreateCompany,
+    } = useCompany();
     useEffect(() => {
         if (selectedDate.startDate && selectedDate.endDate)
             setCompanyInfo({
                 ...companyInfo,
-                start_at: `${selectedDate.startDate.year}-${selectedDate.startDate.month}-${selectedDate.startDate.date}`,
-                end_at: `${selectedDate.endDate.year}-${selectedDate.endDate.month}-${selectedDate.endDate.date}`,
+                start_at: translateObjectToString(selectedDate.startDate),
+                end_at: translateObjectToString(selectedDate.endDate),
             });
         else
             setCompanyInfo({
@@ -44,25 +41,45 @@ function AddCompany() {
         <_Wrapper>
             <_Center>
                 <_ImgWrapper>
-                    <div id="img"></div>
+                    <input type="file" onChange={onChangeFile} />
+                    <div className="profileImage">
+                        {profilePreview ? (
+                            <img src={profilePreview} alt="preview" className="preview" />
+                        ) : (
+                            <Image
+                                src={companyInfo.profile_image_path || plusBlackIcon}
+                                alt="추가"
+                                className="profileImage"
+                            />
+                        )}
+                    </div>
                     <p>프로필 사진 설정</p>
                 </_ImgWrapper>
-                {inputArray.map((item) => {
-                    return (
-                        <_InputWrapper key={item.name}>
-                            <p>{item.title}</p>
-                            <TextBox
-                                width={380}
-                                type="text"
-                                name={item.name}
-                                correct={true}
-                                placeholder={item.placeholder}
-                                value={companyInfo[item.name]}
-                                onChange={onChangeInputValue}
-                            />
-                        </_InputWrapper>
-                    );
-                })}
+                <_InputWrapper>
+                    <p>기업 종류</p>
+                    <_RadioWrapper>
+                        <RadioButtonBox
+                            items={companyTypeRadioOptions}
+                            onChange={onChangeRadioValue}
+                            gap={'15px'}
+                            value={companyInfo.is_mou ? 'MOU' : 'NON_MOU'}
+                        />
+                    </_RadioWrapper>
+                </_InputWrapper>
+                {inputArray.map((item) => (
+                    <_InputWrapper key={item.name}>
+                        <p>{item.title}</p>
+                        <TextBox
+                            width={380}
+                            type="text"
+                            name={item.name}
+                            correct={true}
+                            placeholder={item.placeholder}
+                            value={companyInfo[item.name] as string}
+                            onChange={onChangeInputValue}
+                        />
+                    </_InputWrapper>
+                ))}
                 <Calendar
                     year={year}
                     month={month}
@@ -78,7 +95,7 @@ function AddCompany() {
                     borderColor={theme.color.skyblue}
                     fontColor={theme.color.skyblue}
                     content="기업 추가"
-                    onClick={() => selectModal('SUCCESS')}
+                    onClick={onClickCreateCompany}
                 />
             </_Center>
         </_Wrapper>
@@ -107,18 +124,34 @@ const _Center = styled.div`
     }
 `;
 
-const _ImgWrapper = styled.div`
+const _ImgWrapper = styled.label`
     height: 128px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    > #img {
+    > input {
+        width: 0;
+        height: 0;
+    }
+    > .profileImage {
         width: 90px;
         height: 90px;
         border-radius: 100px;
         border: 1px dashed black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .preview {
+            border: 1px solid black;
+            border-radius: 100px;
+        }
     }
     > p {
         font-weight: 400;
@@ -149,18 +182,6 @@ const _InputWrapper = styled.div`
         border: 1px solid black;
     }
 `;
-
-const _TempCalendar = styled.div`
-    //후에 달력으로 대체
-    width: 530px;
-    height: 300px;
-    border: 1px solid black;
-    margin-top: 35px;
-`;
-
-const _AddButton = styled.button`
-    margin-top: 35px;
-    width: 530px;
-    height: 44px;
-    border: 1px solid ${({ theme }) => theme.color.skyblue};
+const _RadioWrapper = styled.div`
+    width: 380px;
 `;

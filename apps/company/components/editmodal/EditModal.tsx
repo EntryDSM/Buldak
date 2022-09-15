@@ -4,14 +4,37 @@ import { Frame, ExitButton } from '../../assets/editmodal';
 import { Button, TextBox } from '../../../../packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import { onlineManager } from 'react-query';
-
-const inputArr = ['담당자 이름', '담당자 연락처', '기업 이름', '기업 주소'];
+import { changeImageToUrl } from '../../api/image';
+import { ChangeEvent, useRef, useState } from 'react';
+import { editCompanyInfo } from '../../api/edit';
 
 interface Props {
     closeModal: () => void;
 }
 
 function EditModal({ closeModal }: Props) {
+    const [prev, setPrev] = useState<string>('');
+    const [phone, setPhone] = useState('');
+    const [EditBuffer, setBuffer] = useState({
+        company_name: '',
+        location: '',
+        profile_image_path: '',
+        name: '',
+        phone_number: '',
+    });
+    const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const uploadFile = e.target.files[0];
+            if (uploadFile) {
+                alert(uploadFile.name + '파일이 선택되었습니다.');
+                const formData = new FormData();
+                formData.append('file', uploadFile);
+                const url = changeImageToUrl(formData);
+                setPrev((await url).image_path);
+            }
+        }
+    };
+
     return (
         <Background>
             <Box>
@@ -20,16 +43,50 @@ function EditModal({ closeModal }: Props) {
                     <Side>
                         <h1>정보 변경</h1>
                         <div id="wrapper-img">
-                            <BoxImg backgroundImg={Frame} />
+                            {prev && <Imgs style={{ backgroundImage: `url(${prev})` }} />}
+                            <input
+                                type={'file'}
+                                accept="image/*"
+                                onChange={(e) => {
+                                    onChangeImg(e);
+                                }}
+                            />
+                            <BoxImg backgroundImg={!prev ? Frame : null} />
                             <p>프로필 사진 설정</p>
                         </div>
                     </Side>
                     <Body>
                         <Exit backgroundImg={ExitButton} onClick={() => closeModal()} />
                         <div id="wrapper-input">
-                            {inputArr.map((value) => (
-                                <Input title={value} />
-                            ))}
+                            <Inputs
+                                onChange={(e) => {
+                                    setBuffer({ ...EditBuffer, name: e.target.value });
+                                }}
+                                title={'담당자 이름'}
+                            />
+                            <Inputs
+                                onChange={(e) => {
+                                    const regex = /^[0-9\b -]{0,11}$/;
+                                    if (regex.test(e.target.value)) {
+                                        setBuffer({ ...EditBuffer, phone_number: e.target.value });
+                                        setPhone(e.target.value);
+                                    }
+                                }}
+                                value={phone}
+                                title={'담당자 연락처'}
+                            />
+                            <Inputs
+                                onChange={(e) => {
+                                    setBuffer({ ...EditBuffer, company_name: e.target.value });
+                                }}
+                                title={'기업 이름'}
+                            />
+                            <Inputs
+                                onChange={(e) => {
+                                    setBuffer({ ...EditBuffer, location: e.target.value });
+                                }}
+                                title={'기업 주소'}
+                            />
                         </div>
                         <Button
                             width={380}
@@ -39,6 +96,9 @@ function EditModal({ closeModal }: Props) {
                             content="정보 변경"
                             fontColor={theme.color.skyblue}
                             backgroundColor={theme.color.white}
+                            onClick={() => {
+                                editCompanyInfo({ ...EditBuffer, profile_image_path: prev });
+                            }}
                         />
                     </Body>
                 </div>
@@ -48,18 +108,22 @@ function EditModal({ closeModal }: Props) {
 }
 
 interface InputProps {
-    title?: string;
+    title: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    value?: string;
 }
 
-function Input({ title }: InputProps) {
+function Inputs({ title, onChange, value }: InputProps) {
     return (
         <InputWrapper>
             <h1>{title}</h1>
             <div className="temp">
                 <TextBox
+                    onChange={onChange}
                     type="text"
                     width={380}
                     correct={true}
+                    value={value}
                     placeholder={title + '을(를) 입력해주세요'}
                 />
             </div>
@@ -72,8 +136,8 @@ export default EditModal;
 const Background = styled.div`
     z-index: 6;
     width: 100%;
-    height: 100%;
-    position: absolute;
+    height: 100vh;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
@@ -125,6 +189,7 @@ const Side = styled.div`
         align-items: center;
         justify-content: space-between;
         margin-bottom: 40px;
+        position: relative;
         > p {
             font-weight: 500;
             font-size: 18px;
@@ -132,13 +197,30 @@ const Side = styled.div`
             text-decoration: underline;
             margin-top: 20px;
         }
+        > input {
+            position: absolute;
+            border: 1px solid black;
+            width: 90px;
+            height: 90px;
+            opacity: 0;
+        }
     }
 `;
 
-const BoxImg = styled.div<{ backgroundImg: StaticImageData }>`
+const Imgs = styled.div`
+    position: absolute;
     width: 90px;
     height: 90px;
-    background-image: url(${(props) => props.backgroundImg.src});
+    border-radius: 100px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 100%;
+`;
+
+const BoxImg = styled.div<{ backgroundImg: StaticImageData | null }>`
+    width: 90px;
+    height: 90px;
+    background-image: url(${(props) => props.backgroundImg?.src});
 `;
 
 const Body = styled.div`

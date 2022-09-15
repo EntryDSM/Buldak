@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { dayType, selectedType } from '../hooks/useCalendar';
+import ArrowIcon from '../assets/arrow';
 
 const dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -16,12 +17,16 @@ const Calendar = ({ year, month, prevMonth, nextMonth, list, checkDayType }: Pro
     return (
         <_Wrapper className="calendar">
             <_MonthWrapper>
-                <button onClick={prevMonth}>{'<'}</button>
+                <button onClick={prevMonth}>
+                    <ArrowIcon arrowType="LEFT" />
+                </button>
                 <_Month>
                     <p>{year}년</p>
                     <p className="month">{month}월</p>
                 </_Month>
-                <button onClick={nextMonth}>{'>'}</button>
+                <button onClick={nextMonth}>
+                    <ArrowIcon arrowType="RIGHT" />
+                </button>
             </_MonthWrapper>
             <_DayWrapper>
                 {dayList.map((item, index) => (
@@ -45,26 +50,29 @@ const _Wrapper = styled.section`
     background-color: ${({ theme }) => theme.color.white};
     border-radius: 8px;
     border: 2px solid ${({ theme }) => theme.color.gray700};
-    padding: 25px 70px;
+    padding: 20px 70px;
 `;
 const _MonthWrapper = styled.div`
-    width: 195px;
+    width: 230px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     > button {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border: 1px solid ${({ theme }) => theme.color.gray900};
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;
 const _Month = styled.strong`
     display: flex;
-    width: 105px;
-    font-size: 20px;
+    width: 115px;
+    font-size: 22px;
     line-height: 25px;
     color: ${({ theme }) => theme.color.black};
     font-weight: 500;
