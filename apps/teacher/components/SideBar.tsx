@@ -118,10 +118,7 @@ import Link from 'next/link';
 import { Profile } from '@packages/ui';
 import Image from 'next/image';
 import { companyIcon, studentIcon, tagIcon } from '../assets';
-<<<<<<< Updated upstream
-=======
 import { pages } from '../utils/constant';
->>>>>>> Stashed changes
 
 type ManagementType = 'tag' | 'student' | 'company';
 
@@ -210,32 +207,18 @@ const navArray: NavItem[] = [
     {
         summary: '학생 관리',
         image: studentIcon,
-<<<<<<< Updated upstream
-        url: '/',
-=======
         url: pages.manageStudent,
->>>>>>> Stashed changes
         managementType: 'student',
     },
     {
         summary: '태그 관리',
         image: tagIcon,
-<<<<<<< Updated upstream
-        url: '/managementTag',
-=======
         url: pages.manageTag,
->>>>>>> Stashed changes
         managementType: 'tag',
     },
     {
         summary: '기업 관리',
         image: companyIcon,
-<<<<<<< Updated upstream
-        url: '/managementCompany',
-        managementType: 'company',
-    },
-];
-=======
         url: pages.manageCompany,
         managementType: 'company',
     },

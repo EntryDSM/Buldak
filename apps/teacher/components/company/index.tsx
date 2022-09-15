@@ -85,10 +85,7 @@ import Link from 'next/link';
 import { ChangeEvent } from 'react';
 import { CompanyInfo } from '../../models/teachers/responses';
 import { plusWhite } from '../../assets';
-<<<<<<< Updated upstream
-=======
 import { pages } from '../../utils/constant';
->>>>>>> Stashed changes
 
 interface Props {
     searchName: string;
@@ -109,11 +106,7 @@ const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) =
                     value={searchName}
                     onChange={onChangeSearchName}
                 />
-<<<<<<< Updated upstream
-                <Link href={'/add-company'}>
-=======
                 <Link href={pages.addCompany}>
->>>>>>> Stashed changes
                     <Button
                         width={44}
                         height={44}

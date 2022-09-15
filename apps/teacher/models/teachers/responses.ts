@@ -84,10 +84,7 @@ export interface GetCompanyDetailResponse extends CompanyInfo {
     phone_number: string;
     start_at: string;
     end_at: string;
-<<<<<<< Updated upstream
-=======
     is_mou: boolean;
->>>>>>> Stashed changes
 }
 export interface CreateCompanyResponse {
     id: string;

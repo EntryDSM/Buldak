@@ -2,71 +2,54 @@
 import styled from '@emotion/styled';
 import StudentBox from '../components/studentbox/StudentBox';
 import EditModal from '../components/editmodal/EditModal';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, DropDown, TextBox } from '@packages/ui';
 import { Gear, HoverGear } from '../assets/list';
 import theme from '@packages/emotion-style-provider/src/theme';
 import { EachStudentType, StudentsListResponseType } from '../types';
-import Loading from '../components/loading/Loading';
-import { useQuery } from 'react-query';
+import { useList } from '../hooks/useList';
 import { readAllBlocks } from '../api/blocks';
+import Loading from '../components/loading/Loading';
+import { searchIcon } from '@packages/ui/assets/textBox';
+import {
+    Template_DefProfile,
+    Template_DoubleText,
+    Template_Gap,
+    Template_Image,
+    Template_ImageText,
+    Template_Link,
+    Template_List,
+    Template_RowLine,
+    Template_Text,
+    Template_TextImage,
+} from '../../../packages/ui/template/index';
 
 interface Props {}
 
 function StudentList({}: Props) {
-    const { data, isLoading, error } = useQuery(
-        ['blockslist'],
-        async () => {
-            const data = await readAllBlocks();
-            return data.student_list;
-        },
-        {
-            retry: 0,
-        },
-    );
     const [onOff, setOnOff] = useState<boolean>(false);
     const [list, setList] = useState<EachStudentType[] | null>(null);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
+    const [isdata, setIsData] = useState(false);
     const SearchBuffer = useRef({
         search: '',
         classnum: '',
         major: '',
     }).current;
+    const studentList = useList();
 
     const closeModal = () => {
         setOnOff(false);
     };
 
     useEffect(() => {
-        if (data) {
-            if (!list && !isEmpty) {
-                if (error) {
-                    setIsEmpty(true);
-                }
-                if (data.length > 0) {
-                    setList(data);
-                } else setIsEmpty(true);
-            }
-        }
-    }, [list, isLoading]);
-
-    const searchList = async () => {
-        if (data) {
-            const search = SearchBuffer.search;
-            const major = SearchBuffer.major == '전체 분야' ? '' : SearchBuffer.major;
-            const classnum = SearchBuffer.classnum == '전체 반' ? '' : SearchBuffer.classnum;
-            const searchedlist = data.filter((value) => {
-                if (
-                    (value.name.includes(search) || !search) &&
-                    (value.gcn.slice(1, 2) == classnum || !classnum) &&
-                    (value.major_tag == major || !major)
-                ) {
-                    return value;
-                }
+        if (!list && !isEmpty) {
+            studentList.getState().then((result) => {
+                if (result.length > 0) setList(result);
+                else setIsEmpty(true);
             });
-            setList(searchedlist);
         }
-    };
+    }, [list]);
 
     return (
         <>
@@ -85,17 +68,16 @@ function StudentList({}: Props) {
                                     onChange={(event) => {
                                         if (event.currentTarget.value === undefined) {
                                         } else {
+                                            console.log(event.currentTarget.value);
                                             SearchBuffer.search = event.currentTarget.value;
+                                            console.log(SearchBuffer);
                                         }
-                                    }}
-                                    onClick={() => {
-                                        searchList();
                                     }}
                                 />
                                 <DropDown
                                     placeholder="반"
                                     width={220}
-                                    items={['전체 반', '1', '2', '3', '4']}
+                                    items={['1', '2', '3', '4']}
                                     onChange={(value) => {
                                         SearchBuffer.classnum = value;
                                     }}
@@ -103,13 +85,7 @@ function StudentList({}: Props) {
                                 <DropDown
                                     placeholder="분야"
                                     width={220}
-                                    items={[
-                                        '전체 분야',
-                                        '프론트엔드',
-                                        '백엔드',
-                                        '안드로이드',
-                                        'iOS',
-                                    ]}
+                                    items={['프론트엔드', '백엔드', '안드로이드', 'IOS', '기타']}
                                     onChange={(value) => {
                                         SearchBuffer.major = value;
                                     }}
@@ -134,13 +110,11 @@ function StudentList({}: Props) {
                                 <>
                                     <StudentBox
                                         name={value.name}
-                                        major={value.major_tag}
+                                        major={value.major}
                                         num={value.gcn}
-                                        tags={value.skill_tag_list}
+                                        tags={value.tag_list}
                                         EOL={!((index + 1) % 4)}
                                         key={index}
-                                        prev_img={value.preview_image_path}
-                                        profile_img={value.profile_image_path}
                                     />
                                 </>
                             ))
@@ -160,6 +134,7 @@ function StudentList({}: Props) {
         </>
     );
 }
+
 export default StudentList;
 
 const Background = styled.div`

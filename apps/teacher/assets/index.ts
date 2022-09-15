@@ -22,8 +22,4 @@ export { default as companyIcon } from './compnayIcon.svg';
 export { default as plusBlackIcon } from './plusBlackIcon.svg';
 export { default as closeIcon } from './close.svg';
 export { default as pdfArrow } from './pdfArrow.svg';
-<<<<<<< Updated upstream
-=======
 export { default as successCheckIcon } from './successCheck.svg';
->>>>>>> e00e9c85974154ffb8db7f5caf1c1292b3c3e366
->>>>>>> Stashed changes

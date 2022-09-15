@@ -148,35 +148,15 @@ const useCompany = () => {
                 if (base64) setProfilePreview(base64.toString());
             };
             setFile(e.target.files[0]);
-<<<<<<< Updated upstream
-=======
             if (e.target.name === 'companyInfo' && e.target.files[0]) {
                 console.log(e.target.files[0]);
                 onClickEditCompany(e.target.id, e.target.files[0]);
             }
->>>>>>> Stashed changes
         }
     };
     const onClickCreateCompany = async () => {
         try {
             const FD = new FormData();
-<<<<<<< Updated upstream
-            if (file !== undefined) FD.append('file', file);
-            const image = await createImage('PROFILE', FD);
-            createCompany({
-                ...companyInfo,
-                profile_image_path: image.image_path,
-            }).then((res) => {
-                selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
-            });
-        } catch (err) {}
-    };
-    const onClickEditCompany = async (id: string, file?: File) => {
-        try {
-            editCompany(id, companyInfo).then(() => {
-                router.reload();
-            });
-=======
             if (file !== undefined) {
                 FD.append('file', file);
                 const image = await createImage('PROFILE', FD);
@@ -191,7 +171,7 @@ const useCompany = () => {
             }
         } catch (err) {}
     };
-    const onClickEditCompany = async (id: string, file?: File) => {
+    const onClickEditCompany = (id: string) => {
         try {
             if (file !== undefined) {
                 const FD = new FormData();
@@ -203,7 +183,6 @@ const useCompany = () => {
                     });
                 });
             } else editCompany(id, companyInfo).then(() => {});
->>>>>>> Stashed changes
         } catch (err) {
             console.log(err);
         }
