@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Profile } from '@packages/ui';
 import Image from 'next/image';
 import { companyIcon, studentIcon, tagIcon } from '../assets';
+import { pages } from '../utils/constant';
 
 type ManagementType = 'tag' | 'student' | 'company';
 
@@ -91,19 +92,19 @@ const navArray: NavItem[] = [
     {
         summary: '학생 관리',
         image: studentIcon,
-        url: '/',
+        url: pages.manageStudent,
         managementType: 'student',
     },
     {
         summary: '태그 관리',
         image: tagIcon,
-        url: '/managementTag',
+        url: pages.manageTag,
         managementType: 'tag',
     },
     {
         summary: '기업 관리',
         image: companyIcon,
-        url: '/managementCompany',
+        url: pages.manageCompany,
         managementType: 'company',
     },
 ];

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ChangeEvent } from 'react';
 import { CompanyInfo } from '../../models/teachers/responses';
 import { plusWhite } from '../../assets';
+import { pages } from '../../utils/constant';
 
 interface Props {
     searchName: string;
@@ -26,7 +27,7 @@ const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) =
                     value={searchName}
                     onChange={onChangeSearchName}
                 />
-                <Link href={'/add-company'}>
+                <Link href={pages.addCompany}>
                     <Button
                         width={44}
                         height={44}

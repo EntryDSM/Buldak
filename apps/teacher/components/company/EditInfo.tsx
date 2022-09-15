@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../modals/ModalWrapper';
 import { Button, TextBox } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
@@ -13,13 +13,14 @@ import useCalendar from '../../hooks/useCalendar';
 import { translateObjectToString, translateStringToObject } from '../../utils/translate';
 import { closeIcon } from '../../assets';
 import Image from 'next/image';
+import { queryKeys } from '../../utils/constant';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
     const { companyInfo, setCompanyInfo, onChangeInputValue, onClickEditCompany } = useCompany();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
         useCalendar();
-    const { data } = useQuery(['getCompanyDetails', selectedId], () =>
+    const { data } = useQuery([queryKeys.getCompanyDetails, selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
     useEffect(() => {
@@ -46,7 +47,7 @@ function EditInfo() {
             });
     }, [selectedDate]);
     return (
-        <ModalWrapper closeModal={closeModal}>
+        <ModalWrapper>
             <_Wrapper>
                 <_Header>
                     <p>기업 정보 변경</p>
@@ -116,7 +117,7 @@ const _Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px;
+    padding: 0 20px;
     > p {
         font-weight: 500;
         font-size: 22px;
