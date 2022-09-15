@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import StudentBox from './StudentBox';
-import { PdfStudentListProps } from '.';
+import { PdfStudentListProps } from './index';
 
 interface Props {
     isSelectedBox: boolean;
