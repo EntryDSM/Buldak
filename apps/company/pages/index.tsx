@@ -10,18 +10,6 @@ import { useList } from '../hooks/useList';
 import { readAllBlocks } from '../api/blocks';
 import Loading from '../components/loading/Loading';
 import { searchIcon } from '@packages/ui/assets/textBox';
-import {
-    Template_DefProfile,
-    Template_DoubleText,
-    Template_Gap,
-    Template_Image,
-    Template_ImageText,
-    Template_Link,
-    Template_List,
-    Template_RowLine,
-    Template_Text,
-    Template_TextImage,
-} from '../../../packages/ui/template/index';
 
 interface Props {}
 
@@ -29,12 +17,12 @@ function StudentList({}: Props) {
     const [onOff, setOnOff] = useState<boolean>(false);
     const [list, setList] = useState<EachStudentType[] | null>(null);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
-    const [isdata, setIsData] = useState(false);
     const SearchBuffer = useRef({
         search: '',
         classnum: '',
         major: '',
     }).current;
+
     const studentList = useList();
 
     const closeModal = () => {
@@ -67,10 +55,17 @@ function StudentList({}: Props) {
                                     onChange={(event) => {
                                         if (event.currentTarget.value === undefined) {
                                         } else {
-                                            console.log(event.currentTarget.value);
                                             SearchBuffer.search = event.currentTarget.value;
-                                            console.log(SearchBuffer);
                                         }
+                                    }}
+                                    onClick={() => {
+                                        console.log(
+                                            studentList.searchList(
+                                                SearchBuffer.search,
+                                                SearchBuffer.major,
+                                                SearchBuffer.classnum,
+                                            ),
+                                        );
                                     }}
                                 />
                                 <DropDown
@@ -109,11 +104,13 @@ function StudentList({}: Props) {
                                 <>
                                     <StudentBox
                                         name={value.name}
-                                        major={value.major}
+                                        major={value.major_tag}
                                         num={value.gcn}
-                                        tags={value.tag_list}
+                                        tags={value.skill_tag_list}
                                         EOL={!((index + 1) % 4)}
                                         key={index}
+                                        prev_img={value.preview_image_path}
+                                        profile_img={value.profile_image_path}
                                     />
                                 </>
                             ))
@@ -133,8 +130,6 @@ function StudentList({}: Props) {
         </>
     );
 }
-
-export default StudentList;
 
 const Background = styled.div`
     min-width: 100%;

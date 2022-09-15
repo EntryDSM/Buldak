@@ -6,6 +6,7 @@ import { searchTag } from '../api/tags';
 import SideBar from '../components/SideBar';
 import TagList from '../components/tag';
 import useDebounce from '../hooks/useDebounce';
+import { queryKeys } from '../utils/constant';
 
 const ManagementTag = () => {
     const [keyword, setKeyword] = useState('');
@@ -62,8 +63,8 @@ export default ManagementTag;
 
 export async function getServerSideProps() {
     const queryClient = new QueryClient();
-    queryClient.prefetchQuery(['getCommonTagList', () => searchTag('', false)]);
-    queryClient.prefetchQuery(['getMajorTagList'], () => searchTag('', true));
+    queryClient.prefetchQuery([queryKeys.getCommonTagList], () => searchTag('', false));
+    queryClient.prefetchQuery([queryKeys.getMajorTagList], () => searchTag('', true));
     return {
         props: {
             dehydratedState: dehydrate(queryClient),

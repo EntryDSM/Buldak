@@ -1,18 +1,22 @@
 import styled from '@emotion/styled';
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../modals/ModalWrapper';
 import { Button, Profile } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { inputArray } from '../constant';
 import useModal from '../../hooks/useModal';
 import { useQuery } from 'react-query';
 import { getCompanyDetail, resetCompanyPassword } from '../../api/teachers';
-import Image from 'next/image';
-import { closeIcon } from '../../assets';
-import { useRouter } from 'next/router';
+import ModalHeader from '../modals/ModalHeader';
+import useCompany from '../../hooks/useCompany';
+import { companyIcon } from '../../assets';
+import { useEffect } from 'react';
+import { queryKeys } from '../../utils/constant';
 
 function CompanyInfo() {
-    const { closeModal, selectModal, selectedId } = useModal();
-    const { data } = useQuery(['getCompanyDetail', selectedId], () =>
+    const { selectModal, selectedId } = useModal();
+    const { onChangeFile, profilePreview, setCompanyInfo } = useCompany();
+    // tood : 이거랑 editInfo에 있는 쿼리키를 같게 하면 작동을 안 해요 개버그임
+    const { data } = useQuery([queryKeys.getCompanyDetail, selectedId], () =>
         getCompanyDetail(selectedId || ''),
     );
     const onClickResetPassword = () => {
@@ -24,19 +28,28 @@ function CompanyInfo() {
             });
         });
     };
+    useEffect(() => {
+        data !== undefined && setCompanyInfo(data);
+    }, [data]);
     return (
-        <ModalWrapper closeModal={closeModal}>
+        <ModalWrapper>
             <_Wrapper>
-                <_Header>
-                    <p>기업 정보</p>
-                    <button onClick={closeModal}>
-                        <Image src={closeIcon} alt="닫기" />
-                    </button>
-                </_Header>
+                <ModalHeader title="기업 정보" />
                 <_Body>
                     <_SideWrapper>
-                        <Profile type="image" src={data?.profile_image_path} />
-                        <p>프로필 이미지</p>
+                        <_CompanyType>{data?.is_mou ? 'MOU' : 'NON_MOU'}</_CompanyType>
+                        {profilePreview ? (
+                            <img src={profilePreview} alt="preview" className="preview" />
+                        ) : (
+                            <Profile type="image" src={data?.profile_image_path || companyIcon} />
+                        )}
+                        <p>프로필 변경</p>
+                        <input
+                            type="file"
+                            onChange={onChangeFile}
+                            name="companyInfo"
+                            id={data?.company_id}
+                        />
                     </_SideWrapper>
                     <_InputsWrapper>
                         {inputArray.map(
@@ -87,29 +100,6 @@ const _Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-const _Header = styled.div`
-    width: 100%;
-    height: 68px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    > p {
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 28px;
-        color: ${({ theme }) => theme.color.gray700};
-    }
-    > #exit {
-        width: 34px;
-        height: 34px;
-        border: 1px solid black;
-    }
-`;
-
 const _InputWrapper = styled.div`
     width: 510px;
     height: 40px;
@@ -138,23 +128,43 @@ const _Body = styled.div`
     height: 480px;
 `;
 
-const _SideWrapper = styled.div`
+const _SideWrapper = styled.label`
     width: 310px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 65px;
+    margin-top: 55px;
+    > input[type='file'] {
+        width: 0;
+        height: 0;
+    }
     > p {
         margin-top: 20px;
-
+        border-bottom: 1px solid black;
         font-weight: 500;
         font-size: 20px;
         line-height: 25px;
         color: ${({ theme }) => theme.color.black};
     }
+    > img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 100px;
+    }
+    > .default {
+        background-color: ${({ theme }) => theme.color.skyblue};
+        border: 1px solid;
+    }
 `;
-
+const _CompanyType = styled.strong`
+    font-size: 20px;
+    color: ${({ theme }) => theme.color.main};
+    font-weight: bold;
+    margin-bottom: 9px;
+`;
 const _InputsWrapper = styled.div`
     width: 510px;
     height: 404px;
