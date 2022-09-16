@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     title: string;
@@ -11,9 +12,10 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function List({ color, title, list, feedback }: Props) {
+export default function List({ color, title, list, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -21,8 +23,20 @@ export default function List({ color, title, list, feedback }: Props) {
             onOutsideClick={() => {
                 setIsSelected(false);
             }}>
-            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)} style={{ color: color[0] }}>
-                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+            <Wrapper
+                isSelected={isSelected}
+                onClick={() => setIsSelected(true)}
+                style={{ color: color[0] }}>
+                {!isTeacher && feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
+                )}{' '}
                 <p>{title}</p>
                 <TextBox>
                     {list.map((value) => (

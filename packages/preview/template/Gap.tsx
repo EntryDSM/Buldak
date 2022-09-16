@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     height: number;
@@ -9,9 +10,10 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function Gap({ height, feedback }: Props) {
+export default function Gap({ height, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -19,8 +21,20 @@ export default function Gap({ height, feedback }: Props) {
             onOutsideClick={() => {
                 setIsSelected(false);
             }}>
-            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)} style={{ height: `${height}px` }}>
-                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+            <Wrapper
+                isSelected={isSelected}
+                onClick={() => setIsSelected(true)}
+                style={{ height: `${height}px` }}>
+                {!isTeacher && feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
+                )}{' '}
             </Wrapper>
         </OutsideClickHandler>
     );

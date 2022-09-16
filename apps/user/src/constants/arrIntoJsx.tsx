@@ -14,6 +14,7 @@ export function ArrIntoJsx(value: any) {
                         text1={value.innerText}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -25,6 +26,7 @@ export function ArrIntoJsx(value: any) {
                         text2={value.innerText[1]}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -37,6 +39,7 @@ export function ArrIntoJsx(value: any) {
                         text3={value.innerText[2]}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -51,6 +54,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText1={value.innerText[0][1]}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -64,6 +68,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText2={value.innerText[1][1]}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -79,6 +84,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText3={value.innerText[2][1]}
                         color={value.color}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -90,6 +96,7 @@ export function ArrIntoJsx(value: any) {
                         grade={value.grade}
                         url1={value.imageUrl[0]}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -100,6 +107,7 @@ export function ArrIntoJsx(value: any) {
                         url1={value.imageUrl[0]}
                         url2={value.imageUrl[1]}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -111,6 +119,7 @@ export function ArrIntoJsx(value: any) {
                         url2={value.imageUrl[1]}
                         url3={value.imageUrl[2]}
                         feedback={value.feedback}
+                        isTeacher={value.isTeacher}
                     />
                 );
             }
@@ -123,6 +132,7 @@ export function ArrIntoJsx(value: any) {
                     bottomText={value.innerText[1]}
                     color={value.color}
                     feedback={value.feedback}
+                    isTeacher={value.isTeacher}
                 />
             );
         }
@@ -134,14 +144,27 @@ export function ArrIntoJsx(value: any) {
                     bottomText={value.innerText[1]}
                     color={value.color}
                     feedback={value.feedback}
+                    isTeacher={value.isTeacher}
                 />
             );
         }
         case 'Line': {
-            return <T.Template_RowLine height={value.height} feedback={value.feedback} />;
+            return (
+                <T.Template_RowLine
+                    height={value.height}
+                    feedback={value.feedback}
+                    isTeacher={value.isTeacher}
+                />
+            );
         }
         case 'Gap': {
-            return <T.Template_Gap height={value.height} feedback={value.feedback} />;
+            return (
+                <T.Template_Gap
+                    height={value.height}
+                    feedback={value.feedback}
+                    isTeacher={value.isTeacher}
+                />
+            );
         }
         case 'List': {
             return (
@@ -150,6 +173,7 @@ export function ArrIntoJsx(value: any) {
                     list={value.innerText}
                     color={value.color}
                     feedback={value.feedback}
+                    isTeacher={value.isTeacher}
                 />
             );
         }
@@ -162,6 +186,7 @@ export function ArrIntoJsx(value: any) {
                     phone={value.phone}
                     url={value.imageUrl}
                     feedback={value.feedback}
+                    isTeacher={value.isTeacher}
                 />
             );
         }
@@ -210,9 +235,18 @@ interface Array_Text_Type {
     text2?: string;
     text3?: string;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_Text = ({ color, grade, text1, text2, text3, feedback }: Array_Text_Type) => {
+export const Array_Text = ({
+    color,
+    grade,
+    text1,
+    text2,
+    text3,
+    feedback,
+    isTeacher = false,
+}: Array_Text_Type) => {
     if (grade == 1) {
         return {
             tagType: 'Text',
@@ -220,6 +254,7 @@ export const Array_Text = ({ color, grade, text1, text2, text3, feedback }: Arra
             innerText: [text1],
             color: color,
             feedback: feedback,
+            isTeacher: isTeacher,
         };
     }
     if (grade == 2) {
@@ -250,6 +285,7 @@ interface Array_DoubleText_Type {
     text2?: string[];
     text3?: string[];
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
 export const Array_DoubleText = ({
@@ -259,6 +295,7 @@ export const Array_DoubleText = ({
     text2,
     text3,
     feedback,
+    isTeacher = false,
 }: Array_DoubleText_Type) => {
     if (grade == 1) {
         return {
@@ -267,6 +304,7 @@ export const Array_DoubleText = ({
             innerText: [text1],
             color: color,
             feedback: feedback,
+            isTeacher: isTeacher,
         };
     }
     if (grade == 2) {
@@ -295,15 +333,24 @@ interface Array_Image_Type {
     url2?: string;
     url3?: string;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_Image = ({ grade, url1, url2, url3, feedback }: Array_Image_Type) => {
+export const Array_Image = ({
+    grade,
+    url1,
+    url2,
+    url3,
+    feedback,
+    isTeacher = false,
+}: Array_Image_Type) => {
     if (grade == 1) {
         return {
             tagType: 'Image',
             grade: 1,
             imageUrl: [url1],
             feedback: feedback,
+            isTeacher: isTeacher,
         };
     }
     if (grade == 2) {
@@ -329,15 +376,23 @@ interface Array_ImageText_Type {
     url: string;
     text1: string[];
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_ImageText = ({ color, url, text1, feedback }: Array_ImageText_Type) => {
+export const Array_ImageText = ({
+    color,
+    url,
+    text1,
+    feedback,
+    isTeacher = false,
+}: Array_ImageText_Type) => {
     return {
         tagType: 'ImageText',
         imageUrl: url,
         innerText: text1,
         color: color,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
@@ -346,41 +401,53 @@ interface Array_TextImage_Type {
     url: string;
     text1: string[];
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_TextImage = ({ color, url, text1, feedback }: Array_TextImage_Type) => {
+export const Array_TextImage = ({
+    color,
+    url,
+    text1,
+    feedback,
+    isTeacher = false,
+}: Array_TextImage_Type) => {
     return {
         tagType: 'TextImage',
         imageUrl: url,
         innerText: text1,
         color: color,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
 interface Array_Line_Type {
     height: number;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_Line = ({ height, feedback }: Array_Line_Type) => {
+export const Array_Line = ({ height, feedback, isTeacher = false }: Array_Line_Type) => {
     return {
         tagType: 'Line',
         height: height,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
 interface Array_Gap_Type {
     height: number;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_Gap = ({ height, feedback }: Array_Gap_Type) => {
+export const Array_Gap = ({ height, feedback, isTeacher = false }: Array_Gap_Type) => {
     return {
         tagType: 'Gap',
         height: height,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
@@ -390,9 +457,17 @@ interface Array_List_Type {
     title: string;
     list: string[];
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_List = ({ color, grade, title, list, feedback }: Array_List_Type) => {
+export const Array_List = ({
+    color,
+    grade,
+    title,
+    list,
+    feedback,
+    isTeacher = false,
+}: Array_List_Type) => {
     return {
         tagType: 'List',
         grade: grade,
@@ -400,6 +475,7 @@ export const Array_List = ({ color, grade, title, list, feedback }: Array_List_T
         innerText: list,
         color: color,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
@@ -410,6 +486,7 @@ interface Array_Profile_Type {
     email?: string;
     phone?: string;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
 export const Array_Profile = ({
@@ -419,6 +496,7 @@ export const Array_Profile = ({
     email,
     phone,
     feedback,
+    isTeacher = false,
 }: Array_Profile_Type) => {
     return {
         tagType: 'Profile',
@@ -428,6 +506,7 @@ export const Array_Profile = ({
         phone: phone,
         imageUrl: imgurl,
         feedback: feedback,
+        isTeacher: isTeacher,
     };
 };
 
@@ -437,15 +516,24 @@ interface Array_Link_Type {
     url2?: string;
     url3?: string;
     feedback: Feedback;
+    isTeacher?: boolean;
 }
 
-export const Array_Link = ({ grade, url1, url2, url3, feedback }: Array_Link_Type) => {
+export const Array_Link = ({
+    grade,
+    url1,
+    url2,
+    url3,
+    feedback,
+    isTeacher = false,
+}: Array_Link_Type) => {
     if (grade == 1) {
         return {
             tagType: 'Link',
             grade: 1,
             linkUrl: [url1],
             feedback: feedback,
+            isTeacher:isTeacher
         };
     }
     if (grade == 2) {

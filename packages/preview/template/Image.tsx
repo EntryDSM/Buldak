@@ -3,6 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     url1: string;
@@ -13,9 +14,10 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function Image({ url1, url2 = '', url3 = '', grade, feedback }: Props) {
+export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     if (grade == 1)
@@ -25,7 +27,16 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback }: P
                     setIsSelected(false);
                 }}>
                 <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
-                    {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                    {!isTeacher && feedback?.feedInfo && (
+                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    )}
+                    {isTeacher && (
+                        <WriteFeed
+                            isRead={feedback?.isRead}
+                            feedInfo={feedback?.feedInfo}
+                            isSelected={isSelected}
+                        />
+                    )}{' '}
                     <Img url={url1}>{url1 ? <></> : <NoImg />}</Img>
                 </Wrapper>
             </OutsideClickHandler>

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     name: string;
@@ -13,19 +14,34 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function DefProfile({ name, email, github, phone, url, feedback }: Props) {
+export default function DefProfile({
+    name,
+    email,
+    github,
+    phone,
+    url,
+    feedback,
+    isTeacher,
+}: Props) {
     const [isSelected, setIsSelected] = useState(false);
-
     return (
         <OutsideClickHandler
             onOutsideClick={() => {
                 setIsSelected(false);
             }}>
             <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
-                {feedback?.feedInfo && (
+                {!isTeacher && feedback?.feedInfo && (
                     <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
                 )}
                 <ImgBox>
                     <div id="img" style={{ backgroundImage: `url(${url})` }}></div>

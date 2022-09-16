@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     topText1: string;
@@ -16,6 +17,7 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
 export default function DoubleText({
@@ -28,6 +30,7 @@ export default function DoubleText({
     topText2,
     topText3,
     feedback,
+    isTeacher
 }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
@@ -38,7 +41,16 @@ export default function DoubleText({
                     setIsSelected(false);
                 }}>
                 <TotalWrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
-                    {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                {!isTeacher && feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
+                )}
                     <Wrapper>
                         <div id="top">
                             <p style={{ color: color[0] }}>{topText1}</p>

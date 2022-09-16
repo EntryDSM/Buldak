@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     text1: string;
@@ -13,10 +14,14 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function Text({ color, grade, text1, text2, text3, feedback }: Props) {
+export default function Text({ color, grade, text1, text2, text3, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
+    useEffect(() => {
+        console.log(isTeacher);
+    }, []);
     if (grade == 1)
         return (
             <OutsideClickHandler
@@ -30,8 +35,15 @@ export default function Text({ color, grade, text1, text2, text3, feedback }: Pr
                     <div id="textWrapper">
                         <p>{text1}</p>
                     </div>
-                    {feedback?.feedInfo && (
+                    {!isTeacher && feedback?.feedInfo && (
                         <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    )}
+                    {isTeacher && (
+                        <WriteFeed
+                            isRead={feedback?.isRead}
+                            feedInfo={feedback?.feedInfo}
+                            isSelected={isSelected}
+                        />
                     )}
                 </Wrapper>
             </OutsideClickHandler>

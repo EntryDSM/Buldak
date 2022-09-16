@@ -3,6 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     url: string;
@@ -13,9 +14,10 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function TextImage({ color, url, bottomText, topText, feedback }: Props) {
+export default function TextImage({ color, url, bottomText, topText, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -27,8 +29,15 @@ export default function TextImage({ color, url, bottomText, topText, feedback }:
                 isSelected={isSelected}
                 onClick={() => setIsSelected(true)}
                 style={{ color: color }}>
-                {feedback?.feedInfo && (
+                {!isTeacher && feedback?.feedInfo && (
                     <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
                 )}
                 <TextBox>
                     <div id="top">

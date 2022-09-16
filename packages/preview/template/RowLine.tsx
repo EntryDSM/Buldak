@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     height: number;
@@ -9,9 +10,10 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function RowLine({ height, feedback }: Props) {
+export default function RowLine({ height, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -23,7 +25,16 @@ export default function RowLine({ height, feedback }: Props) {
                 isSelected={isSelected}
                 onClick={() => setIsSelected(true)}
                 style={{ height: `${height}px` }}>
-                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                {!isTeacher && feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
+                )}
                 <div id="line" />
             </Wrapper>
         </OutsideClickHandler>
