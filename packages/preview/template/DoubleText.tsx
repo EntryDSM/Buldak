@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBack';
 
 interface Props {
@@ -27,23 +29,30 @@ export default function DoubleText({
     topText3,
     feedback,
 }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     if (grade == 1)
         return (
-            <TotalWrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Wrapper>
-                    <div id="top">
-                        <p style={{ color: color[0] }}>{topText1}</p>
-                    </div>
-                    <div id="bottom">
-                        <p style={{ color: color[1] }}>{bottomText1}</p>
-                    </div>
-                </Wrapper>
-            </TotalWrapper>
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    setIsSelected(false);
+                }}>
+                <TotalWrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
+                    {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                    <Wrapper>
+                        <div id="top">
+                            <p style={{ color: color[0] }}>{topText1}</p>
+                        </div>
+                        <div id="bottom">
+                            <p style={{ color: color[1] }}>{bottomText1}</p>
+                        </div>
+                    </Wrapper>
+                </TotalWrapper>
+            </OutsideClickHandler>
         );
     if (grade == 2)
         return (
-            <TotalWrapper style={{ color: color }}>
+            <TotalWrapper>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '500px' }}>
                     <div id="top">
@@ -65,7 +74,7 @@ export default function DoubleText({
         );
     if (grade == 3)
         return (
-            <TotalWrapper style={{ color: color }}>
+            <TotalWrapper>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
                 <Wrapper style={{ width: '333px' }}>
                     <div id="top">
@@ -96,7 +105,9 @@ export default function DoubleText({
     return <></>;
 }
 
-const TotalWrapper = styled.div`
+const TotalWrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     display: flex;

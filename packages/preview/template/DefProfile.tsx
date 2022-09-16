@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBack';
 
 interface Props {
@@ -15,26 +16,35 @@ interface Props {
 }
 
 export default function DefProfile({ name, email, github, phone, url, feedback }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     return (
-        <Wrapper>
-            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-            <ImgBox>
-                <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
-            </ImgBox>
-            <div id="colline" />
-            <div id="textbox">
-                <p>이름 : {name}</p>
-                <p>이메일 : {email}</p>
-                <p>
-                    GitHub :<a href={github}>{github}</a>
-                </p>
-                <p>연락처 : {phone}</p>
-            </div>
-        </Wrapper>
+        <OutsideClickHandler
+            onOutsideClick={() => {
+                setIsSelected(false);
+            }}>
+            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
+                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                <ImgBox>
+                    <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
+                </ImgBox>
+                <div id="colline" />
+                <div id="textbox">
+                    <p>이름 : {name}</p>
+                    <p>이메일 : {email}</p>
+                    <p>
+                        GitHub :<a href={github}>{github}</a>
+                    </p>
+                    <p>연락처 : {phone}</p>
+                </div>
+            </Wrapper>
+        </OutsideClickHandler>
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     height: 285px;

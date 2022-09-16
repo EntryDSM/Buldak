@@ -1,41 +1,58 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBack';
 
 interface Props {
     title: string;
     list: string[];
-    color:string;
+    color: string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
 }
 
-export default function List({ color,title, list }: Props) {
+export default function List({ color, title, list, feedback }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     return (
-        <Wrapper style={{color:color}}>
-            <p>{title}</p>
-            <TextBox>
-                {list.map((value) => (
-                    <EachList value={value} />
-                ))}
-            </TextBox>
-        </Wrapper>
+        <OutsideClickHandler
+            onOutsideClick={() => {
+                setIsSelected(false);
+            }}>
+            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)} style={{ color: color[0] }}>
+                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                <p>{title}</p>
+                <TextBox>
+                    {list.map((value) => (
+                        <EachList color={color[1]} value={value} />
+                    ))}
+                </TextBox>
+            </Wrapper>
+        </OutsideClickHandler>
     );
 }
 
-const EachList = ({ value }: { value: string }) => {
+interface EachListProps {
+    value: string;
+    color: string;
+}
+
+const EachList = ({ value, color }: EachListProps) => {
     return (
         <EachListWrapper>
             <Dot />
             <EachListText>
-                <p>{value}</p>
+                <p style={{ color: color }}>{value}</p>
             </EachListText>
         </EachListWrapper>
     );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     min-height: 285px;

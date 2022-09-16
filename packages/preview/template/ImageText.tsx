@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import FeedBack from './FeedBack';
 
@@ -6,31 +8,40 @@ interface Props {
     url: string;
     topText: string;
     bottomText: string;
-    color:string;
+    color: string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
 }
 
-export default function ImageText({ url, bottomText, topText, feedback }: Props) {
+export default function ImageText({ url, bottomText, topText, color, feedback }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     return (
-        <Wrapper style={{color:color}}>
-            {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-            <Img url={url}>{!url && <NoImg />}</Img>
-            <TextBox>
-                <div id="top">
-                    <p>{topText}</p>
-                </div>
-                <div id="bottom">
-                    <p>{bottomText}</p>
-                </div>
-            </TextBox>
-        </Wrapper>
+        <OutsideClickHandler
+            onOutsideClick={() => {
+                setIsSelected(false);
+            }}>
+            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
+                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                <Img url={url}>{!url && <NoImg />}</Img>
+                <TextBox>
+                    <div id="top">
+                        <p style={{ color: color[0] }}>{topText}</p>
+                    </div>
+                    <div id="bottom">
+                        <p style={{ color: color[1] }}>{bottomText}</p>
+                    </div>
+                </TextBox>
+            </Wrapper>
+        </OutsideClickHandler>
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     height: 360px;
