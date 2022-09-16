@@ -79,7 +79,7 @@ export const ElementList = [
             name: '이름',
             email: '이메일',
             phone: '전화번호',
-            github: 'github.com',
+            github: 'https://github.com',
             imageUrl: '',
             feedback: { isRead: false, feedInfo: '' },
         },
@@ -123,7 +123,7 @@ export const ElementList = [
         args: {
             grade: 3,
             title: '제목',
-            list: ['항목','항목','항목','항목'],
+            list: ['항목', '항목', '항목', '항목'],
             color: '#000000',
             feedback: { isRead: false, feedInfo: '' },
         },

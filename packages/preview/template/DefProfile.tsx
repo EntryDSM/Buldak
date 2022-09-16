@@ -24,7 +24,9 @@ export default function DefProfile({ name, email, github, phone, url, feedback }
                 setIsSelected(false);
             }}>
             <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
-                {feedback?.feedInfo && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
+                {feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
                 <ImgBox>
                     <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
                 </ImgBox>
@@ -33,7 +35,10 @@ export default function DefProfile({ name, email, github, phone, url, feedback }
                     <p>이름 : {name}</p>
                     <p>이메일 : {email}</p>
                     <p>
-                        GitHub :<a href={github}>{github}</a>
+                        GitHub :
+                        <a href={github} target="_blank">
+                            {github}
+                        </a>
                     </p>
                     <p>연락처 : {phone}</p>
                 </div>
