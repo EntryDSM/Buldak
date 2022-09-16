@@ -10,9 +10,6 @@ interface FeedProps {
 }
 
 function FeedBack({ isRead = false, feedInfo }: FeedProps) {
-    useEffect(() => {
-        console.log(feedInfo);
-    }, []);
     const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
     return (
