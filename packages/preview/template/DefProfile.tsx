@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
-import FeedBack from './FeedBack';
+import FeedBack from './FeedBackRead';
 
 interface Props {
     name: string;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import FeedBack from './FeedBack';
+import FeedBack from './FeedBackRead';
 
 interface Props {
     grade: number;
