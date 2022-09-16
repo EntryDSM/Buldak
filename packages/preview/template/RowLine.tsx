@@ -15,6 +15,7 @@ export default function RowLine({ height, feedback }: Props) {
             {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
             <div />
         </Wrapper>
+    );
 }
 
 const Wrapper = styled.div`
