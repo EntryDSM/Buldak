@@ -1,8 +1,15 @@
 import styled from '@emotion/styled';
-import { useRef } from 'react';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { addFeedback } from '../../api/teachers';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { feedbackArrow } from '../../assets';
 
 const FeedbackComment = () => {
+    const router = useRouter();
+    const { id } = router.query;
     const feedbackInput = useRef<HTMLTextAreaElement | null>(null);
+    const [feedbackContent, setFeedbackContent] = useState('');
     const autoResizeTextBox = () => {
         if (feedbackInput.current) {
             feedbackInput.current.style.height = 'auto';
@@ -10,12 +17,24 @@ const FeedbackComment = () => {
             feedbackInput.current.style.height = `${height + 8}px`;
         }
     };
+    const onChangeFeedbackContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setFeedbackContent(e.target.value);
+    };
+    const onSubmitFeedback = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        addFeedback(id as string, {
+            sequence: 0,
+            comment: feedbackContent,
+        });
+    };
     return (
-        <_Wrapper>
+        <_Wrapper onSubmit={onSubmitFeedback}>
             <_Triangle />
-            <_ArrowIcon />
+            <Image src={feedbackArrow} />
             <_FeedbackBox
+                onChange={onChangeFeedbackContent}
                 ref={feedbackInput}
+                value={feedbackContent}
                 placeholder="피드백을 남겨주세요"
                 onKeyDown={autoResizeTextBox}
                 onKeyUp={autoResizeTextBox}
@@ -25,7 +44,7 @@ const FeedbackComment = () => {
 };
 export default FeedbackComment;
 
-const _Wrapper = styled.section`
+const _Wrapper = styled.form`
     position: relative;
     width: 400px;
     min-height: 120px;
@@ -50,12 +69,6 @@ const _Triangle = styled.div`
     border-radius: 1px;
     transform: rotate(-90deg);
     left: -20px;
-`;
-const _ArrowIcon = styled.div`
-    width: 8px;
-    height: 20px;
-    background-color: ${({ theme }) => theme.color.gray500};
-    z-index: 2;
 `;
 const _FeedbackBox = styled.textarea`
     resize: none;
