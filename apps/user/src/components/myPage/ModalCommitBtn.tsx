@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
+import { HTMLAttributes } from 'react';
 
-interface PropsType {
+interface PropsType extends HTMLAttributes<HTMLButtonElement> {
     content: string;
 }
 
-function ModalCommitBtn({ content }: PropsType) {
+function ModalCommitBtn({ content, ...props }: PropsType) {
     return (
         <_CommitBtnWrapper>
-            <_CommitBtn>{content}</_CommitBtn>
+            <_CommitBtn {...props}>{content}</_CommitBtn>
         </_CommitBtnWrapper>
     );
 }
