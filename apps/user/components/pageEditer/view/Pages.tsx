@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ReactNode, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { ArrIntoJsx } from '../../../constants/ArrIntoJsx';
+import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { ElementListState } from '../../../recoil/ElementListState';
 
 interface PagesProps {
