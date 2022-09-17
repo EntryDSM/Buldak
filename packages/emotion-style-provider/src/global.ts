@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 export const global = css`
-    @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
     * {
         margin: 0;
         padding: 0;
@@ -29,5 +28,10 @@ export const global = css`
     a {
         text-decoration: none;
         color: inherit;
+    }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 `;
