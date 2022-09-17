@@ -1,35 +1,61 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
-import FeedBack from './FeedBack';
+import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     url: string;
     topText: string;
     bottomText: string;
-    color:string;
+    color: string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function TextImage({color,url, bottomText, topText }: Props) {
+export default function TextImage({ color, url, bottomText, topText, feedback, isTeacher }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     return (
-        <Wrapper style={{color:color}}>
-            <TextBox>
-                <div id="top">
-                    <p>{topText}</p>
-                </div>
-                <div id="bottom">
-                    <p>{bottomText}</p>
-                </div>
-            </TextBox>
-            <Img url={url}>{!url && <NoImg />}</Img>
-        </Wrapper>
+        <OutsideClickHandler
+            onOutsideClick={() => {
+                setIsSelected(false);
+            }}>
+            <Wrapper
+                isSelected={isSelected}
+                onClick={() => setIsSelected(true)}
+                style={{ color: color }}>
+                {!isTeacher && feedback?.feedInfo && (
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                )}
+                {isTeacher && (
+                    <WriteFeed
+                        isRead={feedback?.isRead}
+                        feedInfo={feedback?.feedInfo}
+                        isSelected={isSelected}
+                    />
+                )}
+                <TextBox>
+                    <div id="top">
+                        <p>{topText}</p>
+                    </div>
+                    <div id="bottom">
+                        <p>{bottomText}</p>
+                    </div>
+                </TextBox>
+                <Img url={url}>{!url && <NoImg />}</Img>
+            </Wrapper>
+        </OutsideClickHandler>
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     height: 360px;
@@ -46,6 +72,10 @@ const Img = styled.div<{ url: string }>`
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.color.gray300};
 `;
 const TextBox = styled.div`
     width: 430px;

@@ -1,10 +1,6 @@
-interface Props {
-    onClick: () => void;
-}
-export default function FeedArrow({ onClick }: Props) {
+export default function FeedArrow() {
     return (
         <svg
-            onClick={() => onClick()}
             width="8"
             height="20"
             viewBox="0 0 8 20"

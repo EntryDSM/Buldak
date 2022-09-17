@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Icon from '../assets/index';
 import CheckBox from '@packages/ui/components/CheckBox';
 
 interface FeedProps {
     isRead: boolean;
     feedInfo: string;
+    sequence?: number;
 }
 
 function FeedBack({ isRead = false, feedInfo }: FeedProps) {
@@ -15,12 +16,12 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
         <>
             {feedOpen ? (
                 <Wrapper>
-                    <div id="feedarrow">
-                        <Icon.Icon_FeedArrow
-                            onClick={() => {
-                                setFeedOpen(false);
-                            }}
-                        />
+                    <div
+                        id="feedarrow"
+                        onClick={() => {
+                            setFeedOpen(false);
+                        }}>
+                        <Icon.Icon_FeedArrow />
                     </div>
                     <CenterWrapper>
                         <p>{feedInfo}</p>
@@ -51,6 +52,7 @@ function FeedBack({ isRead = false, feedInfo }: FeedProps) {
 export default FeedBack;
 
 const Wrapper = styled.div`
+    z-index: 1;
     zoom: 190%;
     border-radius: 5px;
     filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.15));
@@ -63,11 +65,17 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    > #feedarrow {
+        width: 20px;
+        height: 100px;
+        position: absolute;
+        left: 0px;
+        cursor: pointer;
+        top: calc(50% - 10px);
+    }
     > #feedarrow svg {
         position: absolute;
-        top: calc(50% - 10px);
         left: 5px;
-        cursor: pointer;
     }
 `;
 
@@ -104,4 +112,5 @@ const FeedWrapper = styled.div`
     cursor: pointer;
     position: absolute;
     right: -44px;
+    top: calc(50% - 11px);
 `;

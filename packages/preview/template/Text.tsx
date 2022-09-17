@@ -1,30 +1,56 @@
 import styled from '@emotion/styled';
-import FeedBack from './FeedBack';
+import { useEffect, useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
+import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     text1: string;
     text2?: string;
     text3?: string;
     grade: number;
-    color:string;
+    color: string;
     feedback?: {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function Text({ color,grade, text1, text2, text3 }: Props) {
+export default function Text({ color, grade, text1, text2, text3, feedback, isTeacher }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+    useEffect(() => {
+        console.log(isTeacher);
+    }, []);
     if (grade == 1)
         return (
-            <Wrapper style={{color:color}}>
-                <div>
-                    <p>{text1}</p>
-                </div>
-            </Wrapper>
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    setIsSelected(false);
+                }}>
+                <Wrapper
+                    isSelected={isSelected}
+                    onClick={() => setIsSelected(true)}
+                    style={{ color: color }}>
+                    <div id="textWrapper">
+                        <p>{text1}</p>
+                    </div>
+                    {!isTeacher && feedback?.feedInfo && (
+                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    )}
+                    {isTeacher && (
+                        <WriteFeed
+                            isRead={feedback?.isRead}
+                            feedInfo={feedback?.feedInfo}
+                            isSelected={isSelected}
+                        />
+                    )}
+                </Wrapper>
+            </OutsideClickHandler>
         );
     if (grade == 2)
         return (
-            <Wrapper style={{color:color}}>
+            <Wrapper style={{ color: color }}>
                 <div style={{ width: '500px' }}>
                     <p>{text1}</p>
                 </div>
@@ -35,7 +61,7 @@ export default function Text({ color,grade, text1, text2, text3 }: Props) {
         );
     if (grade == 3)
         return (
-            <Wrapper style={{color:color}}>
+            <Wrapper style={{ color: color }}>
                 <div style={{ width: '333px' }}>
                     <p>{text1}</p>
                 </div>
@@ -50,14 +76,17 @@ export default function Text({ color,grade, text1, text2, text3 }: Props) {
     return <></>;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border-collapse: collapse;
+    box-sizing: content-box;
     width: 1000px;
     min-height: 44px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-    > div {
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+    #textWrapper {
         min-height: 44px;
         width: 1000px;
         padding: 10px 30px;

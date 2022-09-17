@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
-import FeedBack from './FeedBack';
+import FeedBack from './FeedBackRead';
+import WriteFeed from './FeedBackWrite';
 
 interface Props {
     url1: string;
@@ -11,15 +14,32 @@ interface Props {
         isRead: boolean;
         feedInfo: string;
     };
+    isTeacher?: boolean;
 }
 
-export default function Image({ url1, url2 = '', url3 = '', grade, feedback }: Props) {
+export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isTeacher }: Props) {
+    const [isSelected, setIsSelected] = useState(false);
+
     if (grade == 1)
         return (
-            <Wrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Img url={url1}>{url1 ? <></> : <NoImg />}</Img>
-            </Wrapper>
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    setIsSelected(false);
+                }}>
+                <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
+                    {!isTeacher && feedback?.feedInfo && (
+                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    )}
+                    {isTeacher && (
+                        <WriteFeed
+                            isRead={feedback?.isRead}
+                            feedInfo={feedback?.feedInfo}
+                            isSelected={isSelected}
+                        />
+                    )}{' '}
+                    <Img url={url1}>{url1 ? <></> : <NoImg />}</Img>
+                </Wrapper>
+            </OutsideClickHandler>
         );
     if (grade == 2)
         return (
@@ -51,7 +71,9 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback }: P
     return <></>;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isSelected?: boolean }>`
+    border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
+
     position: relative;
     width: 1000px;
     height: 360px;
