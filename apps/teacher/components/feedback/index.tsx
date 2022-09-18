@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import Header from './Header';
 import FeedbackComment from './FeedbackComment';
 
-const Feedback = () => {
+const 
+Feedback = () => {
     return (
         <_Wrapper>
             <Header />
