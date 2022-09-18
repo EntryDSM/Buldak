@@ -59,8 +59,11 @@ const StageTwo = () => {
                             },
                         },
                     )
+                    .then(() => {
+                        window.location.href = 'https://compnay.dsm-repo.com';
+                    })
                     .catch(() => {
-                        alert('다시한번 시도해주세요요');
+                        alert('다시한번 시도해주세요');
                     });
             });
     };

@@ -33,7 +33,7 @@ const StageOne = () => {
                 window.location.href = './StageTwo';
             })
             .catch((res) => {
-                alert('비밀번호 수정에 실패했습니다');
+                alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
             });
     };
 

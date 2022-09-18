@@ -36,7 +36,7 @@ const LoginPage = () => {
                 localStorage.setItem('access_token', res.data.access_token);
                 localStorage.setItem('refresh_token', res.data.refresh_token);
                 if (loginState.user_type == 'TEACHER') {
-                    location.href = '';
+                    window.location.href = 'https://teacher.dsm-repo.com';
                 }
                 if (res.data.first_login == true) {
                     if (loginState.user_type == 'STUDENT') {
@@ -46,7 +46,9 @@ const LoginPage = () => {
                     }
                 } else if (res.data.first_login == false) {
                     if (loginState.user_type == 'STUDENT') {
+                        window.location.href = 'https://student.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
+                        window.location.href = 'https://compnay.dsm-repo.com';
                     }
                 }
             })

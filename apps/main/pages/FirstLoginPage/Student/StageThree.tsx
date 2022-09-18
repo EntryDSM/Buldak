@@ -57,6 +57,9 @@ const StageThree = () => {
                             },
                         },
                     )
+                    .then(() => {
+                        window.location.href = 'https://student.dsm-repo.com';
+                    })
                     .catch(() => {
                         alert('다시한번 시도해주세요');
                         setImageSrc('');
