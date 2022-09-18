@@ -45,8 +45,14 @@ const UserMainPage: NextPage = () => {
                 <S.DocumentText>로컬 문서</S.DocumentText>
                 <S.DocumentsLayout>
                     <DocumentPlus />
-                    {localList?.document_list?.map((info) => {
-                        return <Document previewImagePath={info.preview_image_path} />;
+                    {localList?.document_list.map((info) => {
+                        console.log(info.document_id);
+                        return (
+                            <Document
+                                previewImagePath={info.preview_image_path}
+                                documentId={info.document_id}
+                            />
+                        );
                     })}
                 </S.DocumentsLayout>
                 <S.DocumentsLayout>

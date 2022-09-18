@@ -31,7 +31,7 @@ export const myInfomationResource = {
     },
 };
 
-export type DocumentInfoType = 'docuemnt_id' | 'preview_image_path' | 'name' | 'major';
+export type DocumentInfoType = 'document_id' | 'preview_image_path' | 'name' | 'major';
 
 export interface LocalListResourceType {
     document_list: Record<DocumentInfoType, string>[];
