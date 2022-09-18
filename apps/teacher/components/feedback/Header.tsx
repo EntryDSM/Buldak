@@ -1,8 +1,19 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
+import { approveDocument, rejectDocument } from '../../api/documents';
 
-const Header = () => {
+interface Props {
+    id: string;
+}
+
+const Header = ({ id }: Props) => {
+    const onClcikReject = () => {
+        rejectDocument(id);
+    };
+    const onClickApprove = () => {
+        approveDocument(id);
+    };
     return (
         <_Wrapper>
             <_ButtonsWrapper>
@@ -12,6 +23,7 @@ const Header = () => {
                     content="반환하기"
                     fontColor={theme.color.error}
                     borderColor={theme.color.gray500}
+                    onClick={onClcikReject}
                 />
                 <Button
                     width={120}
@@ -19,6 +31,7 @@ const Header = () => {
                     fontColor={theme.color.white}
                     backgroundColor={theme.color.skyblue}
                     content="공개승인"
+                    onClick={onClickApprove}
                 />
             </_ButtonsWrapper>
         </_Wrapper>

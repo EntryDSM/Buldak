@@ -9,12 +9,12 @@ interface PageProps {
 }
 
 function PageArea({ id }: PageProps) {
-    const { data } = useQuery(['getStayDocument' + id], () => getStayDocument(id));
-    const [document, setDocument] = useState<any[]>([]);
-    const [feed, setFeed] = useState<any>();
+    const { data } = useQuery([`getStayDocument${id || ''}`, id], () => getStayDocument(id));
+    const [document, setDocument] = useState<any[]>(['']);
+    const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
         if (data) {
-            setDocument(JSON.parse(JSON.stringify(data.content)));
+            setDocument(JSON.parse(data.content));
             setFeed(JSON.parse(JSON.stringify(data.feedback_list)));
         }
     }, [data, id]);

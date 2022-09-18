@@ -11,7 +11,7 @@ interface FeedProps {
 const Feedback = ({ id }: FeedProps) => {
     return (
         <_Wrapper>
-            <Header />
+            <Header id={id} />
             <PageArea id={id} />
         </_Wrapper>
     );
