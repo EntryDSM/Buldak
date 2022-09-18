@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import FeedBack from './FeedBackRead';
-import WriteFeed from './FeedBackWrite';
+import {WriteFeed} from './FeedBackWrite';
 
 interface Props {
     text1: string;
