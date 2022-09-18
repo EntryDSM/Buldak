@@ -22,8 +22,10 @@ export const queryKey = {
         public: (document_id: string) => `/documents/public/${document_id}`,
         publicRequest: (document_id: string) =>
             `https://server.dsm-repo.com/documents/${document_id}`,
-        queryDocument: (document_id: string) =>
+        localQuery: (document_id: string) => `https://server.dsm-repo.com/documents/${document_id}`,
+        localDelete: (document_id: string) =>
             `https://server.dsm-repo.com/documents/${document_id}`,
+        localPatch: (document_id: string) => `https://server.dsm-repo.com/documents/${document_id}`,
         copy: () => '/documents/copy',
         protectedUrl: () => '/documents/protected-url',
         cancel: (document_id: string) => `/documents/cancel/${document_id}`,
