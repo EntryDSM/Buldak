@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
-import BackImg from '../../../assets/img/BackImg.jpg';
+import BackImg from '../../../assets/img/BackImg.png';
 import * as S from '../../../components/FirstLoginPage/styled';
 
 interface newPasswordType {

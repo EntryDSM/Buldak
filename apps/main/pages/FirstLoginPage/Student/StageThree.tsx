@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
-import BackImg from '../../../assets/img/BackImg.jpg';
+import BackImg from '../../../assets/img/BackImg.png';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import axios from 'axios';
 import * as S from '../../../components/FirstLoginPage/styled';
@@ -49,7 +49,7 @@ const StageThree = () => {
                             location: res.data.location,
                             name: res.data.name,
                             phone_number: res.data.phone_number,
-                            profile_image_path: imageSrc,
+                            profile_image_path: imageSrc || res.data.profile_image_path,
                         },
                         {
                             headers: {
