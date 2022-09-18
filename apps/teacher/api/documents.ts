@@ -30,16 +30,16 @@ export const getStayDocument = async (document_id: string): Promise<GetStayDocum
         throw err;
     }
 };
-export const rejectDocument = async (document_id: string) => {
+export const rejectDocument = async (student_id: string) => {
     try {
-        await instance.patch(`/documents/reject/${document_id}`);
+        await instance.patch(`/documents/reject/${student_id}`);
     } catch (err) {
         throw err;
     }
 };
-export const approveDocument = async (document_id: string) => {
+export const approveDocument = async (student_id: string) => {
     try {
-        await instance.patch(`/documents/approve/${document_id}`);
+        await instance.patch(`/documents/approve/${student_id}`);
     } catch (err) {
         throw err;
     }
