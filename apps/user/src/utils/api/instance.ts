@@ -5,6 +5,6 @@ export const instance = axios.create({
     timeout: 10000,
     headers: {
         Authorization:
-            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3MGVlY2Q3NS0wY2Q5LTQzMmEtYjI3MC04ZTJmMmZjY2JhMTQiLCJyb2xlIjoiU1RVREVOVCIsInR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJleHAiOjE2NjIxODAwMTh9.ekKW1oL35gv90ePNDJXLVuvroeyiIs7_VM9EhuDMRA6dbrBsHt23vvE0SJNHev9yFJ7ql4leQb4g9KxVl1laog',
+            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlOWU2MjE1MS0wMGNiLTQ5MzItYmE1Yi1iZWY2YjVkYTAyYjIiLCJyb2xlIjoiU1RVREVOVCIsInR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJleHAiOjE2NjM1MjkxMzZ9.cjFaKLavgkQapRlrSWsGZ0uohzfuEa8Xn7zC71cWIZ2IC-56D4vogDnGNzfySzlpsSM2P6AjF9Y8ojmi5fnZGg',
     },
 });

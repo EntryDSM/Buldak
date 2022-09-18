@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 import ArrowIcon from '../../../assets/arrow';
 import { DocumentPreivew } from '../../../models/documents/responses';
@@ -10,10 +11,12 @@ type DocumentState = 'PUBLIC' | 'STAY';
 interface Props {
     documentPreview: DocumentPreivew[];
     profileImagePath: string;
+    student_id: string;
 }
 
-const DocumentList = ({ documentPreview, profileImagePath }: Props) => {
+const DocumentList = ({ documentPreview, profileImagePath, student_id }: Props) => {
     const [documentState, setDocumentState] = useState<DocumentState>('PUBLIC');
+    const router = useRouter();
     const onClickChangeDocumentType = () => {
         if (documentState === 'PUBLIC') setDocumentState('STAY');
         else setDocumentState('PUBLIC');
@@ -32,7 +35,10 @@ const DocumentList = ({ documentPreview, profileImagePath }: Props) => {
                     <ArrowIcon arrowType="RIGHT" />
                 </_ChangeDocumentTypeButton>
             </_DocumentType>
-            <_Document>
+            <_Document
+                onClick={() => {
+                    router.push(`/feedback/${student_id}`);
+                }}>
                 {previewState?.preview_image_path !== undefined ? (
                     <>
                         <img

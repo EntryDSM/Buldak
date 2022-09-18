@@ -35,6 +35,7 @@ const UserDetail = () => {
                         phone_number={studentDetail?.phone_number || ''}
                     />
                     <DocumentList
+                        student_id={selectedId}
                         documentPreview={preview?.document_list || []}
                         profileImagePath={studentDetail?.profile_image_path || ''}
                     />

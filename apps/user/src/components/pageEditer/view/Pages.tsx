@@ -7,8 +7,9 @@ import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
 import { ElementListState, elementType } from '../../../recoil/ElementListState';
 import { instance } from '../../../utils/api/instance';
-import { queryDocument } from '../../../utils/api/userDocument';
+import { documentLocalQuery } from '../../../utils/api/userDocument';
 import { Previews } from '@packages/preview/functions/previews';
+import { ElementList } from '../../../constants/ElementList';
 
 interface PagesProps {
     zoom: number;
@@ -17,32 +18,44 @@ interface PagesProps {
 function Pages({ zoom = 100 }: PagesProps) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
     const router = useRouter();
-    const { data } = useQuery(['queryDocument'], () => queryDocument(router.query.id));
+    const { data } = useQuery(['queryDocument'], () =>
+        documentLocalQuery(router.query.id as string),
+    );
 
     useEffect(() => {
         if (data) {
             const loadArr: elementType[] = JSON.parse(data.data.content).map((content: any) => {
                 const { image, tagType, patch, id, innerText, preview, ...except } = content;
+                // console.log(content);
                 const temp = {
                     image: content.image,
                     patch: content.patch,
                     id: content.id,
-                    preview: Previews(content.tagType),
+                    preview: Previews(content.args.tagType),
                     args: { ...except, text1: innerText },
                 };
+                console.log(Previews(content.args.tagType));
+                console.log('temp', temp);
+                setElementList(elementList.concat(temp.args.args));
                 return temp;
             });
             console.log(loadArr, elementList);
-            console.log(
-                loadArr.map((value) => {
-                    ArrIntoJsx(value);
-                }),
-            );
+            // console.log(
+            //     loadArr.map((value) => {
+            //         ArrIntoJsx(value);
+            //     }),
+            // );
         }
     }, [data]);
+    console.log(ElementList);
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>
-            <Page>{elementList.map((value) => ArrIntoJsx(value.preview(value.args)))}</Page>
+            <Page>
+                {elementList.map((value) => {
+                    console.log('arrvalue', value);
+                    return ArrIntoJsx(value.preview(value.args));
+                })}
+            </Page>
         </PagesWrapper>
     );
 }
