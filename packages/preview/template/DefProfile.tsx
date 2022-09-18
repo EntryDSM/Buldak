@@ -32,7 +32,7 @@ export default function DefProfile({
             }}>
             <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence}/>
                 )}
                 {isTeacher && (
                     <WriteFeed

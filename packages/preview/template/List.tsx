@@ -25,7 +25,7 @@ export default function List({ color, text, feedback, isTeacher }: Props) {
                 onClick={() => setIsSelected(true)}
                 style={{ color: color[0] }}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence} />
                 )}
                 {isTeacher && (
                     <WriteFeed

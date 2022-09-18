@@ -24,7 +24,11 @@ export default function TextImage({ url, bottomText, topText, feedback, isTeache
             }}>
             <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    <FeedBack
+                        feedInfo={feedback.feedInfo}
+                        sequence={feedback.sequence}
+                        isRead={feedback.isRead}
+                    />
                 )}
                 {isTeacher && (
                     <WriteFeed
