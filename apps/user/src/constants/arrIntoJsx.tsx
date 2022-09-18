@@ -533,7 +533,7 @@ export const Array_Link = ({
             grade: 1,
             linkUrl: [url1],
             feedback: feedback,
-            isTeacher:isTeacher
+            isTeacher: isTeacher,
         };
     }
     if (grade == 2) {
