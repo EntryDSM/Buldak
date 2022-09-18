@@ -94,24 +94,22 @@ export const ElementList = [
     {
         image: <AddElementTextImage />,
         text: '텍스트 + 이미지',
-        patch: [<Upload />, <Color type={'텍스트 색상'} />, <PatchSingleTitle type="텍스트" />],
+        patch: [<Upload />, <PatchTitle type="1단 제목" />, <PatchSubtitle type="1단 본문" />],
         preview: Array_TextImage,
         args: {
             url: '',
             text1: ['제목', '내용'],
-            color: '#000000',
             feedback: { isRead: false, feedInfo: '' },
         },
     },
     {
         image: <AddElementImageText />,
         text: '이미지 + 텍스트',
-        patch: [<Upload />, <Color type={'텍스트 색상'} />, <PatchSingleTitle type="텍스트" />],
+        patch: [<Upload />, <PatchTitle type="1단 제목" />, <PatchSubtitle type="1단 본문" />],
         preview: Array_ImageText,
         args: {
             url: '',
             text1: ['제목', '내용'],
-            color: '#000000',
             feedback: { isRead: false, feedInfo: '' },
         },
     },
