@@ -1,7 +1,7 @@
 {
     "name": "@packages/emotion-style-provider",
     "version": "1.0.0",
-    "main": "src/index.tsx",
+    "main": "./src/index.tsx",
     "license": "MIT",
     "scripts": {
         "lint": "eslint *.ts*"

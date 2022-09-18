@@ -1,34 +1,75 @@
 import styled from '@emotion/styled';
-import { Dispatch, SetStateAction } from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import Close from '../../assets/svgs/Close';
 import ModalCommitBtn from './ModalCommitBtn';
 import ModalExplain from './ModalType';
 import ModalSearchInput from './ModalSearchInput';
-
+import useQueryDebounce from '../../hook/useQueryDebounce';
+import useSearchTag from '../../hook/useSearchTag';
+import { QueryClient, useMutation, useQuery } from 'react-query';
+import { tagDeleteConverter, tagSettingConverter } from '../../utils/api/userConverter';
+import { queryKey } from '../../utils/queryKey';
+import { DropDown } from '@packages/ui';
+import { myInfomationResource, TagListParams } from '../../utils/api/userResouce';
 interface PropsType {
-    setOpenRepresentativeModal: Dispatch<SetStateAction<boolean>>;
+    setOpenAddTagModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const TagList = ['Java', 'JavaScript'];
+function AddTagModal({ setOpenAddTagModal }: PropsType) {
+    const [searchTagInfo, setSearchTagInfo] = useState<string>('');
+    const debounceSearchInput = useQueryDebounce(searchTagInfo, 300);
+    const queryClient = new QueryClient();
+    const { data: myInformation } = useQuery(myInfomationResource);
+    const { mutate: tagSettingMutate } = useMutation(tagSettingConverter, {
+        onSuccess: () => {
+            queryClient.invalidateQueries([queryKey.students.index()]);
+            setOpenAddTagModal(false);
+        },
+    });
+    const { data: searchTagResult } = useSearchTag(debounceSearchInput, false);
+    const [selectTag, setSelectTag] = useState<TagListParams>([]);
 
-function AddTagModal({ setOpenRepresentativeModal }: PropsType) {
+    const infoChange = (textValue: string) => {
+        const tagInfo = searchTagResult?.tag_list.find((info) => info.name === textValue);
+        const duplicateInfo = selectTag.find((info) => info.name === textValue);
+        !duplicateInfo && tagInfo && setSelectTag((state) => [...state, tagInfo]);
+    };
+
+    const deleteInfo = (textValue: string) => {
+        setSelectTag((state) => state.filter((info) => info.name !== textValue));
+    };
+
+    const deleteMenu = useMemo(
+        () => searchTagResult?.tag_list.map((info) => info.name),
+        [searchTagResult],
+    );
     return (
-        <Background onClick={() => setOpenRepresentativeModal(false)}>
+        <Background onClick={() => setOpenAddTagModal(false)}>
             <RepresentativeBox onClick={(e) => e.stopPropagation()}>
-                <ModalExplain title="태그 추가" />
+                <ModalExplain title="태그 추가" setIsOpen={() => setOpenAddTagModal(false)} />
                 <ContentBox>
-                    <ModalSearchInput subtitle="기술스택" placeholder="태그를 검색해주세요" />
+                    <ModalSearchInput
+                        subtitle="기술스택"
+                        placeholder="태그를 검색해주세요"
+                        addTags={infoChange}
+                        searchTagInfo={deleteMenu}
+                        onChange={(e) => setSearchTagInfo(e.currentTarget.value)}
+                    />
                     <TagContainer>
-                        {TagList.map((Tag, index) => (
-                            <TagBox key={index}>
-                                <span>{Tag}</span>
+                        {selectTag.map((tagInfo) => (
+                            <TagBox key={tagInfo.tag_id} onClick={() => deleteInfo(tagInfo.name)}>
+                                <span>{tagInfo.name}</span>
                                 <Close />
                             </TagBox>
                         ))}
                     </TagContainer>
                 </ContentBox>
-                <ModalCommitBtn content="추가하기" />
+                <ModalCommitBtn
+                    content="추가하기"
+                    onClick={() => {
+                        tagSettingMutate(selectTag.map((info) => info.tag_id));
+                    }}
+                />
             </RepresentativeBox>
         </Background>
     );
@@ -49,6 +90,7 @@ const TagBox = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    cursor: pointer;
     background-color: ${({ theme }) => theme.color.background};
     border-radius: 100px;
     height: 40px;

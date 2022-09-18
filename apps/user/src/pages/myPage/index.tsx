@@ -10,6 +10,7 @@ import { NextPage } from 'next';
 import { useMutation, useQuery } from 'react-query';
 import { profileImageConverter } from '../../utils/api/userConverter';
 import { myInfomationResource } from '../../utils/api/userResouce';
+
 export type UploadImage = {
     file: File;
     thumbnail: string;
@@ -20,6 +21,7 @@ const MyPage: NextPage<{}> = (data) => {
     console.log(data);
     const [openAddTagModal, setOpenAddTagModal] = useState<boolean>(false);
     const [openRepresentativeModal, setOpenRepresentativeModal] = useState<boolean>(false);
+
     return (
         <_MyPageBox>
             <div>
@@ -33,7 +35,6 @@ const MyPage: NextPage<{}> = (data) => {
                 </_UnderWrapper>
                 <MoveBtn />
             </div>
-
             {openRepresentativeModal && (
                 <RepresentativeModal setOpenRepresentativeModal={setOpenRepresentativeModal} />
             )}
@@ -42,7 +43,7 @@ const MyPage: NextPage<{}> = (data) => {
     );
 };
 
-MyPage.requiredResources = [myInfomationResource]; 
+MyPage.requiredResources = [myInfomationResource];
 
 const _MyPageBox = styled.div`
     display: flex;

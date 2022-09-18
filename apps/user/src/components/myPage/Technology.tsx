@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Dispatch, SetStateAction } from 'react';
+import { useResource } from '../../hook/useResource';
+import { myInfomationResource } from '../../utils/api/userResouce';
 
 const TechnologyList = ['CSS', 'JAVA', 'ReactNative', 'React', 'GO', 'Vue'];
 
@@ -9,6 +11,8 @@ interface PropsType {
 }
 
 function Technology({ setOpenAddTagModal, setOpenRepresentativeModal }: PropsType) {
+    const { data: myInformaionData } = useResource(myInfomationResource);
+
     return (
         <_Wrapper>
             <_ExplainBox>
@@ -21,8 +25,8 @@ function Technology({ setOpenAddTagModal, setOpenRepresentativeModal }: PropsTyp
                 </_PatchBtn>
             </_ExplainBox>
             <_TechnologyListBox>
-                {TechnologyList.map((Technology, index) => (
-                    <_TechnologyBtn key={index}>{Technology}</_TechnologyBtn>
+                {myInformaionData?.skill_tag_list.map((technology, index) => (
+                    <_TechnologyBtn key={index}>{technology}</_TechnologyBtn>
                 ))}
             </_TechnologyListBox>
             <_ExplainBox>
@@ -30,7 +34,7 @@ function Technology({ setOpenAddTagModal, setOpenRepresentativeModal }: PropsTyp
                 <_PatchBtn onClick={() => setOpenRepresentativeModal(true)}>수정</_PatchBtn>
             </_ExplainBox>
             <_TechnologyListBox>
-                <_TechnologyBtn>프론트 엔드</_TechnologyBtn>
+                <_TechnologyBtn>{myInformaionData?.major_tag}</_TechnologyBtn>
             </_TechnologyListBox>
         </_Wrapper>
     );

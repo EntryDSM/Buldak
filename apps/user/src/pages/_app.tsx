@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
+
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [queryClient] = useState(
         () =>

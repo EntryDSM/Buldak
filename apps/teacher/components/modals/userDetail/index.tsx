@@ -8,6 +8,7 @@ import { useQuery } from 'react-query';
 import { getStudentDetail } from '../../../api/teachers';
 import { previewDocument } from '../../../api/documents';
 import ModalHeader from '../ModalHeader';
+import { useEffect } from 'react';
 
 const UserDetail = () => {
     const { selectedId } = useModal();
@@ -17,6 +18,9 @@ const UserDetail = () => {
     const { data: preview } = useQuery(['getDocumentPreview'], () =>
         previewDocument(selectedId || ''),
     );
+    useEffect(() => {
+        console.log(preview?.document_list);
+    }, []);
     return (
         <ModalWrapper>
             <_Box>

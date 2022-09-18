@@ -8,3 +8,4 @@ export { default as plusBlackIcon } from './plusBlackIcon.svg';
 export { default as closeIcon } from './close.svg';
 export { default as pdfArrow } from './pdfArrow.svg';
 export { default as successCheckIcon } from './successCheck.svg';
+export { default as feedbackArrow } from './feedbackArrow.svg';

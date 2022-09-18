@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Profile } from '@packages/ui';
+import { useEffect } from 'react';
 import useModal from '../../hooks/useModal';
 import { StudentInfo } from '../../models/teachers/responses';
 
@@ -9,6 +10,9 @@ interface Props {
 }
 
 const StudentBox: React.FC<Props> = ({ studentInfo }) => {
+    useEffect(() => {
+        console.log('id:', studentInfo.student_id, studentInfo.name);
+    }, []);
     const { selectModal } = useModal();
     return (
         <_Wrapper
