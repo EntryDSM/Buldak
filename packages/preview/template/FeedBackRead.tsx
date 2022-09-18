@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import * as Icon from '../assets/index';
 import CheckBox from '@packages/ui/components/CheckBox';
+import OutsideClickHandler from 'react-outside-click-handler';
+import { applyFeedBack } from '@apps/user/src/utils/api/userDocument';
 
 interface FeedProps {
     isRead: boolean;
@@ -9,33 +11,38 @@ interface FeedProps {
     sequence?: number;
 }
 
-function FeedBack({ isRead = false, feedInfo }: FeedProps) {
+function FeedBack({ isRead = false, feedInfo, sequence = 0 }: FeedProps) {
     const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
+
     return (
         <>
             {feedOpen ? (
-                <Wrapper>
-                    <div
-                        id="feedarrow"
-                        onClick={() => {
-                            setFeedOpen(false);
-                        }}>
-                        <Icon.Icon_FeedArrow />
-                    </div>
-                    <CenterWrapper>
-                        <p>{feedInfo}</p>
-                        <div id="confirm">
-                            <p>확인</p>
-                            <CheckBox
-                                isChecked={isApplyFeed}
-                                onClick={() => {
-                                    setIsApply(!isApplyFeed);
-                                }}
-                            />
+                <OutsideClickHandler onOutsideClick={() => setFeedOpen(false)}>
+                    <Wrapper>
+                        <div
+                            id="feedarrow"
+                            onClick={() => {
+                                setFeedOpen(false);
+                            }}>
+                            <Icon.Icon_FeedArrow />
                         </div>
-                    </CenterWrapper>
-                </Wrapper>
+                        <CenterWrapper>
+                            <p>{feedInfo}</p>
+                            <div id="confirm">
+                                <p>확인</p>
+                                <CheckBox
+                                    isChecked={isApplyFeed}
+                                    onClick={() => {
+                                        setIsApply(true);
+                                        applyFeedBack(sequence);
+                                        alert("피드백이 반영되었습니다.")
+                                    }}
+                                />
+                            </div>
+                        </CenterWrapper>
+                    </Wrapper>
+                </OutsideClickHandler>
             ) : (
                 <></>
             )}

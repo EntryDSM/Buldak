@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import * as S from '../components/UserMainPage/styled';
 import DocumentPlus from '../components/UserMainPage/DocumentPlus';
@@ -12,6 +12,7 @@ import { localListResource, myInfomationResource } from '../utils/api/userResouc
 import { useResource } from '../hook/useResource';
 import usePreviewPublicStayDocument from '../hook/usePreviewPublicStayDocument';
 import { documentTypeCheck } from '../utils/function/documentTypeCheck';
+import { Tag } from '@packages/ui';
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
@@ -36,7 +37,7 @@ const UserMainPage: NextPage = () => {
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
                         <S.TagAria>
                             {myInformation?.skill_tag_list.map((info, idx) => (
-                                <S.testTag key={idx}>{info}</S.testTag>
+                                <Tag color="default" key={idx} tagName={info}></Tag>
                             ))}
                         </S.TagAria>
                     </S.TagBox>
@@ -65,6 +66,7 @@ const UserMainPage: NextPage = () => {
                                         documentTypeCheck('STAY', previewPublicStayDocument)
                                             ?.preview_image_path || ''
                                     }
+                                    documentId={myInformation?.student_id + '?stay=true'}
                                 />
                                 <S.DocumentLayout>
                                     <S.DocumentSignal>
