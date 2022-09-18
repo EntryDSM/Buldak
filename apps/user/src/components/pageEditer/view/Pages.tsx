@@ -5,11 +5,8 @@ import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
-import { ElementListState, elementType } from '../../../recoil/ElementListState';
-import { instance } from '../../../utils/api/instance';
+import { ElementListState } from '../../../recoil/ElementListState';
 import { documentLocalQuery } from '../../../utils/api/userDocument';
-import { Previews } from '@packages/preview/functions/previews';
-import { ElementList } from '../../../constants/ElementList';
 
 interface PagesProps {
     zoom: number;
@@ -22,37 +19,19 @@ function Pages({ zoom = 100 }: PagesProps) {
         documentLocalQuery(router.query.id as string),
     );
 
+    console.log(elementList);
     useEffect(() => {
         if (data) {
-            const loadArr: elementType[] = JSON.parse(data.data.content).map((content: any) => {
-                const { image, tagType, patch, id, innerText, preview, ...except } = content;
-                // console.log(content);
-                const temp = {
-                    image: content.image,
-                    patch: content.patch,
-                    id: content.id,
-                    preview: Previews(content.args.tagType),
-                    args: { ...except, text1: innerText },
-                };
-                console.log(Previews(content.args.tagType));
-                console.log('temp', temp);
-                setElementList(elementList.concat(temp.args.args));
-                return temp;
-            });
-            console.log(loadArr, elementList);
-            // console.log(
-            //     loadArr.map((value) => {
-            //         ArrIntoJsx(value);
-            //     }),
-            // );
+            setElementList(
+                JSON.parse(data.data.content).map((content: any) => JsxIntoArr(content)),
+            );
         }
     }, [data]);
-    console.log(ElementList);
+
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>
             <Page>
                 {elementList.map((value) => {
-                    console.log('arrvalue', value);
                     return ArrIntoJsx(value.preview(value.args));
                 })}
             </Page>

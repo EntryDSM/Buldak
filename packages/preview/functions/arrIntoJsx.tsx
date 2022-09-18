@@ -5,18 +5,17 @@ interface Feedback {
 }
 
 export function ArrIntoJsx(value: any) {
-    console.log('value', value);
     switch (value.tagType) {
         case 'Text': {
             if (value.grade == 1) {
                 return (
                     <T.Template_Text
                         grade={1}
-                        text1={value.innerText}
+                        // text1={value.innerText}
+                        text1={value.text1}
                         color={value.color}
                         feedback={value.feedback}
                         isTeacher={value.isTeacher}
-                        
                     />
                 );
             }
@@ -52,8 +51,10 @@ export function ArrIntoJsx(value: any) {
                 return (
                     <T.Template_DoubleText
                         grade={value.grade}
-                        topText1={value.innerText[0][0]}
-                        bottomText1={value.innerText[0][1]}
+                        // topText1={value.innerText[0][0]}
+                        // bottomText1={value.innerText[0][1]}
+                        topText1={value.text1[0]}
+                        bottomText1={value.text1[1]}
                         color={value.color}
                         feedback={value.feedback}
                         isTeacher={value.isTeacher}
@@ -130,9 +131,10 @@ export function ArrIntoJsx(value: any) {
             return (
                 <T.Template_ImageText
                     url={value.imageUrl}
-                    topText={value.innerText[0]}
-                    bottomText={value.innerText[1]}
-                    color={value.color}
+                    // topText={value.innerText[0]}
+                    // bottomText={value.innerText[1]}
+                    topText={value.text1[0]}
+                    bottomText={value.text1[1]}
                     feedback={value.feedback}
                     isTeacher={value.isTeacher}
                 />
@@ -142,9 +144,10 @@ export function ArrIntoJsx(value: any) {
             return (
                 <T.Template_TextImage
                     url={value.imageUrl}
-                    topText={value.innerText[0]}
-                    bottomText={value.innerText[1]}
-                    color={value.color}
+                    // topText={value.innerText[0]}
+                    // bottomText={value.innerText[1]}
+                    topText={value.text1[0]}
+                    bottomText={value.text1[1]}
                     feedback={value.feedback}
                     isTeacher={value.isTeacher}
                 />
@@ -250,11 +253,17 @@ export const Array_Text = ({
 }: Array_Text_Type) => {
     if (grade == 1) {
         return {
+            // tagType: 'Text',
+            // grade: 1,
+            // innerText: [text1],
+            // color: color,
+            // feedback: feedback,
+            // isTeacher: isTeacher,
             tagType: 'Text',
             grade: 1,
-            innerText: [text1],
+            text1: text1,
             color: color,
-            feedback: feedback,
+            feedback: { isRead: feedback.isRead, feedInfo: feedback.feedInfo },
             isTeacher: isTeacher,
         };
     }
@@ -300,11 +309,17 @@ export const Array_DoubleText = ({
 }: Array_DoubleText_Type) => {
     if (grade == 1) {
         return {
+            // tagType: 'DoubleText',
+            // grade: 1,
+            // innerText: [text1],
+            // color: color,
+            // feedback: feedback,
+            // isTeacher: isTeacher,
             tagType: 'DoubleText',
             grade: 1,
-            innerText: [text1],
+            text1: text1,
             color: color,
-            feedback: feedback,
+            feedback: { isRead: feedback.isRead, feedInfo: feedback.feedInfo },
             isTeacher: isTeacher,
         };
     }
@@ -373,7 +388,6 @@ export const Array_Image = ({
 };
 
 interface Array_ImageText_Type {
-    color: string;
     url: string;
     text1: string[];
     feedback: Feedback;
@@ -381,7 +395,6 @@ interface Array_ImageText_Type {
 }
 
 export const Array_ImageText = ({
-    color,
     url,
     text1,
     feedback,
@@ -390,15 +403,14 @@ export const Array_ImageText = ({
     return {
         tagType: 'ImageText',
         imageUrl: url,
-        innerText: text1,
-        color: color,
+        // innerText: text1,
+        text1: text1,
         feedback: feedback,
         isTeacher: isTeacher,
     };
 };
 
 interface Array_TextImage_Type {
-    color: string;
     url: string;
     text1: string[];
     feedback: Feedback;
@@ -406,7 +418,6 @@ interface Array_TextImage_Type {
 }
 
 export const Array_TextImage = ({
-    color,
     url,
     text1,
     feedback,
@@ -415,8 +426,8 @@ export const Array_TextImage = ({
     return {
         tagType: 'TextImage',
         imageUrl: url,
-        innerText: text1,
-        color: color,
+        // innerText: text1,
+        text1: text1,
         feedback: feedback,
         isTeacher: isTeacher,
     };
@@ -462,7 +473,8 @@ interface Array_List_Type {
 export const Array_List = ({ color, text, feedback, isTeacher = false }: Array_List_Type) => {
     return {
         tagType: 'List',
-        innerText: text,
+        // innerText: text,
+        text: text,
         color: color,
         feedback: feedback,
         isTeacher: isTeacher,
@@ -478,6 +490,17 @@ interface Array_Profile_Type {
     feedback: Feedback;
     isTeacher?: boolean;
 }
+
+const a = {
+    tagType: 'Profile',
+    name: '이름',
+    email: '이메일',
+    phone: '전화번호',
+    github: 'https://github.com',
+    imageUrl: '',
+    feedback: { isRead: false, feedInfo: '' },
+    isTeacher: false,
+};
 
 export const Array_Profile = ({
     github,

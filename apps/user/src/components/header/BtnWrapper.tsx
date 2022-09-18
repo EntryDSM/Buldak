@@ -18,7 +18,6 @@ function BtnWrapper({ id }: { id: string }) {
             'https://scontent-nrt1-1.xx.fbcdn.net/v/t1.30497-1/…NVfooP2tTylP3mPo-577e9Cl7fT_cB7BQ0KOg&oe=634CFC78',
             JSON.stringify(
                 elementList.map((element) => {
-                    console.log('element', element);
                     return JsxIntoArr(element);
                 }),
             ),
@@ -33,14 +32,6 @@ function BtnWrapper({ id }: { id: string }) {
             'https://scontent-nrt1-1.xx.fbcdn.net/v/t1.30497-1/…NVfooP2tTylP3mPo-577e9Cl7fT_cB7BQ0KOg&oe=634CFC78',
             JSON.stringify(
                 elementList.map((element) => {
-                    console.log(element);
-                    const data = element.args;
-                    const temp = {
-                        color: data.color,
-                        grade: data.grade,
-                        isTeacher: false,
-                        feedback: element,
-                    };
                     return {
                         id: element.id,
                         args: element.preview(element.args),

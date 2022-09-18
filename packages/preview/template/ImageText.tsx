@@ -4,18 +4,17 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     url: string;
     topText: string;
     bottomText: string;
-    color: string;
     feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
-export default function ImageText({ url, bottomText, topText, color, feedback, isTeacher }: Props) {
+export default function ImageText({ url, bottomText, topText, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -38,10 +37,10 @@ export default function ImageText({ url, bottomText, topText, color, feedback, i
                 <Img url={url}>{!url && <NoImg />}</Img>
                 <TextBox>
                     <div id="top">
-                        <p style={{ color: color[0] }}>{topText}</p>
+                        <p>{topText}</p>
                     </div>
                     <div id="bottom">
-                        <p style={{ color: color[1] }}>{bottomText}</p>
+                        <p>{bottomText}</p>
                     </div>
                 </TextBox>
             </Wrapper>

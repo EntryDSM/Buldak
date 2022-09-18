@@ -9,130 +9,143 @@ import {
     Array_Text,
     Array_TextImage,
 } from './arrIntoJsx';
+import { ElementList } from '@apps/user/src/constants/ElementList';
 
 export function JsxIntoArr(value: any) {
-    const data = value.args;
-    switch (value.text) {
-        case '텍스트': {
+    switch (value.args.tagType) {
+        case 'Text': {
+            return { ...ElementList[0], id: value.id, args: value.args };
+        }
+        case 'DoubleText': {
             return {
-                tagType: 'Text',
-                image: value.image,
-                grade: 1,
-                innerText: data.text1,
-                color: data.color,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'DoubleText',
+                // image: value.image,
+                // grade: 1,
+                // innerText: data.text1,
+                // color: data.color,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_DoubleText,
+                // patch: value.patch,
+                ...ElementList[1],
                 id: value.id,
-                patch: value.patch,
-                preview: Array_Text,
+                args: value.args,
             };
         }
-        case '2단 텍스트': {
+        case 'Image': {
             return {
-                tagType: 'DoubleText',
-                image: value.image,
-                grade: 1,
-                innerText: data.text1,
-                color: data.color,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'Image',
+                // image: value.image,
+                // grade: 1,
+                // imageUrl: data.url1,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_Image,
+                // patch: value.patch,
+                ...ElementList[2],
                 id: value.id,
-                preview: Array_DoubleText,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '이미지': {
+        case 'Line': {
             return {
-                tagType: 'Image',
-                image: value.image,
-                grade: 1,
-                imageUrl: data.url1,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'Line',
+                // image: value.image,
+                // height: data.height,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_Line,
+                // patch: value.patch,
+                ...ElementList[3],
                 id: value.id,
-                preview: Array_Image,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '구분선': {
+        case 'Profile': {
             return {
-                tagType: 'Line',
-                image: value.image,
-                height: data.height,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'Profile',
+                // image: value.image,
+                // github: data.github,
+                // name: data.name,
+                // email: data.email,
+                // phone: data.phone,
+                // imageUrl: data.imgurl,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_Profile,
+                // patch: value.patch,
+                ...ElementList[4],
                 id: value.id,
-                preview: Array_Line,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '기본 프로필': {
+        case 'Gap': {
             return {
-                tagType: 'Profile',
-                image: value.image,
-                github: data.github,
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                imageUrl: data.imgurl,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'Gap',
+                // image: value.image,
+                // height: data.height,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_Gap,
+                // patch: value.patch,
+                ...ElementList[5],
                 id: value.id,
-                preview: Array_Profile,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '여백': {
+        case 'TextImage': {
             return {
-                tagType: 'Gap',
-                image: value.image,
-                height: data.height,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'TextImage',
+                // image: value.image,
+                // imageUrl: data.url,
+                // innerText: data.text1,
+                // color: data.color,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_TextImage,
+                // patch: value.patch,
+                ...ElementList[6],
                 id: value.id,
-                preview: Array_Gap,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '텍스트 + 이미지': {
+        case 'ImageText': {
             return {
-                tagType: 'TextImage',
-                image: value.image,
-                imageUrl: data.url,
-                innerText: data.text1,
-                color: data.color,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'ImageText',
+                // image: value.image,
+                // imageUrl: data.url,
+                // innerText: data.text1,
+                // color: data.color,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_ImageText,
+                // patch: value.patch,
+                ...ElementList[7],
                 id: value.id,
-                preview: Array_TextImage,
-                patch: value.patch,
+                args: value.args,
             };
         }
-        case '이미지 + 텍스트': {
+        case 'List': {
             return {
-                tagType: 'ImageText',
-                image: value.image,
-                imageUrl: data.url,
-                innerText: data.text1,
-                color: data.color,
-                feedback: data.feedback,
-                isTeacher: false,
+                // tagType: 'List',
+                // innerText: data.text,
+                // image: value.image,
+                // color: data.color,
+                // feedback: data.feedback,
+                // isTeacher: false,
+                // id: value.id,
+                // preview: Array_List,
+                // patch: value.patch,
+                ...ElementList[8],
                 id: value.id,
-                preview: Array_ImageText,
-                patch: value.patch,
-            };
-        }
-        case '리스트': {
-            return {
-                tagType: 'List',
-                innerText: data.text,
-                image: value.image,
-                color: data.color,
-                feedback: data.feedback,
-                isTeacher: false,
-                id: value.id,
-                preview: Array_List,
-                patch: value.patch,
+                args: value.args,
             };
         }
     }

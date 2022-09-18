@@ -4,18 +4,17 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     url: string;
     topText: string;
     bottomText: string;
-    color: string;
     feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
-export default function TextImage({ color, url, bottomText, topText, feedback, isTeacher }: Props) {
+export default function TextImage({ url, bottomText, topText, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -23,10 +22,7 @@ export default function TextImage({ color, url, bottomText, topText, feedback, i
             onOutsideClick={() => {
                 setIsSelected(false);
             }}>
-            <Wrapper
-                isSelected={isSelected}
-                onClick={() => setIsSelected(true)}
-                style={{ color: color }}>
+            <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                 {!isTeacher && feedback?.feedInfo && (
                     <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
                 )}
