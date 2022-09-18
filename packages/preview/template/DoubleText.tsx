@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
 import WriteFeed from './FeedBackWrite';
 
@@ -13,10 +14,7 @@ interface Props {
     bottomText3?: string;
     grade: number;
     color: string[];
-    feedback?: {
-        isRead: boolean;
-        feedInfo: string;
-    };
+    feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
@@ -30,7 +28,7 @@ export default function DoubleText({
     topText2,
     topText3,
     feedback,
-    isTeacher
+    isTeacher,
 }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
@@ -41,16 +39,17 @@ export default function DoubleText({
                     setIsSelected(false);
                 }}>
                 <TotalWrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
-                {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
-                )}
-                {isTeacher && (
-                    <WriteFeed
-                        isRead={feedback?.isRead}
-                        feedInfo={feedback?.feedInfo}
-                        isSelected={isSelected}
-                    />
-                )}
+                    {!isTeacher && feedback?.feedInfo && (
+                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    )}
+                    {isTeacher && (
+                        <WriteFeed
+                            isRead={feedback?.isRead}
+                            feedInfo={feedback?.feedInfo}
+                            isSelected={isSelected}
+                            sequence={feedback?.sequence}
+                        />
+                    )}
                     <Wrapper>
                         <div id="top">
                             <p style={{ color: color[0] }}>{topText1}</p>
