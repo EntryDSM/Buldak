@@ -207,7 +207,7 @@ const Header = styled.div`
 `;
 
 const BoxesWrapper = styled.div`
-    width: 1370;
+    width: 1370px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

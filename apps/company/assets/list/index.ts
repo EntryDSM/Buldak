@@ -1,2 +1,2 @@
-export {default as Gear} from '../list/gear.png'
-export {default as HoverGear} from '../list/hovergear.png'
+export { default as Gear } from '../list/gear.svg';
+export { default as HoverGear } from '../list/hovergear.svg';
