@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import BackImg from '../assets/img/BackImg.jpg';
+import BackImg from '../assets/img/BackImg.png';
 import { TextBox } from '@packages/ui';
 import * as S from '../components/LoginPage/styled';
 
