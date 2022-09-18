@@ -2,6 +2,7 @@ const withTM = require('next-transpile-modules')([
     '@packages/ui',
     '@packages/emotion-style-provider',
     '@packages/preview',
+    '@apps/teacher',
 ]);
 
 module.exports = withTM({
