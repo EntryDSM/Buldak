@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
 import {
     AddFeedbackRequest,
