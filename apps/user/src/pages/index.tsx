@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import * as S from '../components/UserMainPage/styled';
 import DocumentPlus from '../components/UserMainPage/DocumentPlus';
@@ -66,6 +66,7 @@ const UserMainPage: NextPage = () => {
                                         documentTypeCheck('STAY', previewPublicStayDocument)
                                             ?.preview_image_path || ''
                                     }
+                                    documentId={myInformation?.student_id + '?stay=true'}
                                 />
                                 <S.DocumentLayout>
                                     <S.DocumentSignal>

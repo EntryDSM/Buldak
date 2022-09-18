@@ -2,13 +2,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useResource } from '../../hook/useResource';
-import { DocumentType, myInfomationResource } from '../../utils/api/userResouce';
+import {  myInfomationResource } from '../../utils/api/userResouce';
 import { departmentConverter } from '../../utils/function/department';
 import * as S from './styled';
 
 interface DocumentPlusProps {
     previewImagePath: string;
-    documentId: string;
+    documentId?: string;
 }
 
 const DocumentPlus = ({ previewImagePath, documentId }: DocumentPlusProps) => {

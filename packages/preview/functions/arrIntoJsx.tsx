@@ -174,7 +174,7 @@ export function ArrIntoJsx(value: any) {
         case 'List': {
             return (
                 <T.Template_List
-                    text={value.innerText}
+                    text={value.text}
                     color={value.color}
                     feedback={value.feedback}
                     isTeacher={value.isTeacher}

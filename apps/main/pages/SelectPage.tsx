@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { selectData } from '../components/SelectPage/constant';
-import BackImg from '../assets/Img/BackImg.jpg';
+import BackImg from '../assets/img/BackImg.png';
 import Left_arrow from '../assets/svg/Left_arrow.svg';
 import SelectThings from '../components/SelectPage/SelectThings';
 import * as S from '../components/SelectPage/styled';
@@ -39,7 +39,7 @@ const SelectPage = () => {
     return (
         <S._SelectPageContainer>
             <S._ImgContainer>
-                <Image src={BackImg} />
+                <Image src={BackImg} alt="배경이미지" />
             </S._ImgContainer>
             <S._SelectContainer>
                 <S._SelectBox>

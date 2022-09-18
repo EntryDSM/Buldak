@@ -31,7 +31,7 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
                         <p>{text1}</p>
                     </div>
                     {!isTeacher && feedback?.feedInfo && (
-                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                        <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
                     )}
                     {isTeacher && (
                         <WriteFeed

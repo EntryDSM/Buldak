@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
-import BackImg from '../../../assets/img/BackImg.jpg';
+import BackImg from '../../../assets/img/BackImg.png';
 import * as S from '../../../components/FirstLoginPage/styled';
 import axios from 'axios';
 
@@ -51,7 +51,7 @@ const StageTwo = () => {
                             location: res.data.location,
                             name: res.data.name,
                             phone_number: res.data.phone_number,
-                            profile_image_path: imageSrc,
+                            profile_image_path: imageSrc || res.data.profile_image_path,
                         },
                         {
                             headers: {
