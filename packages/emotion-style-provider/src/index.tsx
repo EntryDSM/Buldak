@@ -2,10 +2,10 @@ import { ThemeProvider, Global } from '@emotion/react';
 import { global } from './global';
 import theme from './theme';
 
-export const StyleProvider: React.FC = ({ children }) => {
+export const StyleProvider = ({ children }: React.PropsWithChildren<{}>) => {
     return (
         <ThemeProvider theme={theme}>
-            <Global styles={global} />
+            <Global styles={global}></Global>
             {children}
         </ThemeProvider>
     );

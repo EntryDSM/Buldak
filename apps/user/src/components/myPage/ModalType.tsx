@@ -3,13 +3,14 @@ import Close from '../../assets/svgs/Close';
 
 interface PropsType {
     title: string;
+    setIsOpen: () => void;
 }
 
-function ModalType({ title }: PropsType) {
+function ModalType({ title, setIsOpen }: PropsType) {
     return (
         <_ModalTypeWrapper>
             {title}
-            <Close />
+            <Close onClick={setIsOpen} />
         </_ModalTypeWrapper>
     );
 }

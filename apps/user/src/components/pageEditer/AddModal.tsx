@@ -31,6 +31,7 @@ function AddElementModal({ setElementDropDown }: PropsType) {
                             <_AddElementListItem
                                 onClick={() => {
                                     const id = UUID.v4();
+                                    console.log(id);
                                     setElementList(
                                         elementList.concat({
                                             id: id,

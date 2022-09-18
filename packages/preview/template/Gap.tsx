@@ -3,7 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import WriteFeed from './FeedBackWrite';
+import {WriteFeed} from './FeedBackWrite';
 
 interface Props {
     height: number;

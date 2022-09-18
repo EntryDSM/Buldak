@@ -5,6 +5,7 @@ interface Feedback {
 }
 
 export function ArrIntoJsx(value: any) {
+    console.log('value', value);
     switch (value.tagType) {
         case 'Text': {
             if (value.grade == 1) {
@@ -521,7 +522,7 @@ export const Array_Link = ({
             grade: 1,
             linkUrl: [url1],
             feedback: feedback,
-            isTeacher:isTeacher
+            isTeacher: isTeacher,
         };
     }
     if (grade == 2) {
