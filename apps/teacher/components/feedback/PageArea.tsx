@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Template_DefProfile } from '@packages/preview';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';

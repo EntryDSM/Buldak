@@ -20,7 +20,7 @@ import {
     Array_List,
     Array_Profile,
     Array_TextImage,
-} from './ArrIntoJsx';
+} from '@packages/preview/functions/arrIntoJsx';
 import PatchSingleTitle from '../components/pageEditer/patch/SingleTItle';
 import PatchTitle from '../components/pageEditer/patch/Title';
 import PatchSubtitle from '../components/pageEditer/patch/SubTItle';
