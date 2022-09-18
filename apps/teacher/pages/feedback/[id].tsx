@@ -5,6 +5,6 @@ import Feedback from '../../components/feedback';
 const FeedbackPage = () => {
     const router = useRouter();
     const { id } = router.query;
-    return <Feedback id={id} />;
+    return <Feedback id={id as string} />;
 };
 export default FeedbackPage;
