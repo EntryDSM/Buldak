@@ -169,8 +169,7 @@ export function ArrIntoJsx(value: any) {
         case 'List': {
             return (
                 <T.Template_List
-                    title={value.title}
-                    list={value.innerText}
+                    text={value.innerText}
                     color={value.color}
                     feedback={value.feedback}
                     isTeacher={value.isTeacher}
@@ -453,26 +452,15 @@ export const Array_Gap = ({ height, feedback, isTeacher = false }: Array_Gap_Typ
 
 interface Array_List_Type {
     color: string;
-    grade: number;
-    title: string;
-    list: string[];
+    text: string;
     feedback: Feedback;
     isTeacher?: boolean;
 }
 
-export const Array_List = ({
-    color,
-    grade,
-    title,
-    list,
-    feedback,
-    isTeacher = false,
-}: Array_List_Type) => {
+export const Array_List = ({ color, text, feedback, isTeacher = false }: Array_List_Type) => {
     return {
         tagType: 'List',
-        grade: grade,
-        title: title,
-        innerText: list,
+        innerText: text,
         color: color,
         feedback: feedback,
         isTeacher: isTeacher,
