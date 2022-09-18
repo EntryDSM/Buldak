@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
 import WriteFeed from './FeedBackWrite';
 
@@ -10,10 +11,7 @@ interface Props {
     github: string;
     phone: string;
     url: string;
-    feedback?: {
-        isRead: boolean;
-        feedInfo: string;
-    };
+    feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
@@ -41,6 +39,7 @@ export default function DefProfile({
                         isRead={feedback?.isRead}
                         feedInfo={feedback?.feedInfo}
                         isSelected={isSelected}
+                        sequence={feedback?.sequence}
                     />
                 )}
                 <ImgBox>

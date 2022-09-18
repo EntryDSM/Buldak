@@ -1,15 +1,13 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
 import WriteFeed from './FeedBackWrite';
 
 interface Props {
     height: number;
-    feedback?: {
-        isRead: boolean;
-        feedInfo: string;
-    };
+    feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
@@ -33,6 +31,7 @@ export default function Gap({ height, feedback, isTeacher }: Props) {
                         isRead={feedback?.isRead}
                         feedInfo={feedback?.feedInfo}
                         isSelected={isSelected}
+                        sequence={feedback?.sequence}
                     />
                 )}{' '}
             </Wrapper>

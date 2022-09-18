@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
+import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
 import WriteFeed from './FeedBackWrite';
 
@@ -10,10 +11,7 @@ interface Props {
     topText: string;
     bottomText: string;
     color: string;
-    feedback?: {
-        isRead: boolean;
-        feedInfo: string;
-    };
+    feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
@@ -34,6 +32,7 @@ export default function ImageText({ url, bottomText, topText, color, feedback, i
                         isRead={feedback?.isRead}
                         feedInfo={feedback?.feedInfo}
                         isSelected={isSelected}
+                        sequence={feedback?.sequence}
                     />
                 )}{' '}
                 <Img url={url}>{!url && <NoImg />}</Img>

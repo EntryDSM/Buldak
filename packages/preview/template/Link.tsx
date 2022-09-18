@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
 
 interface Props {
@@ -6,10 +7,7 @@ interface Props {
     href1: string;
     href2?: string;
     href3?: string;
-    feedback?: {
-        isRead: boolean;
-        feedInfo: string;
-    };
+    feedback?: FeedBackType;
 }
 
 export default function Link({ href1, href2, href3, grade, feedback }: Props) {
