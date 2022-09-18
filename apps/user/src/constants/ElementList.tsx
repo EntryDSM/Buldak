@@ -26,6 +26,7 @@ import PatchTitle from '../components/pageEditer/patch/Title';
 import PatchSubtitle from '../components/pageEditer/patch/SubTItle';
 import ProfilePatch from '../components/pageEditer/patch/Profile';
 import PatchDoubleColor from '../components/pageEditer/patch/DoubleColor';
+import PatchList from '../components/pageEditer/patch/List';
 
 export const ElementList = [
     {
@@ -116,12 +117,11 @@ export const ElementList = [
     {
         image: <AddElementList />,
         text: '리스트',
-        patch: [<Color type={'텍스트 색상'} />],
+        patch: [<Color type={'텍스트 색상'} />, <PatchList type="리스트" />],
         preview: Array_List,
         args: {
             grade: 3,
-            title: '제목',
-            list: ['항목', '항목', '항목', '항목'],
+            text: '항목',
             color: '#000000',
             feedback: { isRead: false, feedInfo: '' },
         },
