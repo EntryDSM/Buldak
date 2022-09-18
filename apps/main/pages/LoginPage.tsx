@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import BackImg from '../assets/img/BackImg.jpg';
+import { TextBox } from '@packages/ui';
 import * as S from '../components/LoginPage/styled';
 
 type userType = 'TEACHER' | 'STUDENT' | 'MOU' | '';
@@ -25,16 +26,40 @@ const LoginPage = () => {
 
     const onChangeLoginState = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        const afterValue = value.replace(/[^0-9|a-z|@|/.]/gi, '');
-        setLoginState({ ...loginState, [name]: afterValue });
+        setLoginState({ ...loginState, [name]: value });
     };
 
     const postLogin = () => {
-        axios({
-            url: '',
-            method: 'post',
-            data: loginState,
-        }).then((res) => {});
+        axios
+            .post('http://114.108.176.85:8080/users/auth', loginState)
+            .then((res) => {
+                localStorage.setItem('access_token', res.data.access_token);
+                localStorage.setItem('refresh_token', res.data.refresh_token);
+                if (loginState.user_type == 'TEACHER') {
+                    window.location.href = 'https://teacher.dsm-repo.com';
+                }
+                if (res.data.first_login == true) {
+                    if (loginState.user_type == 'STUDENT') {
+                        window.location.href = '/FirstLoginPage/Student/StageOne';
+                    } else if (loginState.user_type == 'MOU') {
+                        window.location.href = '/FirstLoginPage/Company/StageOne';
+                    }
+                } else if (res.data.first_login == false) {
+                    if (loginState.user_type == 'STUDENT') {
+                        window.location.href = 'https://student.dsm-repo.com';
+                    } else if (loginState.user_type == 'MOU') {
+                        window.location.href = 'https://compnay.dsm-repo.com';
+                    }
+                }
+            })
+            .catch(() => {
+                setLoginState({
+                    email: '',
+                    password: '',
+                    user_type: localStorage.getItem('LoginType') as userType,
+                });
+                window.alert('로그인에 실패하였습니다');
+            });
     };
 
     return (
@@ -48,29 +73,46 @@ const LoginPage = () => {
                     <S._LoginPoint />
                     <S._LoginInputLayout>
                         {loginState.user_type == 'MOU' ? (
-                            <S._LoginInputText>아이디</S._LoginInputText>
+                            <>
+                                <S._LoginInputText>아이디</S._LoginInputText>
+                                <TextBox
+                                    correct={true}
+                                    placeholder="아이디를 입력해주세요"
+                                    width={380}
+                                    type="text"
+                                    value={loginState.email}
+                                    onChange={onChangeLoginState}
+                                    name="email"
+                                />
+                            </>
                         ) : (
-                            <S._LoginInputText>이메일</S._LoginInputText>
+                            <>
+                                <S._LoginInputText>이메일</S._LoginInputText>
+                                <TextBox
+                                    correct={true}
+                                    placeholder="이메일을 입력해주세요"
+                                    width={380}
+                                    type="text"
+                                    value={loginState.email}
+                                    onChange={onChangeLoginState}
+                                    name="email"
+                                />
+                            </>
                         )}
-                        <S._LoginInput
-                            value={loginState.email}
-                            onChange={onChangeLoginState}
-                            name="email"
-                        />
                     </S._LoginInputLayout>
                     <S._LoginInputLayout>
                         <S._LoginInputText>비밀번호</S._LoginInputText>
-                        <S._LoginInput
+                        <TextBox
+                            correct={true}
+                            placeholder="비밀번호를 입력해주세요"
+                            width={380}
+                            type="password"
                             value={loginState.password}
                             onChange={onChangeLoginState}
                             name="password"
                         />
                     </S._LoginInputLayout>
                     <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
-                    <S._SearchPassword>
-                        비밀번호를 잊으셨다면?{' '}
-                        <S._SearchPasswordA>비밀번호 찾기</S._SearchPasswordA>
-                    </S._SearchPassword>
                 </S._LoginBox>
             </S._LoginContainer>
         </S._LoginPageContainer>
