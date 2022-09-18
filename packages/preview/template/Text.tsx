@@ -77,8 +77,6 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
 }
 
 const Wrapper = styled.div<{ isSelected?: boolean }>`
-    border-collapse: collapse;
-    box-sizing: content-box;
     width: 1000px;
     min-height: 44px;
     display: flex;
