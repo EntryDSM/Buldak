@@ -1,12 +1,8 @@
 import styled from '@emotion/styled';
-import { ReactNode, useEffect, useRef } from 'react';
-import { useQuery } from 'react-query';
+import { ReactNode, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { ArrIntoJsx } from '../../../constants/ArrIntoJsx';
-import { JsxIntoArr } from '../../../constants/JsxIntoArr';
 import { ElementListState } from '../../../recoil/ElementListState';
-import { instance } from '../../../utils/api/instance';
-import { queryDocument } from '../../../utils/api/userDocument';
 
 interface PagesProps {
     zoom: number;
@@ -14,14 +10,6 @@ interface PagesProps {
 
 function Pages({ zoom = 100 }: PagesProps) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
-    const { data } = useQuery(['dqw'], () => queryDocument('811fb1d7-8f43-4895-bf62-ceb17a1bb51f'));
-
-    useEffect(() => {
-        if (data)
-            setElementList(
-                JSON.parse(data.data.content).map((content: any) => JsxIntoArr(content)),
-            );
-    }, [data]);
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>
             <Page>{elementList.map((value) => ArrIntoJsx(value.preview(value.args)))}</Page>

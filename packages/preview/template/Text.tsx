@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     text1: string;
@@ -16,10 +16,7 @@ interface Props {
 }
 
 export default function Text({ color, grade, text1, text2, text3, feedback, isTeacher }: Props) {
-    const [isSelected, setIsSelected] = useState(false);
-    useEffect(() => {
-        console.log(isTeacher);
-    }, []);
+    const [isSelected, setIsSelected] = useState<boolean>(false);
     if (grade == 1)
         return (
             <OutsideClickHandler

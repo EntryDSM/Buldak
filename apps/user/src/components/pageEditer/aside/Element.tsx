@@ -1,70 +1,67 @@
 import styled from '@emotion/styled';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Draggable, DraggingStyle, NotDraggingStyle } from 'react-beautiful-dnd';
-import { useRecoilState } from 'recoil';
 import MeatballMenu from '../../../assets/svgs/MeatballsMenu';
-import ElementListState, { elementType } from '../../../recoil/ElementListState';
+import { elementType } from '../../../recoil/ElementListState';
+import DeleteModal from './DeleteModal';
 
 interface PropsType {
+    removeElement: (id: string) => void;
     element: elementType;
     setelementPatch: Dispatch<SetStateAction<{ open: boolean; index: number }>>;
     index: number;
 }
 
 function AsideElement({ element, setelementPatch, index }: PropsType) {
-    const [deleteModal, setDeleteModal] = useState<boolean>(true);
-    const [elementList, setElementList] = useRecoilState(ElementListState);
+    const [deleteModal, setDeleteModal] = useState<boolean>(false);
+
     const getItemStyle = (
         isDragging: boolean,
         draggableStyle: DraggingStyle | NotDraggingStyle | undefined,
     ): React.CSSProperties => ({
         userSelect: 'none',
-        // padding: 8,
-        margin: `0 0 ${8}px 0`,
+        margin: "0 0 12px 0",
         background: isDragging ? '#F3F7FF' : 'white',
         ...draggableStyle,
     });
+
     return (
-        <Draggable key={element.id} draggableId={element.id} index={index}>
-            {(provided, snapshot): JSX.Element => (
-                <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                    <_CompositionBox
-                        onClick={() => {
-                            setelementPatch({ open: true, index: index });
-                        }}>
-                        <_CompositionContent>
-                            <_CompositionItem>
-                                {element.image}
-                                <span>{element.text}</span>
-                            </_CompositionItem>
-                            <_MeatBallBox onClick={() => setDeleteModal(true)}>
-                                <MeatballMenu />
-                            </_MeatBallBox>
-                        </_CompositionContent>
-                    </_CompositionBox>
-                </div>
-            )}
-        </Draggable>
+        <>
+            <Draggable key={element.id} draggableId={element.id} index={index}>
+                {(provided, snapshot): JSX.Element => (
+                    <_Wrapper
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                        {deleteModal && (
+                            <DeleteModal id={element.id} setDeleteModal={setDeleteModal} />
+                        )}
+                        <_CompositionBox
+                            onClick={() => {
+                                setelementPatch({ open: true, index: index });
+                            }}>
+                            <_CompositionContent>
+                                <_CompositionItem>
+                                    {element.image}
+                                    <span>{element.text}</span>
+                                </_CompositionItem>
+                                <div onClick={(e) => e.stopPropagation()}>
+                                    <_MeatBallBox onClick={() => setDeleteModal(true)}>
+                                        <MeatballMenu />
+                                    </_MeatBallBox>
+                                </div>
+                            </_CompositionContent>
+                        </_CompositionBox>
+                    </_Wrapper>
+                )}
+            </Draggable>
+        </>
     );
 }
 
-const _DeleteWrapper = styled.div`
+const _Wrapper = styled.div`
     position: relative;
-    top: 30px;
-    left: 10px;
-    > button {
-        background-color: ${({ theme }) => theme.color.white};
-        width: 120px;
-        height: 44px;
-        color: ${({ theme }) => theme.color.error};
-        font-size: 18px;
-        border: 2px solid ${({ theme }) => theme.color.gray300};
-        border-radius: 5px;
-    }
 `;
 
 const _MeatBallBox = styled.div`
@@ -75,6 +72,7 @@ const _MeatBallBox = styled.div`
     align-items: center;
     border-radius: 3px;
     z-index: 3;
+    cursor: pointer;
     :hover {
         background-color: ${({ theme }) => theme.color.gray500};
     }

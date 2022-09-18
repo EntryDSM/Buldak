@@ -18,13 +18,11 @@ function AsideBox({ setElementDropDown }: PropsType) {
         index: 0,
     });
     const [elementList, setElementList] = useRecoilState(ElementListState);
-    console.log(elementList)
-
     const getListStyle = (isDraggingOver: boolean): React.CSSProperties => ({
         // background: isDraggingOver ? 'lightblue' : 'lightgrey',
         // padding: 8,
         // width: 250,
-        margin: `0 0 ${8}px 0`,
+        margin: '0 0 8px 0',
     });
 
     const reorder = (list: elementType[], startIndex: number, endIndex: number): elementType[] => {

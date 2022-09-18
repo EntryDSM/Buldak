@@ -95,6 +95,5 @@ export interface PreviewPublicStayDocument {
 export const queryPreviewPublicStayDocument = async (
     context: QueryFunctionContext<string, any>,
 ) => {
-    console.log(context.queryKey);
     return (await instance.get<PreviewPublicStayDocument>(context.queryKey[0])).data;
 };
