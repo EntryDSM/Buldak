@@ -12,6 +12,7 @@ import { localListResource, myInfomationResource } from '../utils/api/userResouc
 import { useResource } from '../hook/useResource';
 import usePreviewPublicStayDocument from '../hook/usePreviewPublicStayDocument';
 import { documentTypeCheck } from '../utils/function/documentTypeCheck';
+import {Tag} from "@packages/ui";
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
@@ -30,13 +31,13 @@ const UserMainPage: NextPage = () => {
                 <S.TagLayout>
                     <S.TagBox>
                         <S.DocumentTitle>대표분야</S.DocumentTitle>
-                        <S.testTag>{myInformation?.major_tag}</S.testTag>
+                        <Tag color="bdblue" tagName={myInformation?.major_tag as string}/>
                     </S.TagBox>
                     <S.TagBox>
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
                         <S.TagAria>
-                            {myInformation?.skill_tag_list.map((info, idx) => (
-                                <S.testTag key={idx}>{info}</S.testTag>
+                            {(myInformation?.skill_tag_list || []).map((info, idx) => (
+                                <Tag color="bdblue" tagName={info} />
                             ))}
                         </S.TagAria>
                     </S.TagBox>
@@ -59,7 +60,7 @@ const UserMainPage: NextPage = () => {
                     <S.DocumentBox marginL="0vw">
                         <S.DocumentText>공개 요청 대기 문서</S.DocumentText>
                         {!!documentTypeCheck('STAY', previewPublicStayDocument)?.type ? (
-                            <>
+                            <S.Display>
                                 <Document
                                     previewImagePath={
                                         documentTypeCheck('STAY', previewPublicStayDocument)
@@ -71,7 +72,7 @@ const UserMainPage: NextPage = () => {
                                         <Image src={messege} />
                                     </S.DocumentSignal>
                                 </S.DocumentLayout>
-                            </>
+                            </S.Display>
                         ) : (
                             <S.NonDocumentText>대기 문서가 존재하지 않습니다</S.NonDocumentText>
                         )}
