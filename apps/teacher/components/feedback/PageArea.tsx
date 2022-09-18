@@ -11,15 +11,32 @@ interface PageProps {
 function PageArea({ id }: PageProps) {
     const { data } = useQuery(['getStayDocument' + id], () => getStayDocument(id));
     const [document, setDocument] = useState([]);
+    const [feed, setFeed] = useState([]);
     useEffect(() => {
         if (data) {
             setDocument(JSON.parse(data.content));
+            setFeed(data.feedback_list);
+            console.log(data.feedback_list);
         }
     }, [data, id]);
     return (
         <_Background>
             <_PageWrapper>
-                <div>{document.map((value) => ArrIntoJsx({ ...value, isTeacher: true }))}</div>
+                <div>
+                    {document.map((value, index) =>
+                        ArrIntoJsx({
+                            ...value,
+                            feedback: {
+                                feedInfo: feed.filter((value) => value.sequence == index + 1)
+                                    ?.comment,
+                                isRead: feed.filter((value) => value.sequence == index + 1)
+                                    ?.isApply,
+                                sequence: index + 1,
+                            },
+                            isTeacher: true,
+                        }),
+                    )}
+                </div>
             </_PageWrapper>
         </_Background>
     );
