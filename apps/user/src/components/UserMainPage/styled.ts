@@ -149,6 +149,7 @@ export const DocumentText = styled.p`
 export const DocumentLayout = styled.div`
     display: flex;
     gap: 10px;
+    margin-left : 10px
 `;
 
 export const DocumentButtonBox = styled.div`
@@ -199,7 +200,9 @@ export const DocumentBox = styled.div<props>`
 
     margin-left: ${(props) => props.marginL};
 `;
-
+export const Display = styled.div`
+    display : flex;
+`
 export const TagBox = styled.div`
     display: flex;
     flex-direction: column;
