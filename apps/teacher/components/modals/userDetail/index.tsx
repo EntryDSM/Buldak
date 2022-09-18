@@ -18,6 +18,9 @@ const UserDetail = () => {
     const { data: preview } = useQuery(['getDocumentPreview'], () =>
         previewDocument(selectedId || ''),
     );
+    useEffect(() => {
+        console.log(preview?.document_list);
+    }, []);
     return (
         <ModalWrapper>
             <_Box>

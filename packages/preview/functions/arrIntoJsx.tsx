@@ -5,6 +5,7 @@ interface Feedback {
 }
 
 export function ArrIntoJsx(value: any) {
+    console.log('value', value);
     switch (value.tagType) {
         case 'Text': {
             if (value.grade == 1) {

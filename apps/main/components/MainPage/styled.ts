@@ -26,7 +26,11 @@ export const _ImgBox = styled.div`
     margin-top: 10px;
 `;
 
-export const _LoginButtonBox = styled.div`
+export const _LoginButton = styled.div`
+    width: 100px;
+    height: 44px;
+    background: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.gray500};
     margin-right: 9vw;
     border-radius: 5px;
 `;
@@ -81,9 +85,9 @@ export const _CardOneText = styled.p`
     margin-top: 10px;
 `;
 
-interface textAlignType {
+interface textAlignType  {
     textAlignProps: string;
-}
+};
 
 export const _CardAllTitle = styled.pre<textAlignType>`
     font-weight: 500;

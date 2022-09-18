@@ -22,6 +22,7 @@ const SelectPage = () => {
         } else if (name == '기업') {
             window.localStorage.setItem('LoginType', 'MOU');
         }
+
         window.location.href = '/LoginPage';
     };
 

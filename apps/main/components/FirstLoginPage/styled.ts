@@ -45,9 +45,21 @@ export const _FirstLoginBox = styled.div`
     border-radius: 10px;
 `;
 
-export const _FirstLoginBoxLayout = styled.div`
-    display: flex;
-    gap: 20px;
+export const _FirstLoginBackButton = styled.button`
+    width: 180px;
+    height: 40px;
+    background: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.gray700};
+    border-radius: 3px;
+    margin-bottom: 55px;
+`;
+
+export const _FirstLoginNextButton = styled.button`
+    width: 180px;
+    height: 40px;
+    background: ${({ theme }) => theme.color.skyblue};
+    border-radius: 3px;
+    margin-left: 20px;
     margin-bottom: 55px;
 `;
 
@@ -89,42 +101,47 @@ export const _FirstLoginInputText = styled.p`
     color: ${({ theme }) => theme.color.black};
 `;
 
+export const _FirstLoginInput = styled.input`
+    width: 380px;
+    height: 44px;
+    background: ${({ theme }) => theme.color.white};
+    border: 2px solid ${({ theme }) => theme.color.gray700};
+    border-radius: 5px;
+`;
+
+export const _FirstLoginCitationInput = styled.input`
+    width: 280px;
+    height: 44px;
+    background: ${({ theme }) => theme.color.white};
+    border: 2px solid ${({ theme }) => theme.color.gray700};
+    border-radius: 5px;
+`;
+
 export const _FirstLoginCitation = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
     color: ${({ theme }) => theme.color.white};
+
     width: 90px;
     height: 44px;
     background: ${({ theme }) => theme.color.skyblue};
     border-radius: 4px;
-    margin-left: 10px;
-`;
 
-export const _FirstLoginProfile = styled.div`
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
+    margin-left: 10px;
 `;
 
 export const _FirstLoginSetProfile = styled.button`
     cursor: pointer;
-    overflow: hidden;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100px;
     height: 100px;
     border: 1.42857px dashed ${({ theme }) => theme.color.black};
-    border-radius: 7142.86px;
-`;
-
-export const _FirstLoginProfileBox = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
     border-radius: 7142.86px;
 `;
 

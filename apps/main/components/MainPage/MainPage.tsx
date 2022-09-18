@@ -10,7 +10,6 @@ import {
 } from './constant';
 import CardBoxOne from './CardBoxOne';
 import CardBoxTwo from './CardBoxTwo';
-import { Button } from '@packages/ui';
 import Footter from './Footter';
 import CardOne from '../../assets/svg/CardOne.svg';
 import CardTwo from '../../assets/svg/CardTwo.svg';
@@ -20,26 +19,13 @@ import Logo from '../../assets/svg/Logo.svg';
 import * as S from './styled';
 
 const MainPage = () => {
-    const linkLoginPage = () => {
-        window.location.href = '/SelectPage';
-    };
-
     return (
         <S._MainPageContainer>
             <S._Header>
                 <S._ImgBox>
                     <Image src={Logo} />
                 </S._ImgBox>
-                <S._LoginButtonBox>
-                    <Button
-                        width={100}
-                        height={44}
-                        borderColor={theme.color.gray900}
-                        borderWidth={1}
-                        content="로그인"
-                        onClick={linkLoginPage}
-                    />
-                </S._LoginButtonBox>
+                <S._LoginButton />
             </S._Header>
             <S._CardContainer color={theme.color.white}>
                 <S._CardTextLayout>
