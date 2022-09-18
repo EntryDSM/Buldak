@@ -14,7 +14,7 @@ function PageArea({ id }: PageProps) {
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
         if (data) {
-            setDocument(JSON.parse(data.content));
+            setDocument(JSON.parse(JSON.stringify(data.content)));
             setFeed(JSON.parse(JSON.stringify(data.feedback_list)));
         }
     }, [data, id]);

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import OutsideClickHandler from 'react-outside-click-handler';
 import useModal from '../../hooks/useModal';
@@ -6,7 +7,9 @@ const ModalWrapper: React.FC = ({ children }) => {
     const { closeModal } = useModal();
     return (
         <_Wrapper>
-            <OutsideClickHandler onOutsideClick={closeModal}>{children}</OutsideClickHandler>
+            <OutsideClickHandler onOutsideClick={closeModal}>
+                {children as JSX.Element}
+            </OutsideClickHandler>
         </_Wrapper>
     );
 };
