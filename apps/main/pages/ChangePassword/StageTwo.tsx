@@ -1,11 +1,10 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import axios from 'axios';
-import Image from 'next/image';
-import Link from 'next/link';
 import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
-import BackImg from '../../../assets/img/BackImg.jpg';
-import * as S from '../../../components/FirstLoginPage/styled';
+import axios from 'axios';
+import Image from 'next/image';
+import BackImg from '../../assets/img/BackImg.jpg';
+import * as S from '../../components/ChangePassword/styled';
 
 interface newPasswordType {
     password: string;
@@ -30,10 +29,10 @@ const StageOne = () => {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
             })
-            .then((res) => {
-                window.location.href = './StageTwo';
+            .then(() => {
+                window.location.href = '';
             })
-            .catch((res) => {
+            .catch(() => {
                 alert('비밀번호 수정에 실패했습니다');
             });
     };
@@ -59,7 +58,7 @@ const StageOne = () => {
                             name="password"
                         />
                     </S._FistLoginInputLayout>
-                    <S._FistLoginInputLayout marginBottom="120px">
+                    <S._FistLoginInputLayout marginBottom="135px">
                         <S._FirstLoginInputText>새로운 비밀번호</S._FirstLoginInputText>
                         <TextBox
                             width={380}
@@ -90,7 +89,7 @@ const StageOne = () => {
                                 height={40}
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
-                                content="회원가입"
+                                content="변경하기"
                                 onClick={onPostNewPassword}
                             />
                         </S._FirstLoginBoxLayout>
