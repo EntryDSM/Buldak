@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
@@ -14,7 +15,8 @@ interface PagesProps {
 
 function Pages({ zoom = 100 }: PagesProps) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
-    const { data } = useQuery(['dqw'], () => queryDocument('811fb1d7-8f43-4895-bf62-ceb17a1bb51f'));
+    const router = useRouter();
+    const { data } = useQuery(['queryDocument'], () => queryDocument(router.query.id));
 
     useEffect(() => {
         if (data)

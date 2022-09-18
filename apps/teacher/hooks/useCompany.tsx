@@ -4,6 +4,7 @@ import { createImage } from '../api/default';
 import useModal from './useModal';
 import { createCompany, editCompany } from '../api/teachers';
 import { useRouter } from 'next/router';
+import { pages } from '../utils/constant';
 
 const useCompany = () => {
     const { selectModal } = useModal();
@@ -63,7 +64,7 @@ const useCompany = () => {
                     profile_image_path: image.image_path,
                 }).then((res) => {
                     selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
-                    router.push('/managementCompany');
+                    // router.push(pages.manageCompany);
                 });
             }
         } catch (err) {}

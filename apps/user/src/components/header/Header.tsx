@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import RepoLogo from '../../assets/svgs/RepoLogo';
 import BtnWrapper from './BtnWrapper';
 
 function Header() {
-    
+    const { id } = useRouter().query;
+
     return (
         <_Wrapper>
             <_Inner>
                 <RepoLogo />
-                <BtnWrapper />
+                {typeof id === 'string' && <BtnWrapper id={id} />}
             </_Inner>
         </_Wrapper>
     );
