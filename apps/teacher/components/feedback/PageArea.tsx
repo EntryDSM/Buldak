@@ -14,8 +14,8 @@ function PageArea({ id }: PageProps) {
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
         if (data) {
-            setDocument(JSON.parse(JSON.stringify(data.content)));
-            setFeed(JSON.parse(JSON.stringify(data.feedback_list)));
+            setDocument(JSON.parse(data.content));
+            setFeed(data.feedback_list);
         }
     }, [data, id]);
     return (
@@ -24,11 +24,12 @@ function PageArea({ id }: PageProps) {
                 <div>
                     {document.map((value, index) =>
                         ArrIntoJsx({
-                            ...value,
+                            ...value.args,
                             feedback: {
-                                feedInfo: feed.filter((value: any) => value.sequence == index + 1)
-                                    ?.comment,
-                                isRead: feed.filter((value: any) => value.sequence == index + 1)
+                                feedInfo: feed.filter(
+                                    (value: any) => value.sequence == index + 1,
+                                )[0]?.comment,
+                                isRead: feed.filter((value: any) => value.sequence == index + 1)[0]
                                     ?.isApply,
                                 sequence: index + 1,
                             },
