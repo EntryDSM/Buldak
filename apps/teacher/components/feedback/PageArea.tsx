@@ -10,13 +10,12 @@ interface PageProps {
 
 function PageArea({ id }: PageProps) {
     const { data } = useQuery(['getStayDocument' + id], () => getStayDocument(id));
-    const [document, setDocument] = useState([]);
-    const [feed, setFeed] = useState([]);
+    const [document, setDocument] = useState<any[]>([]);
+    const [feed, setFeed] = useState<any>();
     useEffect(() => {
         if (data) {
-            setDocument(JSON.parse(data.content));
-            setFeed(data.feedback_list);
-            console.log(data.feedback_list);
+            setDocument(JSON.parse(JSON.stringify(data.content)));
+            setFeed(JSON.parse(JSON.stringify(data.feedback_list)));
         }
     }, [data, id]);
     return (
@@ -27,9 +26,9 @@ function PageArea({ id }: PageProps) {
                         ArrIntoJsx({
                             ...value,
                             feedback: {
-                                feedInfo: feed.filter((value) => value.sequence == index + 1)
+                                feedInfo: feed.filter((value: any) => value.sequence == index + 1)
                                     ?.comment,
-                                isRead: feed.filter((value) => value.sequence == index + 1)
+                                isRead: feed.filter((value: any) => value.sequence == index + 1)
                                     ?.isApply,
                                 sequence: index + 1,
                             },
