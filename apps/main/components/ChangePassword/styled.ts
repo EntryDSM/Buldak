@@ -101,15 +101,8 @@ export const _FirstLoginCitation = styled.button`
     margin-left: 10px;
 `;
 
-export const _FirstLoginProfile = styled.div`
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
-`;
-
 export const _FirstLoginSetProfile = styled.button`
     cursor: pointer;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;

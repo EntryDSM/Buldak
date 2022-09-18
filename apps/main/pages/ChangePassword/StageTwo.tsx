@@ -3,8 +3,8 @@ import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import axios from 'axios';
 import Image from 'next/image';
-import BackImg from '../../../assets/img/BackImg.jpg';
-import * as S from '../../../components/FirstLoginPage/styled';
+import BackImg from '../../assets/img/BackImg.jpg';
+import * as S from '../../components/ChangePassword/styled';
 
 interface newPasswordType {
     password: string;
@@ -29,11 +29,11 @@ const StageOne = () => {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
             })
-            .then((res) => {
-                window.location.href = './StageTwo';
+            .then(() => {
+                window.location.href = '';
             })
-            .catch((res) => {
-                alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
+            .catch(() => {
+                alert('비밀번호 수정에 실패했습니다');
             });
     };
 

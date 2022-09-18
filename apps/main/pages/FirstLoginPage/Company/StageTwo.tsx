@@ -1,22 +1,71 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { TextBox, Button } from '@packages/ui';
+import theme from '@packages/emotion-style-provider/src/theme';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import BackImg from '../../../assets/img/BackImg.jpg';
 import * as S from '../../../components/FirstLoginPage/styled';
+import axios from 'axios';
 
 const StageTwo = () => {
-    const [file, setFile] = useState<string | Blob>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [imageSrc, setImageSrc] = useState<string>('');
 
-    const onChangeImg = (event: any) => {
-        setFile(event.target.files[0]);
+    const onChangeImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formData = new FormData();
+        event.preventDefault();
+        if (event.target.files) {
+            formData.append('file', event.target.files[0]);
+            axios
+                .post('http://114.108.176.85:8080/images', formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    },
+                    params: {
+                        type: 'PROFILE',
+                    },
+                })
+                .then((res) => {
+                    setImageSrc(res.data.image_path);
+                })
+                .catch((res) => {
+                    alert('사진을 선택해주세요');
+                    setImageSrc('');
+                });
+        }
     };
 
     const onPostProfile = () => {
-        const formData = new FormData();
-        formData.append('img', file);
-        console.log(file);
+        axios
+            .get('http://114.108.176.85:8080/companies', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+            })
+            .then((res) => {
+                axios
+                    .patch(
+                        'http://114.108.176.85:8080/users/information',
+                        {
+                            location: res.data.location,
+                            name: res.data.name,
+                            phone_number: res.data.phone_number,
+                            profile_image_path: imageSrc,
+                        },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                            },
+                        },
+                    )
+                    .then(() => {
+                        window.location.href = 'https://compnay.dsm-repo.com';
+                    })
+                    .catch(() => {
+                        alert('다시한번 시도해주세요');
+                    });
+            });
     };
 
     return (
@@ -39,7 +88,15 @@ const StageTwo = () => {
                             style={{ display: 'none' }}
                             onChange={onChangeImg}
                         />
-                        <Image src={PlusBlack} />
+                        <S._FirstLoginProfileBox>
+                            {imageSrc ? (
+                                <S._FirstLoginProfile
+                                    style={{ backgroundImage: `url(${imageSrc})` }}
+                                />
+                            ) : (
+                                <Image src={PlusBlack} />
+                            )}
+                        </S._FirstLoginProfileBox>
                     </S._FirstLoginSetProfile>
                     <S._FirstLoginProfileText
                         onClick={() => {
@@ -48,12 +105,28 @@ const StageTwo = () => {
                         프로필 설정
                     </S._FirstLoginProfileText>
                     <S._DisplayFlex>
-                        <Link href={'./StageOne'}>
-                            <S._FirstLoginBackButton>이전으로</S._FirstLoginBackButton>
-                        </Link>
-                        <S._FirstLoginNextButton onClick={onPostProfile}>
-                            회원가입
-                        </S._FirstLoginNextButton>
+                        <S._FirstLoginBoxLayout>
+                            <Button
+                                width={180}
+                                height={40}
+                                borderColor={theme.color.gray700}
+                                borderWidth={2}
+                                backgroundColor={theme.color.white}
+                                fontColor={theme.color.black}
+                                content="돌아가기"
+                                onClick={() => {
+                                    window.location.href = './StageOne';
+                                }}
+                            />
+                            <Button
+                                width={180}
+                                height={40}
+                                backgroundColor={theme.color.main}
+                                fontColor={theme.color.white}
+                                content="변경하기"
+                                onClick={onPostProfile}
+                            />
+                        </S._FirstLoginBoxLayout>
                     </S._DisplayFlex>
                 </S._FirstLoginBox>
             </S._FirstLoginContainer>
@@ -62,6 +135,3 @@ const StageTwo = () => {
 };
 
 export default StageTwo;
-
-{
-}
