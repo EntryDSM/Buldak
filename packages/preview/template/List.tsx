@@ -3,17 +3,16 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
-    title: string;
-    list: string[];
+    text: string;
     color: string;
     feedback?: FeedBackType;
     isTeacher?: boolean;
 }
 
-export default function List({ color, title, list, feedback, isTeacher }: Props) {
+export default function List({ color, text, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     return (
@@ -35,12 +34,9 @@ export default function List({ color, title, list, feedback, isTeacher }: Props)
                         isSelected={isSelected}
                         sequence={feedback?.sequence}
                     />
-                )}{' '}
-                <p>{title}</p>
+                )}
                 <TextBox>
-                    {list.map((value) => (
-                        <EachList color={color[1]} value={value} />
-                    ))}
+                    <EachList color={color} value={text} />
                 </TextBox>
             </Wrapper>
         </OutsideClickHandler>
@@ -68,8 +64,8 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
 
     position: relative;
     width: 1000px;
-    min-height: 285px;
-    padding: 41px 96px;
+    height: 40px;
+    padding: 5px 50px;
     > p {
         font-size: 22px;
         margin-bottom: 10px;
@@ -82,16 +78,17 @@ const TextBox = styled.div`
 `;
 
 const Dot = styled.div`
-    width: 0px;
-    height: 0px;
-    padding: 2.5px;
-    margin-left: 10px;
-    margin-top: 8px;
+    width: 3px;
+    height: 3px;
     border-radius: 50px;
     background-color: ${({ theme }) => theme.color.gray900};
+    position: absolute;
+    left: -10px;
+    top: 10px;
 `;
 
 const EachListWrapper = styled.div`
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: row;

@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
-import { ArrIntoJsx } from '../../../constants/ArrIntoJsx';
-import { JsxIntoArr } from '../../../constants/JsxIntoArr';
-import { ElementListState } from '../../../recoil/ElementListState';
+import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
+import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
+import { ElementListState, elementType } from '../../../recoil/ElementListState';
 import { instance } from '../../../utils/api/instance';
 import { queryDocument } from '../../../utils/api/userDocument';
+import { Previews } from '@packages/preview/functions/previews';
 
 interface PagesProps {
     zoom: number;
@@ -19,10 +20,25 @@ function Pages({ zoom = 100 }: PagesProps) {
     const { data } = useQuery(['queryDocument'], () => queryDocument(router.query.id));
 
     useEffect(() => {
-        if (data)
-            setElementList(
-                JSON.parse(data.data.content).map((content: any) => JsxIntoArr(content)),
+        if (data) {
+            const loadArr: elementType[] = JSON.parse(data.data.content).map((content: any) => {
+                const { image, tagType, patch, id, innerText, preview, ...except } = content;
+                const temp = {
+                    image: content.image,
+                    patch: content.patch,
+                    id: content.id,
+                    preview: Previews(content.tagType),
+                    args: { ...except, text1: innerText },
+                };
+                return temp;
+            });
+            console.log(loadArr, elementList);
+            console.log(
+                loadArr.map((value) => {
+                    ArrIntoJsx(value);
+                }),
             );
+        }
     }, [data]);
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>

@@ -19,9 +19,7 @@ function AddElementModal({ setElementDropDown }: PropsType) {
             <_AddElementBox>
                 <div>
                     <_AddElementExplain>
-                        <span onClick={()=>{
-                            
-                        }}>요소추가</span>
+                        <span onClick={() => {}}>요소추가</span>
                         <span onClick={() => setElementDropDown(false)}>
                             <AddElementClose />
                         </span>
@@ -31,7 +29,7 @@ function AddElementModal({ setElementDropDown }: PropsType) {
                             <_AddElementListItem
                                 onClick={() => {
                                     const id = UUID.v4();
-                                    console.log(id);
+                                    console.log(elementList);
                                     setElementList(
                                         elementList.concat({
                                             id: id,

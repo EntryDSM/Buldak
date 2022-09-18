@@ -15,7 +15,7 @@ const UserDetail = () => {
     const { data: studentDetail } = useQuery(['getStudentDetail', selectedId], () =>
         getStudentDetail(selectedId || ''),
     );
-    const { data: preview } = useQuery(['getDocumentPreview'], () =>
+    const { data: preview } = useQuery(['getDocumentPreview', selectedId], () =>
         previewDocument(selectedId || ''),
     );
     useEffect(() => {
