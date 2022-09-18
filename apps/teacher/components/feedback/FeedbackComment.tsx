@@ -13,7 +13,7 @@ interface FeedProps {
     sequence?: number;
 }
 
-const FeedbackComment = ({ isRead, feedInfo, isSelected, sequence }: FeedProps) => {
+const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: FeedProps) => {
     const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
     const [feedbackContent, setFeedbackContent] = useState(feedInfo);
@@ -22,7 +22,7 @@ const FeedbackComment = ({ isRead, feedInfo, isSelected, sequence }: FeedProps) 
         setFeedOpen(isSelected);
     }, [isSelected]);
     useEffect(() => {
-        if (feedOpen) feedbackInput.current.focus();
+        if (feedOpen && feedbackInput.current) feedbackInput.current.focus();
     }, [feedOpen]);
     const router = useRouter();
     const { id } = router.query;
