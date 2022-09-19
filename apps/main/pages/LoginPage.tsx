@@ -3,8 +3,8 @@ import axios from 'axios';
 import Image from 'next/image';
 import BackImg from '../assets/img/BackImg.png';
 import { TextBox } from '@packages/ui';
+import { setCookie } from '../Hooks/Cookies';
 import * as S from '../components/LoginPage/styled';
-
 type userType = 'TEACHER' | 'STUDENT' | 'MOU' | '';
 
 interface loginType {
@@ -33,20 +33,28 @@ const LoginPage = () => {
         axios
             .post('https://server.dsm-repo.com/users/auth', loginState)
             .then((res) => {
-                localStorage.setItem('access_token', res.data.access_token);
-                localStorage.setItem('refresh_token', res.data.refresh_token);
+                setCookie('access_token', res.data.access_token, {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'none',
+                });
+                setCookie('refresh_token', res.data.refresh_token, {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'none',
+                });
                 if (loginState.user_type == 'TEACHER') {
                     window.location.href = 'https://teacher.dsm-repo.com';
                 }
-                if (res.data.first_login == true) {
+                if (res.data.first_login == false) {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = '/FirstLoginPage/Student/StageOne';
                     } else if (loginState.user_type == 'MOU') {
                         window.location.href = '/FirstLoginPage/Company/StageOne';
                     }
-                } else if (res.data.first_login == false) {
+                } else if (res.data.first_login == true) {
                     if (loginState.user_type == 'STUDENT') {
-                        window.location.href = 'https://student.dsm-repo.com';
+                        window.location.href = 'https://user.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
                         window.location.href = 'https://compnay.dsm-repo.com';
                     }

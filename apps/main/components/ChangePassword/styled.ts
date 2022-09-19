@@ -13,10 +13,12 @@ export const _FirstLoginPageContainer = styled.div`
 
 export const _ImgContainer = styled.div`
     position: absolute;
+    display: flex;
     overflow: hidden;
-
-    width: 100%;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
 `;
 
 export const _FirstLoginContainer = styled.div`
@@ -95,7 +97,7 @@ export const _FirstLoginCitation = styled.button`
     align-items: center;
     color: ${({ theme }) => theme.color.white};
     width: 90px;
-    height: 44px;
+    height: 40px;
     background: ${({ theme }) => theme.color.skyblue};
     border-radius: 4px;
     margin-left: 10px;
