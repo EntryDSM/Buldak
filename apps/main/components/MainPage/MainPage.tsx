@@ -18,12 +18,18 @@ import CardThree from '../../assets/svg/CardThree.svg';
 import CardFour from '../../assets/svg/CardFour.svg';
 import Logo from '../../assets/svg/Logo.svg';
 import * as S from './styled';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const MainPage = () => {
     const linkLoginPage = () => {
         window.location.href = '/SelectPage';
     };
-
+    const router = useRouter();
+    useEffect(() => {
+        const createTestAccount = confirm('테스트 계정 발급하기');
+        if (createTestAccount) router.push('/testAccount');
+    }, []);
     return (
         <S._MainPageContainer>
             <S._Header>
