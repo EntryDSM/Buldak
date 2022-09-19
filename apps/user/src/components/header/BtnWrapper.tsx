@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
+import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import { useRecoilState } from 'recoil';
 import ElementListState from '../../recoil/ElementListState';
@@ -7,12 +8,14 @@ import {
     documentPublicRequest,
     documentLocalDelete,
     documentLocalPatch,
+    documentStayPatch
 } from '../../utils/api/userDocument';
 
 function BtnWrapper({ id }: { id: string }) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
+    const router = useRouter();
 
-    const { mutate } = useMutation(['publicReq'], () =>
+    const PublicReq = useMutation(['publicReq'], () =>
         documentPublicRequest(
             id,
             'https://scontent-nrt1-1.xx.fbcdn.net/v/t1.30497-1/…NVfooP2tTylP3mPo-577e9Cl7fT_cB7BQ0KOg&oe=634CFC78',
@@ -45,7 +48,7 @@ function BtnWrapper({ id }: { id: string }) {
         <_BtnWrapper>
             <_DeleteBtn onClick={() => localDeleteMutate.mutate()}>삭제하기</_DeleteBtn>
             <_TemporaryBtn onClick={() => localPatch.mutate()}>임시저장</_TemporaryBtn>
-            <_OpenBtn onClick={() => mutate()}>공개요청</_OpenBtn>
+            <_OpenBtn onClick={() => PublicReq.mutate()}>공개요청</_OpenBtn>
         </_BtnWrapper>
     );
 }

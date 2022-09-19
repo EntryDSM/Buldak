@@ -345,7 +345,7 @@ export const Array_DoubleText = ({
 
 interface Array_Image_Type {
     grade: number;
-    url1: string;
+    imageUrl: string;
     url2?: string;
     url3?: string;
     feedback: Feedback;
@@ -354,7 +354,7 @@ interface Array_Image_Type {
 
 export const Array_Image = ({
     grade,
-    url1,
+    imageUrl,
     url2,
     url3,
     feedback,
@@ -364,7 +364,7 @@ export const Array_Image = ({
         return {
             tagType: 'Image',
             grade: 1,
-            imageUrl: [url1],
+            imageUrl: imageUrl,
             feedback: feedback,
             isTeacher: isTeacher,
         };
@@ -373,7 +373,7 @@ export const Array_Image = ({
         return {
             tagType: 'Image',
             grade: 2,
-            imageUrl: [url1, url2],
+            imageUrl: [, url2],
             feedback: feedback,
         };
     }
@@ -381,28 +381,28 @@ export const Array_Image = ({
         return {
             tagType: 'Image',
             grade: 3,
-            imageUrl: [url1, url2, url3],
+            imageUrl: [, url2, url3],
             feedback: feedback,
         };
     }
 };
 
 interface Array_ImageText_Type {
-    url: string;
+    imageUrl: string;
     text1: string[];
     feedback: Feedback;
     isTeacher?: boolean;
 }
 
 export const Array_ImageText = ({
-    url,
+    imageUrl,
     text1,
     feedback,
     isTeacher = false,
 }: Array_ImageText_Type) => {
     return {
         tagType: 'ImageText',
-        imageUrl: url,
+        imageUrl: imageUrl,
         // innerText: text1,
         text1: text1,
         feedback: feedback,
@@ -411,21 +411,21 @@ export const Array_ImageText = ({
 };
 
 interface Array_TextImage_Type {
-    url: string;
+    imageUrl: string;
     text1: string[];
     feedback: Feedback;
     isTeacher?: boolean;
 }
 
 export const Array_TextImage = ({
-    url,
+    imageUrl,
     text1,
     feedback,
     isTeacher = false,
 }: Array_TextImage_Type) => {
     return {
         tagType: 'TextImage',
-        imageUrl: url,
+        imageUrl: imageUrl,
         // innerText: text1,
         text1: text1,
         feedback: feedback,
@@ -483,7 +483,7 @@ export const Array_List = ({ color, text, feedback, isTeacher = false }: Array_L
 
 interface Array_Profile_Type {
     github: string;
-    url: string;
+    imageUrl: string;
     name?: string;
     email?: string;
     phone?: string;
@@ -493,7 +493,7 @@ interface Array_Profile_Type {
 
 export const Array_Profile = ({
     github,
-    url,
+    imageUrl,
     name,
     email,
     phone,
@@ -506,7 +506,7 @@ export const Array_Profile = ({
         name: name,
         email: email,
         phone: phone,
-        imageUrl: url,
+        imageUrl: imageUrl,
         feedback: feedback,
         isTeacher: isTeacher,
     };

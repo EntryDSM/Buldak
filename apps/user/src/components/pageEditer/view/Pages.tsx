@@ -32,7 +32,6 @@ function Pages({ zoom = 100 }: PagesProps) {
                     isRead: value.apply,
                 };
             });
-            console.log(Content);
             setElementList(Content.map((content: any) => JsxIntoArr(content)));
         } else if (Localdata) {
             setElementList(
@@ -40,6 +39,10 @@ function Pages({ zoom = 100 }: PagesProps) {
             );
         }
     }, [Localdata, Staydata]);
+
+    useEffect(() => {
+        console.log(elementList);
+    }, [elementList]);
 
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>

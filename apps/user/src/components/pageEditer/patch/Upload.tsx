@@ -23,7 +23,7 @@ function PatchUpload({ id }: PropsType) {
                 const formData = new FormData();
                 formData.append('file', uploadFile);
                 const url = changeImageToUrl(formData);
-                const tempargs = { ...newArr.args, url: (await url).image_path };
+                const tempargs = { ...newArr.args, imageUrl: (await url).image_path };
                 const temp = [...elementList];
                 const index = elementList.indexOf(newArr);
                 temp.splice(index, 1, { ...newArr, args: tempargs });
