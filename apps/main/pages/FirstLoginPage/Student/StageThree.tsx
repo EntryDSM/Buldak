@@ -17,7 +17,7 @@ const StageThree = () => {
         if (event.target.files) {
             formData.append('file', event.target.files[0]);
             axios
-                .post('http://114.108.176.85:8080/images', formData, {
+                .post('https://server.dsm-repo.com/images', formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -36,7 +36,7 @@ const StageThree = () => {
 
     const onPostProfile = () => {
         axios
-            .get('http://114.108.176.85:8080/students', {
+            .get('https://server.dsm-repo.com/students', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
@@ -44,7 +44,7 @@ const StageThree = () => {
             .then((res) => {
                 axios
                     .patch(
-                        'http://114.108.176.85:8080/users/information',
+                        'https://server.dsm-repo.com/users/information',
                         {
                             location: res.data.location,
                             name: res.data.name,

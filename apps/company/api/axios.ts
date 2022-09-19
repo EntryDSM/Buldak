@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    baseURL: 'http://114.108.176.85:8080',
+    baseURL: 'https://server.dsm-repo.com',
     timeout: 10000,
     headers: {
         Authorization:
