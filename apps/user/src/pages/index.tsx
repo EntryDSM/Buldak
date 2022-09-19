@@ -12,7 +12,7 @@ import { localListResource, myInfomationResource } from '../utils/api/userResouc
 import { useResource } from '../hook/useResource';
 import usePreviewPublicStayDocument from '../hook/usePreviewPublicStayDocument';
 import { documentTypeCheck } from '../utils/function/documentTypeCheck';
-import {Tag} from "@packages/ui";
+import { Tag } from '@packages/ui';
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
@@ -30,7 +30,7 @@ const UserMainPage: NextPage = () => {
                 <S.TagLayout>
                     <S.TagBox>
                         <S.DocumentTitle>대표분야</S.DocumentTitle>
-                        <Tag color="bdblue" tagName={myInformation?.major_tag as string}/>
+                        <Tag color="bdblue" tagName={myInformation?.major_tag as string} />
                     </S.TagBox>
                     <S.TagBox>
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
@@ -88,6 +88,7 @@ const UserMainPage: NextPage = () => {
                                             documentTypeCheck('PUBLIC', previewPublicStayDocument)
                                                 ?.preview_image_path || ''
                                         }
+                                        documentId={myInformation?.student_id + '?public=true'}
                                     />
                                     <S.DocumentButtonBox>
                                         <S.DocumentButton>

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Header from '../../components/header/Header';
 import AddElement from '../../components/pageEditer/AddModal';
@@ -6,10 +7,11 @@ import PageArea from '../../components/pageEditer/view/PageArea';
 
 function PageEditer() {
     const [elementDropDown, setElementDropDown] = useState<boolean>(false);
+    const router = useRouter();
     return (
         <>
             <Header />
-            <AsideBox setElementDropDown={setElementDropDown} />
+            {!router.query.public && <AsideBox setElementDropDown={setElementDropDown} />}
             {elementDropDown && <AddElement setElementDropDown={setElementDropDown} />}
             <PageArea />
         </>

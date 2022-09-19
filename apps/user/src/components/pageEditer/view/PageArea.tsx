@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Pages from './Pages';
 
 function PageArea() {
+    const router = useRouter();
     const [zoom, setZoom] = useState<number>(100);
     useEffect(() => {}, []);
     const zoomUp = () => {
@@ -13,7 +15,7 @@ function PageArea() {
         if (zoom > 60) setZoom(zoom - 10);
     };
     return (
-        <Background>
+        <Background style={{ paddingLeft: router.query.public ? '0px' : '350px' }}>
             <Header zoom={zoom} zoomUp={zoomUp} zoomDown={zoomDown} />
             <Pages zoom={zoom} />
         </Background>
@@ -22,9 +24,8 @@ function PageArea() {
 const Background = styled.div`
     background-color: #fbfbfb;
     width: 100%;
-    height:100vh;
+    height: 100vh;
     overflow-x: hidden;
-    padding-left: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
