@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     name: string;
@@ -32,7 +32,11 @@ export default function DefProfile({
             }}>
             <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence}/>
+                    <FeedBack
+                        feedInfo={feedback.feedInfo}
+                        isRead={feedback.isRead}
+                        sequence={feedback.sequence}
+                    />
                 )}
                 {isTeacher && (
                     <WriteFeed
@@ -112,5 +116,7 @@ const ImgBox = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
     }
 `;
