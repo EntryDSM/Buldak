@@ -22,6 +22,7 @@ function PageArea() {
 const Background = styled.div`
     background-color: #fbfbfb;
     width: 100%;
+    height:100vh;
     overflow-x: hidden;
     padding-left: 350px;
     display: flex;
