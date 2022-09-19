@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
 import axios from 'axios';
+import Link from 'next/link';
 
 const TestAccount = () => {
     const [account, setAccount] = useState({
@@ -48,6 +49,15 @@ const TestAccount = () => {
                     </strong>
                     <h3>이메일 : {response.email}</h3>
                     <h3>비밀번호 : {response.password}</h3>
+                    <Link href="/SelectPage">
+                        <Button
+                            width={300}
+                            height={38}
+                            content="로그인하러 가기"
+                            borderWidth={1}
+                            borderColor="#e0e0e0"
+                        />
+                    </Link>
                 </section>
             ) : (
                 <>
@@ -122,7 +132,11 @@ const _Wrapper = styled.div`
         margin-top: 20px;
     }
     > section {
-        margin-top: 100px;
+        margin-top: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 `;
 const _NumberInput = styled.input`
