@@ -3,11 +3,24 @@ import styled from '@emotion/styled';
 import OutsideClickHandler from 'react-outside-click-handler';
 import useModal from '../../hooks/useModal';
 
-const ModalWrapper: React.FC = ({ children }) => {
+interface Props {
+    onCloseFunction?: () => void;
+}
+
+const ModalWrapper: React.FC<Props> = ({ children, onCloseFunction }) => {
     const { closeModal } = useModal();
+    const onClose = onCloseFunction
+        ? onCloseFunction
+        : function asd() {
+              console.log('h');
+          };
     return (
         <_Wrapper>
-            <OutsideClickHandler onOutsideClick={closeModal}>
+            <OutsideClickHandler
+                onOutsideClick={() => {
+                    closeModal();
+                    onClose();
+                }}>
                 {children as JSX.Element}
             </OutsideClickHandler>
         </_Wrapper>

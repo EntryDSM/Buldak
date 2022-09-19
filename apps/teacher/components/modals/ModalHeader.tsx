@@ -5,14 +5,20 @@ import useModal from '../../hooks/useModal';
 
 interface Props {
     title: string;
+    onClose?: () => void;
 }
 
-const ModalHeader = ({ title }: Props) => {
+const ModalHeader = ({ title, onClose }: Props) => {
+    const onCloseFunction = onClose ? onClose : function () {};
     const { closeModal } = useModal();
     return (
         <_TitleWrapper>
             <_Title>{title}</_Title>
-            <button onClick={closeModal}>
+            <button
+                onClick={() => {
+                    closeModal();
+                    onCloseFunction();
+                }}>
                 <Image src={closeIcon} alt="닫기" />
             </button>
         </_TitleWrapper>
