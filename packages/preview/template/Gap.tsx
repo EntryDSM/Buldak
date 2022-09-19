@@ -24,7 +24,7 @@ export default function Gap({ height, feedback, isTeacher }: Props) {
                 onClick={() => setIsSelected(true)}
                 style={{ height: `${height}px` }}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence} />
                 )}
                 {isTeacher && (
                     <WriteFeed

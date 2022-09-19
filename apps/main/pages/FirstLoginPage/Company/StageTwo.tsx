@@ -46,7 +46,7 @@ const StageTwo = () => {
             .then((res) => {
                 axios
                     .patch(
-                        'http://114.108.176.85:8080/users/information',
+                        'https://server.dsm-repo.com/users/information',
                         {
                             location: res.data.location,
                             name: res.data.name,

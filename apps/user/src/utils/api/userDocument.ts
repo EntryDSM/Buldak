@@ -32,3 +32,11 @@ export const documentLocalDelete = (document_id: string) => {
     const generatorKey = queryKey.documents.localDelete(document_id);
     return instance.delete(generatorKey);
 };
+
+export const documentStayQuery = (student_id: string) => {
+    return instance.get(`/documents/stay/${student_id}`);
+};
+
+export const applyFeedBack = (sequence: number) => {
+    return instance.patch(`/students/feedback/${sequence}`);
+};

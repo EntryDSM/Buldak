@@ -26,7 +26,7 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isT
                 }}>
                 <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                     {!isTeacher && feedback?.feedInfo && (
-                        <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />
+                        <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
                     )}
                     {isTeacher && (
                         <WriteFeed

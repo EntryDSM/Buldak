@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
 import { ElementListState } from '../../../recoil/ElementListState';
-import { documentLocalQuery } from '../../../utils/api/userDocument';
+import { documentLocalQuery, documentStayQuery } from '../../../utils/api/userDocument';
 
 interface PagesProps {
     zoom: number;
@@ -15,18 +15,31 @@ interface PagesProps {
 function Pages({ zoom = 100 }: PagesProps) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
     const router = useRouter();
-    const { data } = useQuery(['queryDocument'], () =>
+    const { data: Localdata } = useQuery(['queryDocument'], () =>
         documentLocalQuery(router.query.id as string),
     );
-
-    console.log(elementList);
+    const { data: Staydata } = useQuery(['stayDocument'], () =>
+        documentStayQuery(router.query.id as string),
+    );
     useEffect(() => {
-        if (data) {
+        if (router.query.stay && Staydata) {
+            const feedbacklist = Staydata.data.feedback_list;
+            let Content = JSON.parse(Staydata.data.content);
+            feedbacklist.map((value: any) => {
+                Content[value.sequence - 1].args.feedback = {
+                    sequence: value.sequence,
+                    feedInfo: value.comment,
+                    isRead: value.apply,
+                };
+            });
+            console.log(Content);
+            setElementList(Content.map((content: any) => JsxIntoArr(content)));
+        } else if (Localdata) {
             setElementList(
-                JSON.parse(data.data.content).map((content: any) => JsxIntoArr(content)),
+                JSON.parse(Localdata.data.content).map((content: any) => JsxIntoArr(content)),
             );
         }
-    }, [data]);
+    }, [Localdata, Staydata]);
 
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>
