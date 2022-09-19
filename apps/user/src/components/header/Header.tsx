@@ -4,17 +4,23 @@ import RepoLogo from '../../assets/svgs/RepoLogo';
 import BtnWrapper from './BtnWrapper';
 
 function Header() {
-    const { id } = useRouter().query;
+    const router = useRouter();
 
     return (
         <_Wrapper>
             <_Inner>
-                <RepoLogo />
-                {typeof id === 'string' && <BtnWrapper id={id} />}
+                <_LogoWrapper onClick={() => router.push('/')}>
+                    <RepoLogo />
+                </_LogoWrapper>
+                <BtnWrapper id={router.query.id as string} />
             </_Inner>
         </_Wrapper>
     );
 }
+
+const _LogoWrapper = styled.span`
+    cursor: pointer;
+`;
 
 const _Wrapper = styled.header`
     position: fixed;

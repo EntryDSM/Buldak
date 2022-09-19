@@ -1,14 +1,3 @@
-import {
-    Array_DoubleText,
-    Array_Gap,
-    Array_Image,
-    Array_ImageText,
-    Array_Line,
-    Array_List,
-    Array_Profile,
-    Array_Text,
-    Array_TextImage,
-} from './arrIntoJsx';
 import { ElementList } from '@apps/user/src/constants/ElementList';
 
 export function JsxIntoArr(value: any) {
