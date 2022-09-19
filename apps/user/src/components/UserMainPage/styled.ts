@@ -17,7 +17,7 @@ export const UserSideBar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    position: fixed;
     width: 20vw;
     height: 120vh;
     background: #5387ec;
@@ -25,6 +25,7 @@ export const UserSideBar = styled.div`
 
 export const UserProfile = styled.div<{ src: string }>`
     width: 90px;
+
     height: 90px;
     background: #f3f7ff;
     border: 2px solid #f0f0f0;
@@ -83,8 +84,8 @@ export const DoucumentContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    width: 76.5vw;
+    margin-left: auto;
+    width: 80vw;
     height: 115vh;
     background: #fbfbfb;
     padding-left: 3.5vw;
@@ -104,10 +105,8 @@ export const ExamineBox = styled.div`
     text-align: center;
     color: #e03131;
 
-    width: 9vw;
-    height: 7vh;
-    right: 5vw;
-    top: 7vh;
+    width: 78px;
+    height: 30px;
     background: #ffffff;
     border: 2px solid #e03131;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -177,6 +176,9 @@ export const NonDocumentText = styled.p`
 `;
 
 export const DocumentSignal = styled.div`
+    position: absolute;
+    right: -42px;
+    top: 102px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,13 +198,14 @@ export const DocumentBox = styled.div<props>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    position: relative;
     margin-left: ${(props) => props.marginL};
 `;
 
 export const TagBox = styled.div`
     display: flex;
     flex-direction: column;
+    height: 100%;
     align-items: flex-start;
     gap: 15px;
 `;
@@ -219,6 +222,11 @@ export const testTag = styled.div`
     background: #ffffff;
     border: 1px solid #5387ec;
     border-radius: 100px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${({ theme }) => theme.color.main};
 `;
 
 export const DocumentsLayout = styled.div`

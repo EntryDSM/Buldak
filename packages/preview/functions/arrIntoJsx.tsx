@@ -491,17 +491,6 @@ interface Array_Profile_Type {
     isTeacher?: boolean;
 }
 
-const a = {
-    tagType: 'Profile',
-    name: '이름',
-    email: '이메일',
-    phone: '전화번호',
-    github: 'https://github.com',
-    imageUrl: '',
-    feedback: { isRead: false, feedInfo: '' },
-    isTeacher: false,
-};
-
 export const Array_Profile = ({
     github,
     imgurl,

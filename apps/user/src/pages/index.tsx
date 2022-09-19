@@ -27,7 +27,6 @@ const UserMainPage: NextPage = () => {
         <S.UserMainContainer>
             <SideBar />
             <S.DoucumentContainer>
-                {examine ? <S.ExamineBox>검토중··</S.ExamineBox> : <></>}
                 <S.TagLayout>
                     <S.TagBox>
                         <S.DocumentTitle>대표분야</S.DocumentTitle>
@@ -59,6 +58,7 @@ const UserMainPage: NextPage = () => {
                 <S.DocumentsLayout>
                     <S.DocumentBox marginL="0vw">
                         <S.DocumentText>공개 요청 대기 문서</S.DocumentText>
+                        {/* {examine ? <S.ExamineBox>검토중··</S.ExamineBox> : <></>} */}
                         {!!documentTypeCheck('STAY', previewPublicStayDocument)?.type ? (
                             <>
                                 <Document
