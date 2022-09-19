@@ -9,17 +9,19 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@apps/company": "*",
+        "@apps/user": "*",
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
         "@packages/emotion-style-provider": "*",
-        "@packages/ui": "*",
         "@packages/preview": "*",
-        "@apps/user": "*",
-        "@apps/company": "*",
+        "@packages/ui": "*",
+        "@types/react-cookies": "^0.1.0",
         "@types/react-outside-click-handler": "^1.3.1",
         "axios": "^0.27.2",
         "next": "12.1.6",
         "react": "17.0.2",
+        "react-cookie": "^4.1.1",
         "react-dom": "17.0.2",
         "react-outside-click-handler": "^1.3.0",
         "react-query": "^3.39.1"

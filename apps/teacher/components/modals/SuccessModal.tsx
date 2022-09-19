@@ -7,13 +7,14 @@ import ModalHeader from './ModalHeader';
 interface Props {
     type: 'RESET_PASSWORD' | 'ADD_COMPANY';
     password: string;
+    onClose?: () => void;
 }
 
-function SuccessModal({ type, password }: Props) {
+function SuccessModal({ type, password, onClose }: Props) {
     return (
-        <ModalWrapper>
+        <ModalWrapper onCloseFunction={onClose}>
             <_Wrapper>
-                <ModalHeader title="알림" />
+                <ModalHeader title="알림" onClose={onClose} />
                 <_Center>
                     <div id="check-icon">
                         <Image src={successCheckIcon} alt="성공" />
