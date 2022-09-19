@@ -5,6 +5,7 @@ import theme from '@packages/emotion-style-provider/src/theme';
 import BackImg from '../../../assets/img/BackImg.png';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import axios from 'axios';
+import { getCookie } from '../../../Hooks/Cookies';
 import * as S from '../../../components/FirstLoginPage/styled';
 
 const StageThree = () => {
@@ -19,7 +20,7 @@ const StageThree = () => {
             axios
                 .post('https://server.dsm-repo.com/images', formData, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${getCookie('access_token')}`,
                     },
                     params: {
                         type: 'PROFILE',
@@ -38,7 +39,7 @@ const StageThree = () => {
         axios
             .get('https://server.dsm-repo.com/students', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    Authorization: `Bearer ${getCookie('access_token')}`,
                 },
             })
             .then((res) => {
@@ -53,7 +54,7 @@ const StageThree = () => {
                         },
                         {
                             headers: {
-                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                                Authorization: `Bearer ${getCookie('access_token')}`,
                             },
                         },
                     )

@@ -5,6 +5,7 @@ import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import PlusBlack from '../../../assets/svg/PlusBlack.svg';
 import BackImg from '../../../assets/img/BackImg.png';
+import { getCookie } from '../../../Hooks/Cookies';
 import * as S from '../../../components/FirstLoginPage/styled';
 import axios from 'axios';
 
@@ -20,7 +21,7 @@ const StageTwo = () => {
             axios
                 .post('https://server.dsm-repo.com/images', formData, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${getCookie('access_token')}`,
                     },
                     params: {
                         type: 'PROFILE',
@@ -40,7 +41,7 @@ const StageTwo = () => {
         axios
             .get('https://server.dsm-repo.com/companies', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    Authorization: `Bearer ${getCookie('access_token')}`,
                 },
             })
             .then((res) => {
@@ -55,7 +56,7 @@ const StageTwo = () => {
                         },
                         {
                             headers: {
-                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                                Authorization: `Bearer ${getCookie('access_token')}`,
                             },
                         },
                     )

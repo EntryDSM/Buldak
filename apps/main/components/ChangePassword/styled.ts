@@ -97,7 +97,7 @@ export const _FirstLoginCitation = styled.button`
     align-items: center;
     color: ${({ theme }) => theme.color.white};
     width: 90px;
-    height: 44px;
+    height: 40px;
     background: ${({ theme }) => theme.color.skyblue};
     border-radius: 4px;
     margin-left: 10px;
