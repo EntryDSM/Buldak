@@ -39,7 +39,7 @@ export const rejectDocument = async (student_id: string) => {
 };
 export const approveDocument = async (student_id: string) => {
     try {
-        await instance.patch(`/documents/approve/${student_id}`);
+        await instance.patch(`/documents/stay/approve/${student_id}`);
     } catch (err) {
         throw err;
     }

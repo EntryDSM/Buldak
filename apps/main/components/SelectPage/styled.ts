@@ -9,10 +9,12 @@ export const _SelectPageContainer = styled.div`
 
 export const _ImgContainer = styled.div`
     position: absolute;
+    display: flex;
     overflow: hidden;
-
-    width: 100%;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
 `;
 
 export const _SelectContainer = styled.div`

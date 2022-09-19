@@ -4,6 +4,7 @@ import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
 import axios from 'axios';
 import BackImg from '../../assets/img/BackImg.png';
+import { getCookie } from '../../Hooks/Cookies';
 import * as S from '../../components/ChangePassword/styled';
 
 interface certifiedType {
@@ -29,7 +30,7 @@ const StageTwo = () => {
                 {},
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                        Authorization: `Bearer ${getCookie('access_token')}`,
                     },
                 },
             )
@@ -49,7 +50,7 @@ const StageTwo = () => {
                     value: certified.email,
                 },
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    Authorization: `Bearer ${getCookie('access_token')}`,
                 },
             })
             .then((res) => {

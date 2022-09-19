@@ -4,6 +4,7 @@ import theme from '@packages/emotion-style-provider/src/theme';
 import axios from 'axios';
 import Image from 'next/image';
 import BackImg from '../../../assets/img/BackImg.png';
+import { getCookie } from '../../../Hooks/Cookies';
 import * as S from '../../../components/FirstLoginPage/styled';
 
 interface newPasswordType {
@@ -26,7 +27,7 @@ const StageOne = () => {
         axios
             .patch('https://server.dsm-repo.com/users/first-password', newPasswordState, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    Authorization: `Bearer ${getCookie('access_token')}`,
                 },
             })
             .then((res) => {
