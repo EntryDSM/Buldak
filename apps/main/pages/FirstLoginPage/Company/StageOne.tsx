@@ -25,7 +25,7 @@ const StageOne = () => {
 
     const onPostNewPassword = () => {
         axios
-            .patch('http://114.108.176.85:8080/users/first-password', newPasswordState, {
+            .patch('https://server.dsm-repo.com/users/first-password', newPasswordState, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },

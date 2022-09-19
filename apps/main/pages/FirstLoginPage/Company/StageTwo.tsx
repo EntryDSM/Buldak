@@ -18,7 +18,7 @@ const StageTwo = () => {
         if (event.target.files) {
             formData.append('file', event.target.files[0]);
             axios
-                .post('http://114.108.176.85:8080/images', formData, {
+                .post('https://server.dsm-repo.com/images', formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -38,7 +38,7 @@ const StageTwo = () => {
 
     const onPostProfile = () => {
         axios
-            .get('http://114.108.176.85:8080/companies', {
+            .get('https://server.dsm-repo.com/companies', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
