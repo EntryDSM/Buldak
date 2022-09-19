@@ -4,10 +4,10 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
-    url1: string;
+    url: string;
     url2?: string;
     url3?: string;
     grade: number;
@@ -15,7 +15,7 @@ interface Props {
     isTeacher?: boolean;
 }
 
-export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isTeacher }: Props) {
+export default function Image({ url, url2 = '', url3 = '', grade, feedback, isTeacher }: Props) {
     const [isSelected, setIsSelected] = useState(false);
 
     if (grade == 1)
@@ -26,7 +26,11 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isT
                 }}>
                 <Wrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                     {!isTeacher && feedback?.feedInfo && (
-                        <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
+                        <FeedBack
+                            feedInfo={feedback.feedInfo}
+                            sequence={feedback.sequence}
+                            isRead={feedback.isRead}
+                        />
                     )}
                     {isTeacher && (
                         <WriteFeed
@@ -36,7 +40,7 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isT
                             isSelected={isSelected}
                         />
                     )}{' '}
-                    <Img url={url1}>{url1 ? <></> : <NoImg />}</Img>
+                    <Img url={url}>{url ? <></> : <NoImg />}</Img>
                 </Wrapper>
             </OutsideClickHandler>
         );
@@ -44,8 +48,8 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isT
         return (
             <Wrapper>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Img style={{ width: '430px' }} url={url1}>
-                    {url1 ? <></> : <NoImg />}
+                <Img style={{ width: '430px' }} url={url}>
+                    {url ? <></> : <NoImg />}
                 </Img>
                 <Img style={{ width: '430px' }} url={url2}>
                     {url2 ? <></> : <NoImg />}
@@ -56,8 +60,8 @@ export default function Image({ url1, url2 = '', url3 = '', grade, feedback, isT
         return (
             <Wrapper>
                 {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Img style={{ width: '280px' }} url={url1}>
-                    {url1 ? <></> : <NoImg />}
+                <Img style={{ width: '280px' }} url={url}>
+                    {url ? <></> : <NoImg />}
                 </Img>
                 <Img style={{ width: '280px' }} url={url2}>
                     {url2 ? <></> : <NoImg />}

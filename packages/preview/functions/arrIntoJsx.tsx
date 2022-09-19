@@ -97,7 +97,7 @@ export function ArrIntoJsx(value: any) {
                 return (
                     <T.Template_Image
                         grade={value.grade}
-                        url1={value.imageUrl[0]}
+                        url={value.imageUrl}
                         feedback={value.feedback}
                         isTeacher={value.isTeacher}
                     />
@@ -107,7 +107,7 @@ export function ArrIntoJsx(value: any) {
                 return (
                     <T.Template_Image
                         grade={value.grade}
-                        url1={value.imageUrl[0]}
+                        url={value.imageUrl[0]}
                         url2={value.imageUrl[1]}
                         feedback={value.feedback}
                         isTeacher={value.isTeacher}
@@ -118,7 +118,7 @@ export function ArrIntoJsx(value: any) {
                 return (
                     <T.Template_Image
                         grade={value.grade}
-                        url1={value.imageUrl[0]}
+                        url={value.imageUrl[0]}
                         url2={value.imageUrl[1]}
                         url3={value.imageUrl[2]}
                         feedback={value.feedback}
@@ -483,7 +483,7 @@ export const Array_List = ({ color, text, feedback, isTeacher = false }: Array_L
 
 interface Array_Profile_Type {
     github: string;
-    imgurl: string;
+    url: string;
     name?: string;
     email?: string;
     phone?: string;
@@ -491,20 +491,9 @@ interface Array_Profile_Type {
     isTeacher?: boolean;
 }
 
-const a = {
-    tagType: 'Profile',
-    name: '이름',
-    email: '이메일',
-    phone: '전화번호',
-    github: 'https://github.com',
-    imageUrl: '',
-    feedback: { isRead: false, feedInfo: '' },
-    isTeacher: false,
-};
-
 export const Array_Profile = ({
     github,
-    imgurl,
+    url,
     name,
     email,
     phone,
@@ -517,7 +506,7 @@ export const Array_Profile = ({
         name: name,
         email: email,
         phone: phone,
-        imageUrl: imgurl,
+        imageUrl: url,
         feedback: feedback,
         isTeacher: isTeacher,
     };

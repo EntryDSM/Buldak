@@ -22,6 +22,7 @@ const _Explain = styled.p`
 
 const _Wrapper = styled.div`
     margin-top: 30px;
+    position: relative;
 `;
 
 export default PatchWrapper;

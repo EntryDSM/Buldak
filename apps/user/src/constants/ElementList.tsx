@@ -62,7 +62,7 @@ export const ElementList = [
         text: '이미지',
         patch: [<Upload />],
         preview: Array_Image,
-        args: { grade: 1, url1: '', feedback: { isRead: false, feedInfo: '' } },
+        args: { grade: 1, url: '', feedback: { isRead: false, feedInfo: '' } },
     },
     {
         image: <AddElementLine />,

@@ -39,7 +39,7 @@ function ProfilePatch({ id }: PropsType) {
     };
     return (
         <>
-            <PatchUpload />
+            <PatchUpload id={id} />
             <PatchWrapper name={'이름'}>
                 <TextBox
                     onChange={(e) => onChange(e, 'name')}
