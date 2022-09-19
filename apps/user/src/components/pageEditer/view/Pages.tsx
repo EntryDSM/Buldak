@@ -6,7 +6,11 @@ import { useRecoilState } from 'recoil';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
 import { ElementListState } from '../../../recoil/ElementListState';
-import { documentLocalQuery, documentStayQuery } from '../../../utils/api/userDocument';
+import {
+    documentLocalQuery,
+    documentPublicQuery,
+    documentStayQuery,
+} from '../../../utils/api/userDocument';
 
 interface PagesProps {
     zoom: number;
@@ -20,6 +24,9 @@ function Pages({ zoom = 100 }: PagesProps) {
     );
     const { data: Staydata } = useQuery(['stayDocument'], () =>
         documentStayQuery(router.query.id as string),
+    );
+    const { data: Publicdata } = useQuery(['publicDocument'], () =>
+        documentPublicQuery(router.query.id as string),
     );
     useEffect(() => {
         if (router.query.stay && Staydata) {
@@ -36,6 +43,10 @@ function Pages({ zoom = 100 }: PagesProps) {
         } else if (Localdata) {
             setElementList(
                 JSON.parse(Localdata.data.content).map((content: any) => JsxIntoArr(content)),
+            );
+        } else if (router.query.public && Publicdata) {
+            setElementList(
+                JSON.parse(Publicdata.data.content).map((content: any) => JsxIntoArr(content)),
             );
         }
     }, [Localdata, Staydata]);
