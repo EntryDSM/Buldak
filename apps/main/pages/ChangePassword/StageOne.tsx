@@ -25,7 +25,7 @@ const StageTwo = () => {
     const onPostEmail = () => {
         axios
             .post(
-                'http://114.108.176.85:8080/auth/email',
+                'https://server.dsm-repo.com/auth/email',
                 {},
                 {
                     headers: {
@@ -43,7 +43,7 @@ const StageTwo = () => {
 
     const onPostCertified = () => {
         axios
-            .head('http://114.108.176.85:8080/auth/verify', {
+            .head('https://server.dsm-repo.com/auth/verify', {
                 params: {
                     authCode: certified.certifiedNumber,
                     value: certified.email,
