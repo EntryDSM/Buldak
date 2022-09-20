@@ -47,7 +47,6 @@ MyApp.getInitialProps = async ({
     let pageProps;
     const queryClient = new QueryClient();
     const { requiredResources } = Component;
-    console.log(requiredResources);
     requiredResources?.length &&
         (await Promise.all(
             requiredResources.map((resource) =>

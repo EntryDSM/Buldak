@@ -30,7 +30,6 @@ function Pages({ zoom = 100 }: PagesProps) {
     );
     useEffect(() => {
         if (Localdata) {
-            console.log('local', router.query.id, Localdata.data.content);
             setElementList(
                 JSON.parse(Localdata.data.content).map((content: any) => JsxIntoArr(content)),
             );
@@ -56,10 +55,6 @@ function Pages({ zoom = 100 }: PagesProps) {
             );
         }
     }, [Localdata, Staydata, Publicdata]);
-
-    useEffect(() => {
-        console.log(elementList);
-    }, [elementList]);
 
     return (
         <PagesWrapper style={{ zoom: zoom + '%' }}>

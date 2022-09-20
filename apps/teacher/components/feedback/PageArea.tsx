@@ -24,7 +24,6 @@ function PageArea({ id }: PageProps) {
         if (!router && Publicdata) {
             setDocument(JSON.parse(Publicdata.content));
         } else if (Staydata) {
-            console.log('data', document);
             setDocument(JSON.parse(Staydata.content));
             setFeed(Staydata.feedback_list);
         }

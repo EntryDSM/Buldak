@@ -18,7 +18,6 @@ export type UploadImage = {
 };
 
 const MyPage: NextPage<{}> = (data) => {
-    console.log(data);
     const [openAddTagModal, setOpenAddTagModal] = useState<boolean>(false);
     const [openRepresentativeModal, setOpenRepresentativeModal] = useState<boolean>(false);
 

@@ -11,7 +11,6 @@ function ModalSearchInput({ subtitle, addTags, searchTagInfo, ...props }: PropsT
     const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         setIsOpen(true);
-        console.log(searchTagInfo);
     }, [searchTagInfo]);
     return (
         <OutsideClickHandler onOutsideClick={() => setIsOpen(false)}>

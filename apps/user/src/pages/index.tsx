@@ -46,7 +46,6 @@ const UserMainPage: NextPage = () => {
                 <S.DocumentsLayout>
                     <DocumentPlus />
                     {localList?.document_list.map((info) => {
-                        console.log(info.document_id);
                         return (
                             <Document
                                 previewImagePath={info.preview_image_path}

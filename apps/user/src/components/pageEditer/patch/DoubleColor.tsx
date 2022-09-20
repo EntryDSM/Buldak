@@ -21,7 +21,6 @@ function PatchDoubleColor({ id }: PropsType) {
     useEffect(() => {
         setTop(newArr.args.color[0]);
         setBottom(newArr.args.color[1]);
-        console.log(newArr.args.color);
     }, []);
     const changeTopColor = (hex: string) => {
         const tempargs = { ...newArr.args, color: [hex, newArr.args.color[1]] };

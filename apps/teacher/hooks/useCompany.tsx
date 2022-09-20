@@ -95,7 +95,7 @@ const useCompany = () => {
                         toastHandler('ERROR');
                     });
         } catch (err) {
-            console.log(err);
+            throw err;
         }
     };
     return {
