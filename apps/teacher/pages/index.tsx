@@ -10,6 +10,7 @@ import { getStudentList } from '../api/teachers';
 import { GetStudentListResponse } from '../models/teachers/responses';
 import { ClassNumValue, DocumentStatusValue, GradeValue } from '../models/teachers/requests';
 import { queryKeys } from '../utils/constant';
+import useStudentFilter from '../hooks/useStudentFilter';
 
 export interface FilterProps {
     grade: GradeValue;
@@ -19,15 +20,7 @@ export interface FilterProps {
 
 export default function Home() {
     const { selectedModal } = useModal();
-    const [filter, setFilter] = useState<FilterProps>({
-        grade: null,
-        classNum: null,
-        docStatus: null,
-    });
-    const { data } = useQuery(
-        ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
-        () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
-    );
+    const { studentList, onChangeClassNum, onChangeDocStatus, onChangeGrade } = useStudentFilter();
     return (
         <>
             {selectedModal === 'USER_DETAIL' && <UserDetail />}
@@ -35,9 +28,10 @@ export default function Home() {
             <Wrapper>
                 <SideBar managementType="student" />
                 <ManageStudent
-                    studentList={data?.student_list || []}
-                    filter={filter}
-                    setFilter={setFilter}
+                    studentList={studentList?.student_list || []}
+                    onChangeGrade={onChangeGrade}
+                    onChangeDocStatus={onChangeDocStatus}
+                    onChangeClassNum={onChangeClassNum}
                 />
             </Wrapper>
         </>

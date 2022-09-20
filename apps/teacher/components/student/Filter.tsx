@@ -2,41 +2,24 @@ import styled from '@emotion/styled';
 import { Button, DropDown } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import {
-    ClassNumDropdownType,
     classRoomDropdownItems,
     documentStatusDropdownItems,
-    DocumentStatusDropdownType,
     gradeDropdownItems,
-    GradeDropdownType,
 } from '../constant';
 import useModal from '../../hooks/useModal';
-import { FilterStateProps } from '.';
-import {
-    translateClassNumDropdownValue,
-    translateDocStatusDropdownValue,
-    translateGradeDropdownValue,
-} from '../../utils/translate';
 
-const Filter: React.FC<FilterStateProps> = ({ filter, setFilter }) => {
+export interface FilterFunctionProps {
+    onChangeGrade: (value: string) => void;
+    onChangeClassNum: (value: string) => void;
+    onChangeDocStatus: (value: string) => void;
+}
+
+const Filter: React.FC<FilterFunctionProps> = ({
+    onChangeClassNum,
+    onChangeGrade,
+    onChangeDocStatus,
+}) => {
     const { selectModal } = useModal();
-    const onChangeGrade = (value: string) => {
-        setFilter({
-            ...filter,
-            grade: translateGradeDropdownValue(value as GradeDropdownType),
-        });
-    };
-    const onChangeClassNum = (value: string) => {
-        setFilter({
-            ...filter,
-            classNum: translateClassNumDropdownValue(value as ClassNumDropdownType),
-        });
-    };
-    const onChangeDocStatus = (value: string) => {
-        setFilter({
-            ...filter,
-            docStatus: translateDocStatusDropdownValue(value as DocumentStatusDropdownType),
-        });
-    };
     const printExcel = () => {};
     return (
         <_Wrapper>

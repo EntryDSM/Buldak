@@ -2,7 +2,12 @@ import styled from '@emotion/styled';
 import { classRoomDropdownItems, gradeDropdownItems } from '../../constant';
 import { DropDown } from '@packages/ui';
 
-const PdfFilter = () => {
+interface Props {
+    onChangeGrade: (value: string) => void;
+    onChangeClassNum: (value: string) => void;
+}
+
+const PdfFilter: React.FC<Props> = ({ onChangeGrade, onChangeClassNum }) => {
     const onChangeDropdown = () => {};
     return (
         <_Wrapper>
