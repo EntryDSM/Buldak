@@ -37,7 +37,8 @@ const DocumentList = ({ documentPreview, profileImagePath, student_id }: Props) 
             </_DocumentType>
             <_Document
                 onClick={() => {
-                    router.push(`/feedback/${student_id}`);
+                    if (documentState == 'STAY') router.push(`/feedback/${student_id}?stay=true`);
+                    else router.push(`/feedback/${student_id}`);
                 }}>
                 {previewState?.preview_image_path !== undefined ? (
                     <>
