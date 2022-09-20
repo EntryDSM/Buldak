@@ -37,11 +37,13 @@ const LoginPage = () => {
                     path: '/',
                     secure: true,
                     sameSite: 'none',
+                    domain: 'dsm-repo.com',
                 });
                 setCookie('refresh_token', res.data.refresh_token, {
                     path: '/',
                     secure: true,
                     sameSite: 'none',
+                    domain: 'dsm-repo.com',
                 });
                 if (loginState.user_type == 'TEACHER') {
                     window.location.href = 'https://teacher.dsm-repo.com';
