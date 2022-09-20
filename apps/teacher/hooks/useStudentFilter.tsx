@@ -91,7 +91,6 @@ const useStudentFilter = () => {
         });
         setPdfStudentList(newList);
     };
-    console.log(pdfStudentList);
     const lists = useMemo(
         () => ({
             selectedStudentList: pdfStudentList.filter((item) => item.isSelected),
