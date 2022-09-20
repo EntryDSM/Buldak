@@ -23,7 +23,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                         <Component {...pageProps} />
                     </Hydrate>
                 </RecoilRoot>
-                <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
             </QueryClientProvider>
         </StyleProvider>
     );

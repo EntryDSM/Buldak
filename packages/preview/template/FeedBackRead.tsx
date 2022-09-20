@@ -63,7 +63,6 @@ export default FeedBack;
 
 const Wrapper = styled.div`
     z-index: 1;
-    zoom: 190%;
     border-radius: 5px;
     filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.15));
     position: absolute;
