@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { feedbackArrow } from '../assets/feedbackArrow';
-import { Icon_NewFeed, Icon_ReadFeed } from '@packages/preview/assets';
+import { Icon_NewFeed, Icon_ReadFeed } from '../assets';
 import { instance } from '../api/instance';
 
 interface FeedProps {

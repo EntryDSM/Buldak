@@ -9,8 +9,6 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@apps/company": "*",
-        "@apps/user": "*",
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
         "@packages/emotion-style-provider": "*",
