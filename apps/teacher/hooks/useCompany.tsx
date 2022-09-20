@@ -51,22 +51,22 @@ const useCompany = () => {
     const onClickCreateCompany = async () => {
         try {
             const FD = new FormData();
-            if (file !== undefined) {
-                FD.append('file', file);
-                const image = await createImage('PROFILE', FD);
-                if (!image) toastHandler('ERROR', '이미지 크기가 너무 큽니다.');
+            if (file === undefined) return toastHandler('ERROR', '프로필 이미지를 저장해 주세요.');
 
-                createCompany({
-                    ...companyInfo,
-                    profile_image_path: image.image_path,
+            FD.append('file', file);
+            const image = await createImage('PROFILE', FD);
+            if (!image) toastHandler('ERROR', '이미지 크기가 너무 큽니다.');
+
+            createCompany({
+                ...companyInfo,
+                profile_image_path: image.image_path,
+            })
+                .then((res) => {
+                    selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
                 })
-                    .then((res) => {
-                        selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
-                    })
-                    .catch(() => {
-                        toastHandler('ERROR', '모든 값을 제대로 입력했는지 확인해 주세요.');
-                    });
-            }
+                .catch(() => {
+                    toastHandler('ERROR', '모든 값을 제대로 입력했는지 확인해 주세요.');
+                });
         } catch (err) {}
     };
     const onClickEditCompany = async (id: string, file?: File) => {
