@@ -24,6 +24,7 @@ const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
         })
             .then(() => {
                 addTagIsSuccess();
+                toastHandler('SUCCESS', '태그 생성 성공');
             })
             .catch((err: AxiosError) => {
                 if (err.response?.status === 409)
