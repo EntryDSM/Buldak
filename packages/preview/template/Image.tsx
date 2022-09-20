@@ -4,7 +4,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { NoImg } from '../assets';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import { WriteFeed } from './FeedBackWrite';
+import FeedbackComment from './FeedbackComment';
 
 interface Props {
     url: string;
@@ -33,7 +33,7 @@ export default function Image({ url, url2 = '', url3 = '', grade, feedback, isTe
                         />
                     )}
                     {isTeacher && (
-                        <WriteFeed
+                        <FeedbackComment
                             isRead={feedback?.isRead}
                             feedInfo={feedback?.feedInfo}
                             sequence={feedback?.sequence}

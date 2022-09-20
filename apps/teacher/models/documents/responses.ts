@@ -1,7 +1,7 @@
 import { AddFeedbackRequest } from '../teachers/requests';
 
 export interface GetPublicDocumentResponse {
-    content: any[];
+    content: string;
 }
 export interface GetStayDocumentResponse {
     feedback_list: AddFeedbackRequest[];

@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
-import { JsxIntoArr } from '@packages/preview/functions/jsxIntoArr';
+import { JsxIntoArr } from '../../../utils/function/jsxIntoArr';
 import { ElementListState } from '../../../recoil/ElementListState';
 import {
     documentLocalQuery,

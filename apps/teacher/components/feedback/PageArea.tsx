@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getStayDocument } from '../../api/documents';
+import { getPublicDocument, getStayDocument } from '../../api/documents';
 import { toastHandler } from '../../utils/toast';
 
 interface PageProps {
@@ -10,37 +11,50 @@ interface PageProps {
 }
 
 function PageArea({ id }: PageProps) {
-    const { data } = useQuery([`getStayDocument${id || ''}`, id], () => getStayDocument(id), {
-        onError: (err) => {
-            toastHandler('ERROR');
-        },
-    });
+    const router = useRouter().query.stay;
+    const { data: Staydata } = useQuery([`getStayDocument${id || ''}`, id], () =>
+        getStayDocument(id),
+    );
+    const { data: Publicdata } = useQuery([`getPublicDocument${id || ''}`, id], () =>
+        getPublicDocument(id),
+    );
     const [document, setDocument] = useState<any[]>(['']);
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
-        if (data) {
-            setDocument(JSON.parse(data.content));
-            setFeed(data.feedback_list);
+        if (!router && Publicdata) {
+            setDocument(JSON.parse(Publicdata.content));
+        } else if (Staydata) {
+            console.log('data', document);
+            setDocument(JSON.parse(Staydata.content));
+            setFeed(Staydata.feedback_list);
         }
-    }, [data, id]);
+    }, [Staydata, Publicdata, id]);
     return (
         <_Background>
             <_PageWrapper>
                 <div>
-                    {document.map((value, index) =>
-                        ArrIntoJsx({
-                            ...value.args,
-                            feedback: {
-                                feedInfo: feed.filter(
-                                    (value: any) => value.sequence == index + 1,
-                                )[0]?.comment,
-                                isRead: feed.filter((value: any) => value.sequence == index + 1)[0]
-                                    ?.isApply,
-                                sequence: index + 1,
-                            },
-                            isTeacher: true,
-                        }),
-                    )}
+                    {router
+                        ? document.map((value, index) =>
+                              ArrIntoJsx({
+                                  ...value,
+                                  feedback: {
+                                      feedInfo: feed.filter(
+                                          (value: any) => value.sequence == index + 1,
+                                      )[0]?.comment,
+                                      isRead: feed.filter(
+                                          (value: any) => value.sequence == index + 1,
+                                      )[0]?.isApply,
+                                      sequence: index + 1,
+                                  },
+                                  isTeacher: true,
+                              }),
+                          )
+                        : document.map((value) =>
+                              ArrIntoJsx({
+                                  ...value,
+                                  isTeacher: false,
+                              }),
+                          )}
                 </div>
             </_PageWrapper>
         </_Background>
@@ -64,6 +78,5 @@ const _PageWrapper = styled.div`
     margin: 100px 0px;
     background-color: ${({ theme }) => theme.color.white};
     > div {
-        zoom: 53%;
     }
 `;

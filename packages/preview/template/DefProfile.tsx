@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import { WriteFeed } from './FeedBackWrite';
+import FeedbackComment from './FeedbackComment';
 
 interface Props {
     name: string;
@@ -39,7 +39,7 @@ export default function DefProfile({
                     />
                 )}
                 {isTeacher && (
-                    <WriteFeed
+                    <FeedbackComment
                         isRead={feedback?.isRead}
                         feedInfo={feedback?.feedInfo}
                         isSelected={isSelected}

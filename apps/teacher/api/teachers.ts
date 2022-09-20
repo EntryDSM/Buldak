@@ -21,13 +21,7 @@ export const deleteStudent = async (student_id: string) => {
         throw err;
     }
 };
-export const addFeedback = async (student_id: string, body: AddFeedbackRequest) => {
-    try {
-        await instance.post(`/teachers/feedback/${student_id}`, body);
-    } catch (err) {
-        throw err;
-    }
-};
+
 export const deleteCompany = async (company_id: string) => {
     try {
         await instance.delete(`/teachers/company/${company_id}`);
