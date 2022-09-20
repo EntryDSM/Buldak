@@ -4,6 +4,8 @@ import { createTag, deleteTag } from '../../api/tags';
 import { TagInfo } from '../../models/tags/responses';
 import AddInputButton from '../AddInputButton';
 import { useRouter } from 'next/router';
+import { toastHandler } from '../../utils/toast';
+import { AxiosError } from 'axios';
 
 type listType = '태그' | '대표분야';
 
@@ -19,15 +21,27 @@ const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
         createTag({
             name,
             is_major: listType === '대표분야',
-        }).then(() => {
-            addTagIsSuccess();
-        });
+        })
+            .then(() => {
+                addTagIsSuccess();
+            })
+            .catch((err: AxiosError) => {
+                if (err.response?.status === 409)
+                    toastHandler('ERROR', '이미 존재하는 태그입니다.');
+                else toastHandler('ERROR');
+            });
     };
     // todo : 태그에 onClick Event 연결하기
     const onClickDeleteTag = (id: string) => {
-        deleteTag(id).then(() => {
-            router.reload();
-        });
+        deleteTag(id)
+            .then(() => {
+                router.reload();
+            })
+            .catch((err: AxiosError) => {
+                if (err.response?.status === 404)
+                    toastHandler('ERROR', '존재하지 않는 태그입니다.');
+                else toastHandler('ERROR');
+            });
     };
     return (
         <_Wrapper>

@@ -3,6 +3,7 @@ import { CreateCompanyRequest } from '../models/teachers/requests';
 import { createImage } from '../api/default';
 import useModal from './useModal';
 import { createCompany, editCompany } from '../api/teachers';
+import { toastHandler } from '../utils/toast';
 
 const useCompany = () => {
     const { selectModal } = useModal();
@@ -53,14 +54,18 @@ const useCompany = () => {
             if (file !== undefined) {
                 FD.append('file', file);
                 const image = await createImage('PROFILE', FD);
+                if (!image) toastHandler('ERROR', '이미지 크기가 너무 큽니다.');
 
                 createCompany({
                     ...companyInfo,
                     profile_image_path: image.image_path,
-                }).then((res) => {
-                    selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
-                    // router.push(pages.manageCompany);
-                });
+                })
+                    .then((res) => {
+                        selectModal({ modal: 'CREATE_SUCCESS', password: res.password });
+                    })
+                    .catch(() => {
+                        toastHandler('ERROR', '모든 값을 제대로 입력했는지 확인해 주세요.');
+                    });
             }
         } catch (err) {}
     };
@@ -69,13 +74,22 @@ const useCompany = () => {
             if (file !== undefined) {
                 const FD = new FormData();
                 FD.append('file', file);
-                await createImage('PROFILE', FD).then((res) => {
-                    editCompany(id, {
-                        ...companyInfo,
-                        profile_image_path: res.image_path,
+                await createImage('PROFILE', FD)
+                    .then((res) => {
+                        editCompany(id, {
+                            ...companyInfo,
+                            profile_image_path: res.image_path,
+                        }).catch(() => {
+                            toastHandler('ERROR');
+                        });
+                    })
+                    .catch(() => {
+                        toastHandler('ERROR', '이미지가 너무 큽니다.');
                     });
+            } else
+                editCompany(id, companyInfo).catch(() => {
+                    toastHandler('ERROR');
                 });
-            } else editCompany(id, companyInfo).then(() => {});
         } catch (err) {
             console.log(err);
         }
