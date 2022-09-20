@@ -70,47 +70,47 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 285px;
-    padding: 47px 95px;
+    width: 530px;
+    height: 151px;
+    padding: 25px 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     > #colline {
         width: 2px;
-        height: 100px;
+        height: 53px;
         background-color: ${({ theme }) => theme.color.gray300};
-        border-radius: 50px;
-        margin-left: 30px;
-        margin-right: 25px;
+        border-radius: 26.5px;
+        margin-left: 16px;
+        margin-right: 13px;
     }
     > #textbox {
-        height: 142px;
-        width: 563px;
+        height: 75px;
+        width: 299px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        font-size: 22px;
+        font-size: 12px;
         word-break: break-all;
     }
     a {
         color: ${({ theme }) => theme.color.skyblue};
         text-decoration: underline;
-        margin-left: 8px;
+        margin-left: 4px;
     }
 `;
 
 const ImgBox = styled.div`
-    width: 190px;
-    height: 190px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 5px solid ${({ theme }) => theme.color.gray300};
+    border: 2px solid ${({ theme }) => theme.color.gray300};
     border-radius: 100px;
     > #img {
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
         border-radius: 100px;
         background-color: ${({ theme }) => theme.color.gray300};
         display: flex;

@@ -29,7 +29,12 @@ function Pages({ zoom = 100 }: PagesProps) {
         documentPublicQuery(router.query.id as string),
     );
     useEffect(() => {
-        if (router.query.stay && Staydata) {
+        if (Localdata) {
+            console.log('local', router.query.id, Localdata.data.content);
+            setElementList(
+                JSON.parse(Localdata.data.content).map((content: any) => JsxIntoArr(content)),
+            );
+        } else if (router.query.stay && Staydata) {
             const feedbacklist = Staydata.data.feedback_list;
             let Content = JSON.parse(Staydata.data.content);
             feedbacklist.map((value: any) => {
@@ -40,10 +45,6 @@ function Pages({ zoom = 100 }: PagesProps) {
                 };
             });
             setElementList(Content.map((content: any) => JsxIntoArr(content)));
-        } else if (Localdata) {
-            setElementList(
-                JSON.parse(Localdata.data.content).map((content: any) => JsxIntoArr(content)),
-            );
         } else if (router.query.public && Publicdata) {
             setElementList(
                 JSON.parse(Publicdata.data.content).map((content: any) =>
@@ -100,6 +101,5 @@ const PageWrapper = styled.div`
     margin-bottom: 100px;
     background-color: ${({ theme }) => theme.color.white};
     > div {
-        zoom: 53%;
     }
 `;

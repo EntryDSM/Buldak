@@ -3,7 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     topText1: string;
@@ -40,7 +40,11 @@ export default function DoubleText({
                 }}>
                 <TotalWrapper isSelected={isSelected} onClick={() => setIsSelected(true)}>
                     {!isTeacher && feedback?.feedInfo && (
-                        <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
+                        <FeedBack
+                            feedInfo={feedback.feedInfo}
+                            sequence={feedback.sequence}
+                            isRead={feedback.isRead}
+                        />
                     )}
                     {isTeacher && (
                         <WriteFeed
@@ -118,9 +122,8 @@ export default function DoubleText({
 
 const TotalWrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
-
     position: relative;
-    width: 1000px;
+    width: 530px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -129,20 +132,20 @@ const TotalWrapper = styled.div<{ isSelected?: boolean }>`
 `;
 
 const Wrapper = styled.div`
-    width: 1000px;
-    min-height: 96px;
+    width: 530px;
+    min-height: 51px;
     > #top {
-        min-height: 52px;
+        min-height: 28px;
         width: 100%;
-        font-size: 22px;
+        font-size: 12px;
         word-break: break-all;
-        padding: 13px 40px;
+        padding: 7px 21px;
     }
     > #bottom {
-        min-height: 44px;
+        min-height: 23px;
         width: 100%;
-        font-size: 18px;
+        font-size: 10px;
         word-break: break-all;
-        padding: 11px 40px;
+        padding: 6px 23px;
     }
 `;

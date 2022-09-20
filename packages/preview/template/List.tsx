@@ -25,7 +25,11 @@ export default function List({ color, text, feedback, isTeacher }: Props) {
                 onClick={() => setIsSelected(true)}
                 style={{ color: color[0] }}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence} />
+                    <FeedBack
+                        feedInfo={feedback.feedInfo}
+                        isRead={feedback.isRead}
+                        sequence={feedback.sequence}
+                    />
                 )}
                 {isTeacher && (
                     <WriteFeed
@@ -63,28 +67,28 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 40px;
-    padding: 5px 50px;
+    width: 530px;
+    height: 21px;
+    padding: 3px 27px;
     > p {
-        font-size: 22px;
-        margin-bottom: 10px;
+        font-size: 12px;
+        margin-bottom: 4px;
     }
 `;
 
 const TextBox = styled.div`
-    width: 800px;
-    min-height: 165px;
+    width: 424px;
+    min-height: 87px;
 `;
 
 const Dot = styled.div`
-    width: 3px;
-    height: 3px;
+    width: 2px;
+    height: 2px;
     border-radius: 50px;
     background-color: ${({ theme }) => theme.color.gray900};
     position: absolute;
-    left: -10px;
-    top: 10px;
+    left: -6px;
+    top: 6px;
 `;
 
 const EachListWrapper = styled.div`
@@ -93,13 +97,13 @@ const EachListWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 `;
 
 const EachListText = styled.div`
-    width: calc(100% - 28px);
-    min-height: 48px;
+    width: calc(100% - 15px);
+    min-height: 25px;
     > p {
-        font-size: 19px;
+        font-size: 10px;
     }
 `;

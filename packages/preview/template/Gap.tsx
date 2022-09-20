@@ -3,7 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     height: number;
@@ -24,7 +24,11 @@ export default function Gap({ height, feedback, isTeacher }: Props) {
                 onClick={() => setIsSelected(true)}
                 style={{ height: `${height}px` }}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} sequence={feedback.sequence} />
+                    <FeedBack
+                        feedInfo={feedback.feedInfo}
+                        isRead={feedback.isRead}
+                        sequence={feedback.sequence}
+                    />
                 )}
                 {isTeacher && (
                     <WriteFeed
@@ -43,6 +47,6 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 50px;
+    width: 530px;
+    height: 27px;
 `;

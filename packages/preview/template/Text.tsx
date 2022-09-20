@@ -31,7 +31,11 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
                         <p>{text1}</p>
                     </div>
                     {!isTeacher && feedback?.feedInfo && (
-                        <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
+                        <FeedBack
+                            feedInfo={feedback.feedInfo}
+                            sequence={feedback.sequence}
+                            isRead={feedback.isRead}
+                        />
                     )}
                     {isTeacher && (
                         <WriteFeed
@@ -73,20 +77,20 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
 }
 
 const Wrapper = styled.div<{ isSelected?: boolean }>`
-    width: 1000px;
-    min-height: 44px;
+    width: 530px;
+    min-height: 23px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
     #textWrapper {
-        min-height: 44px;
-        width: 1000px;
-        padding: 10px 30px;
-    }
-    > p {
-        font-size: 18px;
-        word-break: break-all;
+        min-height: 23px;
+        width: 530px;
+        padding: 5px 16px;
+        > p {
+            font-size: 12px;
+            word-break: break-all;
+        }
     }
 `;

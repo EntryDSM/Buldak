@@ -40,7 +40,7 @@ export default function Image({ url, url2 = '', url3 = '', grade, feedback, isTe
                             isSelected={isSelected}
                         />
                     )}{' '}
-                    <Img url={url}>{url ? <></> : <NoImg />}</Img>
+                    <Img url={url}>{!url ? <></> : <NoImg />}</Img>
                 </Wrapper>
             </OutsideClickHandler>
         );
@@ -78,9 +78,9 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 360px;
-    padding: 20px 50px;
+    width: 530px;
+    height: 191px;
+    padding: 11px 27px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -88,12 +88,12 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     }
 `;
 const Img = styled.div<{ url: string }>`
-    width: 900px;
-    height: 320px;
+    width: 477px;
+    height: 170px;
     background-image: url(${(props) => props.url});
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FeedBackType } from '../types/Feedback';
 import FeedBack from './FeedBackRead';
-import {WriteFeed} from './FeedBackWrite';
+import { WriteFeed } from './FeedBackWrite';
 
 interface Props {
     height: number;
@@ -24,7 +24,11 @@ export default function RowLine({ height, feedback, isTeacher }: Props) {
                 onClick={() => setIsSelected(true)}
                 style={{ height: `${height}px` }}>
                 {!isTeacher && feedback?.feedInfo && (
-                    <FeedBack feedInfo={feedback.feedInfo} sequence={feedback.sequence} isRead={feedback.isRead} />
+                    <FeedBack
+                        feedInfo={feedback.feedInfo}
+                        sequence={feedback.sequence}
+                        isRead={feedback.isRead}
+                    />
                 )}
                 {isTeacher && (
                     <WriteFeed
@@ -44,15 +48,15 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 44px;
-    padding: 21px 100px;
+    width: 530px;
+    height: 23px;
+    padding: 11px 53px;
     display: flex;
     align-items: center;
     justify-content: center;
     > #line {
-        width: 800px;
-        height: 2px;
+        width: 424px;
+        height: 1px;
         border-radius: 100px;
         background-color: ${({ theme }) => theme.color.gray300};
     }

@@ -56,38 +56,38 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
 
     position: relative;
-    width: 1000px;
-    height: 360px;
-    padding: 20px 50px;
+    width: 530px;
+    height: 191px;
+    padding: 11px 27px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 `;
 const Img = styled.div<{ url: string }>`
-    width: 440px;
-    height: 320px;
+    width: 223px;
+    height: 170px;
     background-image: url(${(props) => props.url});
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => theme.color.gray300};
 `;
 const TextBox = styled.div`
-    width: 430px;
+    width: 228px;
     > #top {
         width: 100%;
-        font-size: 25px;
+        font-size: 13px;
         word-break: break-all;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         font-weight: bold;
     }
     > #bottom {
         width: 100%;
-        font-size: 18px;
+        font-size: 10px;
         word-break: break-all;
     }
 `;
