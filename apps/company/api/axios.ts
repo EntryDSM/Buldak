@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
+
+const cookie = new Cookies();
 
 export const instance = axios.create({
     baseURL: 'https://server.dsm-repo.com',
     timeout: 10000,
     headers: {
-        Authorization:
-            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3ZTVmOGFhNS0zZTI3LTQ1ZjQtOTM3Yi00ODVhZmQzOTI2NjUiLCJyb2xlIjoiTU9VIiwidHlwZSI6ImFjY2Vzc190b2tlbiIsImV4cCI6MTY2Mjk5MjMxMH0.m0RB2dWlWQC0FzEwvymenY6viX0Oa_U8sSU1jQI3pCKFZrUZGjmF402NCV_VsLuNeEXZymPOMtt-U1nWd2F5yQ',
+        Authorization: `Bearer ${cookie.get('access_token')}`,
     },
 });
