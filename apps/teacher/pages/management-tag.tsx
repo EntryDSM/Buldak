@@ -7,17 +7,24 @@ import SideBar from '../components/SideBar';
 import TagList from '../components/tag';
 import useDebounce from '../hooks/useDebounce';
 import { queryKeys } from '../utils/constant';
+import { toastHandler } from '../utils/toast';
 
 const ManagementTag = () => {
     const [keyword, setKeyword] = useState('');
     const [name, setName] = useState('');
     const [tagIsAdded, setTagIsAdded] = useState(false);
     const { debounce } = useDebounce();
-    const { data: commonTagList } = useQuery(['getCommonTagList', keyword, tagIsAdded], () =>
-        searchTag(keyword, false),
+    const { data: commonTagList } = useQuery(
+        ['getCommonTagList', keyword, tagIsAdded],
+        () => searchTag(keyword, false),
+        { onError: () => toastHandler('ERROR') },
     );
-    const { data: majorTagList } = useQuery(['getMajorTagList', keyword, tagIsAdded], () =>
-        searchTag(keyword, true),
+    const { data: majorTagList } = useQuery(
+        ['getMajorTagList', keyword, tagIsAdded],
+        () => searchTag(keyword, true),
+        {
+            onError: () => toastHandler('ERROR'),
+        },
     );
     useEffect(() => {
         setTagIsAdded(false);

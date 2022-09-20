@@ -25,7 +25,7 @@ instance.interceptors.response.use(
     function (response) {
         return response;
     },
-    async (error: Error) => {
+    async (error: any) => {
         if (axios.isAxiosError(error) && error.response) {
             const { config, response } = error;
             if (response.status === 401 && getCookie('refresh_token')) {
@@ -38,7 +38,9 @@ instance.interceptors.response.use(
                         return axios(config);
                     });
                 } catch (err: any) {
-                    if (err.response.data.status === 401 || err.response.data.status === 404) {
+                    if (err.response.data.status === 401 || err.response.data.status === 403) {
+                        window.alert('다시 로그인이 필요합니다.');
+                        window.location.href = 'https://www.dsm-repo.com';
                     }
                 }
             } else return Promise.reject(error);

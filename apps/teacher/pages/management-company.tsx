@@ -10,14 +10,19 @@ import { ChangeEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 import SuccessModal from '../components/modals/SuccessModal';
 import { queryKeys } from '../utils/constant';
+import { toastHandler } from '../utils/toast';
 
 const ManagementCompany = () => {
     const { selectedModal, password } = useModal();
     const [name, setName] = useState('');
     const [searchName, setSearchName] = useState(name);
     const { debounce } = useDebounce();
-    const { data: companyList } = useQuery(['searchCompany', searchName], () =>
-        searchCompany(searchName),
+    const { data: companyList } = useQuery(
+        ['searchCompany', searchName],
+        () => searchCompany(searchName),
+        {
+            onError: () => toastHandler('ERROR'),
+        },
     );
     const debounceSearchName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);

@@ -14,14 +14,19 @@ import { translateObjectToString, translateStringToObject } from '../../utils/tr
 import { closeIcon } from '../../assets';
 import Image from 'next/image';
 import { queryKeys } from '../../utils/constant';
+import { toastHandler } from '../../utils/toast';
 
 function EditInfo() {
     const { closeModal, selectedId } = useModal();
     const { companyInfo, setCompanyInfo, onChangeInputValue, onClickEditCompany } = useCompany();
     const { year, month, prevMonth, nextMonth, list, checkDayType, selectedDate, setSelectedDate } =
         useCalendar();
-    const { data } = useQuery([queryKeys.getCompanyDetails, selectedId], () =>
-        getCompanyDetail(selectedId || ''),
+    const { data } = useQuery(
+        [queryKeys.getCompanyDetails, selectedId],
+        () => getCompanyDetail(selectedId || ''),
+        {
+            onError: () => toastHandler('ERROR'),
+        },
     );
     useEffect(() => {
         if (data !== undefined) {

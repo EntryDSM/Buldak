@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { feedbackArrow } from '../../assets';
 import { Icon_NewFeed, Icon_ReadFeed } from '@packages/preview/assets';
+import { toastHandler } from '../../utils/toast';
+import { AxiosError } from 'axios';
 
 interface FeedProps {
     isRead?: boolean;
@@ -39,6 +41,10 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
                 addFeedback(id as string, {
                     sequence: sequence,
                     comment: feedbackContent,
+                }).catch((err: AxiosError) => {
+                    if (err.response?.status === 404)
+                        toastHandler('ERROR', '존재하지 않는 문서입니다.');
+                    else toastHandler('ERROR');
                 });
             }
         }
