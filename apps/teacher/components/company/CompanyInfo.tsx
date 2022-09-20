@@ -59,6 +59,7 @@ function CompanyInfo() {
                             onChange={onChangeFile}
                             name="companyInfo"
                             id={data?.company_id}
+                            accept={'image/jpeg, image/jpg,image/heic,image/png'}
                         />
                     </_SideWrapper>
                     <_InputsWrapper>
