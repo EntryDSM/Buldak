@@ -8,19 +8,18 @@ interface Props {
 }
 
 const PdfFilter: React.FC<Props> = ({ onChangeGrade, onChangeClassNum }) => {
-    const onChangeDropdown = () => {};
     return (
         <_Wrapper>
             <DropDown
                 items={gradeDropdownItems}
                 placeholder="학년"
-                onChange={onChangeDropdown}
+                onChange={onChangeGrade}
                 width={150}
             />
             <DropDown
                 items={classRoomDropdownItems}
                 placeholder="반"
-                onChange={onChangeDropdown}
+                onChange={onChangeClassNum}
                 width={150}
             />
         </_Wrapper>

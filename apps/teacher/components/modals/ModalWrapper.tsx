@@ -9,11 +9,7 @@ interface Props {
 
 const ModalWrapper: React.FC<Props> = ({ children, onCloseFunction }) => {
     const { closeModal } = useModal();
-    const onClose = onCloseFunction
-        ? onCloseFunction
-        : function asd() {
-              console.log('h');
-          };
+    const onClose = onCloseFunction ? onCloseFunction : function asd() {};
     return (
         <_Wrapper>
             <OutsideClickHandler

@@ -29,7 +29,7 @@ const PdfModal = () => {
         setFilter({
             grade: null,
             classNum: null,
-            docStatus: 'PUBLIC',
+            docStatus: null,
         });
     }, []);
     return (
