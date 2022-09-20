@@ -41,10 +41,13 @@ export const documentStayPatch = (preview_image_path: string, content: any) => {
     return instance.patch(`/documents/stay`, { preview_image_path, content });
 };
 
-export const applyFeedBack = (sequence: number) => {
-    return instance.patch(`/students/feedback/${sequence}`);
-};
-
 export const documentPublicQuery = (student_id: string) => {
     return instance.get(`documents/public/${student_id}`);
+};
+
+export const documentLocalCreate = () => {
+    return instance.post(`/documents`, {
+        preview_image_path: '',
+        content: '',
+    });
 };

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import * as Icon from '../assets/index';
 import CheckBox from '@packages/ui/components/CheckBox';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { applyFeedBack } from '@apps/user/src/utils/api/userDocument';
+import { instance } from '../api/instance';
 
 interface FeedProps {
     isRead: boolean;
@@ -12,6 +12,9 @@ interface FeedProps {
 }
 
 function FeedBack({ isRead = false, feedInfo, sequence = 0 }: FeedProps) {
+    const applyFeedBack = (sequence: number) => {
+        return instance.patch(`/students/feedback/${sequence}`);
+    };
     const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
 
@@ -36,7 +39,7 @@ function FeedBack({ isRead = false, feedInfo, sequence = 0 }: FeedProps) {
                                     onClick={() => {
                                         setIsApply(true);
                                         applyFeedBack(sequence);
-                                        alert("피드백이 반영되었습니다.")
+                                        alert('피드백이 반영되었습니다.');
                                     }}
                                 />
                             </div>
