@@ -2,6 +2,8 @@ import { StyleProvider } from '@packages/emotion-style-provider';
 import type { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import ModalProvider from '../context/ModalContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const queryClient = new QueryClient({
@@ -18,6 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <ModalProvider>
                     <StyleProvider>
                         <Component {...pageProps} />
+                        <ToastContainer />
                     </StyleProvider>
                 </ModalProvider>
             </Hydrate>

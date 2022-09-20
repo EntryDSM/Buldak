@@ -10,9 +10,6 @@ interface Props {
 }
 
 const StudentBox: React.FC<Props> = ({ studentInfo }) => {
-    useEffect(() => {
-        console.log('id:', studentInfo.student_id, studentInfo.name);
-    }, []);
     const { selectModal } = useModal();
     return (
         <_Wrapper

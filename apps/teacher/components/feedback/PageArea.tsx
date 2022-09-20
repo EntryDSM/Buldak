@@ -3,13 +3,18 @@ import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getStayDocument } from '../../api/documents';
+import { toastHandler } from '../../utils/toast';
 
 interface PageProps {
     id: string;
 }
 
 function PageArea({ id }: PageProps) {
-    const { data } = useQuery([`getStayDocument${id || ''}`, id], () => getStayDocument(id));
+    const { data } = useQuery([`getStayDocument${id || ''}`, id], () => getStayDocument(id), {
+        onError: (err) => {
+            toastHandler('ERROR');
+        },
+    });
     const [document, setDocument] = useState<any[]>(['']);
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {

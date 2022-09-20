@@ -14,6 +14,7 @@ import { useQuery } from 'react-query';
 import { getStudentList } from '../api/teachers';
 import { PdfStudentListProps } from '../components/modals/pdf';
 import useModal from './useModal';
+import { toastHandler } from '../utils/toast';
 
 const useStudentFilter = () => {
     const [filter, setFilter] = useState<FilterProps>({
@@ -44,6 +45,11 @@ const useStudentFilter = () => {
     const { data: studentList } = useQuery(
         [`getStudentList${selectedModal}`, filter.docStatus, filter.classNum, filter.grade],
         () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
+        {
+            onError: () => {
+                toastHandler('ERROR');
+            },
+        },
     );
     const onClickSelectAll = () => {
         setAllSelected(!allSelected);

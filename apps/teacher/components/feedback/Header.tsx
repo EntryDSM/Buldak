@@ -2,17 +2,40 @@ import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { approveDocument, rejectDocument } from '../../api/documents';
+import { toastHandler } from '../../utils/toast';
+import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
+import { pages } from '../../utils/constant';
 
 interface Props {
     id: string;
 }
 
 const Header = ({ id }: Props) => {
-    const onClcikReject = () => {
-        rejectDocument(id);
+    const router = useRouter();
+    const onClickReject = () => {
+        rejectDocument(id)
+            .then(() => {
+                toastHandler('SUCCESS', '문서가 반환되었습니다.');
+            })
+            .catch((err: AxiosError) => {
+                if (err.response?.status === 404) {
+                    toastHandler('ERROR', '문서가 존재하지 않습니다.');
+                    router.push(pages.manageStudent);
+                } else toastHandler('ERROR');
+            });
     };
     const onClickApprove = () => {
-        approveDocument(id);
+        approveDocument(id)
+            .then(() => {
+                toastHandler('SUCCESS', '공개요청이 승인되었습니다.');
+            })
+            .catch((err: AxiosError) => {
+                if (err.response?.status === 404) {
+                    toastHandler('ERROR', '문서가 존재하지 않습니다.');
+                    router.push(pages.manageStudent);
+                } else toastHandler('ERROR');
+            });
     };
     return (
         <_Wrapper>
@@ -23,7 +46,7 @@ const Header = ({ id }: Props) => {
                     content="반환하기"
                     fontColor={theme.color.error}
                     borderColor={theme.color.gray500}
-                    onClick={onClcikReject}
+                    onClick={onClickReject}
                 />
                 <Button
                     width={120}

@@ -41,7 +41,11 @@ function AddCompany() {
         <_Wrapper>
             <_Center>
                 <_ImgWrapper>
-                    <input type="file" onChange={onChangeFile} />
+                    <input
+                        type="file"
+                        onChange={onChangeFile}
+                        accept={'image/jpeg, image/jpg,image/heic,image/png'}
+                    />
                     <div className="profileImage">
                         {profilePreview ? (
                             <img src={profilePreview} alt="preview" className="preview" />
