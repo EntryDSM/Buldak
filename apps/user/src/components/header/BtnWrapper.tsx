@@ -10,6 +10,7 @@ import {
     documentLocalDelete,
     documentLocalPatch,
     documentStayPatch,
+    documentStayCancel,
 } from '../../utils/api/userDocument';
 
 function BtnWrapper({ id }: { id: string }) {
@@ -61,11 +62,21 @@ function BtnWrapper({ id }: { id: string }) {
         );
     });
 
+    const stayCancel = useMutation(['stayCancel'], () => documentStayCancel(id));
+
     const DeleteDoc = () => {
-        if (confirm('문서를 삭제하시겠습니까?')) {
-            localDeleteMutate.mutate();
-            alert('삭제되었습니다.');
-            router.push('/');
+        if (!router.query.stay) {
+            if (confirm('문서를 삭제하시겠습니까?')) {
+                localDeleteMutate.mutate();
+                alert('삭제되었습니다.');
+                router.push('/');
+            }
+        } else {
+            if (confirm('문서 공개 요청을 취소하시겠습니까?')) {
+                stayCancel.mutate();
+                alert('취소되었습니다.');
+                router.push('/');
+            }
         }
     };
     const SaveDoc = () => {
