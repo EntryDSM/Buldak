@@ -8,7 +8,6 @@ import {
     documentPublicRequest,
     documentLocalDelete,
     documentLocalPatch,
-    documentStayPatch
 } from '../../utils/api/userDocument';
 
 function BtnWrapper({ id }: { id: string }) {
@@ -46,9 +45,15 @@ function BtnWrapper({ id }: { id: string }) {
 
     return (
         <_BtnWrapper>
-            <_DeleteBtn onClick={() => localDeleteMutate.mutate()}>삭제하기</_DeleteBtn>
-            <_TemporaryBtn onClick={() => localPatch.mutate()}>임시저장</_TemporaryBtn>
-            <_OpenBtn onClick={() => PublicReq.mutate()}>공개요청</_OpenBtn>
+            {router.query.public ? (
+                <></>
+            ) : (
+                <>
+                    <_DeleteBtn onClick={() => localDeleteMutate.mutate()}>삭제하기</_DeleteBtn>
+                    <_TemporaryBtn onClick={() => localPatch.mutate()}>임시저장</_TemporaryBtn>
+                    <_OpenBtn onClick={() => PublicReq.mutate()}>공개요청</_OpenBtn>
+                </>
+            )}
         </_BtnWrapper>
     );
 }
