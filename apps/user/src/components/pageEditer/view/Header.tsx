@@ -38,9 +38,9 @@ function Header({
             </div>
             <div id="right">
                 <div id="icons">
-                    {iconList.map((icon, i) => (
+                    {/* {iconList.map((icon, i) => (
                         <div key={i}>{icon}</div>
-                    ))}
+                    ))} */}
                 </div>
                 <p>{curpage}/{totalpage} 페이지</p>
             </div>

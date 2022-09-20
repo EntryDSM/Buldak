@@ -46,10 +46,15 @@ function Pages({ zoom = 100 }: PagesProps) {
             );
         } else if (router.query.public && Publicdata) {
             setElementList(
-                JSON.parse(Publicdata.data.content).map((content: any) => JsxIntoArr(content)),
+                JSON.parse(Publicdata.data.content).map((content: any) =>
+                    JsxIntoArr({
+                        ...content,
+                        args: { ...content.args, feedback: { feedInfo: '', isRead: false } },
+                    }),
+                ),
             );
         }
-    }, [Localdata, Staydata]);
+    }, [Localdata, Staydata, Publicdata]);
 
     useEffect(() => {
         console.log(elementList);
