@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import Header from './Header';
-import FeedbackComment from './FeedbackComment';
 import PageArea from './PageArea';
-import { useRouter } from 'next/router';
 
 interface FeedProps {
     id: string;
