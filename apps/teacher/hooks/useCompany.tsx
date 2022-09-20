@@ -79,17 +79,21 @@ const useCompany = () => {
                         editCompany(id, {
                             ...companyInfo,
                             profile_image_path: res.image_path,
-                        }).catch(() => {
-                            toastHandler('ERROR');
-                        });
+                        })
+                            .then(() => toastHandler('SUCCESS', '기업정보 수정 성공'))
+                            .catch(() => {
+                                toastHandler('ERROR');
+                            });
                     })
                     .catch(() => {
                         toastHandler('ERROR', '이미지가 너무 큽니다.');
                     });
             } else
-                editCompany(id, companyInfo).catch(() => {
-                    toastHandler('ERROR');
-                });
+                editCompany(id, companyInfo)
+                    .then(() => toastHandler('SUCCESS', '기업정보 수정 성공'))
+                    .catch(() => {
+                        toastHandler('ERROR');
+                    });
         } catch (err) {
             console.log(err);
         }
