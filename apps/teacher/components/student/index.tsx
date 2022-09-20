@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
-import Filter from './Filter';
+import Filter, { FilterFunctionProps } from './Filter';
 import StudentBox from './Box';
 import { StudentInfo } from '../../models/teachers/responses';
 import { FilterProps } from '../../pages';
 import { Dispatch, SetStateAction } from 'react';
 
-export interface FilterStateProps {
-    filter: FilterProps;
-    setFilter: Dispatch<SetStateAction<FilterProps>>;
-}
-
-interface Props extends FilterStateProps {
+interface Props extends FilterFunctionProps {
     studentList: StudentInfo[];
 }
 
-const ManageStudent: React.FC<Props> = ({ studentList, filter, setFilter }) => {
+const ManageStudent: React.FC<Props> = ({
+    studentList,
+    onChangeClassNum,
+    onChangeGrade,
+    onChangeDocStatus,
+}) => {
     return (
         <_Wrapper>
             <_FlexWrapper>
@@ -23,7 +23,11 @@ const ManageStudent: React.FC<Props> = ({ studentList, filter, setFilter }) => {
                     <strong className="summary">검토기간</strong>
                 </_ReviewPeriod>
             </_FlexWrapper>
-            <Filter filter={filter} setFilter={setFilter} />
+            <Filter
+                onChangeClassNum={onChangeClassNum}
+                onChangeDocStatus={onChangeDocStatus}
+                onChangeGrade={onChangeGrade}
+            />
             <_List>
                 {studentList.map((studentInfo) => (
                     <StudentBox studentInfo={studentInfo} key={studentInfo.student_id} />
