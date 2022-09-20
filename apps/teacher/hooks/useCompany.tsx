@@ -3,12 +3,9 @@ import { CreateCompanyRequest } from '../models/teachers/requests';
 import { createImage } from '../api/default';
 import useModal from './useModal';
 import { createCompany, editCompany } from '../api/teachers';
-import { useRouter } from 'next/router';
-import { pages } from '../utils/constant';
 
 const useCompany = () => {
     const { selectModal } = useModal();
-    const router = useRouter();
     const [companyInfo, setCompanyInfo] = useState<CreateCompanyRequest>({
         name: '',
         email: '',
@@ -21,7 +18,6 @@ const useCompany = () => {
         end_at: '',
         company_id: '',
     });
-    useEffect(() => console.log(companyInfo), [companyInfo]);
     const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setCompanyInfo({
             ...companyInfo,
@@ -47,7 +43,6 @@ const useCompany = () => {
             };
             setFile(e.target.files[0]);
             if (e.target.name === 'companyInfo' && e.target.files[0]) {
-                console.log(e.target.files[0]);
                 onClickEditCompany(e.target.id, e.target.files[0]);
             }
         }
