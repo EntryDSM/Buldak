@@ -55,7 +55,7 @@ function BtnWrapper({ id }: { id: string }) {
                 elementList.map((element) => {
                     return {
                         id: element.id,
-                        arguments: element.preview(element.args),
+                        args: element.preview(element.args),
                     };
                 }),
             ),
