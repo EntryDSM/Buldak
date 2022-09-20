@@ -8,7 +8,6 @@ export const displayFlexColumn = styled.div`
 export const UserMainContainer = styled.div`
     display: flex;
     align-items: center;
-
     width: 100%;
     height: 100%;
 `;
@@ -18,6 +17,7 @@ export const UserSideBar = styled.div`
     flex-direction: column;
     align-items: center;
     position: fixed;
+    top: 0;
     width: 20vw;
     height: 120vh;
     background: #5387ec;
@@ -86,7 +86,7 @@ export const DoucumentContainer = styled.div`
     align-items: flex-start;
     margin-left: auto;
     width: 80vw;
-    height: 115vh;
+    padding-bottom: 80px;
     background: #fbfbfb;
     padding-left: 3.5vw;
     padding-top: 5vh;
@@ -147,8 +147,8 @@ export const DocumentText = styled.p`
 
 export const DocumentLayout = styled.div`
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-left : 10px
 `;
 
 export const DocumentButtonBox = styled.div`
@@ -203,8 +203,8 @@ export const DocumentBox = styled.div<props>`
     margin-left: ${(props) => props.marginL};
 `;
 export const Display = styled.div`
-    display : flex;
-`
+    display: flex;
+`;
 export const TagBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -234,6 +234,7 @@ export const testTag = styled.div`
 
 export const DocumentsLayout = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 1.5vw;
 `;
