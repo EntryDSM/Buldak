@@ -13,6 +13,7 @@ import { FilterProps } from '../pages';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../api/teachers';
 import { PdfStudentListProps } from '../components/modals/pdf';
+import useModal from './useModal';
 
 const useStudentFilter = () => {
     const [filter, setFilter] = useState<FilterProps>({
@@ -21,6 +22,7 @@ const useStudentFilter = () => {
         docStatus: null,
     });
     const [allSelected, setAllSelected] = useState(false);
+    const { selectedModal } = useModal();
     const onChangeGrade = (value: string) => {
         setFilter({
             ...filter,
@@ -40,7 +42,7 @@ const useStudentFilter = () => {
         });
     };
     const { data: studentList } = useQuery(
-        ['getStudentList', filter.docStatus, filter.classNum, filter.grade],
+        [`getStudentList${selectedModal}`, filter.docStatus, filter.classNum, filter.grade],
         () => getStudentList(filter.grade, filter.classNum, filter.docStatus),
     );
     const onClickSelectAll = () => {
@@ -48,14 +50,15 @@ const useStudentFilter = () => {
     };
     const [pdfStudentList, setPdfStudentList] = useState<PdfStudentListProps[]>([]);
     useEffect(() => {
-        setPdfStudentList(
-            studentList?.student_list.map((i) => {
-                return {
-                    ...i,
-                    isSelected: false,
-                };
-            }) || [],
-        );
+        if (studentList)
+            setPdfStudentList(
+                studentList.student_list.map((i) => {
+                    return {
+                        ...i,
+                        isSelected: false,
+                    };
+                }),
+            );
     }, [studentList]);
     useEffect(() => {
         if (allSelected)
@@ -88,6 +91,7 @@ const useStudentFilter = () => {
         });
         setPdfStudentList(newList);
     };
+    console.log(pdfStudentList);
     const lists = useMemo(
         () => ({
             selectedStudentList: pdfStudentList.filter((item) => item.isSelected),
