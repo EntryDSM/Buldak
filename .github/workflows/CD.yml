@@ -21,13 +21,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
 
-    - name: yarn Install
     - run: yarn install
-
-    - name: turbo Install
     - run: yarn global add turbo
-
-    - name: turbo build
     - run: turbo run build
 
 #     - name: SSH Remote & start
