@@ -16,12 +16,16 @@ import { Tag } from '@packages/ui';
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
-
+    const [localListData, setLocalList] = useState();
     const { data: myInformation } = useResource(myInfomationResource);
     const { data: localList } = useResource(localListResource);
     const { data: previewPublicStayDocument } = usePreviewPublicStayDocument(
         myInformation?.student_id,
     );
+
+    useEffect(() => {
+        setLocalList(localList);
+    }, [localList, localListData]);
 
     return (
         <S.UserMainContainer>
@@ -45,7 +49,7 @@ const UserMainPage: NextPage = () => {
                 <S.DocumentText>로컬 문서</S.DocumentText>
                 <S.DocumentsLayout>
                     <DocumentPlus />
-                    {localList?.document_list.map((info) => {
+                    {localListData?.document_list.map((info) => {
                         return (
                             <Document
                                 previewImagePath={info.preview_image_path}

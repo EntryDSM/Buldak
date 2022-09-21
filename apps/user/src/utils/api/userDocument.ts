@@ -42,7 +42,7 @@ export const documentStayPatch = (preview_image_path: string, content: any) => {
 };
 
 export const documentStayCancel = (student_id: string) => {
-    return instance.patch(`documents/cancel${student_id}`);
+    return instance.patch(`documents/cancel/${student_id}`);
 };
 
 export const documentPublicQuery = (student_id: string) => {
