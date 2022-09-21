@@ -20,6 +20,7 @@ jobs:
         
       - name: Run Build
         run: |
+          npm i -g yarn
           yarn add global turbo
           turbo run build
           
