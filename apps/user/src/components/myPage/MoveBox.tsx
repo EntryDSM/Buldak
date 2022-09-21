@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import Arrow from '../../assets/svgs/Arrow';
 
 function MoveBox() {
+    const router = useRouter();
     return (
         <_Wrapper>
             <_BackBtn>
                 <Arrow />
-                <span>돌아가기</span>
+                <span onClick={() => router.push('/')}>돌아가기</span>
             </_BackBtn>
             <_ChangePwdBtn>비밀번호 변경</_ChangePwdBtn>
         </_Wrapper>

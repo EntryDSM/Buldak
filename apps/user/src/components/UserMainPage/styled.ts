@@ -21,6 +21,11 @@ export const UserSideBar = styled.div`
     width: 20vw;
     height: 120vh;
     background: #5387ec;
+    > #button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
 `;
 
 export const UserProfile = styled.div<{ src: string }>`
