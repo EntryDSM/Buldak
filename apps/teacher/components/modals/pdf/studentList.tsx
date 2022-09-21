@@ -32,6 +32,7 @@ const _Wrapper = styled.ul`
     border: 2px solid ${({ theme }) => theme.color.gray300};
     display: flex;
     flex-direction: column;
+    overflow: scroll;
 `;
 const _IsEmpty = styled.div`
     width: 100%;
