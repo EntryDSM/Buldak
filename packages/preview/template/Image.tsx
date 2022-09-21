@@ -40,7 +40,7 @@ export default function Image({ url, url2 = '', url3 = '', grade, feedback, isTe
                             isSelected={isSelected}
                         />
                     )}{' '}
-                    <Img url={url}>{!url ? <></> : <NoImg />}</Img>
+                    <Img url={url}>{url ? <></> : <NoImg />}</Img>
                 </Wrapper>
             </OutsideClickHandler>
         );
