@@ -47,7 +47,7 @@ const ManageCompany = ({ searchName, onChangeSearchName, companyList }: Props) =
 export default ManageCompany;
 
 const _Wrapper = styled.section`
-    margin: 50px auto 0 auto;
+    margin: 50px auto 40px auto;
     width: 800px;
 `;
 const _Title = styled.h1`
