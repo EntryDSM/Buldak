@@ -7,7 +7,7 @@ export const global = css`
         outline: 0;
         box-sizing: border-box;
         border: 0;
-        font-family: 'noto-sans-cjk-kr', sans-serif;
+        font-family: 'Noto Sans CJK KR', sans-serif;
         outline: unset;
         list-style: none;
         font-style: normal;

@@ -40,7 +40,7 @@ export default ManageStudent;
 
 const _Wrapper = styled.section`
     width: 800px;
-    margin: 40px auto 0 auto;
+    margin: 40px auto;
 `;
 const _FlexWrapper = styled.div`
     display: flex;
