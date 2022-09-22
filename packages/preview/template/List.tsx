@@ -68,7 +68,8 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
 
     position: relative;
     width: 530px;
-    height: 21px;
+    min-height: 21px;
+    height: fit-content;
     padding: 3px 27px;
     > p {
         font-size: 12px;
@@ -77,7 +78,6 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
 `;
 
 const TextBox = styled.div`
-    width: 424px;
     min-height: 87px;
 `;
 
@@ -103,7 +103,9 @@ const EachListWrapper = styled.div`
 const EachListText = styled.div`
     width: calc(100% - 15px);
     min-height: 25px;
+    height: fit-content;
     > p {
         font-size: 10px;
+        word-break: break-all;
     }
 `;
