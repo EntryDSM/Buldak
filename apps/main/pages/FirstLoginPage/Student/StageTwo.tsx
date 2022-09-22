@@ -78,7 +78,7 @@ const StageTwo = () => {
                                 type="text"
                                 value={certified.phoneNumber}
                                 onChange={onChangeNumber}
-                                placeholder="전화번호를 입력해 주세요."
+                                placeholder="ex) 01012345678"
                                 name="phoneNumber"
                             />
                             <S._FirstLoginCitation onClick={onPostPhoneNumber}>
