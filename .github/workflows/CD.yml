@@ -33,6 +33,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          sudo su
-          ${{ secrets.PASSWORD }}
           bash front-deploy.sh
+          ${{ secrets.PASSWORD }}
