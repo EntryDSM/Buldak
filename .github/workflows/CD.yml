@@ -34,4 +34,3 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           bash front-deploy.sh
-          ${{ secrets.PASSWORD }}
