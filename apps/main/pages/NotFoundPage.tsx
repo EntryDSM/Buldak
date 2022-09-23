@@ -50,7 +50,6 @@ const _ErrorMethodPoint = styled.p`
 const _ErrorMessage = styled.p`
     font-weight: 400;
     font-size: 40px;
-    line-height: 50px;
     color: #343434;
     margin-top: 15px;
 `;
