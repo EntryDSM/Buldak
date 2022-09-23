@@ -36,11 +36,14 @@ const TagList = ({ listType, list, addTagIsSuccess }: Props) => {
     const onClickDeleteTag = (id: string) => {
         deleteTag(id)
             .then(() => {
+                toastHandler('SUCCESS', '태그 삭제 성공');
                 router.reload();
             })
             .catch((err: AxiosError) => {
                 if (err.response?.status === 404)
                     toastHandler('ERROR', '존재하지 않는 태그입니다.');
+                else if (err.response?.status === 400)
+                    toastHandler('ERROR', '사용하고 있는 태그는 삭제할 수 없습니다.');
                 else toastHandler('ERROR');
             });
     };
