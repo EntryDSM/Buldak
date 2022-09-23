@@ -8,7 +8,6 @@ import { useQuery } from 'react-query';
 import { getStudentDetail } from '../../../api/teachers';
 import { previewDocument } from '../../../api/documents';
 import ModalHeader from '../ModalHeader';
-import { useEffect } from 'react';
 
 const UserDetail = () => {
     const { selectedId } = useModal();
@@ -32,7 +31,7 @@ const UserDetail = () => {
                         phone_number={studentDetail?.phone_number || ''}
                     />
                     <DocumentList
-                        student_id={selectedId}
+                        student_id={selectedId || ''}
                         documentPreview={preview?.document_list || []}
                         profileImagePath={studentDetail?.profile_image_path || ''}
                     />

@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import Filter, { FilterFunctionProps } from './Filter';
 import StudentBox from './Box';
 import { StudentInfo } from '../../models/teachers/responses';
-import { FilterProps } from '../../pages';
-import { Dispatch, SetStateAction } from 'react';
 
 interface Props extends FilterFunctionProps {
     studentList: StudentInfo[];

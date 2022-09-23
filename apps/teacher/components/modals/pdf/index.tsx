@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Filter from './Filter';
 import StudentList from './studentList';
 import { Button, CheckBox } from '@packages/ui';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { theme } from '@packages/emotion-style-provider/src/theme';
 import { StudentInfo } from '../../../models/teachers/responses';
 import Image from 'next/image';

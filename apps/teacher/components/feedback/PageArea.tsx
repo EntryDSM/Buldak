@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getPublicDocument, getStayDocument } from '../../api/documents';
-import { toastHandler } from '../../utils/toast';
 
 interface PageProps {
     id: string;
