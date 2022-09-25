@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Profile } from '@packages/ui';
-import { useEffect } from 'react';
 import useModal from '../../hooks/useModal';
 import { StudentInfo } from '../../models/teachers/responses';
 

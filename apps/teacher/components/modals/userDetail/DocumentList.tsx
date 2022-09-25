@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 import ArrowIcon from '../../../assets/arrow';
