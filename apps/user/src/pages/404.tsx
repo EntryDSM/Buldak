@@ -1,20 +1,21 @@
 import React from 'react';
 import Image from 'next/image';
 import NotFoundFigure from '../assets/svg/NotFoundFigure.svg';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 const NotFoundPage = () => {
+    const router = useRouter();
+
     return (
         <_ErrorLayout>
-            <_ErrorMethod>
-                40<_ErrorMethodPoint>4</_ErrorMethodPoint>
-            </_ErrorMethod>
+            <_ErrorMethod>404</_ErrorMethod>
             <Image src={NotFoundFigure} />
             <_ErrorMessage>Page Not Found</_ErrorMessage>
             <_ContentLine />
             <_HomeButton
                 onClick={() => {
-                    location.href = '/';
+                    router.push('/');
                 }}>
                 GO HOME
             </_HomeButton>
@@ -39,12 +40,6 @@ const _ErrorMethod = styled.p`
     font-size: 100px;
     color: #3068d3;
     margin-bottom: 10px;
-`;
-
-const _ErrorMethodPoint = styled.p`
-    font-weight: 500;
-    font-size: 100px;
-    color: #0a4595;
 `;
 
 const _ErrorMessage = styled.p`
