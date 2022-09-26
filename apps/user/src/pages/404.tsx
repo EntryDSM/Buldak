@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import NotFoundFigure from '../assets/svg/NotFoundFigure.svg';
+import NotFoundFigure from '../assets/svgs/NotFoundFigure.svg';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 

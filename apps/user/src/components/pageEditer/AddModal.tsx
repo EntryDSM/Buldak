@@ -20,9 +20,7 @@ function AddElementModal({ setElementDropDown }: PropsType) {
                 <div>
                     <_AddElementExplain>
                         <span onClick={() => {}}>요소추가</span>
-                        <span onClick={() => setElementDropDown(false)}>
-                            <AddElementClose />
-                        </span>
+                        <AddElementClose setElementDropDown={setElementDropDown} />
                     </_AddElementExplain>
                     <_ElementListBox>
                         {ElementList.map((Element, index) => (

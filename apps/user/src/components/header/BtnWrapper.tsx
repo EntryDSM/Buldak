@@ -12,6 +12,7 @@ import {
     documentStayPatch,
     documentStayCancel,
 } from '../../utils/api/userDocument';
+import { toastHandler } from '../../utils/toast';
 
 function BtnWrapper({ id }: { id: string }) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
@@ -85,6 +86,7 @@ function BtnWrapper({ id }: { id: string }) {
         } else {
             localPatch.mutate();
         }
+        toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
     };
     const PubDoc = async () => {
         PublicReq.mutate();
@@ -105,15 +107,15 @@ function BtnWrapper({ id }: { id: string }) {
                 <>
                     <div style={{ width: 120 + 'px' }} />
                     <_DeleteBtn onClick={() => DeleteDoc()}>요청취소</_DeleteBtn>
-                    <_TemporaryBtn onClick={() => SaveDoc()}>임시저장</_TemporaryBtn>
+                    <_TemporaryBtn onClick={SaveDoc}>임시저장</_TemporaryBtn>
                 </>
             )}
             {router.query.public && <></>}
             {!router.query.stay && !router.query.public && (
                 <>
                     <_DeleteBtn onClick={() => DeleteDoc()}>삭제하기</_DeleteBtn>
-                    <_TemporaryBtn onClick={() => SaveDoc()}>임시저장</_TemporaryBtn>
-                    <_OpenBtn onClick={() => PubDoc()}>공개요청</_OpenBtn>
+                    <_TemporaryBtn onClick={SaveDoc}>임시저장</_TemporaryBtn>
+                    <_OpenBtn onClick={PubDoc}>공개요청</_OpenBtn>
                 </>
             )}
         </_BtnWrapper>
