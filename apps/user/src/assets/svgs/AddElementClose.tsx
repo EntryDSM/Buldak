@@ -1,6 +1,13 @@
-function AddElementClose() {
+import { Dispatch, SetStateAction } from 'react';
+
+function AddElementClose({
+    setElementDropDown,
+}: {
+    setElementDropDown: Dispatch<SetStateAction<boolean>>;
+}) {
     return (
         <svg
+            onClick={() => setElementDropDown(false)}
             width="14"
             height="14"
             viewBox="0 0 14 14"

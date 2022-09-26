@@ -1,4 +1,4 @@
-import { ElementList } from "../../constants/ElementList";
+import { ElementList } from '../../constants/ElementList';
 
 export function JsxIntoArr(value: any) {
     switch (value.args.tagType) {

@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [queryClient] = useState(
@@ -21,6 +23,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <RecoilRoot>
                     <Hydrate state={pageProps?.dehydratedState}>
                         <Component {...pageProps} />
+                        <ToastContainer />
                     </Hydrate>
                 </RecoilRoot>
             </QueryClientProvider>
