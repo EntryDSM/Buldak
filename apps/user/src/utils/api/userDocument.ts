@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import * as UUID from 'uuid';
 import { queryKey } from '../queryKey';
 import { instance } from './instance';
 
@@ -55,18 +55,20 @@ export const documentLocalCreate = () => {
         preview_image_path: '',
         content: JSON.stringify([
             {
-                id: randomUUID(),
-                tagType: 'Profile',
-                github: '',
-                name: '',
-                email: '',
-                phone: '',
-                imageUrl: '',
-                feedback: {
-                    isRead: false,
-                    feedInfo: '',
+                id: UUID.v4(),
+                args: {
+                    tagType: 'Profile',
+                    github: '',
+                    name: '',
+                    email: '',
+                    phone: '',
+                    imageUrl: '',
+                    feedback: {
+                        isRead: false,
+                        feedInfo: '',
+                    },
+                    isTeacher: false,
                 },
-                isTeacher: false,
             },
         ]),
     });
