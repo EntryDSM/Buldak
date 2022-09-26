@@ -9,7 +9,6 @@ export const UserMainContainer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100%;
 `;
 
 export const UserSideBar = styled.div`
@@ -91,6 +90,7 @@ export const DoucumentContainer = styled.div`
     align-items: flex-start;
     margin-left: auto;
     width: 80vw;
+    height: 100vh;
     padding-bottom: 80px;
     background: #fbfbfb;
     padding-left: 3.5vw;

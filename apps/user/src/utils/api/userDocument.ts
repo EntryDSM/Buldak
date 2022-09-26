@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { queryKey } from '../queryKey';
 import { instance } from './instance';
 
@@ -52,6 +53,38 @@ export const documentPublicQuery = (student_id: string) => {
 export const documentLocalCreate = () => {
     return instance.post(`/documents`, {
         preview_image_path: '',
-        content: '',
+        content: JSON.stringify([
+            {
+                id: randomUUID(),
+                tagType: 'Profile',
+                github: '',
+                name: '',
+                email: '',
+                phone: '',
+                imageUrl: '',
+                feedback: {
+                    isRead: false,
+                    feedInfo: '',
+                },
+                isTeacher: false,
+            },
+        ]),
     });
 };
+
+// JSON.stringify([
+//     {
+//         id: randomUUID(),
+//         tagType: 'Profile',
+//         github: '',
+//         name: '',
+//         email: '',
+//         phone: '',
+//         imageUrl: '',
+//         feedback: {
+//             isRead: false,
+//             feedInfo: '',
+//         },
+//         isTeacher: false,
+//     },
+// ]),
