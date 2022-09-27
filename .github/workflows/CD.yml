@@ -26,7 +26,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          pull: true
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY }}/buldak:latest
           cache-from: type=gha
