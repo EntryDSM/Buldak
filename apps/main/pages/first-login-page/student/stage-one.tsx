@@ -1,8 +1,8 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import axios from 'axios';
-import Image from 'next/image';
 import { TextBox, Button } from '@packages/ui';
 import theme from '@packages/emotion-style-provider/src/theme';
+import axios from 'axios';
+import Image from 'next/image';
 import BackImg from '../../../assets/img/BackImg.png';
 import { getCookie } from '../../../Hooks/Cookies';
 import * as S from '../../../components/FirstLoginPage/styled';
@@ -31,10 +31,10 @@ const StageOne = () => {
                 },
             })
             .then((res) => {
-                window.location.href = './StageTwo';
+                window.location.href = './stage-two';
             })
             .catch((res) => {
-                alert('비밀번호 수정에 실패했습니다');
+                alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
                 setNewPasswordState({ ...newPasswordState, new_password: '' });
             });
     };
@@ -60,7 +60,7 @@ const StageOne = () => {
                             name="password"
                         />
                     </S._FistLoginInputLayout>
-                    <S._FistLoginInputLayout marginBottom="120px">
+                    <S._FistLoginInputLayout marginBottom="135px">
                         <S._FirstLoginInputText>새로운 비밀번호</S._FirstLoginInputText>
                         <TextBox
                             width={380}
@@ -91,7 +91,7 @@ const StageOne = () => {
                                 height={40}
                                 backgroundColor={theme.color.main}
                                 fontColor={theme.color.white}
-                                content="회원가입"
+                                content="변경하기"
                                 onClick={onPostNewPassword}
                             />
                         </S._FirstLoginBoxLayout>

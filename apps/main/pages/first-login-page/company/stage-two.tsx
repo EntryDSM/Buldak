@@ -116,7 +116,7 @@ const StageTwo = () => {
                                 fontColor={theme.color.black}
                                 content="돌아가기"
                                 onClick={() => {
-                                    window.location.href = './StageOne';
+                                    window.location.href = './stage-one';
                                 }}
                             />
                             <Button
