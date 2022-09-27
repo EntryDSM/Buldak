@@ -39,9 +39,9 @@ export default function List({ color, text, feedback, isTeacher }: Props) {
                         sequence={feedback?.sequence}
                     />
                 )}
-                <TextBox>
+                <div>
                     <EachList color={color} value={text} />
-                </TextBox>
+                </div>
             </Wrapper>
         </OutsideClickHandler>
     );
@@ -65,7 +65,6 @@ const EachList = ({ value, color }: EachListProps) => {
 
 const Wrapper = styled.div<{ isSelected?: boolean }>`
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
-
     position: relative;
     width: 530px;
     min-height: 21px;
@@ -75,10 +74,6 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
         font-size: 12px;
         margin-bottom: 4px;
     }
-`;
-
-const TextBox = styled.div`
-    min-height: 87px;
 `;
 
 const Dot = styled.div`
@@ -102,10 +97,5 @@ const EachListWrapper = styled.div`
 
 const EachListText = styled.div`
     width: calc(100% - 15px);
-    min-height: 25px;
     height: fit-content;
-    > p {
-        font-size: 10px;
-        word-break: break-all;
-    }
 `;

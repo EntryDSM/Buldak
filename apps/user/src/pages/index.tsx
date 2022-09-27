@@ -16,7 +16,6 @@ import { Tag } from '@packages/ui';
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
-
     const { data: myInformation } = useResource(myInfomationResource);
     const { data: localList } = useResource(localListResource);
     const { data: previewPublicStayDocument } = usePreviewPublicStayDocument(
@@ -36,7 +35,7 @@ const UserMainPage: NextPage = () => {
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
                         <S.TagAria>
                             {(myInformation?.skill_tag_list || []).map((info, idx) => (
-                                <Tag color="bdblue" tagName={info} />
+                                <Tag color="bdblue" key={idx} tagName={info} />
                             ))}
                         </S.TagAria>
                     </S.TagBox>
@@ -46,7 +45,6 @@ const UserMainPage: NextPage = () => {
                 <S.DocumentsLayout>
                     <DocumentPlus />
                     {localList?.document_list.map((info) => {
-                        console.log(info.document_id);
                         return (
                             <Document
                                 previewImagePath={info.preview_image_path}
