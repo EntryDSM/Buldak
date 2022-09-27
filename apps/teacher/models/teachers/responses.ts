@@ -5,7 +5,7 @@ export interface StudentInfo {
     profile_image_path: string;
     feedback_status: boolean;
     public_status: boolean;
-    is_submitted: boolean;
+    submitted: boolean;
 }
 export interface GetStudentListResponse {
     student_list: StudentInfo[];

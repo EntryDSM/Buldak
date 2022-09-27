@@ -12,7 +12,7 @@ const StudentBox: React.FC<Props> = ({ studentInfo }) => {
     const { selectModal } = useModal();
     return (
         <_Wrapper
-            isSubmitted={studentInfo.is_submitted}
+            isSubmitted={studentInfo.submitted}
             onClick={() => selectModal({ modal: 'USER_DETAIL', id: studentInfo.student_id })}>
             <Profile type="image" width="56px" height="56px" src={studentInfo.profile_image_path} />
             <_Name className="submittedFont">{studentInfo.name}</_Name>
@@ -20,18 +20,14 @@ const StudentBox: React.FC<Props> = ({ studentInfo }) => {
             <_States>
                 <_StatusSummary className="submittedFont">
                     피드백 상태
-                    <_Status
-                        isSubmitted={studentInfo.is_submitted}
-                        isOn={studentInfo.feedback_status}>
-                        OFF
+                    <_Status isSubmitted={studentInfo.submitted} isOn={studentInfo.feedback_status}>
+                        {studentInfo.feedback_status ? 'ON' : 'OFF'}
                     </_Status>
                 </_StatusSummary>
                 <_StatusSummary className="public submittedFont">
                     공개 상태
-                    <_Status
-                        isSubmitted={studentInfo.is_submitted}
-                        isOn={studentInfo.public_status}>
-                        ON
+                    <_Status isSubmitted={studentInfo.submitted} isOn={studentInfo.public_status}>
+                        {studentInfo.public_status ? 'ON' : 'OFF'}
                     </_Status>
                 </_StatusSummary>
             </_States>
@@ -62,7 +58,7 @@ const _Wrapper = styled.li<WrapperProps>`
         props.isSubmitted
             ? css`
                   background-color: ${props.theme.color.white};
-                  border: 1px solid ${props.theme.color.skyblue};
+                  border: 1px solid ${props.theme.color.gray300};
               `
             : css`
                   background-color: ${props.theme.color.gray500};
