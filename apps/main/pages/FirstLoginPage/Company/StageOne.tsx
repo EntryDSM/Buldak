@@ -35,6 +35,7 @@ const StageOne = () => {
             })
             .catch((res) => {
                 alert('비밀번호 수정에 실패했습니다');
+                setNewPasswordState({ ...newPasswordState, new_password: '' });
             });
     };
 

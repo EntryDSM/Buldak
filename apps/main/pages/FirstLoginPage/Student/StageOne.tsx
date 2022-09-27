@@ -35,6 +35,7 @@ const StageOne = () => {
             })
             .catch((res) => {
                 alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
+                setNewPasswordState({ ...newPasswordState, new_password: '' });
             });
     };
 
