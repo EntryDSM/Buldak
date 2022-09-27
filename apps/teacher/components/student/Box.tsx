@@ -26,7 +26,9 @@ const StudentBox: React.FC<Props> = ({ studentInfo }) => {
                 </_StatusSummary>
                 <_StatusSummary className="public submittedFont">
                     공개 상태
-                    <_Status isSubmitted={studentInfo.submitted} isOn={studentInfo.public_status}>
+                    <_Status
+                        isSubmitted={studentInfo.submitted || studentInfo.public_status}
+                        isOn={studentInfo.public_status}>
                         {studentInfo.public_status ? 'ON' : 'OFF'}
                     </_Status>
                 </_StatusSummary>
