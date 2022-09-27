@@ -29,3 +29,5 @@ jobs:
           pull: true
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY }}/buldak:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
