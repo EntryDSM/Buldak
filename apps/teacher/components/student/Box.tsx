@@ -12,7 +12,7 @@ const StudentBox: React.FC<Props> = ({ studentInfo }) => {
     const { selectModal } = useModal();
     return (
         <_Wrapper
-            isSubmitted={studentInfo.submitted}
+            isSubmitted={studentInfo.submitted || studentInfo.public_status}
             onClick={() => selectModal({ modal: 'USER_DETAIL', id: studentInfo.student_id })}>
             <Profile type="image" width="56px" height="56px" src={studentInfo.profile_image_path} />
             <_Name className="submittedFont">{studentInfo.name}</_Name>
