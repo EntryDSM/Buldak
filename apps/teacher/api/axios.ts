@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { refreshToken } from './auth';
 import { getCookie, setCookie } from '../utils/cookie';
 export const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: 'https://server.dsm-repo.com',
     timeout: 10000,
 });
 
