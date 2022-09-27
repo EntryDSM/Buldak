@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import ElementListState from '../../../recoil/ElementListState';
 import PatchWrapper from './Wrapper';
+import styled from '@emotion/styled';
 
 interface PropsType {
     type: string;
@@ -12,7 +13,7 @@ interface PropsType {
 function PatchSubtitle({ type, id }: PropsType) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
     const [newArr] = elementList.filter((value) => value.id === id);
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const tempBottom = [newArr.args.text1[0], e.target.value];
         const tempargs = { ...newArr.args, text1: tempBottom };
         const temp = [...elementList];
@@ -23,9 +24,18 @@ function PatchSubtitle({ type, id }: PropsType) {
 
     return (
         <PatchWrapper name={type}>
-            <TextBox onChange={onChange} width={300} type={'text'} correct={true} value={newArr.args.text1[1]} />
+            <_TextArea onChange={onChange} value={newArr.args.text1[1]} />
         </PatchWrapper>
     );
 }
 
 export default PatchSubtitle;
+export const _TextArea = styled.textarea`
+    width: 300px;
+    height: 150px;
+    border: 2px solid ${({ theme }) => theme.color.gray700};
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.color.white};
+    resize: none;
+`;

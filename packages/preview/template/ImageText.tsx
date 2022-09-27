@@ -44,7 +44,7 @@ export default function ImageText({ url, bottomText, topText, feedback, isTeache
                         <p>{topText}</p>
                     </div>
                     <div id="bottom">
-                        <p>{bottomText}</p>
+                        <pre>{bottomText}</pre>
                     </div>
                 </TextBox>
             </Wrapper>

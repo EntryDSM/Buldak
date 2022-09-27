@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import ElementListState from '../../../recoil/ElementListState';
 import PatchWrapper from './Wrapper';
+import styled from '@emotion/styled';
 
 interface PropsType {
     type: string;
