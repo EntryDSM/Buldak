@@ -31,7 +31,7 @@ const StageOne = () => {
                 },
             })
             .then(() => {
-                window.location.href = '';
+                window.location.href = 'https://user.dsm-repo.com/myPage';
             })
             .catch(() => {
                 alert('비밀번호 수정에 실패했습니다');
@@ -82,7 +82,7 @@ const StageOne = () => {
                                 fontColor={theme.color.black}
                                 content="이전으로"
                                 onClick={() => {
-                                    window.location.href = '/';
+                                    window.location.href = './stage-one';
                                 }}
                             />
                             <Button

@@ -23,7 +23,7 @@ import { useRouter } from 'next/router';
 
 const MainPage = () => {
     const linkLoginPage = () => {
-        window.location.href = '/SelectPage';
+        window.location.href = '/select-page';
     };
     const router = useRouter();
     useEffect(() => {

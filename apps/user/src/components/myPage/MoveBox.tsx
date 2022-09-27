@@ -10,7 +10,10 @@ function MoveBox() {
                 <Arrow />
                 <span>돌아가기</span>
             </_BackBtn>
-            <_ChangePwdBtn>비밀번호 변경</_ChangePwdBtn>
+            <_ChangePwdBtn
+                onClick={() => router.push('https://www.dsm-repo.com/chagne-password/stage-one')}>
+                비밀번호 변경
+            </_ChangePwdBtn>
         </_Wrapper>
     );
 }
