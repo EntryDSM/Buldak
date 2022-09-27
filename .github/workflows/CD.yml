@@ -22,12 +22,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build, tag, and push image to Entry Private Docker Registry
+      - name: Docker Image Push to Entry Private Docker Registry
         uses: docker/build-push-action@v3
         with:
           context: .
           pull: true
           push: true
           tags: ${{ secrets.DOCKER_REGISTRY }}/buldak:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_REGISTRY }}/buldak:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_REGISTRY }}/buldak:buildcache,mode=max
