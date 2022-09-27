@@ -48,13 +48,13 @@ const LoginPage = () => {
                 if (loginState.user_type == 'TEACHER') {
                     window.location.href = 'https://teacher.dsm-repo.com';
                 }
-                if (res.data.first_login == false) {
+                if (res.data.first_login == true) {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = '/FirstLoginPage/Student/StageOne';
                     } else if (loginState.user_type == 'MOU') {
                         window.location.href = '/FirstLoginPage/Company/StageOne';
                     }
-                } else if (res.data.first_login == true) {
+                } else if (res.data.first_login == false) {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = 'https://user.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
