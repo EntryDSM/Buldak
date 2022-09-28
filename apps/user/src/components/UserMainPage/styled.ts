@@ -91,7 +91,8 @@ export const DoucumentContainer = styled.div`
     align-items: flex-start;
     margin-left: auto;
     width: 80vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     padding-bottom: 80px;
     background: #fbfbfb;
     padding-left: 3.5vw;
