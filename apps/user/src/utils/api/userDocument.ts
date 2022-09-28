@@ -52,7 +52,7 @@ export const documentPublicQuery = (student_id: string) => {
 
 export const documentLocalCreate = () => {
     return instance.post(`/documents`, {
-        preview_image_path: '',
+        preview_image_path: 'https://s3.ap-northeast-2.amazonaws.com/image.entrydsm.hs.kr/images/299271085_1311117439426414_1611476307031535707_n.png',
         content: JSON.stringify([
             {
                 id: UUID.v4(),
