@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import Arrow from '../assets/dropdown/Arrow.svg';
 export interface DropDownProps<T> {
-    items: ReadonlyArray<T>;
+    items: ReadonlyArray<T> | undefined;
     value?: T;
     placeholder: string;
     onChange: (value: T) => void;
@@ -12,7 +12,7 @@ export interface DropDownProps<T> {
 }
 
 export const DropDown = <T extends string>({
-    items,
+    items = [],
     value,
     onChange,
     placeholder,
@@ -24,6 +24,7 @@ export const DropDown = <T extends string>({
 
     useEffect(() => {
         setText(value ? value : placeholder);
+        setIsOpen(true);
     }, [value]);
 
     return (
@@ -92,7 +93,6 @@ const DropDownArrow = styled.div`
 const DropDownItemsBox = styled.div<{ isOpen: boolean }>`
     position: absolute;
     top: 43px;
-
     width: 100%;
     background-color: ${({ theme }) => theme.color.white};
     max-height: 125px;
@@ -115,6 +115,9 @@ const DropDownItem = styled.div`
     padding: 8px 20px;
     font-size: 16px;
     cursor: pointer;
+    & + * {
+        border-top: 1px solid ${({ theme }) => theme.color.gray700};
+    }
 `;
 
 export default DropDown;

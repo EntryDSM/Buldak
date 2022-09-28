@@ -27,8 +27,8 @@ const MainPage = () => {
     };
     const router = useRouter();
     useEffect(() => {
-        const createTestAccount = confirm('테스트 계정 발급하기');
-        if (createTestAccount) router.push('/testAccount');
+        const createTestAccount = confirm('계정 발급하기');
+        if (createTestAccount) router.push('/account');
     }, []);
     return (
         <S._MainPageContainer>
