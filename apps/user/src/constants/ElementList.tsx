@@ -20,6 +20,7 @@ import {
     Array_List,
     Array_Profile,
     Array_TextImage,
+    Array_Project,
 } from '@packages/preview/functions/arrIntoJsx';
 import PatchSingleTitle from '../components/pageEditer/patch/SingleTItle';
 import PatchTitle from '../components/pageEditer/patch/Title';
@@ -27,6 +28,7 @@ import PatchSubtitle from '../components/pageEditer/patch/SubTItle';
 import ProfilePatch from '../components/pageEditer/patch/Profile';
 import PatchDoubleColor from '../components/pageEditer/patch/DoubleColor';
 import PatchList from '../components/pageEditer/patch/List';
+import ProjectPatch from '../components/pageEditer/patch/Project';
 
 export const ElementList = [
     {
@@ -123,6 +125,20 @@ export const ElementList = [
             grade: 3,
             text: '항목',
             color: '#000000',
+            feedback: { isRead: false, feedInfo: '' },
+        },
+    },
+    {
+        image: <></>,
+        text: '프로젝트',
+        patch: [<ProjectPatch />],
+        preview: Array_Project,
+        args: {
+            text: ['부제목', '본문'],
+            title: '프로젝트명',
+            date: '20xx.10.28',
+            imageUrl: '',
+            skills: ['React'],
             feedback: { isRead: false, feedInfo: '' },
         },
     },

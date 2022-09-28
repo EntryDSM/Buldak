@@ -228,6 +228,20 @@ export function ArrIntoJsx(info: any) {
                 );
             }
         }
+        case 'Project': {
+            return (
+                <T.Template_Project
+                    url={value.imageUrl}
+                    title={value.title}
+                    date={value.date}
+                    topText={value.text[0]}
+                    bottomText={value.text[1]}
+                    feedback={value.feedback}
+                    skills={value.skills}
+                    isTeacher={value.isTeacher}
+                />
+            );
+        }
         default: {
             return;
         }
@@ -556,4 +570,35 @@ export const Array_Link = ({
             feedback: feedback,
         };
     }
+};
+
+interface Array_Project_Type {
+    title: string;
+    date: string;
+    text: string[];
+    imageUrl: string;
+    skills: string[];
+    feedback: Feedback;
+    isTeacher: boolean;
+}
+
+export const Array_Project = ({
+    text,
+    title,
+    date,
+    imageUrl,
+    skills,
+    feedback,
+    isTeacher = false,
+}: Array_Project_Type) => {
+    return {
+        tagType: 'Project',
+        title: title,
+        date: date,
+        text: text,
+        imageUrl: imageUrl,
+        skills: skills,
+        feedback: feedback,
+        isTeacher: isTeacher,
+    };
 };
