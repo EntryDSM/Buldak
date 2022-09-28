@@ -137,5 +137,12 @@ export function JsxIntoArr(value: any) {
                 args: value.args,
             };
         }
+        case 'Project': {
+            return {
+                ...ElementList[9],
+                id: value.id,
+                args: value.args,
+            };
+        }
     }
 }
