@@ -8,3 +8,4 @@ export { default as Template_List } from './template/List';
 export { default as Template_RowLine } from './template/RowLine';
 export { default as Template_Text } from './template/Text';
 export { default as Template_TextImage } from './template/TextImage';
+export { default as Template_Project } from './template/Project'

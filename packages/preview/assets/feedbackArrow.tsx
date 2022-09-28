@@ -1,4 +1,4 @@
-export default function feedbackArrow() {
+export default function FeedBackArrow() {
     return (
         <svg
             width="8"
