@@ -34,4 +34,4 @@ export const queryKey = {
         stay: (document_id?: string) => `/documents/stay${document_id && `/${document_id}`}`,
         preview: (student_id: string) => `/documents/preview/${student_id}`,
     },
-};
+} as const;

@@ -1,34 +1,60 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Button, TextBox } from '@packages/ui';
 import axios from 'axios';
 import Link from 'next/link';
+import { DropDown } from '@packages/ui';
+import { useQuery } from 'react-query';
 
-const TestAccount = () => {
+interface TagListType {
+    tag_list: {
+        tag_id: string;
+        name: string;
+    }[];
+}
+
+const Account = () => {
     const [account, setAccount] = useState({
         email: '',
         class_num: null,
         number: null,
         name: '',
         phone_number: '',
+        grade: '',
+        location: '',
     });
     const [isCreated, setIsCreated] = useState(false);
     const [response, setResponse] = useState({
         email: '',
         password: '',
     });
+    const [tagList, setTagList] = useState<TagListType['tag_list']>([]);
+    const [selectTag, setSelectTag] = useState<undefined | string>('');
     const onChangeAccountInfo = (e: ChangeEvent<HTMLInputElement>) => {
         setAccount({
             ...account,
             [e.target.name]: e.target.value,
         });
     };
+
+    const tagListSearch = async () => {
+        const tagListUrl = 'https://server.dsm-repo.com/tags?name=&isMajor=true';
+        const tagListData = (await axios.get<TagListType>(tagListUrl)).data.tag_list;
+        setTagList(tagListData);
+    };
+
+    useEffect(() => {
+        tagListSearch();
+    }, []);
+
     const onClickCreateTestAccount = () => {
         axios
-            .post('https://server.dsm-repo.com/students/beta', {
+            .post('https://server.dsm-repo.com/students/account', {
                 ...account,
                 class_num: Number(account.class_num),
                 number: Number(account.number),
+                grade: Number(account.grade),
+                tag_id: selectTag,
             })
             .then((res) => {
                 setResponse(res.data);
@@ -61,7 +87,7 @@ const TestAccount = () => {
                 </section>
             ) : (
                 <>
-                    <h1>테스트 계정을 발급합니다.</h1>
+                    <h1>계정을 발급합니다.</h1>
                     <TextBox
                         width={400}
                         type={'text'}
@@ -90,6 +116,13 @@ const TestAccount = () => {
                         value={account.phone_number}
                     />
                     <_NumberInput
+                        placeholder="학년"
+                        type="number"
+                        name="grade"
+                        onChange={onChangeAccountInfo}
+                        value={account.grade || ''}
+                    />
+                    <_NumberInput
                         placeholder="반"
                         type="number"
                         name="class_num"
@@ -102,6 +135,22 @@ const TestAccount = () => {
                         name="number"
                         onChange={onChangeAccountInfo}
                         value={account.number || ''}
+                    />
+
+                    <_NumberInput
+                        placeholder="위치"
+                        name="location"
+                        onChange={onChangeAccountInfo}
+                        value={account.location || ''}
+                    />
+                    <DropDown
+                        width={400}
+                        items={tagList.map((i) => i.name)}
+                        placeholder="전공 분야를 입력해주세요."
+                        onChange={(value) => {
+                            const selectTag = tagList.find((i) => i.name === value);
+                            setSelectTag(selectTag?.tag_id);
+                        }}
                     />
                     <Button
                         width={400}
@@ -151,4 +200,4 @@ const _NumberInput = styled.input`
         color: ${({ theme }) => theme.color.gray700};
     }
 `;
-export default TestAccount;
+export default Account;
