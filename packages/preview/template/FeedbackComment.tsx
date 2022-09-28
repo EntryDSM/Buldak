@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { ChangeEvent, FormEvent, useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { feedbackArrow } from '../assets/feedbackArrow';
-import { Icon_NewFeed, Icon_ReadFeed } from '../assets';
+import { Icon_FeedArrow, Icon_NewFeed, Icon_ReadFeed, Icon_FeedBackArrow } from '../assets';
 import { instance } from '../api/instance';
 
 interface FeedProps {
@@ -59,7 +58,7 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
             {feedOpen ? (
                 <_Wrapper>
                     <_Triangle />
-                    <Image src={feedbackArrow} />
+                    <Icon_FeedBackArrow />
                     <_FeedbackBox
                         onChange={onChangeFeedbackContent}
                         ref={feedbackInput}
@@ -103,7 +102,6 @@ const _Wrapper = styled.form`
     transform: translate(-50%, -50%);
     height: 120px;
     right: -645px;
-    zoom: 190%;
     top: 50%;
 `;
 const _Triangle = styled.div`
@@ -136,7 +134,6 @@ const _FeedbackBox = styled.textarea`
 `;
 
 const _FeedWrapper = styled.div`
-    zoom: 190%;
     cursor: pointer;
     position: absolute;
     right: -44px;
