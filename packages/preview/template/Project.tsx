@@ -121,6 +121,8 @@ const ImgBox = styled.div<{ url: string }>`
     margin-bottom: 34px;
     background-image: url(${(props) => props.url});
     background-color: ${({ theme }) => theme.color.gray300};
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 `;
 
 const SkillWrapper = styled.div`
