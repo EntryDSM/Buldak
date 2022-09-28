@@ -34,6 +34,9 @@ const UserDetail = () => {
                         student_id={selectedId || ''}
                         documentPreview={preview?.document_list || []}
                         profileImagePath={studentDetail?.profile_image_path || ''}
+                        major_tag_name={studentDetail?.major_tag_name || ''}
+                        name={studentDetail?.name || '이걸 보시면'}
+                        gcn={studentDetail?.gcn || 2117}
                     />
                     <OptionButtons student_id={selectedId || ''} />
                 </_FlexWrapper>

@@ -11,9 +11,19 @@ interface Props {
     documentPreview: DocumentPreivew[];
     profileImagePath: string;
     student_id: string;
+    major_tag_name: string;
+    gcn: number;
+    name: string;
 }
 
-const DocumentList = ({ documentPreview, profileImagePath, student_id }: Props) => {
+const DocumentList = ({
+    documentPreview,
+    profileImagePath,
+    student_id,
+    major_tag_name,
+    gcn,
+    name,
+}: Props) => {
     const [documentState, setDocumentState] = useState<DocumentState>('PUBLIC');
     const router = useRouter();
     const onClickChangeDocumentType = () => {
@@ -42,16 +52,14 @@ const DocumentList = ({ documentPreview, profileImagePath, student_id }: Props) 
                 }}>
                 {previewState?.preview_image_path !== undefined ? (
                     <>
-                        <img
-                            src={previewState.preview_image_path}
-                            className="previewImage"
-                            alt="미리보기"
-                        />
-                        <p className="developPart">프론트엔드</p>
+                        {previewState.preview_image_path && (
+                            <_Image style={{ backgroundImage: previewState.preview_image_path }} />
+                        )}
+                        <p className="developPart">{major_tag_name}</p>
                         <_UserSummary>
                             <img src={profileImagePath} alt="프로필" className="profileImage" />
-                            <p className="name">김의찬</p>
-                            <p className="studentNumber">2101</p>
+                            <p className="name">{name}</p>
+                            <p className="studentNumber">{gcn}</p>
                         </_UserSummary>
                     </>
                 ) : (
@@ -92,6 +100,14 @@ const _ChangeDocumentTypeButton = styled.button`
     justify-content: center;
     align-items: center;
 `;
+
+const _Image = styled.div`
+    width: 100%;
+    height: 170px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
+`;
 const _Document = styled.section`
     width: 100%;
     height: 280px;
@@ -104,6 +120,11 @@ const _Document = styled.section`
         width: 100%;
         object-position: center;
         background-color: ${({ theme }) => theme.color.gray500};
+    }
+    .previewWrapper {
+        border: 1px solid black;
+        width: 100%;
+        height: 190px;
     }
     > .developPart {
         height: 40px;
