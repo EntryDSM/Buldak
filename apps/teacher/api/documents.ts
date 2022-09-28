@@ -32,7 +32,7 @@ export const getStayDocument = async (document_id: string): Promise<GetStayDocum
 };
 export const rejectDocument = async (student_id: string) => {
     try {
-        await instance.patch(`/documents/reject/${student_id}`);
+        await instance.patch(`/documents/stay/reject/${student_id}`);
     } catch (err) {
         throw err;
     }
