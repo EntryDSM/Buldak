@@ -138,6 +138,7 @@ const SkillWrapper = styled.div`
         font-size: 10px;
         line-height: 13px;
         color: ${({ theme }) => theme.color.black};
+        font-weight: bold;
     }
     #skills {
         display: flex;
