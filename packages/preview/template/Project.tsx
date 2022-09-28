@@ -64,7 +64,7 @@ export default function Project({
                 </SkillWrapper>
                 <InformationWrapper>
                     <p id="title">{topText}</p>
-                    <pre id="explain">{bottomText}</pre>
+                    <p id="explain">{bottomText}</p>
                 </InformationWrapper>
             </Wrapper>
         </OutsideClickHandler>
@@ -121,6 +121,8 @@ const ImgBox = styled.div<{ url: string }>`
     margin-bottom: 34px;
     background-image: url(${(props) => props.url});
     background-color: ${({ theme }) => theme.color.gray300};
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 `;
 
 const SkillWrapper = styled.div`
@@ -136,6 +138,7 @@ const SkillWrapper = styled.div`
         font-size: 10px;
         line-height: 13px;
         color: ${({ theme }) => theme.color.black};
+        font-weight: bold;
     }
     #skills {
         display: flex;
@@ -186,5 +189,6 @@ const InformationWrapper = styled.div`
         font-weight: 500;
         font-size: 9.54px;
         line-height: 12px;
+        word-break: break-all;
     }
 `;

@@ -29,6 +29,7 @@ import ProfilePatch from '../components/pageEditer/patch/Profile';
 import PatchDoubleColor from '../components/pageEditer/patch/DoubleColor';
 import PatchList from '../components/pageEditer/patch/List';
 import ProjectPatch from '../components/pageEditer/patch/Project';
+import AddElementProject from '../assets/svgs/AddElementProject';
 
 export const ElementList = [
     {
@@ -129,7 +130,7 @@ export const ElementList = [
         },
     },
     {
-        image: <></>,
+        image: <AddElementProject />,
         text: '프로젝트',
         patch: [<ProjectPatch />],
         preview: Array_Project,
