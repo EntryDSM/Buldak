@@ -117,7 +117,7 @@ const CenterWrapper = styled.div`
 `;
 
 const FeedWrapper = styled.div`
-    zoom: 190%;
+    zoom: 100%;
     cursor: pointer;
     position: absolute;
     right: -44px;

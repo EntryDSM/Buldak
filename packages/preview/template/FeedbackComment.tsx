@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { ChangeEvent, FormEvent, useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Icon_FeedArrow, Icon_NewFeed, Icon_ReadFeed, Icon_FeedBackArrow } from '../assets';
+import { feedbackArrow, Icon_NewFeed, Icon_ReadFeed } from '../assets';
 import { instance } from '../api/instance';
 
 interface FeedProps {
@@ -32,7 +32,7 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
         setFeedOpen(isSelected);
     }, [isSelected]);
     useEffect(() => {
-        if (feedOpen && feedbackInput.current) feedbackInput.current.focus();
+        if (feedOpen && feedbackInput.current) feedbackInput.current?.focus();
     }, [feedOpen]);
     const router = useRouter();
     const { id } = router.query;
@@ -58,7 +58,7 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
             {feedOpen ? (
                 <_Wrapper>
                     <_Triangle />
-                    <Icon_FeedBackArrow />
+                    <Image src={feedbackArrow} alt="화살표" />
                     <_FeedbackBox
                         onChange={onChangeFeedbackContent}
                         ref={feedbackInput}
@@ -102,6 +102,7 @@ const _Wrapper = styled.form`
     transform: translate(-50%, -50%);
     height: 120px;
     right: -645px;
+    zoom: 100%;
     top: 50%;
 `;
 const _Triangle = styled.div`
@@ -134,6 +135,7 @@ const _FeedbackBox = styled.textarea`
 `;
 
 const _FeedWrapper = styled.div`
+    zoom: 100%;
     cursor: pointer;
     position: absolute;
     right: -44px;

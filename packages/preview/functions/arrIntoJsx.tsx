@@ -4,7 +4,9 @@ interface Feedback {
     feedInfo: string;
 }
 
-export function ArrIntoJsx(value: any) {
+export function ArrIntoJsx(info: any) {
+    const value = info.args;
+    if (!value) return;
     switch (value.tagType) {
         case 'Text': {
             if (value.grade == 1) {
@@ -15,7 +17,7 @@ export function ArrIntoJsx(value: any) {
                         text1={value.text1}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -27,7 +29,7 @@ export function ArrIntoJsx(value: any) {
                         text2={value.innerText[1]}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -40,7 +42,7 @@ export function ArrIntoJsx(value: any) {
                         text3={value.innerText[2]}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -57,7 +59,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText1={value.text1[1]}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -71,7 +73,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText2={value.innerText[1][1]}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -87,7 +89,7 @@ export function ArrIntoJsx(value: any) {
                         bottomText3={value.innerText[2][1]}
                         color={value.color}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -99,7 +101,7 @@ export function ArrIntoJsx(value: any) {
                         grade={value.grade}
                         url={value.imageUrl}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -110,7 +112,7 @@ export function ArrIntoJsx(value: any) {
                         url={value.imageUrl[0]}
                         url2={value.imageUrl[1]}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -122,7 +124,7 @@ export function ArrIntoJsx(value: any) {
                         url2={value.imageUrl[1]}
                         url3={value.imageUrl[2]}
                         feedback={value.feedback}
-                        isTeacher={value.isTeacher}
+                        isTeacher={info.isTeacher}
                     />
                 );
             }
@@ -136,7 +138,7 @@ export function ArrIntoJsx(value: any) {
                     topText={value.text1[0]}
                     bottomText={value.text1[1]}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
@@ -149,7 +151,7 @@ export function ArrIntoJsx(value: any) {
                     topText={value.text1[0]}
                     bottomText={value.text1[1]}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
@@ -158,7 +160,7 @@ export function ArrIntoJsx(value: any) {
                 <T.Template_RowLine
                     height={value.height}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
@@ -167,7 +169,7 @@ export function ArrIntoJsx(value: any) {
                 <T.Template_Gap
                     height={value.height}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
@@ -177,7 +179,7 @@ export function ArrIntoJsx(value: any) {
                     text={value.text}
                     color={value.color}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
@@ -190,7 +192,7 @@ export function ArrIntoJsx(value: any) {
                     phone={value.phone}
                     url={value.imageUrl}
                     feedback={value.feedback}
-                    isTeacher={value.isTeacher}
+                    isTeacher={info.isTeacher}
                 />
             );
         }
