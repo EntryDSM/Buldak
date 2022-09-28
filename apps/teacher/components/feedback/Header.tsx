@@ -17,6 +17,7 @@ const Header = ({ id }: Props) => {
         rejectDocument(id)
             .then(() => {
                 toastHandler('SUCCESS', '문서가 반환되었습니다.');
+                router.push('/');
             })
             .catch((err: AxiosError) => {
                 if (err.response?.status === 404) {
@@ -29,6 +30,7 @@ const Header = ({ id }: Props) => {
         approveDocument(id)
             .then(() => {
                 toastHandler('SUCCESS', '공개요청이 승인되었습니다.');
+                router.push('/');
             })
             .catch((err: AxiosError) => {
                 if (err.response?.status === 404) {
