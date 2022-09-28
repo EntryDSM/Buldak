@@ -47,8 +47,7 @@ export default function DefProfile({
                     />
                 )}
                 <ImgBox>
-                    {/*<div id="img" style={{ backgroundImage: `url(${url})` }}></div>*/}
-                    <img src={url} alt="프로필 이미지" />
+                    <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
                 </ImgBox>
                 <div id="colline" />
                 <div id="textbox">

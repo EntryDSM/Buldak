@@ -5,7 +5,7 @@ interface Feedback {
 }
 
 export function ArrIntoJsx(info: any) {
-    const value = info.args;
+    const value = info;
     if (!value) return;
     switch (value.tagType) {
         case 'Text': {
