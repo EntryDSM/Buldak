@@ -59,7 +59,7 @@ export default function DoubleText({
                             <p style={{ color: color[0] }}>{topText1}</p>
                         </div>
                         <div id="bottom">
-                            <p style={{ color: color[1] }}>{bottomText1}</p>
+                            <pre style={{ color: color[1] }}>{bottomText1}</pre>
                         </div>
                     </Wrapper>
                 </TotalWrapper>
@@ -82,7 +82,7 @@ export default function DoubleText({
                         <p>{topText2}</p>
                     </div>
                     <div id="bottom">
-                        <p>{bottomText2}</p>
+                        <pre>{bottomText2}</pre>
                     </div>
                 </Wrapper>
             </TotalWrapper>
@@ -145,7 +145,6 @@ const Wrapper = styled.div`
         min-height: 23px;
         width: 100%;
         font-size: 10px;
-        word-break: break-all;
         padding: 6px 23px;
     }
 `;

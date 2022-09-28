@@ -50,9 +50,9 @@ const LoginPage = () => {
                 }
                 if (res.data.first_login == true) {
                     if (loginState.user_type == 'STUDENT') {
-                        window.location.href = '/FirstLoginPage/Student/StageOne';
+                        window.location.href = '/first-login-page/studnet/stage-one';
                     } else if (loginState.user_type == 'MOU') {
-                        window.location.href = '/FirstLoginPage/Company/StageOne';
+                        window.location.href = '/first-login-page/company/stage-one';
                     }
                 } else if (res.data.first_login == false) {
                     if (loginState.user_type == 'STUDENT') {
