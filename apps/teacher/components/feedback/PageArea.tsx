@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getPublicDocument, getStayDocument } from '../../api/documents';
+import { JsxIntoArr } from '../../utils/jsxIntoArr';
 
 interface PageProps {
     id: string;
@@ -17,7 +18,7 @@ function PageArea({ id }: PageProps) {
     const { data: Publicdata } = useQuery([`getPublicDocument${id || ''}`, id], () =>
         getPublicDocument(id),
     );
-    const [document, setDocument] = useState<any[]>(['']);
+    const [document, setDocument] = useState<any[]>([]);
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
         if (!router && Publicdata) {
@@ -26,34 +27,44 @@ function PageArea({ id }: PageProps) {
             setDocument(JSON.parse(Staydata.content));
             setFeed(Staydata.feedback_list);
         }
+        console.log(document);
     }, [Staydata, Publicdata, id]);
+    useEffect(() => {
+        console.log('document', document);
+    }, [document]);
     return (
         <_Background>
             <_PageWrapper>
-                <div>
-                    {router
-                        ? document.map((value, index) =>
-                              ArrIntoJsx({
-                                  ...value,
-                                  feedback: {
-                                      feedInfo: feed.filter(
-                                          (value: any) => value.sequence == index + 1,
-                                      )[0]?.comment,
-                                      isRead: feed.filter(
-                                          (value: any) => value.sequence == index + 1,
-                                      )[0]?.isApply,
-                                      sequence: index + 1,
-                                  },
-                                  isTeacher: true,
-                              }),
-                          )
-                        : document.map((value) =>
-                              ArrIntoJsx({
-                                  ...value,
-                                  isTeacher: false,
-                              }),
-                          )}
-                </div>
+                {document && (
+                    <div>
+                        {router
+                            ? document
+                                  .map((value) => JsxIntoArr(value))
+                                  .map((value, index) =>
+                                      ArrIntoJsx({
+                                          ...value.args,
+                                          feedback: {
+                                              feedInfo: feed.filter(
+                                                  (value: any) => value.sequence == index + 1,
+                                              )[0]?.comment,
+                                              isRead: feed.filter(
+                                                  (value: any) => value.sequence == index + 1,
+                                              )[0]?.isApply,
+                                              sequence: index + 1,
+                                          },
+                                          isTeacher: true,
+                                      }),
+                                  )
+                            : document
+                                  .map((value) => JsxIntoArr(value))
+                                  .map((value) =>
+                                      ArrIntoJsx({
+                                          ...value.args,
+                                          isTeacher: false,
+                                      }),
+                                  )}
+                    </div>
+                )}
             </_PageWrapper>
         </_Background>
     );
