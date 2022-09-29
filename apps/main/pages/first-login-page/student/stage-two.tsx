@@ -35,6 +35,9 @@ const StageTwo = () => {
                     },
                 },
             )
+            .then(() => {
+                alert('인증번호 발송에 성공했습니다.');
+            })
             .catch(() => {
                 alert('전화번호가 잘못됐습니다');
                 setCertified({

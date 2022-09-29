@@ -75,7 +75,7 @@ const Account = () => {
                     </strong>
                     <h3>이메일 : {response.email}</h3>
                     <h3>비밀번호 : {response.password}</h3>
-                    <Link href="/SelectPage">
+                    <Link href="/select-page">
                         <Button
                             width={300}
                             height={38}

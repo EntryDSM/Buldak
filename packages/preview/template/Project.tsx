@@ -84,6 +84,7 @@ function SkillTag({ name }: TagProps) {
 }
 
 const Wrapper = styled.div<{ isSelected?: boolean }>`
+    position: relative;
     width: 100%;
     padding: 15px 25px;
     border: ${(props) => (props.isSelected ? '1px solid ' + props.theme.color.skyblue : '')};
