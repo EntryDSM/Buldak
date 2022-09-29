@@ -64,7 +64,7 @@ export default function Project({
                 </SkillWrapper>
                 <InformationWrapper>
                     <p id="title">{topText}</p>
-                    <p id="explain">{bottomText}</p>
+                    <pre id="explain">{bottomText}</pre>
                 </InformationWrapper>
             </Wrapper>
         </OutsideClickHandler>

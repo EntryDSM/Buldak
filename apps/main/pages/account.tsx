@@ -71,7 +71,7 @@ const Account = () => {
                 <section>
                     <h1>발급된 계정</h1>
                     <strong>
-                        계정 정보를 다른곳에 적어놓으세요. 새로고침 시 정보가 날라갑니다.
+                        계정 정보를 다른곳에 적어놓으세요. 새로고침 시 정보가 날아갑니다.
                     </strong>
                     <h3>이메일 : {response.email}</h3>
                     <h3>비밀번호 : {response.password}</h3>
