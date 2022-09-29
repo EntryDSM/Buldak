@@ -35,7 +35,7 @@ const UserMainPage: NextPage = () => {
                         <S.DocumentTitle>내 태그</S.DocumentTitle>
                         <S.TagAria>
                             {(myInformation?.skill_tag_list || []).map((info, idx) => (
-                                <Tag color="bdblue" key={idx} tagName={info} />
+                                <Tag color="bdblue" key={idx} tagName={info.name} />
                             ))}
                         </S.TagAria>
                     </S.TagBox>
