@@ -1,14 +1,6 @@
-// export const modifyUserInformationResource={
-
 import { QueryFunction, QueryFunctionContext } from 'react-query';
 import { queryKey } from '../queryKey';
 import { instance } from './instance';
-
-// }
-
-// export const imageUploadResource = {
-
-// }
 
 export interface InformationResourceType {
     grade: number;
@@ -19,7 +11,7 @@ export interface InformationResourceType {
     email: string;
     location: string;
     profile_image_path: string;
-    skill_tag_list: string[];
+    skill_tag_list: { id: string; name: string }[];
     major_tag: string;
     student_id: string;
 }

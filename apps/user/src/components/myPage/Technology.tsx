@@ -25,8 +25,8 @@ function Technology({ setOpenAddTagModal, setOpenRepresentativeModal }: PropsTyp
                 </_PatchBtn>
             </_ExplainBox>
             <_TechnologyListBox>
-                {myInformaionData?.skill_tag_list.map((technology, index) => (
-                    <_TechnologyBtn key={index}>{technology}</_TechnologyBtn>
+                {myInformaionData?.skill_tag_list.map((technology) => (
+                    <_TechnologyBtn key={technology.id}>{technology.name}</_TechnologyBtn>
                 ))}
             </_TechnologyListBox>
             <_ExplainBox>
