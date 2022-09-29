@@ -28,7 +28,7 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
                     onClick={() => setIsSelected(true)}
                     style={{ color: color }}>
                     <div id="textWrapper">
-                        <p>{text1}</p>
+                        <pre>{text1}</pre>
                     </div>
                     {!isTeacher && feedback?.feedInfo && (
                         <FeedBack
@@ -48,31 +48,6 @@ export default function Text({ color, grade, text1, text2, text3, feedback, isTe
                 </Wrapper>
             </OutsideClickHandler>
         );
-    if (grade == 2)
-        return (
-            <Wrapper style={{ color: color }}>
-                <div style={{ width: '500px' }}>
-                    <p>{text1}</p>
-                </div>
-                <div style={{ width: '500px' }}>
-                    <p>{text2}</p>
-                </div>
-            </Wrapper>
-        );
-    if (grade == 3)
-        return (
-            <Wrapper style={{ color: color }}>
-                <div style={{ width: '333px' }}>
-                    <p>{text1}</p>
-                </div>
-                <div style={{ width: '333px' }}>
-                    <p>{text2}</p>
-                </div>
-                <div style={{ width: '333px' }}>
-                    <p>{text3}</p>
-                </div>
-            </Wrapper>
-        );
     return <></>;
 }
 
@@ -88,9 +63,10 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
         min-height: 23px;
         width: 530px;
         padding: 5px 21px;
-        > p {
+        > pre {
             font-size: 12px;
             word-break: break-all;
+            white-space: pre-wrap;
         }
     }
 `;
