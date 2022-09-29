@@ -38,7 +38,7 @@ const StageOne = () => {
                 if (error?.response?.status == 400) {
                     alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
                 } else if (error?.response?.status == 401) {
-                    alert('토큰이 잘못 됐습니다');
+                    location.href = './stage-two';
                 }
                 setNewPasswordState({ ...newPasswordState, new_password: '' });
             });
