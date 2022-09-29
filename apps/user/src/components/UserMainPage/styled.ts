@@ -35,7 +35,6 @@ export const UserProfile = styled.div<{ src: string }>`
     border-radius: 100px;
     background-image: url(${({ src }) => src});
     background-position: center;
-    background-size: 100%;
     background-repeat: no-repeat;
     margin-top: 90px;
 `;
