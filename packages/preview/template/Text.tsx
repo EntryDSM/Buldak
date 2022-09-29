@@ -87,7 +87,7 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     #textWrapper {
         min-height: 23px;
         width: 530px;
-        padding: 5px 16px;
+        padding: 5px 21px;
         > p {
             font-size: 12px;
             word-break: break-all;

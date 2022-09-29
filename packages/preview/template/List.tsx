@@ -69,7 +69,7 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     width: 530px;
     min-height: 21px;
     height: fit-content;
-    padding: 3px 27px;
+    padding: 3px 30px;
     > p {
         margin-bottom: 4px;
     }
