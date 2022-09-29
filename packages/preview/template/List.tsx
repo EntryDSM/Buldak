@@ -71,7 +71,6 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     height: fit-content;
     padding: 3px 27px;
     > p {
-        font-size: 12px;
         margin-bottom: 4px;
     }
 `;
@@ -98,4 +97,5 @@ const EachListWrapper = styled.div`
 const EachListText = styled.div`
     width: calc(100% - 15px);
     height: fit-content;
+    font-size: 10px;
 `;
