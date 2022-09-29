@@ -35,7 +35,11 @@ export const UserProfile = styled.div<{ src: string }>`
     border-radius: 100px;
     background-image: url(${({ src }) => src});
     background-position: center;
+<<<<<<< HEAD
     background-size: 100% 100%;
+=======
+    background-size: 100% 100%auto;
+>>>>>>> studentMainFix
     background-repeat: no-repeat;
     margin-top: 90px;
 `;
