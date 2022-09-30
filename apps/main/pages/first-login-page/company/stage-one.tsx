@@ -34,7 +34,6 @@ const StageOne = () => {
                 window.location.href = './stage-two';
             })
             .catch((error) => {
-                console.log(error.response);
                 if (error?.response?.status == 400) {
                     alert('비밀번호는 소문자, 숫자, 특수문자가 포함되어야 합니다.');
                 } else if (error?.response?.status == 401) {
