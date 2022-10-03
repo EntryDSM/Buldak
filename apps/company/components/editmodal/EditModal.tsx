@@ -212,7 +212,7 @@ const Imgs = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 100px;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: 100%;
 `;

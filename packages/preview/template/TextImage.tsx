@@ -69,7 +69,7 @@ const Img = styled.div<{ url: string }>`
     height: 170px;
     background-image: url(${(props) => props.url});
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     border-radius: 4px;
     display: flex;
     align-items: center;

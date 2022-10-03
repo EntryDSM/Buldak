@@ -106,7 +106,7 @@ export const _FirstLoginCitation = styled.button`
 export const _FirstLoginProfile = styled.div`
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: cover;
 `;
 
 export const _FirstLoginSetProfile = styled.button`
