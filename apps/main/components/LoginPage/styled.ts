@@ -82,7 +82,7 @@ export const _LoginInput = styled.input`
     border-radius: 5px;
 `;
 
-export const _LoginButton = styled.div`
+export const _LoginButton = styled.button`
     cursor: pointer;
     transition: all 0.3s;
 
