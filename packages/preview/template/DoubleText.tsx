@@ -56,7 +56,7 @@ export default function DoubleText({
                     )}
                     <Wrapper>
                         <div id="top">
-                            <p style={{ color: color[0] }}>{topText1}</p>
+                            <pre style={{ color: color[0] }}>{topText1}</pre>
                         </div>
                         <div id="bottom">
                             <pre style={{ color: color[1] }}>{bottomText1}</pre>
@@ -64,58 +64,6 @@ export default function DoubleText({
                     </Wrapper>
                 </TotalWrapper>
             </OutsideClickHandler>
-        );
-    if (grade == 2)
-        return (
-            <TotalWrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Wrapper style={{ width: '500px' }}>
-                    <div id="top">
-                        <p>{topText1}</p>
-                    </div>
-                    <div id="bottom">
-                        <p>{bottomText1}</p>
-                    </div>
-                </Wrapper>
-                <Wrapper style={{ width: '500px' }}>
-                    <div id="top">
-                        <p>{topText2}</p>
-                    </div>
-                    <div id="bottom">
-                        <pre>{bottomText2}</pre>
-                    </div>
-                </Wrapper>
-            </TotalWrapper>
-        );
-    if (grade == 3)
-        return (
-            <TotalWrapper>
-                {feedback && <FeedBack feedInfo={feedback.feedInfo} isRead={feedback.isRead} />}
-                <Wrapper style={{ width: '333px' }}>
-                    <div id="top">
-                        <p>{topText1}</p>
-                    </div>
-                    <div id="bottom">
-                        <p>{bottomText1}</p>
-                    </div>
-                </Wrapper>
-                <Wrapper style={{ width: '333px' }}>
-                    <div id="top">
-                        <p>{topText2}</p>
-                    </div>
-                    <div id="bottom">
-                        <p>{bottomText2}</p>
-                    </div>
-                </Wrapper>
-                <Wrapper style={{ width: '333px' }}>
-                    <div id="top">
-                        <p>{topText3}</p>
-                    </div>
-                    <div id="bottom">
-                        <p>{bottomText3}</p>
-                    </div>
-                </Wrapper>
-            </TotalWrapper>
         );
     return <></>;
 }
@@ -134,11 +82,14 @@ const TotalWrapper = styled.div<{ isSelected?: boolean }>`
 const Wrapper = styled.div`
     width: 530px;
     min-height: 51px;
+    pre {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
     > #top {
         min-height: 28px;
         width: 100%;
         font-size: 12px;
-        word-break: break-all;
         padding: 7px 21px;
     }
     > #bottom {

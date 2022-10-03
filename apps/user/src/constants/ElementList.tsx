@@ -139,7 +139,7 @@ export const ElementList = [
             title: '프로젝트명',
             date: '20xx.10.28',
             imageUrl: '',
-            skills: ['React'],
+            skills: [],
             feedback: { isRead: false, feedInfo: '' },
         },
     },

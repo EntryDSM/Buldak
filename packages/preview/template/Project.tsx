@@ -64,7 +64,7 @@ export default function Project({
                 </SkillWrapper>
                 <InformationWrapper>
                     <p id="title">{topText}</p>
-                    <p id="explain">{bottomText}</p>
+                    <pre id="explain">{bottomText}</pre>
                 </InformationWrapper>
             </Wrapper>
         </OutsideClickHandler>
@@ -190,6 +190,6 @@ const InformationWrapper = styled.div`
         font-weight: 500;
         font-size: 9.54px;
         line-height: 12px;
-        word-break: break-all;
+        white-space: pre-wrap;
     }
 `;

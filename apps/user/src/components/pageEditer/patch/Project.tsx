@@ -43,6 +43,8 @@ function ProjectPatch({ id }: PropsType) {
 
     const onClick = (isdelete: boolean = false) => {
         if (!isdelete) {
+            if (skill == '' || skill == ' ') return;
+            setSkill('');
             let tempargs;
             tempargs = { ...newArr.args, skills: newArr.args.skills.concat(skill) };
             const temp = [...elementList];
@@ -52,7 +54,7 @@ function ProjectPatch({ id }: PropsType) {
         } else {
             let temparr = [...newArr.args.skills];
             if (!temparr.length) return;
-            temparr.splice(0, 1);
+            temparr.splice(temparr.length - 1, 1);
             let tempargs;
             tempargs = {
                 ...newArr.args,
@@ -92,6 +94,7 @@ function ProjectPatch({ id }: PropsType) {
                     width={300}
                     type={'text'}
                     correct={true}
+                    value={skill}
                 />
                 <ButtonWrapper>
                     <Button

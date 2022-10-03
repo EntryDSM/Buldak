@@ -29,7 +29,6 @@ export const UserSideBar = styled.div`
 
 export const UserProfile = styled.div<{ src: string }>`
     width: 90px;
-
     height: 90px;
     background: #f3f7ff;
     border: 2px solid #f0f0f0;
@@ -80,7 +79,8 @@ export const UsetText = styled.p`
     font-size: 1.1vw;
     line-height: 23px;
     color: #ffffff;
-
+    text-align: center;
+    max-width: 250px;
     margin: 0px;
     margin-bottom: 10px;
 `;
