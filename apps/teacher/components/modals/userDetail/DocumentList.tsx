@@ -104,7 +104,7 @@ const _ChangeDocumentTypeButton = styled.button`
 const _Image = styled.div`
     width: 100%;
     height: 170px;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     border-bottom: 1px solid ${({ theme }) => theme.color.gray500};
 `;

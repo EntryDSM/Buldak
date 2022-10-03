@@ -60,7 +60,7 @@ const ImgBlock = styled.div`
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     background-color: ${({ theme }) => theme.color.gray500};
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: 100%;
 `;
@@ -70,7 +70,7 @@ const PrevImg = styled.div`
     width: 30px;
     border-radius: 50px;
     margin-right: 10px;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: 100%;
     background-color: ${({ theme }) => theme.color.gray500};
