@@ -29,6 +29,10 @@ const LoginPage = () => {
         setLoginState({ ...loginState, [name]: value });
     };
 
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    };
+
     const postLogin = () => {
         axios
             .post('https://server.dsm-repo.com/users/auth', loginState)
@@ -78,52 +82,55 @@ const LoginPage = () => {
                 <Image src={BackImg} />
             </S._ImgContainer>
             <S._LoginContainer>
-                <S._LoginBox>
-                    <S._LoginTitle>로그인</S._LoginTitle>
-                    <S._LoginPoint />
-                    <S._LoginInputLayout>
-                        {loginState.user_type == 'MOU' ? (
-                            <>
-                                <S._LoginInputText>아이디</S._LoginInputText>
-                                <TextBox
-                                    correct={true}
-                                    placeholder="아이디를 입력해주세요"
-                                    width={380}
-                                    type="text"
-                                    value={loginState.email}
-                                    onChange={onChangeLoginState}
-                                    name="email"
-                                />
-                            </>
-                        ) : (
-                            <>
-                                <S._LoginInputText>이메일</S._LoginInputText>
-                                <TextBox
-                                    correct={true}
-                                    placeholder="이메일을 입력해주세요"
-                                    width={380}
-                                    type="text"
-                                    value={loginState.email}
-                                    onChange={onChangeLoginState}
-                                    name="email"
-                                />
-                            </>
-                        )}
-                    </S._LoginInputLayout>
-                    <S._LoginInputLayout>
-                        <S._LoginInputText>비밀번호</S._LoginInputText>
-                        <TextBox
-                            correct={true}
-                            placeholder="비밀번호를 입력해주세요"
-                            width={380}
-                            type="password"
-                            value={loginState.password}
-                            onChange={onChangeLoginState}
-                            name="password"
-                        />
-                    </S._LoginInputLayout>
-                    <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
-                </S._LoginBox>
+                <form onSubmit={onSubmit}>
+                    <S._LoginBox>
+                        <S._LoginTitle>로그인</S._LoginTitle>
+                        <S._LoginPoint />
+                        <S._LoginInputLayout>
+                            {loginState.user_type == 'MOU' ? (
+                                <>
+                                    <S._LoginInputText>아이디</S._LoginInputText>
+                                    <TextBox
+                                        correct={true}
+                                        placeholder="아이디를 입력해주세요"
+                                        width={380}
+                                        type="text"
+                                        value={loginState.email}
+                                        onChange={onChangeLoginState}
+                                        name="email"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <S._LoginInputText>이메일</S._LoginInputText>
+
+                                    <TextBox
+                                        correct={true}
+                                        placeholder="이메일을 입력해주세요"
+                                        width={380}
+                                        type="text"
+                                        value={loginState.email}
+                                        onChange={onChangeLoginState}
+                                        name="email"
+                                    />
+                                </>
+                            )}
+                        </S._LoginInputLayout>
+                        <S._LoginInputLayout>
+                            <S._LoginInputText>비밀번호</S._LoginInputText>
+                            <TextBox
+                                correct={true}
+                                placeholder="비밀번호를 입력해주세요"
+                                width={380}
+                                type="password"
+                                value={loginState.password}
+                                onChange={onChangeLoginState}
+                                name="password"
+                            />
+                        </S._LoginInputLayout>
+                        <S._LoginButton onClick={postLogin}>로그인</S._LoginButton>
+                    </S._LoginBox>
+                </form>
             </S._LoginContainer>
         </S._LoginPageContainer>
     );

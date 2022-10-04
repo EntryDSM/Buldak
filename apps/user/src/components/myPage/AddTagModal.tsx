@@ -27,7 +27,9 @@ function AddTagModal({ setOpenAddTagModal }: PropsType) {
         },
     });
     const { data: searchTagResult } = useSearchTag(debounceSearchInput, false);
-    const [selectTag, setSelectTag] = useState<TagListParams>([]);
+    const [selectTag, setSelectTag] = useState<TagListParams>(
+        myInformation?.skill_tag_list.map((x) => ({ tag_id: x.id, name: x.name })) || [],
+    );
 
     const infoChange = (textValue: string) => {
         const tagInfo = searchTagResult?.tag_list.find((info) => info.name === textValue);
