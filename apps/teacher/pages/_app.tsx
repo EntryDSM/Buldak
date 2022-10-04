@@ -4,6 +4,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import ModalProvider from '../context/ModalContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FilterProvider from '../context/FilterContext';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const queryClient = new QueryClient({
@@ -18,10 +19,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
                 <ModalProvider>
-                    <StyleProvider>
-                        <Component {...pageProps} />
-                        <ToastContainer />
-                    </StyleProvider>
+                    <FilterProvider>
+                        <StyleProvider>
+                            <Component {...pageProps} />
+                            <ToastContainer />
+                        </StyleProvider>
+                    </FilterProvider>
                 </ModalProvider>
             </Hydrate>
         </QueryClientProvider>
