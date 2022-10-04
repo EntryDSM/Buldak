@@ -138,7 +138,7 @@ const Account = () => {
                     />
 
                     <_NumberInput
-                        placeholder="위치"
+                        placeholder="주소"
                         name="location"
                         onChange={onChangeAccountInfo}
                         value={account.location || ''}
