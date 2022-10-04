@@ -39,9 +39,21 @@ const Header = ({ id }: Props) => {
                 } else toastHandler('ERROR');
             });
     };
+    const onClickGoToHome = () => {
+        router.push(pages.manageStudent);
+    };
     return (
         <_Wrapper>
             <_ButtonsWrapper>
+                <Button
+                    width={120}
+                    height={40}
+                    content="돌아가기"
+                    fontColor={theme.color.black}
+                    borderColor={theme.color.gray700}
+                    onClick={onClickGoToHome}
+                    borderWidth={1}
+                />
                 <Button
                     width={120}
                     height={40}
@@ -49,6 +61,7 @@ const Header = ({ id }: Props) => {
                     fontColor={theme.color.error}
                     borderColor={theme.color.gray500}
                     onClick={onClickReject}
+                    borderWidth={1}
                 />
                 <Button
                     width={120}
