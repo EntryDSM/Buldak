@@ -26,11 +26,7 @@ const PdfModal = () => {
         onClickChangeSelectedStatus,
     } = useStudentFilter();
     useEffect(() => {
-        setFilter({
-            grade: null,
-            classNum: null,
-            docStatus: null,
-        });
+        setFilter({ type: 'RESET' });
     }, []);
     return (
         <ModalWrapper>
