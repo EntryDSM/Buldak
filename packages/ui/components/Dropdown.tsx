@@ -21,10 +21,9 @@ export const DropDown = <T extends string>({
 }: DropDownProps<T>) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [text, setText] = useState<T | string>(value ? value : placeholder);
-
     useEffect(() => {
         setText(value ? value : placeholder);
-        setIsOpen(true);
+        setIsOpen(false);
     }, [value]);
 
     return (

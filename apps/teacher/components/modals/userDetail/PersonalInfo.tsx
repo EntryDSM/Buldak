@@ -78,6 +78,12 @@ const _List = styled.li`
 `;
 const _Tags = styled.ul`
     margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    overflow: scroll;
+    padding-right: 10px;
+    height: 120px;
     > .tag {
         width: 73px;
         height: 36px;
