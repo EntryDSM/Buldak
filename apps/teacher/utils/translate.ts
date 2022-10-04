@@ -41,7 +41,7 @@ export const translateDocStatusDropdownValue = (
         case '공개 문서':
             return 'PUBLIC';
         case '미제출':
-            return 'PROTECTED';
+            return 'LOCAL';
         case '요청 대기 문서':
             return 'STAY';
     }
