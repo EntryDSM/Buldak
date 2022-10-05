@@ -23,6 +23,7 @@ interface PagesProps {
 function Pages({ zoom = 100 }: PagesProps) {
     const router = useRouter();
     const documentId = router.query.id as string;
+    const isStayDocument = router.query.stay;
     const [elementList, setElementList] = useRecoilState(ElementListState);
     const { debounce } = useDebounce();
     const defpreview =
@@ -48,7 +49,6 @@ function Pages({ zoom = 100 }: PagesProps) {
                 toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
             },
             onError: (error: ErrorType) => {
-                console.log(error);
                 if (error.message === 'Network Error') {
                     toastHandler('ERROR', '인터넷 상태를 확인해 주세요.');
                 } else if (error?.response.status === 401) {
@@ -62,9 +62,10 @@ function Pages({ zoom = 100 }: PagesProps) {
         },
     );
     useEffect(() => {
-        debounce(() => {
-            localPatch.mutate();
-        }, 5000);
+        if (isStayDocument !== 'true')
+            debounce(() => {
+                localPatch.mutate();
+            }, 5000);
     }, [elementList]);
     const { data: Localdata } = useQuery(['queryDocument'], () => documentLocalQuery(documentId));
     const { data: Staydata } = useQuery(['stayDocument'], () => documentStayQuery(documentId));
