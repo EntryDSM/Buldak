@@ -45,7 +45,7 @@ instance.interceptors.response.use(
                     }
                 }
             } else if (axios.isAxiosError(error) && error.response) {
-                const { config, response } = error;
+                const { response } = error;
                 if (response.status === 403) {
                     toastHandler('ERROR', '권한이 없습니다.');
                     window.location.href = '/403';

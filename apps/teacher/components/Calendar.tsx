@@ -71,7 +71,7 @@ const _MonthWrapper = styled.div`
 `;
 const _Month = styled.strong`
     display: flex;
-    width: 115px;
+    width: 120px;
     font-size: 22px;
     line-height: 25px;
     color: ${({ theme }) => theme.color.black};
