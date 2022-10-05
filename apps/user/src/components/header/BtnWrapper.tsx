@@ -15,7 +15,7 @@ import {
 import { toastHandler } from '../../utils/toast';
 import { AxiosResponse } from 'axios';
 
-interface ErrorType {
+export interface ErrorType {
     code: string;
     config: any;
     message: string;
