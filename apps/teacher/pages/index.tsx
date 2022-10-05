@@ -18,7 +18,8 @@ export interface FilterProps {
 
 export default function Home() {
     const { selectedModal } = useModal();
-    const { studentList, onChangeClassNum, onChangeDocStatus, onChangeGrade } = useStudentFilter();
+    const { studentList, onChangeClassNum, onChangeDocStatus, onChangeGrade, filter } =
+        useStudentFilter();
     return (
         <>
             {selectedModal === 'USER_DETAIL' && <UserDetail />}
@@ -30,6 +31,7 @@ export default function Home() {
                     onChangeGrade={onChangeGrade}
                     onChangeDocStatus={onChangeDocStatus}
                     onChangeClassNum={onChangeClassNum}
+                    filter={filter}
                 />
             </Wrapper>
         </>

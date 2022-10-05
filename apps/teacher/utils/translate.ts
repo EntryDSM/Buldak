@@ -46,6 +46,32 @@ export const translateDocStatusDropdownValue = (
             return 'STAY';
     }
 };
+export const translateGradeValue = (value: GradeValue): GradeDropdownType => {
+    switch (value) {
+        case '1':
+            return '1학년';
+        case '2':
+            return '2학년';
+        case '3':
+            return '3학년';
+        default:
+            return '전체';
+    }
+};
+export const translateClassNumValue = (value: ClassNumValue): ClassNumDropdownType => {
+    switch (value) {
+        case '1':
+            return '1반';
+        case '2':
+            return '2반';
+        case '3':
+            return '3반';
+        case '4':
+            return '4반';
+        default:
+            return '전체';
+    }
+};
 export const translateObjectToString = (dateObject: DateObject) => {
     return `${dateObject.year}-${
         dateObject.month < 10 ? '0' + dateObject.month.toString() : dateObject.month

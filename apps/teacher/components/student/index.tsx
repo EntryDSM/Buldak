@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import Filter, { FilterFunctionProps } from './Filter';
 import StudentBox from './Box';
 import { StudentInfo } from '../../models/teachers/responses';
+import { FilterProps } from '../../pages';
 
 interface Props extends FilterFunctionProps {
     studentList: StudentInfo[];
+    filter: FilterProps;
 }
 
 const ManageStudent: React.FC<Props> = ({
@@ -12,6 +14,7 @@ const ManageStudent: React.FC<Props> = ({
     onChangeClassNum,
     onChangeGrade,
     onChangeDocStatus,
+    filter,
 }) => {
     return (
         <_Wrapper>
@@ -25,6 +28,7 @@ const ManageStudent: React.FC<Props> = ({
                 onChangeClassNum={onChangeClassNum}
                 onChangeDocStatus={onChangeDocStatus}
                 onChangeGrade={onChangeGrade}
+                filter={filter}
             />
             <_List>
                 {studentList.map((studentInfo) => (

@@ -7,17 +7,22 @@ import {
     gradeDropdownItems,
 } from '../constant';
 import useModal from '../../hooks/useModal';
+import { FilterProps } from '../../pages';
+import { translateClassNumValue, translateGradeValue } from '../../utils/translate';
+import { DocumentStateEnum } from '../../utils/enum';
 
 export interface FilterFunctionProps {
     onChangeGrade: (value: string) => void;
     onChangeClassNum: (value: string) => void;
     onChangeDocStatus: (value: string) => void;
+    filter: FilterProps;
 }
 
 const Filter: React.FC<FilterFunctionProps> = ({
     onChangeClassNum,
     onChangeGrade,
     onChangeDocStatus,
+    filter,
 }) => {
     const { selectModal } = useModal();
     const printExcel = () => {};
@@ -29,18 +34,21 @@ const Filter: React.FC<FilterFunctionProps> = ({
                     placeholder="학년"
                     onChange={onChangeGrade}
                     width={150}
+                    value={translateGradeValue(filter.grade)}
                 />
                 <DropDown
                     items={classRoomDropdownItems}
                     placeholder="반"
                     onChange={onChangeClassNum}
                     width={150}
+                    value={translateClassNumValue(filter.classNum)}
                 />
                 <DropDown
                     items={documentStatusDropdownItems}
                     placeholder="문서 상태"
                     onChange={onChangeDocStatus}
                     width={180}
+                    value={filter.docStatus ? DocumentStateEnum[filter.docStatus] : '전체'}
                 />
             </_OptionWrapper>
             <_OptionWrapper>

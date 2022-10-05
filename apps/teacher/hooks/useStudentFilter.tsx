@@ -8,38 +8,39 @@ import {
     DocumentStatusDropdownType,
     GradeDropdownType,
 } from '../components/constant';
-import { useEffect, useMemo, useState } from 'react';
-import { FilterProps } from '../pages';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getStudentList } from '../api/teachers';
 import { PdfStudentListProps } from '../components/modals/pdf';
 import useModal from './useModal';
 import { toastHandler } from '../utils/toast';
+import { FilterDispatchContext, FilterStateContext } from '../context/FilterContext';
 
 const useStudentFilter = () => {
-    const [filter, setFilter] = useState<FilterProps>({
-        grade: null,
-        classNum: null,
-        docStatus: null,
-    });
+    const filter = useContext(FilterStateContext);
+    const setFilter = useContext(FilterDispatchContext);
+
     const [allSelected, setAllSelected] = useState(false);
     const { selectedModal } = useModal();
     const onChangeGrade = (value: string) => {
         setFilter({
-            ...filter,
-            grade: translateGradeDropdownValue(value as GradeDropdownType),
+            type: 'CHANGE',
+            name: 'grade',
+            value: translateGradeDropdownValue(value as GradeDropdownType),
         });
     };
     const onChangeClassNum = (value: string) => {
         setFilter({
-            ...filter,
-            classNum: translateClassNumDropdownValue(value as ClassNumDropdownType),
+            type: 'CHANGE',
+            name: 'classNum',
+            value: translateClassNumDropdownValue(value as ClassNumDropdownType),
         });
     };
     const onChangeDocStatus = (value: string) => {
         setFilter({
-            ...filter,
-            docStatus: translateDocStatusDropdownValue(value as DocumentStatusDropdownType),
+            type: 'CHANGE',
+            name: 'docStatus',
+            value: translateDocStatusDropdownValue(value as DocumentStatusDropdownType),
         });
     };
     const { data: studentList } = useQuery(
