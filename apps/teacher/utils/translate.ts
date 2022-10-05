@@ -78,7 +78,7 @@ export const translateObjectToString = (dateObject: DateObject) => {
     }-${dateObject.date < 10 ? '0' + dateObject.date.toString() : dateObject.date}T00:00:00.000`;
 };
 export const translateStringToObject = (localDateTime: string): DateObject => {
-    const isLocalDateTime = /\d{4}-(0\d|1[1-2])-(0\d|[1-2]\d|3[0-1])T(2[0-3]|[0-1]\d):[0-5]\d/;
+    const isLocalDateTime = /\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])T(2[0-3]|[01]\d):[0-5]\d/;
     if (!isLocalDateTime.test(localDateTime))
         return {
             year: 0,
