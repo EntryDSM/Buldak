@@ -64,7 +64,7 @@ function Pages({ zoom = 100 }: PagesProps) {
     useEffect(() => {
         debounce(() => {
             localPatch.mutate();
-        }, 3000);
+        }, 5000);
     }, [elementList]);
     const { data: Localdata } = useQuery(['queryDocument'], () => documentLocalQuery(documentId));
     const { data: Staydata } = useQuery(['stayDocument'], () => documentStayQuery(documentId));
