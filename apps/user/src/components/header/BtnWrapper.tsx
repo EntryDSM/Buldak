@@ -13,6 +13,16 @@ import {
     documentStayCancel,
 } from '../../utils/api/userDocument';
 import { toastHandler } from '../../utils/toast';
+import { AxiosResponse } from 'axios';
+
+interface ErrorType {
+    code: string;
+    config: any;
+    message: string;
+    name: string;
+    request: any;
+    response: AxiosResponse;
+}
 
 function BtnWrapper({ id }: { id: string }) {
     const [elementList, setElementList] = useRecoilState(ElementListState);
@@ -34,34 +44,73 @@ function BtnWrapper({ id }: { id: string }) {
 
     const localDeleteMutate = useMutation(['localDelete'], () => documentLocalDelete(id));
 
-    const localPatch = useMutation(['localPatch'], () => {
-        return documentLocalPatch(
-            id,
-            defpreview,
-            JSON.stringify(
-                elementList.map((element) => {
-                    return {
-                        id: element.id,
-                        args: element.preview(element.args),
-                    };
-                }),
-            ),
-        );
-    });
+    const localPatch = useMutation(
+        ['localPatch'],
+        () => {
+            return documentLocalPatch(
+                id,
+                defpreview,
+                JSON.stringify(
+                    elementList.map((element) => {
+                        return {
+                            id: element.id,
+                            args: element.preview(element.args),
+                        };
+                    }),
+                ),
+            );
+        },
+        {
+            onSuccess: () => {
+                toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
+            },
+            onError: (error: ErrorType) => {
+                console.log(error);
+                if (error.message === 'Network Error') {
+                    toastHandler('ERROR', '인터넷 상태를 확인해 주세요.');
+                } else if (error?.response.status === 401) {
+                    toastHandler('ERROR', '다시 로그인 해주세요.');
+                } else if (error.response.status === 403) {
+                    toastHandler('ERROR', '권한이 없습니다.');
+                } else {
+                    toastHandler('ERROR');
+                }
+            },
+        },
+    );
 
-    const stayPatch = useMutation(['stayPatch'], () => {
-        return documentStayPatch(
-            defpreview,
-            JSON.stringify(
-                elementList.map((element) => {
-                    return {
-                        id: element.id,
-                        args: element.preview(element.args),
-                    };
-                }),
-            ),
-        );
-    });
+    const stayPatch = useMutation(
+        ['stayPatch'],
+        () => {
+            return documentStayPatch(
+                defpreview,
+                JSON.stringify(
+                    elementList.map((element) => {
+                        return {
+                            id: element.id,
+                            args: element.preview(element.args),
+                        };
+                    }),
+                ),
+            );
+        },
+        {
+            onSuccess: () => {
+                toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
+            },
+            onError: (error: ErrorType) => {
+                if (error.message === 'Network Error') {
+                    toastHandler('ERROR', '인터넷 상태를 확인해 주세요.');
+                } else if (error?.response.status === 401) {
+                    toastHandler('ERROR', '다시 로그인 해주세요.');
+                } else if (error.response.status === 403) {
+                    toastHandler('ERROR', '권한이 없습니다.');
+                } else {
+                    toastHandler('ERROR');
+                }
+            },
+        },
+    );
 
     const stayCancel = useMutation(['stayCancel'], () => documentStayCancel(id));
 
@@ -86,7 +135,6 @@ function BtnWrapper({ id }: { id: string }) {
         } else {
             localPatch.mutate();
         }
-        toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
     };
     const PubDoc = async () => {
         PublicReq.mutate();
@@ -100,7 +148,6 @@ function BtnWrapper({ id }: { id: string }) {
             router.push('/');
         }
     }, [PublicReq.error, PublicReq.data]);
-
     return (
         <_BtnWrapper>
             {router.query.stay && (
