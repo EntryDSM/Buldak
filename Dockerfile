@@ -17,4 +17,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/./ ./
 
 USER nextjs
 
-CMD yarn start
+CMD next start
