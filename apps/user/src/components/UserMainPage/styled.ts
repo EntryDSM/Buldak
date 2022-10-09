@@ -51,7 +51,8 @@ export const UserClass = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 166px;
+    min-width: 166px;
+    padding: 8px 20px 7px 20px;
     height: 36px;
     background: #ffffff;
     border: 1px solid #5387ec;
