@@ -3,9 +3,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install
+RUN yarn
 
-RUN yarn build
+# RUN yarn build
+RUN yarn build --filter=[HEAD^1]
 
 FROM node:16-alpine AS runner
 WORKDIR /app
@@ -17,4 +18,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/./ ./
 
 USER nextjs
 
-CMD yarn dev
+CMD yarn start
