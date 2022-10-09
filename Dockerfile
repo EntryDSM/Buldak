@@ -5,8 +5,7 @@ COPY . .
 
 RUN yarn
 
-# RUN yarn build
-RUN yarn build --filter=[HEAD^1]
+RUN yarn build
 
 FROM node:16-alpine AS runner
 WORKDIR /app
