@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Yarn install cache
+      - name: Yarn Install Cache
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Yarn Install
