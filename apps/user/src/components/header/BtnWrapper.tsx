@@ -65,7 +65,6 @@ function BtnWrapper({ id }: { id: string }) {
                 toastHandler('SUCCESS', '성공적으로 임시저장하였습니다.');
             },
             onError: (error: ErrorType) => {
-                console.log(error);
                 if (error.message === 'Network Error') {
                     toastHandler('ERROR', '인터넷 상태를 확인해 주세요.');
                 } else if (error?.response.status === 401) {

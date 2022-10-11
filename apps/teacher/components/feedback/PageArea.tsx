@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 function PageArea({ id }: PageProps) {
-    const router = useRouter().query.stay;
+    const router = useRouter();
     const { data: Staydata } = useQuery([`getStayDocument${id || ''}`, id], () =>
         getStayDocument(id),
     );
@@ -21,23 +21,21 @@ function PageArea({ id }: PageProps) {
     const [document, setDocument] = useState<any[]>([]);
     const [feed, setFeed] = useState<any>([]);
     useEffect(() => {
-        if (!router && Publicdata) {
+        if (!router.query.stay && Publicdata) {
             setDocument(JSON.parse(Publicdata.content));
         } else if (Staydata) {
+            // 나중에서 수정해주세요. 아무래도 이건 좀 아닌거 같아~
+            router.push(`/feedback/${id}?stay=true&documentId=${Staydata.document_id}`);
             setDocument(JSON.parse(Staydata.content));
             setFeed(Staydata.feedback_list);
         }
-        console.log(document);
     }, [Staydata, Publicdata, id]);
-    useEffect(() => {
-        console.log('document', document);
-    }, [document]);
     return (
         <_Background>
             <_PageWrapper>
                 {document && (
                     <div>
-                        {router
+                        {router.query.stay
                             ? document
                                   .map((value) => JsxIntoArr(value))
                                   .map((value, index) =>
@@ -49,7 +47,7 @@ function PageArea({ id }: PageProps) {
                                               )[0]?.comment,
                                               isRead: feed.filter(
                                                   (value: any) => value.sequence == index + 1,
-                                              )[0]?.isApply,
+                                              )[0]?.apply,
                                               sequence: index + 1,
                                           },
                                           isTeacher: true,

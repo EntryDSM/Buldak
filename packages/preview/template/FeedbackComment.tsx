@@ -3,7 +3,8 @@ import { ChangeEvent, FormEvent, useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { feedbackArrow, Icon_NewFeed, Icon_ReadFeed } from '../assets';
-import { instance } from '../api/instance';
+import { addFeedback, deleteFeedback } from '@apps/teacher/api/teachers';
+import { toastHandler } from '@apps/teacher/utils/toast';
 
 interface FeedProps {
     isRead?: boolean;
@@ -13,17 +14,6 @@ interface FeedProps {
 }
 
 const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: FeedProps) => {
-    interface AddFeedbackRequest {
-        sequence: number;
-        comment: string;
-    }
-    const addFeedback = async (student_id: string, body: AddFeedbackRequest) => {
-        try {
-            await instance.post(`/teachers/feedback/${student_id}`, body);
-        } catch (err) {
-            throw err;
-        }
-    };
     const [isApplyFeed, setIsApply] = useState(isRead);
     const [feedOpen, setFeedOpen] = useState(false);
     const [feedbackContent, setFeedbackContent] = useState(feedInfo);
@@ -53,19 +43,36 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
             }
         }
     };
+    const onClickDeleteFeedback = () => {
+        deleteFeedback({
+            document_id: router.query.documentId as string,
+            sequence,
+        })
+            .then(() => {
+                router.reload();
+            })
+            .catch((err) => {
+                if (err.response.status === 404)
+                    toastHandler('ERROR', '해당 피드백을 찾을 수 없습니다.');
+                else toastHandler('ERROR');
+            });
+    };
     return (
         <>
             {feedOpen ? (
                 <_Wrapper>
                     <_Triangle />
                     <Image src={feedbackArrow} alt="화살표" />
-                    <_FeedbackBox
-                        onChange={onChangeFeedbackContent}
-                        ref={feedbackInput}
-                        value={feedbackContent}
-                        placeholder="피드백을 남겨주세요"
-                        onKeyDown={onComplete}
-                    />
+                    <_Flex>
+                        <_FeedbackBox
+                            onChange={onChangeFeedbackContent}
+                            ref={feedbackInput}
+                            value={feedbackContent}
+                            placeholder="피드백을 남겨주세요"
+                            onKeyDown={onComplete}
+                        />
+                        <_DeleteButton onClick={onClickDeleteFeedback}>삭제</_DeleteButton>
+                    </_Flex>
                 </_Wrapper>
             ) : (
                 <></>
@@ -90,7 +97,7 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
 };
 export default FeedbackComment;
 
-const _Wrapper = styled.form`
+const _Wrapper = styled.div`
     position: absolute;
     width: 400px;
     padding: 15px 30px 15px 5px;
@@ -100,7 +107,7 @@ const _Wrapper = styled.form`
     border-radius: 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transform: translate(-50%, -50%);
-    height: 120px;
+    min-height: 120px;
     right: -645px;
     zoom: 100%;
     top: 50%;
@@ -115,6 +122,12 @@ const _Triangle = styled.div`
     border-radius: 1px;
     transform: rotate(-90deg);
     left: -20px;
+`;
+const _Flex = styled.div`
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 `;
 const _FeedbackBox = styled.textarea`
     resize: none;
@@ -140,4 +153,17 @@ const _FeedWrapper = styled.div`
     position: absolute;
     right: -44px;
     top: calc(50% - 11px);
+`;
+const _DeleteButton = styled.button`
+    padding: 4px 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+    color: ${({ theme }) => theme.color.error};
+    border: 1px solid ${({ theme }) => theme.color.error};
+    background-color: ${({ theme }) => theme.color.white};
+
+    :hover {
+        background-color: ${({ theme }) => theme.color.error};
+        color: ${({ theme }) => theme.color.white};
+    }
 `;
