@@ -5,6 +5,7 @@ export interface GetPublicDocumentResponse {
 }
 export interface GetStayDocumentResponse {
     feedback_list: AddFeedbackRequest[];
+    document_id : string;
     content: string;
 }
 export interface DocumentPreivew {

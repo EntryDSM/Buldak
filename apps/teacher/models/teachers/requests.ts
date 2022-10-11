@@ -23,3 +23,8 @@ export type ClassNumValue = '1' | '2' | '3' | '4' | null;
 // PROTECTED는 url로만 접근 가능
 // PUBLIC은 공개 문서
 export type DocumentStatusValue = 'LOCAL' | 'STAY' | 'PROTECTED' | 'PUBLIC' | null;
+
+export interface DeleteFeedbackRequest {
+    document_id: string;
+    sequence: number;
+}
