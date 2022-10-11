@@ -99,20 +99,3 @@ export const createCompany = async (body: CreateCompanyRequest): Promise<CreateC
         throw err;
     }
 };
-
-export const addFeedback = async (student_id: string, body: AddFeedbackRequest) => {
-    try {
-        await instance.post(`/teachers/feedback/${student_id}`, body);
-    } catch (err) {
-        throw err;
-    }
-};
-export const deleteFeedback = async (body: DeleteFeedbackRequest) => {
-    try {
-        await instance.delete(`/teachers/feedback`, {
-            data: body,
-        });
-    } catch (err) {
-        throw err;
-    }
-};

@@ -3,14 +3,23 @@ import { ChangeEvent, FormEvent, useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { feedbackArrow, Icon_NewFeed, Icon_ReadFeed } from '../assets';
-import { addFeedback, deleteFeedback } from '@apps/teacher/api/teachers';
-import { toastHandler } from '@apps/teacher/utils/toast';
+import { instance } from '../api/instance';
 
 interface FeedProps {
     isRead?: boolean;
     feedInfo?: string;
     isSelected: boolean;
     sequence?: number;
+}
+
+interface AddFeedbackRequest {
+    sequence: number;
+    comment: string;
+}
+
+export interface DeleteFeedbackRequest {
+    document_id: string;
+    sequence: number;
 }
 
 const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: FeedProps) => {
@@ -28,6 +37,22 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
     const { id } = router.query;
     const onChangeFeedbackContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setFeedbackContent(e.target.value);
+    };
+    const addFeedback = async (student_id: string, body: AddFeedbackRequest) => {
+        try {
+            await instance.post(`/teachers/feedback/${student_id}`, body);
+        } catch (err) {
+            throw err;
+        }
+    };
+    const deleteFeedback = async (body: DeleteFeedbackRequest) => {
+        try {
+            await instance.delete(`/teachers/feedback`, {
+                data: body,
+            });
+        } catch (err) {
+            throw err;
+        }
     };
     const onComplete = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key == 'Enter') {
@@ -52,9 +77,8 @@ const FeedbackComment = ({ isRead, feedInfo = '', isSelected, sequence = 0 }: Fe
                 router.reload();
             })
             .catch((err) => {
-                if (err.response.status === 404)
-                    toastHandler('ERROR', '해당 피드백을 찾을 수 없습니다.');
-                else toastHandler('ERROR');
+                if (err.response.status === 404) alert('ERROR', '해당 피드백을 찾을 수 없습니다.');
+                else alert('ERROR');
             });
     };
     return (
