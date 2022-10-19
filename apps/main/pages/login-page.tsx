@@ -68,8 +68,7 @@ const LoginPage = () => {
             })
             .catch(() => {
                 setLoginState({
-                    email: '',
-                    password: '',
+                   ...loginState,
                     user_type: localStorage.getItem('LoginType') as userType,
                 });
                 window.alert('로그인에 실패하였습니다');
