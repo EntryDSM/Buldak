@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import theme from '@packages/emotion-style-provider/src/theme';
-import { Tag } from '@packages/ui';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 interface Props {
@@ -11,25 +11,32 @@ interface Props {
     num: string | number;
     major: string;
     EOL: boolean;
+    public_document_id: string;
 }
 
 function StudentBox(props: Props) {
-    const { profile_img, prev_img, tags, name, num, major, EOL = false } = props;
+    const {
+        profile_img,
+        prev_img,
+        tags,
+        name,
+        num,
+        major,
+        EOL = false,
+        public_document_id,
+    } = props;
+    const router = useRouter();
     return (
-        <Wrapper EOL={EOL}>
-            <ImgBlock style={{ backgroundImage: `url(${profile_img})` }} />
+        <Wrapper EOL={EOL} onClick={() => router.push('/view/' + public_document_id)}>
+            <ImgBlock style={{ backgroundImage: `url(${prev_img})` }} />
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
-                    {tags
-                        ? tags.map((value, index) => (
-                              <Tag tagName={value} color="bdblue" key={index} />
-                          ))
-                        : ''}
+                    {tags ? tags.map((value, index) => <Tag tagName={value} key={index} />) : ''}
                 </TagsWrapper>
             </Body>
             <Footer>
-                <PrevImg style={{ backgroundImage: `url(${prev_img})` }} />
+                <PrevImg style={{ backgroundImage: `url(${profile_img})` }} />
                 <div id="wrapper-name">
                     <p id="name">{name}</p>
                     <p id="num">{num}</p>
@@ -39,7 +46,29 @@ function StudentBox(props: Props) {
     );
 }
 
+interface TagProps {
+    tagName: string;
+}
+
+const Tag = ({ tagName }: TagProps) => {
+    return (
+        <TagWrapper>
+            <p>{tagName}</p>
+        </TagWrapper>
+    );
+};
+
 export default StudentBox;
+
+const TagWrapper = styled.div`
+    border: 1px solid ${({ theme }) => theme.color.main};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 50px;
+    color: ${({ theme }) => theme.color.main};
+`;
 
 const Wrapper = styled.div<{ EOL: boolean }>`
     width: 320px;
@@ -72,13 +101,17 @@ const PrevImg = styled.div`
     margin-right: 10px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: center;
     background-color: ${({ theme }) => theme.color.gray500};
 `;
 
 const Body = styled.div`
     padding: 10px 15px 10px 15px;
     height: 130px;
+    overflow: scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
     #major {
         color: ${({ theme }) => theme.color.navy};
         font-size: 20px;

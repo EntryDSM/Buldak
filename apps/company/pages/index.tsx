@@ -9,20 +9,16 @@ import { EachStudentType, StudentsListResponseType } from '../types';
 import Loading from '../components/loading/Loading';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../api/blocks';
+import { useRouter } from 'next/router';
 
 interface Props {}
 
 function StudentList({}: Props) {
-    const { data, isLoading, error } = useQuery(
-        ['blockslist'],
-        async () => {
-            const data = await readAllBlocks();
-            return data.student_list;
-        },
-        {
-            retry: 0,
-        },
-    );
+    const router = useRouter();
+    const { data, isLoading, error } = useQuery(['blockslist'], async () => {
+        const data = await readAllBlocks();
+        return data.student_list;
+    });
     const [onOff, setOnOff] = useState<boolean>(false);
     const [list, setList] = useState<EachStudentType[] | null>(null);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -114,17 +110,30 @@ function StudentList({}: Props) {
                                     }}
                                 />
                             </div>
-                            <Button
-                                width={42}
-                                height={42}
-                                image={Gear}
-                                hoverImage={HoverGear}
-                                borderColor={theme.color.skyblue}
-                                borderWidth={2}
-                                onClick={() => {
-                                    setOnOff(true);
-                                }}
-                            />
+                            <div id="right">
+                                <Button
+                                    height={42}
+                                    width={120}
+                                    content={'전체보기'}
+                                    borderColor={theme.color.skyblue}
+                                    borderWidth={2}
+                                    fontColor={theme.color.skyblue}
+                                    onClick={() => {
+                                        router.push('/view/total');
+                                    }}
+                                />
+                                <Button
+                                    width={42}
+                                    height={42}
+                                    image={Gear}
+                                    hoverImage={HoverGear}
+                                    borderColor={theme.color.skyblue}
+                                    borderWidth={2}
+                                    onClick={() => {
+                                        setOnOff(true);
+                                    }}
+                                />
+                            </div>
                         </div>
                     </Header>
                     <BoxesWrapper>
@@ -140,6 +149,7 @@ function StudentList({}: Props) {
                                         key={index}
                                         prev_img={value.preview_image_path}
                                         profile_img={value.profile_image_path}
+                                        public_document_id={value.public_document_id}
                                     />
                                 </>
                             ))
@@ -195,12 +205,18 @@ const Header = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        > div {
+        > div:not(#right) {
             //input,dropdown wrapper
             display: flex;
             flex-direction: row;
             width: 780px;
             align-items: center;
+            justify-content: space-between;
+        }
+        > #right {
+            display: flex;
+            flex-direction: row;
+            width: 180px;
             justify-content: space-between;
         }
     }
