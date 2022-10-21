@@ -81,11 +81,13 @@ function Pages({ zoom = 100 }: PagesProps) {
             const feedbacklist = Staydata.data.feedback_list;
             let Content = JSON.parse(Staydata.data.content);
             feedbacklist.map((value: any) => {
-                Content[value.sequence - 1].args.feedback = {
-                    sequence: value.sequence,
-                    feedInfo: value.comment,
-                    isRead: value.apply,
-                };
+                if (Content[value.sequence - 1]) {
+                    Content[value.sequence - 1].args.feedback = {
+                        sequence: value.sequence,
+                        feedInfo: value.comment,
+                        isRead: value.apply,
+                    };
+                }
             });
             setElementList(Content.map((content: any) => JsxIntoArr(content)));
         } else if (router.query.public && Publicdata) {
