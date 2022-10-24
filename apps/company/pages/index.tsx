@@ -149,7 +149,7 @@ function StudentList({}: Props) {
                                         key={index}
                                         prev_img={value.preview_image_path}
                                         profile_img={value.profile_image_path}
-                                        public_document_id={value.public_document_id}
+                                        public_document_id={value.student_id}
                                     />
                                 </>
                             ))
