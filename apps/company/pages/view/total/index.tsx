@@ -37,7 +37,6 @@ function TotalView() {
     );
     useEffect(() => {
         if (data) {
-            console.log(data);
             let temp: ArrType = ['표지', '학생목록'] as any[];
             for (let i = 0; i < 4; i++) {
                 temp.push('학년설명');
@@ -45,7 +44,6 @@ function TotalView() {
                     const number = j + 1 + '';
                     const tempgcn = '2' + (i + 1) + '' + number.padStart(2, '0');
                     const [student] = data.filter((value) => value.gcn == tempgcn);
-                    console.log(tempgcn, student);
                     temp.push(
                         student
                             ? {
@@ -61,7 +59,6 @@ function TotalView() {
         }
     }, [data]);
     useEffect(() => {
-        console.log('refetched');
         refetch();
     }, [curPage]);
 
@@ -195,8 +192,9 @@ function TotalView() {
                         <div id="template">
                             {typeof EditedArr[curPage] == 'string'
                                 ? getOtherPage()
-                                : documentData && (
+                                : documentData ? (
                                       <Templates>
+                                        <div id='blocker' />
                                           {JSON.parse(documentData.content)
                                               .map((value) => JsxIntoArr(value))
                                               .map((value) =>
@@ -206,7 +204,7 @@ function TotalView() {
                                                   }),
                                               )}
                                       </Templates>
-                                  )}
+                                  ):<h1>Loading...</h1>}
                         </div>
                         {curPage < EditedArr.length ? (
                             <span
@@ -394,4 +392,13 @@ const Templates = styled.div`
     width: 530px;
     zoom: 160%;
     height: fit-content;
+    position:relative;
+    #blocker{
+        width:100%;
+        height:100%;
+        position:absolute;
+        z-index:100;
+    }
 `;
+
+
