@@ -69,14 +69,17 @@ function StudentList({}: Props) {
             <Background>
                 <Wrapper>
                     <Header>
-                        <h1>전체 학생 리스트</h1>
+                        <div id="title">
+                            <h1>전체 학생 리스트</h1>
+                            <h5>검색 아이콘을 클릭하면 검색이 시작됩니다.</h5>
+                        </div>
                         <div>
                             <div>
                                 <TextBox
                                     type="search"
                                     width={300}
                                     correct={true}
-                                    placeholder="검색어를 입력해주세요"
+                                    placeholder="이름을 입력해주세요"
                                     onChange={(event) => {
                                         if (event.currentTarget.value === undefined) {
                                         } else {
@@ -100,10 +103,20 @@ function StudentList({}: Props) {
                                     width={220}
                                     items={[
                                         '전체 분야',
-                                        '프론트엔드',
-                                        '백엔드',
-                                        '안드로이드',
+                                        'Frontend',
+                                        'Backend',
+                                        'Android',
                                         'iOS',
+                                        'Ai',
+                                        'Game',
+                                        'Design',
+                                        'Embedded',
+                                        'Security',
+                                        'DevOps',
+                                        'Developer',
+                                        'ProductManager',
+                                        'ProjectManager',
+                                        'Etc',
                                     ]}
                                     onChange={(value) => {
                                         SearchBuffer.major = value;
@@ -195,11 +208,20 @@ const Header = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    > h1 {
+    h1 {
         font-size: 25px;
         font-weight: bold;
+        margin-right: 20px;
     }
-    > div {
+    > #title {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        > h5 {
+            color: ${({ theme }) => theme.color.gray700};
+        }
+    }
+    > div:not(#title) {
         //button,div wrapper
         display: flex;
         flex-direction: row;
