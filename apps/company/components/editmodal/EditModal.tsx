@@ -66,7 +66,7 @@ function EditModal({ closeModal }: Props) {
                             />
                             <Inputs
                                 onChange={(e) => {
-                                    const regex = /^[0-9\b -]{0,11}$/;
+                                    const regex = /^[0-9\b]{0,11}$/;
                                     if (regex.test(e.target.value)) {
                                         setBuffer({ ...EditBuffer, phone_number: e.target.value });
                                         setPhone(e.target.value);

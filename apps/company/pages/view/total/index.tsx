@@ -7,6 +7,7 @@ import { readPublicDocument } from '../../../api/document';
 import { Right, Left } from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
+import { useRouter } from 'next/router';
 
 interface EachContent {
     document_id: string;
@@ -18,6 +19,7 @@ type ArrType = (EachContent | string)[] | [];
 function TotalView() {
     const [EditedArr, setArr] = useState<ArrType>([]);
     const [curPage, setPage] = useState(0);
+    const router = useRouter();
     const { data, isLoading, error } = useQuery(['blockslist'], async () => {
         const data = await readAllBlocks();
         return data.student_list;
@@ -82,7 +84,7 @@ function TotalView() {
         const classcolor = ['#a1b5dc', '#5387ec', '#3068d3', '#0a4595'];
         switch (true) {
             case !curPage: {
-                return <></>;
+                return <>표지</>;
             }
             case curPage == 1: {
                 return (
@@ -160,6 +162,9 @@ function TotalView() {
 
     return (
         <TotalWrapper>
+            <Back onClick={()=>router.push("/")}>
+                뒤로가기
+            </Back>
             <BookWrapper>
                 <div id="wrapper">
                     <div id="clipwrapper">
@@ -224,6 +229,12 @@ function TotalView() {
     );
 }
 export default TotalView;
+
+const Back = styled.h1`
+    position:fixed;
+    top:30px;
+    left:30px;
+`
 
 const StudentsWrapper = styled.div`
     width: 100%;
@@ -359,7 +370,6 @@ const BookWrapper = styled.div`
 const TemplateWrapper = styled.div`
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     position: relative;
 
     > #template {
