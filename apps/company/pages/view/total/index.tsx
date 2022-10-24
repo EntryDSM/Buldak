@@ -162,9 +162,7 @@ function TotalView() {
 
     return (
         <TotalWrapper>
-            <Back onClick={()=>router.push("/")}>
-                뒤로가기
-            </Back>
+            <Back onClick={() => router.push('/')}>뒤로가기</Back>
             <BookWrapper>
                 <div id="wrapper">
                     <div id="clipwrapper">
@@ -195,21 +193,23 @@ function TotalView() {
                             <></>
                         )}
                         <div id="template">
-                            {typeof EditedArr[curPage] == 'string'
-                                ? getOtherPage()
-                                : documentData ? (
-                                      <Templates>
-                                        <div id='blocker' />
-                                          {JSON.parse(documentData.content)
-                                              .map((value) => JsxIntoArr(value))
-                                              .map((value) =>
-                                                  ArrIntoJsx({
-                                                      ...value.args,
-                                                      isTeacher: false,
-                                                  }),
-                                              )}
-                                      </Templates>
-                                  ):<h1>Loading...</h1>}
+                            {typeof EditedArr[curPage] == 'string' ? (
+                                getOtherPage()
+                            ) : documentData ? (
+                                <Templates>
+                                    <div id="blocker" />
+                                    {JSON.parse(documentData.content)
+                                        .map((value) => JsxIntoArr(value))
+                                        .map((value) =>
+                                            ArrIntoJsx({
+                                                ...value.args,
+                                                isTeacher: false,
+                                            }),
+                                        )}
+                                </Templates>
+                            ) : (
+                                <h1>Loading...</h1>
+                            )}
                         </div>
                         {curPage < EditedArr.length ? (
                             <span
@@ -231,10 +231,10 @@ function TotalView() {
 export default TotalView;
 
 const Back = styled.h1`
-    position:fixed;
-    top:30px;
-    left:30px;
-`
+    position: fixed;
+    top: 30px;
+    left: 30px;
+`;
 
 const StudentsWrapper = styled.div`
     width: 100%;
@@ -307,6 +307,15 @@ const TotalWrapper = styled.div`
 
 const BookWrapper = styled.div`
     position: relative;
+    @media screen and (max-width: 1920px) {
+        zoom: 90%;
+    }
+    @media screen and (max-width: 1800px) {
+        zoom: 80%;
+    }
+    @media screen and (max-width: 1600px) {
+        zoom: 70%;
+    }
     > #wrapper {
         position: absolute;
         left: calc(100% - 650px);
@@ -402,13 +411,11 @@ const Templates = styled.div`
     width: 530px;
     zoom: 160%;
     height: fit-content;
-    position:relative;
-    #blocker{
-        width:100%;
-        height:100%;
-        position:absolute;
-        z-index:100;
+    position: relative;
+    #blocker {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 100;
     }
 `;
-
-
