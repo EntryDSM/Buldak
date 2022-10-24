@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
 import { readPublicDocument } from '../../../api/document';
-import { Right, Left } from '../../../assets';
+import { Right, Left, Banner } from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import { useRouter } from 'next/router';
@@ -84,7 +84,11 @@ function TotalView() {
         const classcolor = ['#a1b5dc', '#5387ec', '#3068d3', '#0a4595'];
         switch (true) {
             case !curPage: {
-                return <>표지</>;
+                return (
+                    <ImgWrapper>
+                        <Image src={Banner} />
+                    </ImgWrapper>
+                );
             }
             case curPage == 1: {
                 return (
@@ -229,6 +233,21 @@ function TotalView() {
     );
 }
 export default TotalView;
+
+const ImgWrapper = styled.span`
+    max-width: unset;
+    width: 100%;
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    > span {
+        max-width: unset !important;
+        width: calc(100% + 30px) !important;
+        img {
+            width: 100%;
+        }
+    }
+`;
 
 const Back = styled.h1`
     position: fixed;
