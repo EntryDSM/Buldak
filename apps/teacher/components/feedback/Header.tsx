@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Button } from '@packages/ui';
 import { theme } from '@packages/emotion-style-provider/src/theme';
-import { approveDocument, rejectDocument } from '../../api/documents';
+import { approveDocument, rejectDocument, sendBackDocument } from '../../api/documents';
 import { toastHandler } from '../../utils/toast';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ interface Props {
 const Header = ({ id }: Props) => {
     const router = useRouter();
     const onClickReject = () => {
-        rejectDocument(id)
+        sendBackDocument(id)
             .then(() => {
                 toastHandler('SUCCESS', '문서가 반환되었습니다.');
                 router.push('/');

@@ -1,3 +1,4 @@
+import ResponseCache from 'next/dist/server/response-cache';
 import {
     GetDocumentPreviewResponse,
     GetPublicDocumentResponse,
@@ -48,6 +49,15 @@ export const previewDocument = async (student_id: string): Promise<GetDocumentPr
     try {
         const repsonse = await instance.get(`documents/preview/${student_id}`);
         return repsonse.data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const sendBackDocument = async (student_id: string) => {
+    try {
+        const response = await instance.patch(`documents/return/${student_id}`);
+        return response.data;
     } catch (err) {
         throw err;
     }
