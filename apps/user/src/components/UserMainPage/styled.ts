@@ -124,9 +124,8 @@ export const ExamineBox = styled.div`
 
 export const TagLayout = styled.div`
     display: flex;
-    align-items: center;
     gap: 3vw;
-
+    margin-top: 20px;
     margin-bottom: 5vh;
 `;
 
@@ -216,14 +215,12 @@ export const Display = styled.div`
 export const TagBox = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100%;
-    align-items: flex-start;
     gap: 15px;
 `;
 
 export const TagAria = styled.div`
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 1vw;
 `;
 
