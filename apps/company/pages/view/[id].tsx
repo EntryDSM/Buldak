@@ -26,6 +26,10 @@ function TotalView() {
                             ArrIntoJsx({
                                 ...value.args,
                                 isTeacher: false,
+                                feedback: {
+                                    feedInfo: '',
+                                    isRead: false,
+                                },
                             }),
                         )}
             </Template>
