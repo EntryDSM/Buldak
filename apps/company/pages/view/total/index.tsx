@@ -61,7 +61,11 @@ function TotalView() {
         }
     }, [data]);
     useEffect(() => {
-        refetch();
+        const data = EditedArr[curPage] as EachContent;
+        if (data) {
+            console.log(data.document_id);
+            refetch();
+        }
     }, [curPage]);
 
     const getOtherPage = () => {
