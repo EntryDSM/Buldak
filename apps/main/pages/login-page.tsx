@@ -62,7 +62,7 @@ const LoginPage = () => {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = 'https://user.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
-                        window.location.href = 'https://compnay.dsm-repo.com';
+                        window.location.href = 'https://company.dsm-repo.com';
                     }
                 }
             })
