@@ -71,7 +71,6 @@ function StudentList({}: Props) {
                     <Header>
                         <div id="title">
                             <h1>전체 학생 리스트</h1>
-                            <h5>검색 아이콘을 클릭하면 검색이 시작됩니다.</h5>
                         </div>
                         <div>
                             <div>
@@ -85,6 +84,7 @@ function StudentList({}: Props) {
                                         } else {
                                             SearchBuffer.search = event.currentTarget.value;
                                         }
+                                        searchList();
                                     }}
                                     onClick={() => {
                                         searchList();
@@ -96,6 +96,7 @@ function StudentList({}: Props) {
                                     items={['전체 반', '1', '2', '3', '4']}
                                     onChange={(value) => {
                                         SearchBuffer.classnum = value;
+                                        searchList();
                                     }}
                                 />
                                 <DropDown
@@ -120,6 +121,7 @@ function StudentList({}: Props) {
                                     ]}
                                     onChange={(value) => {
                                         SearchBuffer.major = value;
+                                        searchList();
                                     }}
                                 />
                             </div>

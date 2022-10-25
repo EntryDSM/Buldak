@@ -243,11 +243,11 @@ function TotalView() {
                                 <h1>Loading...</h1>
                             )}
                         </div>
-                        {curPage < EditedArr.length-1 ? (
+                        {curPage < EditedArr.length - 1 ? (
                             <span
                                 id="right"
                                 onClick={() =>
-                                    setPage(curPage < EditedArr.length-1 ? curPage + 1 : curPage)
+                                    setPage(curPage < EditedArr.length - 1 ? curPage + 1 : curPage)
                                 }>
                                 <Image src={Right} />
                             </span>
@@ -281,6 +281,7 @@ const Back = styled.h1`
     position: fixed;
     top: 30px;
     left: 30px;
+    cursor: pointer;
 `;
 
 const StudentsWrapper = styled.div`
@@ -451,7 +452,7 @@ const TemplateWrapper = styled.div`
         cursor: pointer;
         left: 100px;
         top: 420px;
-        z-index:999;
+        z-index: 999;
     }
 `;
 

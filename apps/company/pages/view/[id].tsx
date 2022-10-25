@@ -17,6 +17,7 @@ function TotalView() {
     });
     return (
         <TotalWrapper>
+            <Back onClick={() => router.push('/')}>돌아가기</Back>
             <Template>
                 {documentData &&
                     JSON.parse(documentData.content)
@@ -37,12 +38,23 @@ const TotalWrapper = styled.div`
     min-width: calc(530 * 1.6px);
     width: 100%;
     height: fit-content;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${({ theme }) => theme.color.gray300};
 `;
 
 const Template = styled.div`
     width: 530px;
     zoom: 160%;
+    background-color: white;
+    margin: 50px;
+`;
+
+const Back = styled.h1`
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
 `;
