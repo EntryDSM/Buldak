@@ -59,8 +59,8 @@ export default function DefProfile({
                             {github}
                         </a>
                     </p>
-                    <p>연락처 : {phone}</p>
-                </div>
+{/*                     <p>연락처 : {phone}</p>
+ */}                </div>
             </Wrapper>
         </OutsideClickHandler>
     );

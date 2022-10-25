@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
 import { readPublicDocument } from '../../../api/document';
-import { Right, Left, Banner } from '../../../assets';
+import { Right, Left, Banner, Class1, Class2, Class3, Class4 } from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import { useRouter } from 'next/router';
@@ -126,12 +126,26 @@ function TotalView() {
                     </StudentsWrapper>
                 );
             }
+            case curPage == 2: {
+                return (
+                    <ImgWrapper>
+                        <Image src={Class1} />
+                    </ImgWrapper>
+                );
+            }
             case curPage > 2 && curPage <= 22: {
                 return (
                     <EmptyPage>
                         <h1>{'21' + (curPage - 2 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
+                );
+            }
+            case curPage == 23: {
+                return (
+                    <ImgWrapper>
+                        <Image src={Class2} />
+                    </ImgWrapper>
                 );
             }
             case curPage > 23 && curPage <= 43: {
@@ -142,12 +156,26 @@ function TotalView() {
                     </EmptyPage>
                 );
             }
+            case curPage == 44: {
+                return (
+                    <ImgWrapper>
+                        <Image src={Class3} />
+                    </ImgWrapper>
+                );
+            }
             case curPage > 44 && curPage <= 64: {
                 return (
                     <EmptyPage>
                         <h1>{'23' + (curPage - 44 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
+                );
+            }
+            case curPage == 65: {
+                return (
+                    <ImgWrapper>
+                        <Image src={Class4} />
+                    </ImgWrapper>
                 );
             }
             case curPage > 65 && curPage <= 85: {
@@ -215,11 +243,11 @@ function TotalView() {
                                 <h1>Loading...</h1>
                             )}
                         </div>
-                        {curPage < EditedArr.length ? (
+                        {curPage < EditedArr.length-1 ? (
                             <span
                                 id="right"
                                 onClick={() =>
-                                    setPage(curPage < EditedArr.length ? curPage + 1 : curPage)
+                                    setPage(curPage < EditedArr.length-1 ? curPage + 1 : curPage)
                                 }>
                                 <Image src={Right} />
                             </span>
@@ -423,6 +451,7 @@ const TemplateWrapper = styled.div`
         cursor: pointer;
         left: 100px;
         top: 420px;
+        z-index:999;
     }
 `;
 
