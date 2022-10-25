@@ -206,16 +206,16 @@ function TotalView() {
                         <div className="clip" id="clip1" onClick={() => setPage(1)}>
                             <p>목록</p>
                         </div>
-                        <div className="clip" id="clip2" onClick={() => setPage(2)}>
+                        <div className="clip" id="clip2" onClick={() => setPage(3)}>
                             <p>1반</p>
                         </div>
-                        <div className="clip" id="clip3" onClick={() => setPage(23)}>
+                        <div className="clip" id="clip3" onClick={() => setPage(24)}>
                             <p>2반</p>
                         </div>
-                        <div className="clip" id="clip4" onClick={() => setPage(44)}>
+                        <div className="clip" id="clip4" onClick={() => setPage(45)}>
                             <p>3반</p>
                         </div>
-                        <div className="clip" id="clip5" onClick={() => setPage(65)}>
+                        <div className="clip" id="clip5" onClick={() => setPage(66)}>
                             <p>4반</p>
                         </div>
                     </div>
