@@ -108,15 +108,8 @@ function StudentList({}: Props) {
                                         'Backend',
                                         'Android',
                                         'iOS',
-                                        'Ai',
                                         'Game',
-                                        'Design',
                                         'Embedded',
-                                        'Security',
-                                        'DevOps',
-                                        'Developer',
-                                        'ProductManager',
-                                        'ProjectManager',
                                         'Etc',
                                     ]}
                                     onChange={(value) => {

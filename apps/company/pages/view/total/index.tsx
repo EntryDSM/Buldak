@@ -39,7 +39,7 @@ function TotalView() {
     );
     useEffect(() => {
         if (data) {
-            let temp: ArrType = ['표지', '학생목록'] as any[];
+            let temp: ArrType = ['표지', '선생말씀', '학생목록'] as any[];
             for (let i = 0; i < 4; i++) {
                 temp.push('학년설명');
                 for (let j = 0; j < 20; j++) {
@@ -70,14 +70,14 @@ function TotalView() {
 
     const getOtherPage = () => {
         //1 : 학생설명
-        //2 : 1반소개
-        //3~22 : 1반
-        //23 : 2반소개
-        //24~43 : 2반
-        //44 : 3반소개
-        //45~64 : 3반
-        //65 : 4반소개
-        //66 ~ 85 : 4반
+        //3 : 1반소개
+        //4~23 : 1반
+        //24 : 2반소개
+        //25~44 : 2반
+        //45 : 3반소개
+        //46~65 : 3반
+        //66 : 4반소개
+        //67 ~ 86 : 4반
 
         const classname = [
             '소프트웨어개발과',
@@ -95,6 +95,8 @@ function TotalView() {
                 );
             }
             case curPage == 1: {
+            }
+            case curPage == 2: {
                 return (
                     <StudentsWrapper>
                         <h1>2022 전체 학생 목록</h1>
@@ -119,7 +121,7 @@ function TotalView() {
                                     {new Array(20).fill(0).map((val, idx) => (
                                         <h2
                                             className="classnum"
-                                            onClick={() => setPage(index * 20 + (index + 3) + idx)}>
+                                            onClick={() => setPage(index * 20 + (index + 4) + idx)}>
                                             {2 + '' + (index + 1) + (idx + 1 + '').padStart(2, '0')}
                                         </h2>
                                     ))}
@@ -130,68 +132,67 @@ function TotalView() {
                     </StudentsWrapper>
                 );
             }
-            case curPage == 2: {
+            case curPage == 3: {
                 return (
                     <ImgWrapper>
                         <Image src={Class1} />
                     </ImgWrapper>
                 );
             }
-            case curPage > 2 && curPage <= 22: {
+            case curPage > 3 && curPage <= 23: {
                 return (
                     <EmptyPage>
-                        <h1>{'21' + (curPage - 2 + '').padStart(2, '0')}</h1>
+                        <h1>{'21' + (curPage - 3 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
                 );
             }
-            case curPage == 23: {
+            case curPage == 24: {
                 return (
                     <ImgWrapper>
                         <Image src={Class2} />
                     </ImgWrapper>
                 );
             }
-            case curPage > 23 && curPage <= 43: {
+            case curPage > 24 && curPage <= 44: {
                 return (
                     <EmptyPage>
-                        <h1>{'22' + (curPage - 23 + '').padStart(2, '0')}</h1>
+                        <h1>{'22' + (curPage - 24 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
                 );
             }
-            case curPage == 44: {
+            case curPage == 45: {
                 return (
                     <ImgWrapper>
                         <Image src={Class3} />
                     </ImgWrapper>
                 );
             }
-            case curPage > 44 && curPage <= 64: {
+            case curPage > 45 && curPage <= 65: {
                 return (
                     <EmptyPage>
-                        <h1>{'23' + (curPage - 44 + '').padStart(2, '0')}</h1>
+                        <h1>{'23' + (curPage - 45 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
                 );
             }
-            case curPage == 65: {
+            case curPage == 66: {
                 return (
                     <ImgWrapper>
                         <Image src={Class4} />
                     </ImgWrapper>
                 );
             }
-            case curPage > 65 && curPage <= 85: {
+            case curPage > 66 && curPage <= 86: {
                 return (
                     <EmptyPage>
-                        <h1>{'24' + (curPage - 65 + '').padStart(2, '0')}</h1>
+                        <h1>{'24' + (curPage - 66 + '').padStart(2, '0')}</h1>
                         <h2>No Data</h2>
                     </EmptyPage>
                 );
             }
             default: {
-                return <>{(curPage % 10) - 1} 반</>;
             }
         }
     };
