@@ -51,6 +51,20 @@ function StudentList({}: Props) {
             const major = SearchBuffer.major == '전체 분야' ? '' : SearchBuffer.major;
             const classnum = SearchBuffer.classnum == '전체 반' ? '' : SearchBuffer.classnum;
             const searchedlist = data.filter((value) => {
+                if (major == 'Etc') {
+                    if (
+                        (value.name.includes(search) || !search) &&
+                        (value.gcn.slice(1, 2) == classnum || !classnum) &&
+                        value.major_tag != 'FrontEnd' &&
+                        value.major_tag != 'BackEnd' &&
+                        value.major_tag != 'Android' &&
+                        value.major_tag != 'Game' &&
+                        value.major_tag != 'iOS' &&
+                        value.major_tag != 'Embedded'
+                    ) {
+                        return value;
+                    }
+                }
                 if (
                     (value.name.includes(search) || !search) &&
                     (value.gcn.slice(1, 2) == classnum || !classnum) &&
@@ -104,8 +118,8 @@ function StudentList({}: Props) {
                                     width={220}
                                     items={[
                                         '전체 분야',
-                                        'Frontend',
-                                        'Backend',
+                                        'FrontEnd',
+                                        'BackEnd',
                                         'Android',
                                         'iOS',
                                         'Game',
