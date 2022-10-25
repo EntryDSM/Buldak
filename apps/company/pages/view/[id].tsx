@@ -34,8 +34,7 @@ function TotalView() {
 export default TotalView;
 
 const TotalWrapper = styled.div`
-    border: 1px solid black;
-    min-width: calc(5302 * 1.6px);
+    min-width: calc(530 * 1.6px);
     width: 100%;
     height: fit-content;
     display: flex;
