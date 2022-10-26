@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
 import { readPublicDocument } from '../../../api/document';
-import { Right, Left, Banner, Class1, Class2, Class3, Class4 } from '../../../assets';
+import { Right, Left, Banner, Class1, Class2, Class3, Class4, BackArrow } from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import { useRouter } from 'next/router';
@@ -199,7 +199,9 @@ function TotalView() {
 
     return (
         <TotalWrapper>
-            <Back onClick={() => router.push('/')}>뒤로가기</Back>
+            <Back onClick={() => router.push('/')}>
+                <Image src={BackArrow} />
+            </Back>
             <BookWrapper>
                 <div id="wrapper">
                     <div id="clipwrapper">
@@ -234,8 +236,9 @@ function TotalView() {
                                 getOtherPage()
                             ) : documentData ? (
                                 <Templates>
-{/*                                     <div id="blocker" />
- */}                                    {JSON.parse(documentData.content)
+                                    {/*                                     <div id="blocker" />
+                                     */}{' '}
+                                    {JSON.parse(documentData.content)
                                         .map((value) => JsxIntoArr(value))
                                         .map((value) =>
                                             ArrIntoJsx({
@@ -286,7 +289,7 @@ const ImgWrapper = styled.span`
     }
 `;
 
-const Back = styled.h1`
+const Back = styled.span`
     position: fixed;
     top: 30px;
     left: 30px;
