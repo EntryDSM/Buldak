@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { readPersonalDocument, readPublicDocument } from '../../api/document';
 
-function TotalView() {
+function PersonalView() {
     const router = useRouter();
     useEffect(() => {
         const documentId = window.location.pathname.slice(10);
@@ -45,7 +45,7 @@ function TotalView() {
         </TotalWrapper>
     );
 }
-export default TotalView;
+export default PersonalView;
 
 const TotalWrapper = styled.div`
     min-width: calc(530 * 1.6px);

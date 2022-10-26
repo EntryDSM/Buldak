@@ -6,6 +6,7 @@ import Document from '../components/UserMainPage/Document';
 import SideBar from '../components/UserMainPage/SideBar';
 import pdf from '../assets/svgs/pdf.svg';
 import copy from '../assets/svgs/copy.svg';
+import clipboard from '../assets/svgs/clipboard.svg';
 import messege from '../assets/svgs/messege.svg';
 import { NextPage } from 'next';
 import { localListResource, myInfomationResource } from '../utils/api/userResouce';
@@ -13,22 +14,31 @@ import { useResource } from '../hook/useResource';
 import usePreviewPublicStayDocument from '../hook/usePreviewPublicStayDocument';
 import { documentTypeCheck } from '../utils/function/documentTypeCheck';
 import { Tag } from '@packages/ui';
+import { useMutation } from 'react-query';
+import { copyPublicDocument } from '../utils/api/userDocument';
+import { toastHandler } from '../utils/toast';
 
 const UserMainPage: NextPage = () => {
     const [examine, setExamine] = useState<boolean>(true);
     const { data: myInformation } = useResource(myInfomationResource);
-    const { data: localList } = useResource(localListResource);
+    const { data: localList, refetch } = useResource(localListResource);
     const { data: previewPublicStayDocument } = usePreviewPublicStayDocument(
         myInformation?.student_id,
+    );
+    const { mutate: copyDocument } = useMutation(
+        ['copyDocument'],
+        () => {
+            return copyPublicDocument();
+        },
+        { onMutate: () => toastHandler('SUCCESS', '문서가 로컬에 복사되었습니다.') },
     );
 
     const handleCopyClipBoard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
-
-            alert('복사 성공!');
+            toastHandler('SUCCESS', '클립보드에 복사되었습니다.');
         } catch (error) {
-            alert('복사 실패!');
+            toastHandler('WARN');
         }
     };
 
@@ -99,15 +109,20 @@ const UserMainPage: NextPage = () => {
                                         documentId={myInformation?.student_id + '?public=true'}
                                     />
                                     <S.DocumentButtonBox>
-                                        <S.DocumentButton>
-                                            <Image src={pdf} />
-                                        </S.DocumentButton>
                                         <S.DocumentButton
                                             onClick={() => {
                                                 handleCopyClipBoard(
-                                                    'https://company.dsm-repo.com/dlrudtnzjavjsl/personal/' +
+                                                    'https://company.dsm-repo.com/personal/' +
                                                         btoa(myInformation?.student_id as string),
                                                 );
+                                            }}>
+                                            <Image src={clipboard} />
+                                        </S.DocumentButton>
+                                        <S.DocumentButton
+                                            onClick={() => {
+                                                copyDocument();
+                                                window.location.href = window.location.href;
+                                                toastHandler('SUCCESS');
                                             }}>
                                             <Image src={copy} />
                                         </S.DocumentButton>
