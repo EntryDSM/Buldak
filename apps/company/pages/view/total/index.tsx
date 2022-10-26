@@ -234,8 +234,8 @@ function TotalView() {
                                 getOtherPage()
                             ) : documentData ? (
                                 <Templates>
-                                    <div id="blocker" />
-                                    {JSON.parse(documentData.content)
+{/*                                     <div id="blocker" />
+ */}                                    {JSON.parse(documentData.content)
                                         .map((value) => JsxIntoArr(value))
                                         .map((value) =>
                                             ArrIntoJsx({
