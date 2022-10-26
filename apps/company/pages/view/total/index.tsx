@@ -199,7 +199,7 @@ function TotalView() {
 
     return (
         <TotalWrapper>
-            <Back onClick={() => router.push('/')}>
+            <Back onClick={() => router.push('/dlrudtnzjavjsl')}>
                 <Image src={BackArrow} />
             </Back>
             <BookWrapper>
