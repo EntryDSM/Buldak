@@ -84,7 +84,7 @@ function StudentList({}: Props) {
                 <Wrapper>
                     <Header>
                         <div id="title">
-                            <h1>전체 학생 리스트</h1>
+                            <h1>책갈피</h1>
                         </div>
                         <div>
                             <div>
@@ -133,6 +133,17 @@ function StudentList({}: Props) {
                                 />
                             </div>
                             <div id="right">
+                                {/* <Button
+                                    width={42}
+                                    height={42}
+                                    image={Gear}
+                                    hoverImage={HoverGear}
+                                    borderColor={theme.color.skyblue}
+                                    borderWidth={2}
+                                    onClick={() => {
+                                        setOnOff(true);
+                                    }}
+                                /> */}
                                 <Button
                                     height={42}
                                     width={120}
@@ -142,17 +153,6 @@ function StudentList({}: Props) {
                                     fontColor={theme.color.skyblue}
                                     onClick={() => {
                                         router.push('/view/total');
-                                    }}
-                                />
-                                <Button
-                                    width={42}
-                                    height={42}
-                                    image={Gear}
-                                    hoverImage={HoverGear}
-                                    borderColor={theme.color.skyblue}
-                                    borderWidth={2}
-                                    onClick={() => {
-                                        setOnOff(true);
                                     }}
                                 />
                             </div>
@@ -242,12 +242,6 @@ const Header = styled.div`
             flex-direction: row;
             width: 780px;
             align-items: center;
-            justify-content: space-between;
-        }
-        > #right {
-            display: flex;
-            flex-direction: row;
-            width: 180px;
             justify-content: space-between;
         }
     }
