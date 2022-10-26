@@ -6,3 +6,4 @@ export { default as Class2 } from './class2.svg';
 export { default as Class3 } from './class3.svg';
 export { default as Class4 } from './class4.svg';
 export { default as BackArrow } from './goback.svg';
+export { default as TeacherSays } from './teachersays.svg';

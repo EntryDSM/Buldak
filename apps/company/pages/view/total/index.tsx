@@ -4,7 +4,17 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
 import { readPublicDocument } from '../../../api/document';
-import { Right, Left, Banner, Class1, Class2, Class3, Class4, BackArrow } from '../../../assets';
+import {
+    Right,
+    Left,
+    Banner,
+    Class1,
+    Class2,
+    Class3,
+    Class4,
+    BackArrow,
+    TeacherSays,
+} from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import { useRouter } from 'next/router';
@@ -95,6 +105,11 @@ function TotalView() {
                 );
             }
             case curPage == 1: {
+                return (
+                    <ImgWrapper>
+                        <Image src={TeacherSays} />
+                    </ImgWrapper>
+                );
             }
             case curPage == 2: {
                 return (

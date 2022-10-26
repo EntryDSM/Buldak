@@ -22,6 +22,16 @@ const UserMainPage: NextPage = () => {
         myInformation?.student_id,
     );
 
+    const handleCopyClipBoard = async (text: string) => {
+        try {
+            await navigator.clipboard.writeText(text);
+
+            alert('복사 성공!');
+        } catch (error) {
+            alert('복사 실패!');
+        }
+    };
+
     return (
         <S.UserMainContainer>
             <SideBar />
@@ -92,7 +102,13 @@ const UserMainPage: NextPage = () => {
                                         <S.DocumentButton>
                                             <Image src={pdf} />
                                         </S.DocumentButton>
-                                        <S.DocumentButton>
+                                        <S.DocumentButton
+                                            onClick={() => {
+                                                handleCopyClipBoard(
+                                                    'https://company.dsm-repo.com/dlrudtnzjavjsl/personal/' +
+                                                        btoa(myInformation?.student_id as string),
+                                                );
+                                            }}>
                                             <Image src={copy} />
                                         </S.DocumentButton>
                                     </S.DocumentButtonBox>
