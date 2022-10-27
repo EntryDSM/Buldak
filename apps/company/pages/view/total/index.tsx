@@ -220,7 +220,7 @@ function TotalView() {
             <BookWrapper>
                 <div id="wrapper">
                     <div id="clipwrapper">
-                        <div className="clip" id="clip1" onClick={() => setPage(1)}>
+                        <div className="clip" id="clip1" onClick={() => setPage(2)}>
                             <p>목록</p>
                         </div>
                         <div className="clip" id="clip2" onClick={() => setPage(3)}>
