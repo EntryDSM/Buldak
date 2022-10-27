@@ -11,5 +11,4 @@ interface mapType {
 export const selectData: mapType[] = [
     { loginType: '학생', text: 'DSM 학생이시라면 \n학생 로그인을 이용해 주세요', img: studentSVG },
     { loginType: '선생님', text: '선생님이시라면\n선생님 로그인을 이용해 주세요', img: teacherSVG },
-    { loginType: '기업', text: '기업이시라면\n기업 로그인을 이용해 주세요', img: companySVG },
 ];
