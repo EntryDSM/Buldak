@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
-import { readPublicDocument } from '../../../api/document';
+import { readPersonalDocument } from '../../../api/document';
 import {
     Right,
     Left,
@@ -41,7 +41,7 @@ function TotalView() {
                 return null;
             }
             const data = EditedArr[curPage] as EachContent;
-            return await readPublicDocument(data.document_id);
+            return await readPersonalDocument(data.document_id);
         },
         {
             enabled: EditedArr.length > 0,
