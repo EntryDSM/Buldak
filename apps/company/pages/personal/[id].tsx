@@ -1,27 +1,32 @@
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import styled from '@emotion/styled';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { readPublicDocument } from '../../api/document';
-import { BackArrow } from '../../assets';
+import { readPersonalDocument, readPublicDocument } from '../../api/document';
 
-function TotalView() {
+function PersonalView() {
     const router = useRouter();
     useEffect(() => {
-        const documentId = window.location.pathname.slice(6);
+        const documentId = window.location.pathname.slice(10);
         console.log(documentId);
     }, []);
-    const { data: documentData, refetch } = useQuery(['getPublicDocument'], async () => {
-        return await readPublicDocument(window.location.pathname.slice(6));
-    });
+    const { data: documentData } = useQuery(
+        ['getPersonalDocument'],
+        async () => {
+            return await readPersonalDocument(atob(window.location.pathname.slice(10)));
+        },
+        {
+            onError: () => {
+                console.log('error');
+                router.push('/');
+            },
+        },
+    );
+
     return (
-        <TotalWrapper>
-            <Back onClick={() => router.push('/dlrudtnzjavjsl')}>
-                <Image src={BackArrow} />
-            </Back>{' '}
+        <TotalWrapper onClick={() => console.log()}>
             <Template>
                 {documentData &&
                     JSON.parse(documentData.content)
@@ -40,7 +45,7 @@ function TotalView() {
         </TotalWrapper>
     );
 }
-export default TotalView;
+export default PersonalView;
 
 const TotalWrapper = styled.div`
     min-width: calc(530 * 1.6px);
@@ -60,9 +65,9 @@ const Template = styled.div`
     margin: 50px;
 `;
 
-const Back = styled.span`
+const Back = styled.h1`
     cursor: pointer;
     position: fixed;
-    top: 30px;
-    left: 30px;
+    top: 10px;
+    left: 10px;
 `;

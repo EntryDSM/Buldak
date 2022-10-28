@@ -30,7 +30,7 @@ const LoginPage = () => {
     };
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault();
     };
 
     const postLogin = () => {
@@ -62,13 +62,13 @@ const LoginPage = () => {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = 'https://user.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
-                        window.location.href = 'https://company.dsm-repo.com';
+                        window.location.href = 'https://company.dsm-repo.com/dlrudtnzjavjsl';
                     }
                 }
             })
             .catch(() => {
                 setLoginState({
-                   ...loginState,
+                    ...loginState,
                     user_type: localStorage.getItem('LoginType') as userType,
                 });
                 window.alert('로그인에 실패하였습니다');

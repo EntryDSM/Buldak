@@ -28,19 +28,22 @@ function StudentBox(props: Props) {
     const router = useRouter();
     return (
         <Wrapper EOL={EOL} onClick={() => router.push('/view/' + public_document_id)}>
-            <ImgBlock style={{ backgroundImage: `url(${prev_img})` }} />
+            {/* <ImgBlock style={{ backgroundImage: `url(${prev_img})` }} />
             <Body>
                 <strong id="major">{major}</strong>
                 <TagsWrapper>
                     {tags ? tags.map((value, index) => <Tag tagName={value} key={index} />) : ''}
                 </TagsWrapper>
-            </Body>
+            </Body> */}
             <Footer>
-                <PrevImg style={{ backgroundImage: `url(${profile_img})` }} />
-                <div id="wrapper-name">
-                    <p id="name">{name}</p>
-                    <p id="num">{num}</p>
+                <div id="left">
+                    <PrevImg style={{ backgroundImage: `url(${profile_img})` }} />
+                    <div id="wrapper-name">
+                        <p id="name">{name}</p>
+                        <p id="num">{num}</p>
+                    </div>
                 </div>
+                <h1 id="major">{major}</h1>
             </Footer>
         </Wrapper>
     );
@@ -72,7 +75,7 @@ const TagWrapper = styled.div`
 
 const Wrapper = styled.div<{ EOL: boolean }>`
     width: 320px;
-    height: 340px;
+    height: 50px;
     background-color: ${({ theme }) => theme.color.white};
     display: flex;
     flex-direction: column;
@@ -81,6 +84,13 @@ const Wrapper = styled.div<{ EOL: boolean }>`
     justify-content: space-between;
     margin-bottom: 30px;
     margin-right: ${({ EOL }) => (EOL ? '0px' : '30px')};
+    cursor: pointer;
+    > #major {
+        color: ${({ theme }) => theme.color.navy};
+        font-size: 20px;
+        margin: 10px;
+        margin-top: 0px;
+    }
 `;
 
 const ImgBlock = styled.div`
@@ -130,11 +140,20 @@ const TagsWrapper = styled.div`
 const Footer = styled.div`
     height: 50px;
     width: 100%;
-    border-top: 1px solid ${({ theme }) => theme.color.gray300};
     padding: 10px 15px 10px 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    > #major {
+        color: ${({ theme }) => theme.color.navy};
+        font-size: 20px;
+    }
+    #left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
     #wrapper-name {
         display: flex;
         flex-direction: row;

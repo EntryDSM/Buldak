@@ -4,7 +4,17 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { readAllBlocks } from '../../../api/blocks';
 import { readPublicDocument } from '../../../api/document';
-import { Right, Left, Banner, Class1, Class2, Class3, Class4 } from '../../../assets';
+import {
+    Right,
+    Left,
+    Banner,
+    Class1,
+    Class2,
+    Class3,
+    Class4,
+    BackArrow,
+    TeacherSays,
+} from '../../../assets';
 import { ArrIntoJsx } from '@packages/preview/functions/arrIntoJsx';
 import { JsxIntoArr } from '@apps/user/src/utils/function/jsxIntoArr';
 import { useRouter } from 'next/router';
@@ -95,6 +105,11 @@ function TotalView() {
                 );
             }
             case curPage == 1: {
+                return (
+                    <ImgWrapper>
+                        <Image src={TeacherSays} />
+                    </ImgWrapper>
+                );
             }
             case curPage == 2: {
                 return (
@@ -199,11 +214,13 @@ function TotalView() {
 
     return (
         <TotalWrapper>
-            <Back onClick={() => router.push('/')}>뒤로가기</Back>
+            <Back onClick={() => router.push('/dlrudtnzjavjsl')}>
+                <Image src={BackArrow} />
+            </Back>
             <BookWrapper>
                 <div id="wrapper">
                     <div id="clipwrapper">
-                        <div className="clip" id="clip1" onClick={() => setPage(1)}>
+                        <div className="clip" id="clip1" onClick={() => setPage(2)}>
                             <p>목록</p>
                         </div>
                         <div className="clip" id="clip2" onClick={() => setPage(3)}>
@@ -234,7 +251,8 @@ function TotalView() {
                                 getOtherPage()
                             ) : documentData ? (
                                 <Templates>
-                                    <div id="blocker" />
+                                    {/*                                     <div id="blocker" />
+                                     */}{' '}
                                     {JSON.parse(documentData.content)
                                         .map((value) => JsxIntoArr(value))
                                         .map((value) =>
@@ -286,7 +304,7 @@ const ImgWrapper = styled.span`
     }
 `;
 
-const Back = styled.h1`
+const Back = styled.span`
     position: fixed;
     top: 30px;
     left: 30px;
