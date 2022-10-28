@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { readPublicDocument } from '../../api/document';
+import { readPersonalDocument } from '../../api/document';
 import { BackArrow } from '../../assets';
 
 function TotalView() {
@@ -15,7 +15,7 @@ function TotalView() {
         console.log(documentId);
     }, []);
     const { data: documentData, refetch } = useQuery(['getPublicDocument'], async () => {
-        return await readPublicDocument(window.location.pathname.slice(6));
+        return await readPersonalDocument(window.location.pathname.slice(6));
     });
     return (
         <TotalWrapper>
