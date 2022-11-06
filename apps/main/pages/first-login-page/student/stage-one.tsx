@@ -31,7 +31,7 @@ const StageOne = () => {
                 },
             })
             .then((res) => {
-                window.location.href = './stage-two';
+                window.location.href = './stage-three';
             })
             .catch((error: AxiosError) => {
                 if (error?.response?.status == 400) {
