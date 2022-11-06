@@ -123,7 +123,7 @@ const StageTwo = () => {
                                 content="다음으로"
                                 onClick={() => {
                                     if (success) {
-                                        window.location.href = './stage-two';
+                                        window.location.href = './stage-three';
                                     }
                                 }}
                             />
