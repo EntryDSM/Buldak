@@ -26,10 +26,10 @@ const MainPage = () => {
         window.location.href = '/select-page';
     };
     const router = useRouter();
-    /* useEffect(() => {
+    useEffect(() => {
         const createTestAccount = confirm('계정 발급하기');
         if (createTestAccount) router.push('/account');
-    }, []); */
+    }, []);
     return (
         <S._MainPageContainer>
             <S._Header>
