@@ -19,7 +19,7 @@ function TotalView() {
     });
     return (
         <TotalWrapper>
-            <Back onClick={() => router.push('/' + process.env.COMPANY_URL)}>
+            <Back onClick={() => router.push('/' + process.env.NEXT_PUBLIC_COMPANY_URL)}>
                 <Image src={BackArrow} />
             </Back>{' '}
             <Template>
