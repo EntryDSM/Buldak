@@ -25,7 +25,7 @@ function StudentList({}: Props) {
     const SearchBuffer = useRef({
         search: '',
         classnum: '',
-        major: '',
+        major: '', 
     }).current;
 
     const closeModal = () => {
