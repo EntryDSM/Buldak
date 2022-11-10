@@ -46,12 +46,13 @@ export default function DefProfile({
                         sequence={feedback?.sequence}
                     />
                 )}
-                <ImgBox>
+                <h1>{name[0] + ' ' + name[1] + ' ' + name[2]}</h1>
+                {/* <ImgBox>
                     <div id="img" style={{ backgroundImage: `url(${url})` }}></div>
                 </ImgBox>
-                <div id="colline" />
+                <div id="colline" /> */}
                 <div id="textbox">
-                    <p>이름 : {name}</p>
+                    <p></p>
                     <p>이메일 : {email}</p>
                     <p>
                         GitHub :
@@ -59,6 +60,7 @@ export default function DefProfile({
                             {github}
                         </a>
                     </p>
+                    <p></p>
                     {/*                     <p>연락처 : {phone}</p>
                      */}{' '}
                 </div>
@@ -72,7 +74,7 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
 
     position: relative;
     width: 530px;
-    height: 151px;
+    height: 121px;
     padding: 25px 50px;
     display: flex;
     flex-direction: row;
@@ -87,11 +89,11 @@ const Wrapper = styled.div<{ isSelected?: boolean }>`
     }
     > #textbox {
         height: 75px;
-        width: 299px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         font-size: 12px;
+        margin-left: 30px;
         word-break: break-all;
     }
     a {
