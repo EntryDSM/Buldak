@@ -62,7 +62,8 @@ const LoginPage = () => {
                     if (loginState.user_type == 'STUDENT') {
                         window.location.href = 'https://user.dsm-repo.com';
                     } else if (loginState.user_type == 'MOU') {
-                        window.location.href = 'https://company.dsm-repo.com/dlrudtnzjavjsl';
+                        window.location.href =
+                            'https://company.dsm-repo.com/' + process.env.COMPANY_URL;
                     }
                 }
             })
@@ -74,7 +75,7 @@ const LoginPage = () => {
                 window.alert('로그인에 실패하였습니다');
             });
     };
-
+    
     return (
         <S._LoginPageContainer>
             <S._ImgContainer>

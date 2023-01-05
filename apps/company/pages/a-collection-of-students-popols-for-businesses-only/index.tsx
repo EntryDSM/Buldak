@@ -17,7 +17,7 @@ function StudentList({}: Props) {
     const router = useRouter();
     const { data, isLoading, error } = useQuery(['blockslist'], async () => {
         const data = await readAllBlocks();
-        return data.student_list;
+        return data.student_list.filter((value) => value.gcn[0] == '2');
     });
     const [onOff, setOnOff] = useState<boolean>(false);
     const [list, setList] = useState<EachStudentType[] | null>(null);
@@ -25,7 +25,7 @@ function StudentList({}: Props) {
     const SearchBuffer = useRef({
         search: '',
         classnum: '',
-        major: '', 
+        major: '',
     }).current;
 
     const closeModal = () => {
