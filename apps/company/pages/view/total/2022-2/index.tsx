@@ -214,7 +214,7 @@ function SecondTotalView() {
 
     return (
         <TotalWrapper>
-            <Back onClick={() => router.push(`/${process.env.NEXT_PUBLIC_COMPANY_URL}`)}>
+            <Back onClick={() => router.push(`/`)}>
                 <Image src={BackArrow} />
             </Back>
             <BookWrapper>

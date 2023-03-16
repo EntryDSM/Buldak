@@ -164,7 +164,7 @@ function StudentList({}: Props) {
                                     borderWidth={2}
                                     fontColor={theme.color.skyblue}
                                     onClick={() => {
-                                        router.push(`/${process.env.NEXT_PUBLIC_COMPANY_URL}`);
+                                        router.push(`/`);
                                     }}
                                 />
                             </div>
