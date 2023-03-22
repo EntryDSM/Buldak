@@ -17,9 +17,7 @@ function StudentList({}: Props) {
     console.log();
     const { data, isLoading, error } = useQuery(['blockslist'], async () => {
         const data = await readAllBlocks();
-        return data.student_list
-            .filter((value) => value.gcn[0] == '1')
-            .sort((a, b) => Number(a.gcn) - Number(b.gcn));
+        return data.student_list.sort((a, b) => Number(a.gcn) - Number(b.gcn));
     });
     const [onOff, setOnOff] = useState<boolean>(false);
     const [list, setList] = useState<EachStudentType[] | null>(null);

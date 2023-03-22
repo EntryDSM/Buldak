@@ -9,10 +9,10 @@ function TotalView() {
             year: 2022,
             grade: 1,
         },
-        /*     {
+            {
             year: 2022,
             grade: 2,
-        }, */
+        },
     ];
     const router = useRouter();
 
