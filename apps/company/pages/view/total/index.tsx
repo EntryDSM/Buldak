@@ -106,7 +106,7 @@ function StudentList({}: Props) {
                                         searchList();
                                     }}
                                 />
-                                {/* <DropDown
+                                <DropDown
                                     placeholder="학년"
                                     width={220}
                                     items={['전체 학년', '1', '2', '3']}
@@ -115,7 +115,7 @@ function StudentList({}: Props) {
                                         SearchBuffer.grade = value;
                                         searchList();
                                     }}
-                                /> */}
+                                />
                                 <DropDown
                                     placeholder="반"
                                     width={220}
